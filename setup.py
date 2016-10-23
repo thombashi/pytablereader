@@ -32,7 +32,10 @@ setuptools.setup(
     description=summary,
     include_package_data=True,
     install_requires=install_requires,
-    keywords=["table", "reader", "reader", "CSV", "Excel", "HTML", "JSON"],
+    keywords=[
+        "table", "reader", "reader", "CSV",
+        "Excel", "HTML", "MediaWiki", "JSON",
+    ],
     long_description=long_description,
     license="MIT License",
     packages=setuptools.find_packages(exclude=["test*"]),
