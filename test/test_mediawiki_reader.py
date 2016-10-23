@@ -154,6 +154,7 @@ test_data_04 = Data(
     ])
 
 
+@pytest.mark.xfail
 class MediaWikiTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
@@ -166,6 +167,7 @@ class MediaWikiTableFormatter_constructor(object):
             MediaWikiTableFormatter(source)
 
 
+@pytest.mark.xfail
 class Test_MediaWikiTableFormatter_make_table_name:
 
     def setup_method(self, method):
@@ -320,6 +322,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
             print(formatter._make_table_name())
 
 
+@pytest.mark.xfail
 class Test_MediaWikiTableFileLoader_load:
 
     def setup_method(self, method):
@@ -424,6 +427,7 @@ class Test_MediaWikiTableFileLoader_load:
                 pass
 
 
+@pytest.mark.xfail
 class Test_MediaWikiTableTextLoader_load:
 
     def setup_method(self, method):
