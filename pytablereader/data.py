@@ -164,19 +164,6 @@ class TableData(object):
             except InvalidHeaderNameError:
                 new_header = self.rename_header(i)
 
-                """
-                rename_count = 0
-                while True:
-                    new_header = "{:s}_rename{:d}".format(header, rename_count)
-                    if all([
-                        new_header not in self.header_list[i:],
-                        new_header not in new_header_list,
-                    ]):
-                        break
-
-                    rename_count += 1
-                """
-
             new_header_list.append(new_header)
 
         self.__header_list = new_header_list
