@@ -145,6 +145,9 @@ class TableData(object):
         """
         :return: Table data as a Pandas data frame.
         :rtype: pandas.DataFrame
+
+        .. note::
+            ``Pandas`` package required to execute this method.
         """
 
         import pandas
