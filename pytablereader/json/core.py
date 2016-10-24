@@ -163,9 +163,6 @@ class JsonTableTextLoader(JsonTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-
-        .. seealso::
-            :py:meth:`.JsonTableFileLoader.load`
         """
 
         self._validate()

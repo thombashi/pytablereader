@@ -119,9 +119,6 @@ class HtmlTableTextLoader(HtmlTableLoader):
         :rtype: |TableData| iterator
         :raises pytablereader.error.InvalidDataError:
             If the HTML data is invalid or empty.
-
-        .. seealso::
-            :py:meth:`.HtmlTableFileLoader.load`
         """
 
         self._validate()

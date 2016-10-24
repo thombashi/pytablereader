@@ -119,9 +119,6 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
         :rtype: |TableData| iterator
         :raises pytablereader.error.InvalidDataError:
             If the MediaWiki data is invalid or empty.
-
-        .. seealso::
-            :py:meth:`.MediaWikiTableFileLoader.load`
         """
 
         self._validate()
