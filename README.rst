@@ -123,5 +123,5 @@ Related Project
 ===============
 
 - `pytablewriter <https://github.com/thombashi/pytablewriter>`__
-    - Loaded data by ``pytablereader`` can be write another table format with ``pytablewriter``
+    - Loaded table data with ``pytablereader`` can write another table format by ``pytablewriter``.
 

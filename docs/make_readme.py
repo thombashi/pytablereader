@@ -54,7 +54,7 @@ def main():
     maker.write_chapter("Related Project")
     maker.write_line_list([
         "- `pytablewriter <https://github.com/thombashi/pytablewriter>`__",
-        "    - Loaded data by ``pytablereader`` can be write another table format with ``pytablewriter``"
+        "    - Loaded table data with ``pytablereader`` can write another table format by ``pytablewriter``."
     ])
 
     return 0
