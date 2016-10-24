@@ -96,7 +96,8 @@ Optional Python packages
 ------------------------------------------------
 - `pypandoc <https://github.com/bebraw/pypandoc>`__
     - required when loading MediaWiki file
-
+- `pandas <http://pandas.pydata.org/>`__
+    - required to get table data as a pandas data frame
 
 Optional packages (other than Python packages)
 ------------------------------------------------
