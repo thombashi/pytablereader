@@ -23,7 +23,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 
 setuptools.setup(
     name="pytablereader",
-    version="0.1.0",
+    version="0.1.1",
     url="https://github.com/thombashi/pytablereader",
     bugtrack_url="https://github.com/thombashi/pytablereader/issues",
 
@@ -33,7 +33,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=install_requires,
     keywords=[
-        "table", "reader", "reader", "CSV",
+        "table", "reader", "CSV",
         "Excel", "HTML", "MediaWiki", "JSON",
     ],
     long_description=long_description,
