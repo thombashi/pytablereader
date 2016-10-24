@@ -24,7 +24,8 @@ test_data_empty = Data(
     ])
 
 test_data_01 = Data(
-    """{| class="wikitable"
+    """hogehoge
+{| class="wikitable"
 ! a
 ! b
 ! c
@@ -100,7 +101,8 @@ test_data_03 = Data(
     [])
 
 test_data_04 = Data(
-    """{| class="wikitable"
+    """foobar
+{| class="wikitable"
 |+tablename
 ! a
 ! b
@@ -131,6 +133,7 @@ test_data_04 = Data(
 | style="text-align:right"| 3
 | style="text-align:right"| 3.3
 |}
+hogehoge
 """,
     [
         TableData(
