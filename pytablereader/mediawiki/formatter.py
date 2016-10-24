@@ -6,9 +6,6 @@
 
 from __future__ import absolute_import
 
-
-from .._constant import TableNameTemplate as tnt
-from ..data import TableData
 from ..html.formatter import HtmlTableFormatter
 
 
