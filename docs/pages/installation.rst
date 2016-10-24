@@ -19,15 +19,20 @@ Mandatory Python packages
 - `jsonschema <https://github.com/Julian/jsonschema>`__
 - `pathvalidate <https://github.com/thombashi/pathvalidate>`__
 - `path.py <https://github.com/jaraco/path.py>`__
-- `pypandoc <https://github.com/bebraw/pypandoc>`__
 - `six <https://pypi.python.org/pypi/six/>`__
 - `xlrd <https://github.com/python-excel/xlrd>`__
 
-Optional (not Python packages)
-----------------------------------
+Optional Python packages
+------------------------------------------------
+- `pypandoc <https://github.com/bebraw/pypandoc>`__
+    - required when loading MediaWiki file
+
+
+Optional packages (other than Python packages)
+------------------------------------------------
 
 - `lxml <http://lxml.de/installation.html>`__ (faster HTML convert if installed)
-- `pandoc <http://pandoc.org/>`__ (require when loading MediaWiki)
+- `pandoc <http://pandoc.org/>`__ (required when loading MediaWiki file)
 
 
 Test dependencies

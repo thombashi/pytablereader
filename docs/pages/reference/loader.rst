@@ -71,6 +71,23 @@ JsonTableTextLoader class
     :undoc-members:
     :show-inheritance:
 
+MediaWikiTableFileLoader class
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: pytablereader.MediaWikiTableFileLoader
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+MediaWikiTableTextLoader class
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: pytablereader.MediaWikiTableTextLoader
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 SpreadSheetLoader class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
