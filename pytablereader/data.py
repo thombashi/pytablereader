@@ -32,10 +32,6 @@ def validate_table_name(name):
 class TableData(object):
     """
     Class to represent a table data structure.
-
-    .. py:attribute:: record_list
-
-        List of table data records.
     """
 
     @property
@@ -105,13 +101,10 @@ class TableData(object):
 
     def rename_header(self, i):
         """
-        Raise :py:class:`~pytablereader.error.InvalidHeaderNameError`
-
         This method called when :py:meth:`.validate_header` method raise
         :py:class:`~pytablereader.error.InvalidHeaderNameError`.
         Override this method in subclass if you want to rename invalid
         table header element.
-        Raise
 
         :param int i: Table header index.
         :return: Renamed header name.
