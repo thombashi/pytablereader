@@ -120,8 +120,8 @@ class Test_ExcelTableFileLoader_make_table_name:
     @pytest.mark.parametrize(["value", "source", "expected"], [
         [None, "/path/to/data.xlsx", ValueError],
         ["", "/path/to/data.xlsx", ValueError],
-        ["%(sheet)s", None, ValueError],
-        ["%(sheet)s", "", ValueError],
+        ["%(sheet)s", None, ptr.InvalidTableNameError],
+        ["%(sheet)s", "", ptr.InvalidTableNameError],
     ])
     def test_exception(self, value, source, expected):
         loader = ptr.ExcelTableFileLoader(source)
@@ -229,8 +229,8 @@ class Test_ExcelTableFileLoader_load:
             "expected",
         ],
         [
-            ["", ValueError],
-            [None, ValueError],
+            ["", IOError],
+            [None, IOError],
         ])
     def test_null_file_path(self, source, expected):
         loader = ptr.ExcelTableFileLoader(source)

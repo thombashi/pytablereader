@@ -59,9 +59,14 @@ class TableLoader(TableLoaderInterface):
     __global_table_count = 0
     __format_table_count = {}
 
+    @property
+    def source_type(self):
+        return self._validator.source_type
+
     def __init__(self, source):
         self.table_name = tnt.DEFAULT
         self.source = source
+        self._validator = None
 
     def get_format_key(self):
         return "{:s}{:d}".format(
@@ -102,8 +107,7 @@ class TableLoader(TableLoaderInterface):
             raise TypeError("table_name expected a string")
 
     def _validate_source(self):
-        if dataproperty.is_empty_string(self.source):
-            raise InvalidDataError("data source is empty")
+        self._validator.validate()
 
     def __get_format_table_count(self):
         return self.__format_table_count.get(self._format_name, 0)

@@ -8,6 +8,8 @@ from __future__ import absolute_import
 
 from .._constant import SourceType
 from .._constant import TableNameTemplate as tnt
+from .._validator import FileValidator
+from .._validator import TextValidator
 from ..interface import TableLoader
 from .formatter import HtmlTableFormatter
 
@@ -31,12 +33,10 @@ class HtmlTableFileLoader(HtmlTableLoader):
         Table name string. Defaults to ``%(filename)s_%(key)s``.
     """
 
-    @property
-    def source_type(self):
-        return SourceType.FILE
-
     def __init__(self, file_path=None):
         super(HtmlTableFileLoader, self).__init__(file_path)
+
+        self._validator = FileValidator(file_path)
 
     def load(self):
         """
@@ -87,12 +87,10 @@ class HtmlTableTextLoader(HtmlTableLoader):
         Table name string. Defaults to ``%(key)s``.
     """
 
-    @property
-    def source_type(self):
-        return SourceType.TEXT
-
     def __init__(self, text):
         super(HtmlTableTextLoader, self).__init__(text)
+
+        self._validator = TextValidator(text)
 
     def load(self):
         """

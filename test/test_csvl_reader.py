@@ -220,8 +220,8 @@ class Test_CsvTableFileLoader_load:
             "expected",
         ],
         [
-            ["", [], ValueError],
-            [None, [], ValueError],
+            ["", [], IOError],
+            [None, [], IOError],
         ])
     def test_null(
             self, tmpdir, filename, header_list, expected):

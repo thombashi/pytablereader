@@ -271,8 +271,8 @@ class Test_JsonTableFileLoader_load:
                 pass
 
     @pytest.mark.parametrize(["filename", "expected"], [
-        ["", ptr.InvalidDataError],
-        [None, ptr.InvalidDataError],
+        ["", IOError],
+        [None, IOError],
     ])
     def test_null(
             self, tmpdir, filename, expected):

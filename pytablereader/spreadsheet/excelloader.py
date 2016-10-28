@@ -10,6 +10,7 @@ from six.moves import range
 import xlrd
 
 from .._constant import SourceType
+from .._validator import FileValidator
 from ..error import InvalidDataError
 from ..error import OpenError
 from ..data import TableData
@@ -26,10 +27,6 @@ class ExcelTableFileLoader(SpreadSheetLoader):
     """
 
     @property
-    def source_type(self):
-        return SourceType.FILE
-
-    @property
     def _sheet_name(self):
         return self._worksheet.name
 
@@ -43,6 +40,8 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
     def __init__(self, file_path=None):
         super(ExcelTableFileLoader, self).__init__(file_path)
+
+        self._validator = FileValidator(file_path)
 
     def load(self):
         """
