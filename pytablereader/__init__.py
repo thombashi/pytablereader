@@ -12,9 +12,6 @@ from .error import OpenError
 from .error import InvalidTableNameError
 from .error import InvalidFilePathError
 
-import pytablereader.data
-import pytablereader.error
-
 from .data import TableData
 
 from .csv.core import CsvTableFileLoader
