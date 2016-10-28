@@ -9,7 +9,7 @@ import os
 
 import pytest
 
-import pytablereader
+import pytablereader as ptr
 from pytablereader.interface import TableLoader
 from pytablereader.data import TableData
 from pytablereader.mediawiki.formatter import MediaWikiTableFormatter
@@ -161,8 +161,8 @@ hogehoge
 class MediaWikiTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
-        ["tablename", None, pytablereader.InvalidDataError],
-        ["tablename", "", pytablereader.InvalidDataError],
+        ["tablename", None, ptr.InvalidDataError],
+        ["tablename", "", ptr.InvalidDataError],
     ])
     def test_exception(
             self, monkeypatch, value, source, expected):
@@ -215,7 +215,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
         monkeypatch.setattr(
             MediaWikiTableFormatter, "table_id", self.valid_tag_property)
 
-        loader = pytablereader.MediaWikiTableFileLoader(source)
+        loader = ptr.MediaWikiTableFileLoader(source)
         loader.table_name = value
         formatter = MediaWikiTableFormatter(value)
         formatter.accept(loader)
@@ -232,7 +232,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
         monkeypatch.setattr(
             MediaWikiTableFormatter, "table_id", self.null_tag_property)
 
-        loader = pytablereader.MediaWikiTableFileLoader(source)
+        loader = ptr.MediaWikiTableFileLoader(source)
         loader.table_name = value
         formatter = MediaWikiTableFormatter(value)
         formatter.accept(loader)
@@ -245,7 +245,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
         [
             "%(%(filename)s)",
             "/path/to/data.mediawiki",
-            pytablereader.InvalidTableNameError  # %(data)
+            ptr.InvalidTableNameError  # %(data)
         ],
     ])
     def test_MediaWikiTableFileLoader_exception(
@@ -253,7 +253,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
         monkeypatch.setattr(
             MediaWikiTableFormatter, "table_id", self.null_tag_property)
 
-        loader = pytablereader.MediaWikiTableFileLoader(source)
+        loader = ptr.MediaWikiTableFileLoader(source)
         loader.table_name = value
         formatter = MediaWikiTableFormatter(source)
         formatter.accept(loader)
@@ -275,7 +275,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
             MediaWikiTableFormatter, "table_id", self.valid_tag_property)
 
         source = "<table></table>"
-        loader = pytablereader.MediaWikiTableTextLoader(source)
+        loader = ptr.MediaWikiTableTextLoader(source)
         loader.table_name = value
         formatter = MediaWikiTableFormatter(source)
         formatter.accept(loader)
@@ -296,7 +296,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
             MediaWikiTableFormatter, "table_id", self.null_tag_property)
 
         source = "<table></table>"
-        loader = pytablereader.MediaWikiTableTextLoader(source)
+        loader = ptr.MediaWikiTableTextLoader(source)
         loader.table_name = value
         formatter = MediaWikiTableFormatter(source)
         formatter.accept(loader)
@@ -308,7 +308,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
         [
             "%(filename)s",
             "<table></table>",
-            pytablereader.InvalidTableNameError
+            ptr.InvalidTableNameError
         ],
     ])
     def test_exception_MediaWikiTableTextLoader(
@@ -316,7 +316,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
         monkeypatch.setattr(
             MediaWikiTableFormatter, "table_id", self.valid_tag_property)
 
-        loader = pytablereader.MediaWikiTableTextLoader(source)
+        loader = ptr.MediaWikiTableTextLoader(source)
         loader.table_name = value
         formatter = MediaWikiTableFormatter(source)
         formatter.accept(loader)
@@ -381,7 +381,7 @@ class Test_MediaWikiTableFileLoader_load:
         with open(str(p_file_path), "w") as f:
             f.write(table_text)
 
-        loader = pytablereader.MediaWikiTableFileLoader(str(p_file_path))
+        loader = ptr.MediaWikiTableFileLoader(str(p_file_path))
         loader.table_name = table_name
 
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
@@ -401,7 +401,7 @@ class Test_MediaWikiTableFileLoader_load:
             [
                 "",
                 "tmp.mediawiki",
-                pytablereader.InvalidDataError,
+                ptr.InvalidDataError,
             ],
         ])
     def test_exception(
@@ -411,19 +411,19 @@ class Test_MediaWikiTableFileLoader_load:
         with open(str(p_file_path), "w") as f:
             f.write(table_text)
 
-        loader = pytablereader.MediaWikiTableFileLoader(str(p_file_path))
+        loader = ptr.MediaWikiTableFileLoader(str(p_file_path))
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
                 pass
 
     @pytest.mark.parametrize(["filename", "expected"], [
-        ["", pytablereader.InvalidDataError],
-        [None, pytablereader.InvalidDataError],
+        ["", ptr.InvalidDataError],
+        [None, ptr.InvalidDataError],
     ])
     def test_null(
             self, tmpdir, filename, expected):
-        loader = pytablereader.MediaWikiTableFileLoader(filename)
+        loader = ptr.MediaWikiTableFileLoader(filename)
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
@@ -464,7 +464,7 @@ class Test_MediaWikiTableTextLoader_load:
             ],
         ])
     def test_normal(self, test_id, table_text, table_name, expected_tabletuple_list):
-        loader = pytablereader.MediaWikiTableTextLoader(table_text)
+        loader = ptr.MediaWikiTableTextLoader(table_text)
         loader.table_name = table_name
 
         for tabledata in loader.load():
@@ -480,11 +480,11 @@ class Test_MediaWikiTableTextLoader_load:
     @pytest.mark.parametrize(["table_text", "expected"], [
         [
             "",
-            pytablereader.InvalidDataError,
+            ptr.InvalidDataError,
         ],
     ])
     def test_exception(self, table_text, expected):
-        loader = pytablereader.MediaWikiTableTextLoader(table_text)
+        loader = ptr.MediaWikiTableTextLoader(table_text)
         loader.table_name = "dummy"
 
         with pytest.raises(expected):
@@ -492,11 +492,11 @@ class Test_MediaWikiTableTextLoader_load:
                 pass
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", pytablereader.InvalidDataError],
-        [None, pytablereader.InvalidDataError],
+        ["", ptr.InvalidDataError],
+        [None, ptr.InvalidDataError],
     ])
     def test_null(self, table_text, expected):
-        loader = pytablereader.MediaWikiTableTextLoader(table_text)
+        loader = ptr.MediaWikiTableTextLoader(table_text)
         loader.table_name = "dummy"
 
         with pytest.raises(expected):

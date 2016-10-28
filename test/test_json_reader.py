@@ -9,7 +9,7 @@ import os
 
 import pytest
 
-import pytablereader as sloader
+import pytablereader as ptr
 from pytablereader.interface import TableLoader
 from pytablereader.data import TableData
 from pytablereader import InvalidTableNameError
@@ -157,7 +157,7 @@ class Test_JsonTableFileLoader_make_table_name:
         ["hoge_%(filename)s", "", "hoge_"],
     ])
     def test_normal(self, value, source, expected):
-        loader = sloader.JsonTableFileLoader(source)
+        loader = ptr.JsonTableFileLoader(source)
         loader.table_name = value
 
         assert loader.make_table_name() == expected
@@ -174,7 +174,7 @@ class Test_JsonTableFileLoader_make_table_name:
         ],
     ])
     def test_exception(self, value, source, expected):
-        loader = sloader.JsonTableFileLoader(source)
+        loader = ptr.JsonTableFileLoader(source)
         loader.table_name = value
 
         with pytest.raises(expected):
@@ -231,7 +231,7 @@ class Test_JsonTableFileLoader_load:
         with open(str(p_file_path), "w") as f:
             f.write(table_text)
 
-        loader = sloader.JsonTableFileLoader(str(p_file_path))
+        loader = ptr.JsonTableFileLoader(str(p_file_path))
         loader.table_name = table_name
 
         for tabletuple in loader.load():
@@ -247,14 +247,14 @@ class Test_JsonTableFileLoader_load:
             [
                 "[]",
                 "tmp.json",
-                sloader.InvalidDataError,
+                ptr.InvalidDataError,
             ],
             [
                 """[
                     {"attr_b": 4, "attr_c": "a", "attr_a": {"aaa": 1}}
                 ]""",
                 "tmp.json",
-                sloader.ValidationError,
+                ptr.ValidationError,
             ],
         ])
     def test_exception(
@@ -264,19 +264,19 @@ class Test_JsonTableFileLoader_load:
         with open(str(p_file_path), "w") as f:
             f.write(table_text)
 
-        loader = sloader.JsonTableFileLoader(str(p_file_path))
+        loader = ptr.JsonTableFileLoader(str(p_file_path))
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
                 pass
 
     @pytest.mark.parametrize(["filename", "expected"], [
-        ["", sloader.InvalidDataError],
-        [None, sloader.InvalidDataError],
+        ["", ptr.InvalidDataError],
+        [None, ptr.InvalidDataError],
     ])
     def test_null(
             self, tmpdir, filename, expected):
-        loader = sloader.JsonTableFileLoader(filename)
+        loader = ptr.JsonTableFileLoader(filename)
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
@@ -294,7 +294,7 @@ class Test_JsonTableTextLoader_make_table_name:
         ["table", "table_json"],
     ])
     def test_normal(self, value, expected):
-        loader = sloader.JsonTableTextLoader("dummy")
+        loader = ptr.JsonTableTextLoader("dummy")
         loader.table_name = value
 
         assert loader.make_table_name() == expected
@@ -305,7 +305,7 @@ class Test_JsonTableTextLoader_make_table_name:
         ["", "tablename", ValueError],
     ])
     def test_exception(self, value, source, expected):
-        loader = sloader.JsonTableTextLoader(source)
+        loader = ptr.JsonTableTextLoader(source)
         loader.table_name = value
 
         with pytest.raises(expected):
@@ -341,8 +341,8 @@ class Test_JsonTableTextLoader_load:
             ],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):
-        sloader.JsonTableFileLoader.clear_table_count()
-        loader = sloader.JsonTableTextLoader(table_text)
+        ptr.JsonTableFileLoader.clear_table_count()
+        loader = ptr.JsonTableTextLoader(table_text)
         loader.table_name = table_name
 
         for tabledata in loader.load():
@@ -351,17 +351,17 @@ class Test_JsonTableTextLoader_load:
     @pytest.mark.parametrize(["table_text", "expected"], [
         [
             "[]",
-            sloader.InvalidDataError,
+            ptr.InvalidDataError,
         ],
         [
             """[
                 {"attr_b": 4, "attr_c": "a", "attr_a": {"aaa": 1}}
             ]""",
-            sloader.ValidationError,
+            ptr.ValidationError,
         ],
     ])
     def test_exception(self, table_text, expected):
-        loader = sloader.JsonTableTextLoader(table_text)
+        loader = ptr.JsonTableTextLoader(table_text)
         loader.table_name = "dummy"
 
         with pytest.raises(expected):
@@ -369,11 +369,11 @@ class Test_JsonTableTextLoader_load:
                 pass
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", sloader.InvalidDataError],
-        [None, sloader.InvalidDataError],
+        ["", ptr.InvalidDataError],
+        [None, ptr.InvalidDataError],
     ])
     def test_null(self, table_text, expected):
-        loader = sloader.JsonTableTextLoader(table_text)
+        loader = ptr.JsonTableTextLoader(table_text)
         loader.table_name = "dummy"
 
         with pytest.raises(expected):

@@ -9,7 +9,7 @@ import os
 
 import pytest
 
-import pytablereader
+import pytablereader as ptr
 from pytablereader.interface import TableLoader
 from pytablereader.data import TableData
 from pytablereader.html.formatter import HtmlTableFormatter
@@ -230,8 +230,8 @@ test_data_05 = Data(
 class HtmlTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
-        ["tablename", None, pytablereader.InvalidDataError],
-        ["tablename", "", pytablereader.InvalidDataError],
+        ["tablename", None, ptr.InvalidDataError],
+        ["tablename", "", ptr.InvalidDataError],
     ])
     def test_exception(
             self, monkeypatch, value, source, expected):
@@ -283,7 +283,7 @@ class Test_HtmlTableFormatter_make_table_name:
         monkeypatch.setattr(
             HtmlTableFormatter, "table_id", self.valid_tag_property)
 
-        loader = pytablereader.HtmlTableFileLoader(source)
+        loader = ptr.HtmlTableFileLoader(source)
         loader.table_name = value
         formatter = HtmlTableFormatter(value)
         formatter.accept(loader)
@@ -300,7 +300,7 @@ class Test_HtmlTableFormatter_make_table_name:
         monkeypatch.setattr(
             HtmlTableFormatter, "table_id", self.null_tag_property)
 
-        loader = pytablereader.HtmlTableFileLoader(source)
+        loader = ptr.HtmlTableFileLoader(source)
         loader.table_name = value
         formatter = HtmlTableFormatter(value)
         formatter.accept(loader)
@@ -313,7 +313,7 @@ class Test_HtmlTableFormatter_make_table_name:
         [
             "%(%(filename)s)",
             "/path/to/data.html",
-            pytablereader.InvalidTableNameError  # %(data)
+            ptr.InvalidTableNameError  # %(data)
         ],
     ])
     def test_HtmlTableFileLoader_exception(
@@ -321,7 +321,7 @@ class Test_HtmlTableFormatter_make_table_name:
         monkeypatch.setattr(
             HtmlTableFormatter, "table_id", self.null_tag_property)
 
-        loader = pytablereader.HtmlTableFileLoader(source)
+        loader = ptr.HtmlTableFileLoader(source)
         loader.table_name = value
         formatter = HtmlTableFormatter(source)
         formatter.accept(loader)
@@ -343,7 +343,7 @@ class Test_HtmlTableFormatter_make_table_name:
             HtmlTableFormatter, "table_id", self.valid_tag_property)
 
         source = "<table></table>"
-        loader = pytablereader.HtmlTableTextLoader(source)
+        loader = ptr.HtmlTableTextLoader(source)
         loader.table_name = value
         formatter = HtmlTableFormatter(source)
         formatter.accept(loader)
@@ -364,7 +364,7 @@ class Test_HtmlTableFormatter_make_table_name:
             HtmlTableFormatter, "table_id", self.null_tag_property)
 
         source = "<table></table>"
-        loader = pytablereader.HtmlTableTextLoader(source)
+        loader = ptr.HtmlTableTextLoader(source)
         loader.table_name = value
         formatter = HtmlTableFormatter(source)
         formatter.accept(loader)
@@ -376,7 +376,7 @@ class Test_HtmlTableFormatter_make_table_name:
         [
             "%(filename)s",
             "<table></table>",
-            pytablereader.InvalidTableNameError
+            ptr.InvalidTableNameError
         ],
     ])
     def test_exception_HtmlTableTextLoader(
@@ -384,7 +384,7 @@ class Test_HtmlTableFormatter_make_table_name:
         monkeypatch.setattr(
             HtmlTableFormatter, "table_id", self.valid_tag_property)
 
-        loader = pytablereader.HtmlTableTextLoader(source)
+        loader = ptr.HtmlTableTextLoader(source)
         loader.table_name = value
         formatter = HtmlTableFormatter(source)
         formatter.accept(loader)
@@ -445,7 +445,7 @@ class Test_HtmlTableFileLoader_load:
         with open(str(p_file_path), "w") as f:
             f.write(table_text)
 
-        loader = pytablereader.HtmlTableFileLoader(str(p_file_path))
+        loader = ptr.HtmlTableFileLoader(str(p_file_path))
         loader.table_name = table_name
 
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
@@ -465,7 +465,7 @@ class Test_HtmlTableFileLoader_load:
             [
                 "",
                 "tmp.html",
-                pytablereader.InvalidDataError,
+                ptr.InvalidDataError,
             ],
         ])
     def test_exception(
@@ -475,19 +475,19 @@ class Test_HtmlTableFileLoader_load:
         with open(str(p_file_path), "w") as f:
             f.write(table_text)
 
-        loader = pytablereader.HtmlTableFileLoader(str(p_file_path))
+        loader = ptr.HtmlTableFileLoader(str(p_file_path))
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
                 pass
 
     @pytest.mark.parametrize(["filename", "expected"], [
-        ["", pytablereader.InvalidDataError],
-        [None, pytablereader.InvalidDataError],
+        ["", ptr.InvalidDataError],
+        [None, ptr.InvalidDataError],
     ])
     def test_null(
             self, tmpdir, filename, expected):
-        loader = pytablereader.HtmlTableFileLoader(filename)
+        loader = ptr.HtmlTableFileLoader(filename)
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
@@ -523,7 +523,7 @@ class Test_HtmlTableTextLoader_load:
             ],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):
-        loader = pytablereader.HtmlTableTextLoader(table_text)
+        loader = ptr.HtmlTableTextLoader(table_text)
         loader.table_name = table_name
 
         for tabletuple in loader.load():
@@ -532,11 +532,11 @@ class Test_HtmlTableTextLoader_load:
     @pytest.mark.parametrize(["table_text", "expected"], [
         [
             "",
-            pytablereader.InvalidDataError,
+            ptr.InvalidDataError,
         ],
     ])
     def test_exception(self, table_text, expected):
-        loader = pytablereader.HtmlTableTextLoader(table_text)
+        loader = ptr.HtmlTableTextLoader(table_text)
         loader.table_name = "dummy"
 
         with pytest.raises(expected):
@@ -544,11 +544,11 @@ class Test_HtmlTableTextLoader_load:
                 pass
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", pytablereader.InvalidDataError],
-        [None, pytablereader.InvalidDataError],
+        ["", ptr.InvalidDataError],
+        [None, ptr.InvalidDataError],
     ])
     def test_null(self, table_text, expected):
-        loader = pytablereader.HtmlTableTextLoader(table_text)
+        loader = ptr.HtmlTableTextLoader(table_text)
         loader.table_name = "dummy"
 
         with pytest.raises(expected):

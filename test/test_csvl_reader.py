@@ -10,7 +10,7 @@ import os
 import pytest
 import six
 
-import pytablereader as sloader
+import pytablereader as ptr
 from pytablereader.interface import TableLoader
 from pytablereader.data import TableData
 from pytablereader import InvalidTableNameError
@@ -96,7 +96,7 @@ class Test_CsvTableFileLoader_make_table_name:
         ],
     ])
     def test_normal(self, value, source, expected):
-        loader = sloader.CsvTableFileLoader(source)
+        loader = ptr.CsvTableFileLoader(source)
         loader.table_name = value
 
         assert loader.make_table_name() == expected
@@ -113,7 +113,7 @@ class Test_CsvTableFileLoader_make_table_name:
         ],
     ])
     def test_exception(self, value, source, expected):
-        loader = sloader.CsvTableFileLoader(source)
+        loader = ptr.CsvTableFileLoader(source)
         loader.table_name = value
 
         with pytest.raises(expected):
@@ -163,7 +163,7 @@ class Test_CsvTableFileLoader_load:
         with open(str(p_csv), "w") as f:
             f.write(table_text)
 
-        loader = sloader.CsvTableFileLoader(str(p_csv))
+        loader = ptr.CsvTableFileLoader(str(p_csv))
         loader.header_list = header_list
 
         for tabletuple in loader.load():
@@ -181,7 +181,7 @@ class Test_CsvTableFileLoader_load:
                 "",
                 "hoge.csv",
                 [],
-                sloader.InvalidDataError,
+                ptr.InvalidDataError,
             ],
             [
                 "\n".join([
@@ -189,14 +189,14 @@ class Test_CsvTableFileLoader_load:
                 ]),
                 "hoge.csv",
                 [],
-                sloader.InvalidDataError,
+                ptr.InvalidDataError,
             ],
             [
                 "\n".join([
                 ]),
                 "hoge.csv",
                 ["attr_a", "attr_b", "attr_c"],
-                sloader.InvalidDataError,
+                ptr.InvalidDataError,
             ],
         ])
     def test_exception(
@@ -206,7 +206,7 @@ class Test_CsvTableFileLoader_load:
         with open(str(p_csv), "w") as f:
             f.write(table_text)
 
-        loader = sloader.CsvTableFileLoader(str(p_csv))
+        loader = ptr.CsvTableFileLoader(str(p_csv))
         loader.header_list = header_list
 
         with pytest.raises(expected):
@@ -226,7 +226,7 @@ class Test_CsvTableFileLoader_load:
     def test_null(
             self, tmpdir, filename, header_list, expected):
 
-        loader = sloader.CsvTableFileLoader(filename)
+        loader = ptr.CsvTableFileLoader(filename)
         loader.header_list = header_list
 
         with pytest.raises(expected):
@@ -245,7 +245,7 @@ class Test_CsvTableTextLoader_make_table_name:
         ["table", "table_csv"],
     ])
     def test_normal(self, value, expected):
-        loader = sloader.CsvTableTextLoader("dummy")
+        loader = ptr.CsvTableTextLoader("dummy")
         loader.table_name = value
 
         assert loader.make_table_name() == expected
@@ -255,7 +255,7 @@ class Test_CsvTableTextLoader_make_table_name:
         ["", "tablename", ValueError],
     ])
     def test_exception(self, value, source, expected):
-        loader = sloader.CsvTableFileLoader(source)
+        loader = ptr.CsvTableFileLoader(source)
         loader.table_name = value
 
         with pytest.raises(expected):
@@ -295,7 +295,7 @@ class Test_CsvTableTextLoader_load:
             ],
         ])
     def test_normal(self, table_text, table_name, header_list, expected):
-        loader = sloader.CsvTableTextLoader(table_text)
+        loader = ptr.CsvTableTextLoader(table_text)
         loader.table_name = table_name
         loader.header_list = header_list
 
@@ -322,7 +322,7 @@ class Test_CsvTableTextLoader_load:
                 ]),
                 "hoge",
                 [],
-                sloader.InvalidDataError,
+                ptr.InvalidDataError,
             ],
             [
                 "\n".join([
@@ -333,7 +333,7 @@ class Test_CsvTableTextLoader_load:
             ],
         ])
     def test_exception(self, table_text, table_name, header_list, expected):
-        loader = sloader.CsvTableTextLoader(table_text)
+        loader = ptr.CsvTableTextLoader(table_text)
         loader.table_name = table_name
         loader.header_list = header_list
 
@@ -352,7 +352,7 @@ class Test_CsvTableTextLoader_load:
             [None, [], ValueError],
         ])
     def test_null(self, table_name, header_list, expected):
-        loader = sloader.CsvTableTextLoader("dummy")
+        loader = ptr.CsvTableTextLoader("dummy")
         loader.table_name = table_name
         loader.header_list = header_list
 

@@ -9,7 +9,7 @@ import json
 import pathvalidate
 import pytest
 
-import pytablereader
+import pytablereader as ptr
 from pytablereader.error import InvalidTableNameError
 from pytablereader.data import TableData
 
@@ -22,7 +22,7 @@ class ValidateTableData(TableData):
         except pathvalidate.ValidReservedNameError:
             pass
         except pathvalidate.InvalidReservedNameError:
-            raise pytablereader.error.InvalidHeaderNameError()
+            raise ptr.error.InvalidHeaderNameError()
 
 
 class RenameTableData(TableData):
@@ -33,7 +33,7 @@ class RenameTableData(TableData):
         except pathvalidate.ValidReservedNameError:
             pass
         except pathvalidate.InvalidReservedNameError:
-            raise pytablereader.error.InvalidHeaderNameError()
+            raise ptr.error.InvalidHeaderNameError()
 
     def rename_header(self, i):
         return "{:s}_rename".format(self.header_list[i])
@@ -93,7 +93,7 @@ class Test_TableData_constructor:
         [
             [
                 "invalid_header", ["not", "all"], [[1, 2], [3, 4]],
-                pytablereader.error.InvalidHeaderNameError,
+                ptr.error.InvalidHeaderNameError,
             ],
         ]
     )

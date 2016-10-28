@@ -7,7 +7,7 @@
 import pytest
 import xlsxwriter
 
-import pytablereader as sloader
+import pytablereader as ptr
 from pytablereader.interface import TableLoader
 
 
@@ -109,11 +109,11 @@ class Test_ExcelTableFileLoader_make_table_name:
         ],
     ])
     def test_normal(self, monkeypatch, value, source, expected):
-        loader = sloader.ExcelTableFileLoader(source)
+        loader = ptr.ExcelTableFileLoader(source)
         loader.table_name = value
 
         monkeypatch.setattr(
-            sloader.ExcelTableFileLoader, "_sheet_name", self.monkey_property)
+            ptr.ExcelTableFileLoader, "_sheet_name", self.monkey_property)
 
         assert loader.make_table_name() == expected
 
@@ -124,7 +124,7 @@ class Test_ExcelTableFileLoader_make_table_name:
         ["%(sheet)s", "", ValueError],
     ])
     def test_exception(self, value, source, expected):
-        loader = sloader.ExcelTableFileLoader(source)
+        loader = ptr.ExcelTableFileLoader(source)
         loader.table_name = value
 
         with pytest.raises(expected):
@@ -147,7 +147,7 @@ class Test_ExcelTableFileLoader_load:
                 "%(sheet)s",
                 0,
                 [
-                    sloader.data.TableData(
+                    ptr.data.TableData(
                         table_name=u'testsheet1',
                         header_list=[u'a1', u'b1', u'c1'],
                         record_list=[
@@ -156,7 +156,7 @@ class Test_ExcelTableFileLoader_load:
                             [2.0, 2.2, u'bb'],
                             [3.0, 3.3, u'cc'],
                         ]),
-                    sloader.data.TableData(
+                    ptr.data.TableData(
                         table_name=u'testsheet3',
                         header_list=[u'a3', u'b3', u'c3'],
                         record_list=[
@@ -171,7 +171,7 @@ class Test_ExcelTableFileLoader_load:
                 "%(filename)s_%(sheet)s",
                 2,
                 [
-                    sloader.data.TableData(
+                    ptr.data.TableData(
                         table_name=u'tmp_testsheet1',
                         header_list=[u'aa1', u'ab1', u'ac1'],
                         record_list=[
@@ -179,7 +179,7 @@ class Test_ExcelTableFileLoader_load:
                             [2.0, 2.2, u'bb'],
                             [3.0, 3.3, u'cc'],
                         ]),
-                    sloader.data.TableData(
+                    ptr.data.TableData(
                         table_name=u'tmp_testsheet3',
                         header_list=[u'a3', u'b3', u'c3'],
                         record_list=[
@@ -194,7 +194,7 @@ class Test_ExcelTableFileLoader_load:
     def test_normal(
             self, valid_excel_file_path,
             table_name, start_row, expected_tabledata):
-        loader = sloader.ExcelTableFileLoader(valid_excel_file_path)
+        loader = ptr.ExcelTableFileLoader(valid_excel_file_path)
         loader.table_name = table_name
         loader.start_row = start_row
 
@@ -211,12 +211,12 @@ class Test_ExcelTableFileLoader_load:
             [
                 "%(sheet)s",
                 0,
-                sloader.InvalidDataError,
+                ptr.InvalidDataError,
             ],
         ])
     def test_abnormal(
             self, invalid_excel_file_path, table_name, start_row, expected):
-        loader = sloader.ExcelTableFileLoader(invalid_excel_file_path)
+        loader = ptr.ExcelTableFileLoader(invalid_excel_file_path)
         loader.table_name = table_name
         loader.start_row = start_row
 
@@ -233,7 +233,7 @@ class Test_ExcelTableFileLoader_load:
             [None, ValueError],
         ])
     def test_null_file_path(self, source, expected):
-        loader = sloader.ExcelTableFileLoader(source)
+        loader = ptr.ExcelTableFileLoader(source)
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
@@ -250,7 +250,7 @@ class Test_ExcelTableFileLoader_load:
         ])
     def test_null_table_name(
             self, valid_excel_file_path, table_name, expected):
-        loader = sloader.ExcelTableFileLoader(valid_excel_file_path)
+        loader = ptr.ExcelTableFileLoader(valid_excel_file_path)
         loader.table_name = table_name
 
         with pytest.raises(expected):
