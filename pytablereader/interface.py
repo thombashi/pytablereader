@@ -37,12 +37,6 @@ class TableLoaderInterface(object):
     def load(self):  # pragma: no cover
         pass
 
-    """
-    @abc.abstractmethod
-    def make_table_name(self):  # pragma: no cover
-        pass
-        """
-
     @abc.abstractmethod
     def inc_table_count(self):  # pragma: no cover
         pass
