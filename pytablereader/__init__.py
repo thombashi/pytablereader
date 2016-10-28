@@ -7,10 +7,12 @@
 from __future__ import absolute_import
 
 from .error import ValidationError
-from .error import InvalidDataError
-from .error import OpenError
 from .error import InvalidTableNameError
+from .error import InvalidHeaderNameError
 from .error import InvalidFilePathError
+from .error import InvalidDataError
+from .error import EmptyDataError
+from .error import OpenError
 
 from .data import TableData
 
