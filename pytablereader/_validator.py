@@ -13,7 +13,7 @@ import pathvalidate as pv
 
 from ._constant import SourceType
 from .error import InvalidFilePathError
-from .error import InvalidDataError
+from .error import EmptyDataError
 
 
 class ValidatorInterface(object):
@@ -63,4 +63,4 @@ class TextValidator(BaseValidator):
 
     def validate(self):
         if dataproperty.is_empty_string(self.source):
-            raise InvalidDataError("data source is empty")
+            raise EmptyDataError("data source is empty")
