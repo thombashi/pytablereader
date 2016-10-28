@@ -10,6 +10,7 @@ from .error import ValidationError
 from .error import InvalidDataError
 from .error import OpenError
 from .error import InvalidTableNameError
+from .error import InvalidFilePathError
 
 import pytablereader.data
 import pytablereader.error

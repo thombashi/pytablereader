@@ -25,6 +25,12 @@ class InvalidHeaderNameError(Exception):
     """
 
 
+class InvalidFilePathError(ValueError):
+    """
+    Raised when invalid file path used.
+    """
+
+
 class InvalidDataError(ValueError):
     """
     Raised when data is invalid to load.
