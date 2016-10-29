@@ -4,6 +4,7 @@
 from __future__ import print_function
 import pytablereader
 
+# prepare data ---
 file_path = "sample_data.csv"
 csv_text = "\n".join([
     '"attr_a","attr_b","attr_c"',
@@ -18,9 +19,9 @@ with open(file_path, "w") as f:
 # load from a csv file ---
 loader = pytablereader.CsvTableFileLoader(file_path)
 for table_data in loader.load():
-    print("load from file: {:s}".format(table_data))
+    print("load from file: {:s}".format(table_data.dumps()))
 
 # load from a csv text ---
 loader = pytablereader.CsvTableTextLoader(csv_text)
 for table_data in loader.load():
-    print("load from text: {:s}".format(table_data))
+    print("load from text: {:s}".format(table_data.dumps()))
