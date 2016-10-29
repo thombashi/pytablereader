@@ -71,7 +71,7 @@ class TableData(object):
         self.__sanitize_header_list()
 
     def __repr__(self):
-        return "table_name={}, header_list={} record_list={}".format(
+        return "table_name={}, header_list={}, record_list={}".format(
             self.table_name, self.header_list, self.record_list)
 
     def __eq__(self, other):
