@@ -46,9 +46,10 @@ class JsonTableFileLoader(JsonTableLoader):
 
         This method can be loading two types of JSON formats:
         **(1)** single table data in a file,
-        acceptable JSON schema is as follows:
+        acceptable JSON Schema is as follows:
 
         .. code-block:: json
+            :caption: JSON Schema: single table data
 
             {
                 "type": "array",
@@ -64,10 +65,20 @@ class JsonTableFileLoader(JsonTableLoader):
                 },
             }
 
+        .. code-block:: json
+            :caption: JSON Schema example (1)
+
+            [
+                {"attr_b": 4, "attr_c": "a", "attr_a": 1},
+                {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
+                {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
+            ]
+
         **(2)** multiple table data in a file,
-        acceptable JSON schema is as follows:
+        acceptable JSON Schema is as follows:
 
         .. code-block:: json
+            :caption: JSON Schema: multiple table data
 
             {
                 "type": "object",
@@ -84,6 +95,22 @@ class JsonTableFileLoader(JsonTableLoader):
                         }
                     }
                 }
+            }
+
+        .. code-block:: json
+            :caption: JSON Schema example (2)
+
+            {
+                "table_a" : [
+                    {"attr_b": 4, "attr_c": "a", "attr_a": 1},
+                    {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
+                    {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
+                ],
+                "table_b" : [
+                    {"a": 1, "b": 4},
+                    {"a": 2 },
+                    {"a": 3, "b": 120.9}
+                ]
             }
 
         :return:
