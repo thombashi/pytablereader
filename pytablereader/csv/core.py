@@ -7,6 +7,7 @@
 from __future__ import absolute_import
 import csv
 
+import dataproperty
 from dataproperty.type import FloatTypeChecker
 import pathvalidate
 import six
@@ -67,6 +68,7 @@ class CsvTableLoader(TableLoader):
                 for data in row
             ]
             for row in self._csv_reader
+            if dataproperty.is_not_empty_sequence(row)
         ]
 
 

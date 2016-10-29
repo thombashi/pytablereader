@@ -68,6 +68,26 @@ test_data_02 = Data(
             ]),
     ])
 
+test_data_03 = Data(
+    "\n".join([
+        '"attr_a","attr_b","attr_c"',
+        '1,4,"a"',
+        '2,2.1,"bb"',
+        '3,120.9,"ccc"',
+        "",
+        "",
+    ]),
+    [
+        TableData(
+            "tmp",
+            ["attr_a", "attr_b", "attr_c"],
+            [
+                ["1", "4",      six.u("a")],
+                ["2", "2.1",    six.u("bb")],
+                ["3", "120.9",  six.u("ccc")],
+            ])
+    ])
+
 
 class Test_CsvTableFileLoader_make_table_name:
 
@@ -150,6 +170,12 @@ class Test_CsvTableFileLoader_load:
                 "hoge/foo_bar.csv",
                 ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
+            ],
+            [
+                test_data_03.value,
+                "tmp.csv",
+                [],
+                test_data_03.expected,
             ],
         ])
     def test_normal(
@@ -292,6 +318,12 @@ class Test_CsvTableTextLoader_load:
                 "foo_bar",
                 ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
+            ],
+            [
+                test_data_03.value,
+                "tmp",
+                [],
+                test_data_03.expected,
             ],
         ])
     def test_normal(self, table_text, table_name, header_list, expected):
