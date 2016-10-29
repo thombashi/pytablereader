@@ -468,7 +468,7 @@ class Test_HtmlTableFileLoader_load:
                 ptr.InvalidDataError,
             ],
         ])
-    def test_exception(
+    def test_exception_invalid_data(
             self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
 
@@ -485,7 +485,7 @@ class Test_HtmlTableFileLoader_load:
         ["", IOError],
         [None, IOError],
     ])
-    def test_null(
+    def test_exception_null_filename(
             self, tmpdir, filename, expected):
         loader = ptr.HtmlTableFileLoader(filename)
 
@@ -530,24 +530,10 @@ class Test_HtmlTableTextLoader_load:
             assert tabletuple in expected_tabletuple_list
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        [
-            "",
-            ptr.InvalidDataError,
-        ],
-    ])
-    def test_exception(self, table_text, expected):
-        loader = ptr.HtmlTableTextLoader(table_text)
-        loader.table_name = "dummy"
-
-        with pytest.raises(expected):
-            for _tabletuple in loader.load():
-                pass
-
-    @pytest.mark.parametrize(["table_text", "expected"], [
         ["", ptr.InvalidDataError],
         [None, ptr.InvalidDataError],
     ])
-    def test_null(self, table_text, expected):
+    def test_exception_null(self, table_text, expected):
         loader = ptr.HtmlTableTextLoader(table_text)
         loader.table_name = "dummy"
 

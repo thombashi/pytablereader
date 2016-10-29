@@ -87,18 +87,6 @@ test_data_02 = Data(
         ),
     ])
 
-test_data_03 = Data(
-    """
-<html>
-  <head>
-    header
-  </head>
-  <body>
-    hogehoge
-  </body>
-</html>
-""",
-    [])
 
 test_data_04 = Data(
     """foobar
@@ -155,6 +143,19 @@ hogehoge
             ]
         ),
     ])
+
+test_empty_data_00 = "= empty table ="
+
+test_empty_data_01 = """
+<html>
+  <head>
+    header
+  </head>
+  <body>
+    hogehoge
+  </body>
+</html>
+"""
 
 
 @pytest.mark.xfail
@@ -355,13 +356,6 @@ class Test_MediaWikiTableFileLoader_load:
                 test_data_02.expected,
             ],
             [
-                3,
-                test_data_03.value,
-                "tmp.mediawiki",
-                "%(default)s",
-                test_data_03.expected,
-            ],
-            [
                 4,
                 test_data_04.value,
                 "tmp.mediawiki",
@@ -384,12 +378,17 @@ class Test_MediaWikiTableFileLoader_load:
         loader = ptr.MediaWikiTableFileLoader(str(p_file_path))
         loader.table_name = table_name
 
+        load = False
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
             print("test {}".format(test_id))
             print("  tabledata: {}".format(tabledata))
             print("  expected:  {}".format(expected))
             print("")
             assert tabledata == expected
+
+            load = True
+
+        assert load
 
     @pytest.mark.parametrize(
         [
@@ -399,12 +398,17 @@ class Test_MediaWikiTableFileLoader_load:
         ],
         [
             [
-                "",
+                test_empty_data_00,
+                "tmp.mediawiki",
+                ptr.InvalidDataError,
+            ],
+            [
+                test_empty_data_01,
                 "tmp.mediawiki",
                 ptr.InvalidDataError,
             ],
         ])
-    def test_exception(
+    def test_normal_empty_data(
             self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
 
@@ -413,15 +417,14 @@ class Test_MediaWikiTableFileLoader_load:
 
         loader = ptr.MediaWikiTableFileLoader(str(p_file_path))
 
-        with pytest.raises(expected):
-            for _tabletuple in loader.load():
-                pass
+        for _tabletuple in loader.load():
+            raise ValueError("should not reach this line")
 
     @pytest.mark.parametrize(["filename", "expected"], [
         ["", IOError],
         [None, IOError],
     ])
-    def test_null(
+    def test_exception_null(
             self, tmpdir, filename, expected):
         loader = ptr.MediaWikiTableFileLoader(filename)
 
@@ -456,17 +459,12 @@ class Test_MediaWikiTableTextLoader_load:
                 "%(default)s",
                 test_data_02.expected,
             ],
-            [
-                3,
-                test_data_03.value,
-                "%(default)s",
-                test_data_03.expected,
-            ],
         ])
     def test_normal(self, test_id, table_text, table_name, expected_tabletuple_list):
         loader = ptr.MediaWikiTableTextLoader(table_text)
         loader.table_name = table_name
 
+        load = False
         for tabledata in loader.load():
             print("id: {}".format(test_id))
             print("  tabledata: {}".format(tabledata))
@@ -477,23 +475,24 @@ class Test_MediaWikiTableTextLoader_load:
 
             assert tabledata in expected_tabletuple_list
 
-    @pytest.mark.parametrize(["table_text", "expected"], [
-        [
-            "",
-            ptr.InvalidDataError,
-        ],
+            load = True
+
+        assert load
+
+    @pytest.mark.parametrize(["table_text"], [
+        [test_empty_data_00],
+        [test_empty_data_01],
     ])
-    def test_exception(self, table_text, expected):
+    def test_normal_empty_data(self, table_text):
         loader = ptr.MediaWikiTableTextLoader(table_text)
         loader.table_name = "dummy"
 
-        with pytest.raises(expected):
-            for _tabletuple in loader.load():
-                pass
+        for _tabletuple in loader.load():
+            raise ValueError("should not reach this line")
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", ptr.InvalidDataError],
-        [None, ptr.InvalidDataError],
+        ["", ptr.EmptyDataError],
+        [None, ptr.EmptyDataError],
     ])
     def test_null(self, table_text, expected):
         loader = ptr.MediaWikiTableTextLoader(table_text)

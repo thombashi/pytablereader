@@ -24,23 +24,11 @@ test_data_empty = Data(
     ])
 
 test_data_01 = Data(
-    """{| class="wikitable"
-! a
-! b
-! c
-|-
-| style="text-align:right"| 1
-| style="text-align:right"| 123.1
-| a
-|-
-| style="text-align:right"| 2
-| style="text-align:right"| 2.2
-| bb
-|-
-| style="text-align:right"| 3
-| style="text-align:right"| 3.3
-| ccc
-|}
+    """ a |  b  | c 
+--:|----:|---
+  1|123.1|a  
+  2|  2.2|bb 
+  3|  3.3|ccc
 """,
     [
         TableData(
@@ -55,28 +43,16 @@ test_data_01 = Data(
     ])
 
 test_data_02 = Data(
-    """{| class="wikitable"
-|+tablename
-! a
-! b
-! c
-|-
-| style="text-align:right"| 1
-| style="text-align:right"| 123.1
-| a
-|-
-| style="text-align:right"| 2
-| style="text-align:right"| 2.2
-| bb
-|-
-| style="text-align:right"| 3
-| style="text-align:right"| 3.3
-| ccc
-|}
+    """# tablename
+ a |  b  | c 
+--:|----:|---
+  1|123.1|a  
+  2|  2.2|bb 
+  3|  3.3|ccc
 """,
     [
         TableData(
-            table_name=u"tablename",
+            table_name=u"markdown1",
             header_list=[u'a', u'b', u'c'],
             record_list=[
                 [u'1', u'123.1', u'a'],
@@ -86,55 +62,23 @@ test_data_02 = Data(
         ),
     ])
 
-test_data_03 = Data(
-    """
-<html>
-  <head>
-    header
-  </head>
-  <body>
-    hogehoge
-  </body>
-</html>
-""",
-    [])
-
 test_data_04 = Data(
-    """{| class="wikitable"
-|+tablename
-! a
-! b
-! c
-|-
-| style="text-align:right"| 1
-| style="text-align:right"| 123.1
-| a
-|-
-| style="text-align:right"| 2
-| style="text-align:right"| 2.2
-| bb
-|-
-| style="text-align:right"| 3
-| style="text-align:right"| 3.3
-| ccc
-|}
-{| class="wikitable"
-! a
-! b
-|-
-| style="text-align:right"| 1
-| style="text-align:right"| 123.1
-|-
-| style="text-align:right"| 2
-| style="text-align:right"| 2.2
-|-
-| style="text-align:right"| 3
-| style="text-align:right"| 3.3
-|}
+    """# tablename
+ a |  b  | c 
+--:|----:|---
+  1|123.1|a  
+  2|  2.2|bb 
+  3|  3.3|ccc
+# tmp_markdown2
+ a |  b  
+--:|----:
+  1|123.1
+  2|  2.2
+  3|  3.3
 """,
     [
         TableData(
-            table_name=u"tmp_tablename",
+            table_name=u"tmp_markdown1",
             header_list=[u'a', u'b', u'c'],
             record_list=[
                 [u'1', u'123.1', u'a'],
@@ -152,6 +96,19 @@ test_data_04 = Data(
             ]
         ),
     ])
+
+test_empty_data_00 = "# empty table"
+
+test_empty_data_01 = """
+<html>
+  <head>
+    header
+  </head>
+  <body>
+    hogehoge
+  </body>
+</html>
+"""
 
 
 @pytest.mark.xfail
@@ -352,13 +309,6 @@ class Test_MarkdownTableFileLoader_load:
                 test_data_02.expected,
             ],
             [
-                3,
-                test_data_03.value,
-                "tmp.md",
-                "%(default)s",
-                test_data_03.expected,
-            ],
-            [
                 4,
                 test_data_04.value,
                 "tmp.md",
@@ -381,28 +331,28 @@ class Test_MarkdownTableFileLoader_load:
         loader = ptr.MarkdownTableFileLoader(str(p_file_path))
         loader.table_name = table_name
 
+        load = False
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
             print("test {}".format(test_id))
             print("  tabledata: {}".format(tabledata))
             print("  expected:  {}".format(expected))
             print("")
             assert tabledata == expected
+            load = True
+
+        assert load
 
     @pytest.mark.parametrize(
         [
             "table_text",
             "filename",
-            "expected",
         ],
         [
-            [
-                "",
-                "tmp.md",
-                ptr.InvalidDataError,
-            ],
+            [test_empty_data_00, "tmp.md"],
+            [test_empty_data_01, "tmp.md"],
         ])
-    def test_exception(
-            self, tmpdir, table_text, filename, expected):
+    def test_normal_empty_data(
+            self, tmpdir, table_text, filename):
         p_file_path = tmpdir.join(filename)
 
         with open(str(p_file_path), "w") as f:
@@ -410,15 +360,14 @@ class Test_MarkdownTableFileLoader_load:
 
         loader = ptr.MarkdownTableFileLoader(str(p_file_path))
 
-        with pytest.raises(expected):
-            for _tabletuple in loader.load():
-                pass
+        for _tabletuple in loader.load():
+            raise ValueError("should not reach this line")
 
     @pytest.mark.parametrize(["filename", "expected"], [
         ["", IOError],
         [None, IOError],
     ])
-    def test_null(
+    def test_exception(
             self, tmpdir, filename, expected):
         loader = ptr.MarkdownTableFileLoader(filename)
 
@@ -453,17 +402,12 @@ class Test_MarkdownTableTextLoader_load:
                 "%(default)s",
                 test_data_02.expected,
             ],
-            [
-                3,
-                test_data_03.value,
-                "%(default)s",
-                test_data_03.expected,
-            ],
         ])
     def test_normal(self, test_id, table_text, table_name, expected_tabletuple_list):
         loader = ptr.MarkdownTableTextLoader(table_text)
         loader.table_name = table_name
 
+        load = False
         for tabledata in loader.load():
             print("id: {}".format(test_id))
             print("  tabledata: {}".format(tabledata))
@@ -471,8 +415,11 @@ class Test_MarkdownTableTextLoader_load:
             for expected in expected_tabletuple_list:
                 print("    {}".format(expected))
             print("")
-
             assert tabledata in expected_tabletuple_list
+
+            load = True
+
+        assert load
 
     @pytest.mark.parametrize(["table_text", "expected"], [
         [
@@ -480,7 +427,7 @@ class Test_MarkdownTableTextLoader_load:
             ptr.InvalidDataError,
         ],
     ])
-    def test_exception(self, table_text, expected):
+    def test_exception_invalid_data(self, table_text, expected):
         loader = ptr.MarkdownTableTextLoader(table_text)
         loader.table_name = "dummy"
 
@@ -489,10 +436,10 @@ class Test_MarkdownTableTextLoader_load:
                 pass
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", ptr.InvalidDataError],
-        [None, ptr.InvalidDataError],
+        ["", ptr.EmptyDataError],
+        [None, ptr.EmptyDataError],
     ])
-    def test_null(self, table_text, expected):
+    def test_exception_null(self, table_text, expected):
         loader = ptr.MarkdownTableTextLoader(table_text)
         loader.table_name = "dummy"
 

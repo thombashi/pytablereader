@@ -234,8 +234,12 @@ class Test_JsonTableFileLoader_load:
         loader = ptr.JsonTableFileLoader(str(p_file_path))
         loader.table_name = table_name
 
+        load = False
         for tabletuple in loader.load():
             assert tabletuple in expected_tabletuple_list
+            load = True
+
+        assert load
 
     @pytest.mark.parametrize(
         [
@@ -345,8 +349,12 @@ class Test_JsonTableTextLoader_load:
         loader = ptr.JsonTableTextLoader(table_text)
         loader.table_name = table_name
 
+        load = False
         for tabledata in loader.load():
             assert tabledata in expected_tabletuple_list
+            load = True
+
+        assert load
 
     @pytest.mark.parametrize(["table_text", "expected"], [
         [
