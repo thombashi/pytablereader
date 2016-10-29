@@ -13,6 +13,7 @@ from .error import InvalidFilePathError
 from .error import InvalidDataError
 from .error import EmptyDataError
 from .error import OpenError
+from .error import LoaderNotFoundError
 
 from .data import TableData
 
@@ -27,3 +28,5 @@ from .mediawiki.core import MediaWikiTableTextLoader
 from .spreadsheet.excelloader import ExcelTableFileLoader
 from .json.core import JsonTableFileLoader
 from .json.core import JsonTableTextLoader
+
+from ._factory import FileLoaderFactory
