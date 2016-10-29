@@ -1,15 +1,26 @@
 Errors
 ----------------------------
 
-.. autoexception:: pytablereader.error.ValidationError
+.. autoexception:: pytablereader.ValidationError
     :show-inheritance:
 
-.. autoexception:: pytablereader.error.InvalidTableNameError
+.. autoexception:: pytablereader.InvalidTableNameError
     :show-inheritance:
 
-.. autoexception:: pytablereader.error.InvalidDataError
+.. autoexception:: pytablereader.InvalidHeaderNameError
     :show-inheritance:
 
-.. autoexception:: pytablereader.error.OpenError
+.. autoexception:: pytablereader.InvalidFilePathError
     :show-inheritance:
 
+.. autoexception:: pytablereader.InvalidDataError
+    :show-inheritance:
+
+.. autoexception:: pytablereader.EmptyDataError
+    :show-inheritance:
+
+.. autoexception:: pytablereader.OpenError
+    :show-inheritance:
+
+.. autoexception:: pytablereader.LoaderNotFoundError
+    :show-inheritance:

@@ -9,15 +9,18 @@ TableLoader class
     :show-inheritance:
 
 
-CsvTableLoader class
+CSV loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CsvTableLoader class
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.csv.core.CsvTableLoader
     :inherited-members:
     :undoc-members:
 
 CsvTableFileLoader class
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.CsvTableFileLoader
     :inherited-members:
@@ -27,7 +30,7 @@ CsvTableFileLoader class
 
 
 CsvTableTextLoader class
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.CsvTableTextLoader
     :inherited-members:
@@ -36,8 +39,11 @@ CsvTableTextLoader class
     :show-inheritance:
 
     
-HtmlTableFileLoader class
+HTML loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+HtmlTableFileLoader class
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.HtmlTableFileLoader
     :inherited-members:
@@ -46,7 +52,7 @@ HtmlTableFileLoader class
 
 
 HtmlTableTextLoader class
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.HtmlTableTextLoader
     :inherited-members:
@@ -54,8 +60,11 @@ HtmlTableTextLoader class
     :show-inheritance:
 
 
-JsonTableFileLoader class
+JSON loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+JsonTableFileLoader class
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.JsonTableFileLoader
     :members:
@@ -64,15 +73,40 @@ JsonTableFileLoader class
 
 
 JsonTableTextLoader class
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.JsonTableTextLoader
     :members:
     :undoc-members:
     :show-inheritance:
 
-MediaWikiTableFileLoader class
+
+Markdown loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MarkdownTableFileLoader class
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: pytablereader.MarkdownTableFileLoader
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+MarkdownTableTextLoader class
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: pytablereader.MarkdownTableTextLoader
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+MediaWiki loader classes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MediaWikiTableFileLoader class
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.MediaWikiTableFileLoader
     :members:
@@ -81,7 +115,7 @@ MediaWikiTableFileLoader class
 
 
 MediaWikiTableTextLoader class
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.MediaWikiTableTextLoader
     :members:
