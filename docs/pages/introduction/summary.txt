@@ -1,1 +1,1 @@
-pytablereader is a python library to load structured table data from various data format: CSV/HTML/JSON/MediaWiki/Excel.
+pytablereader is a python library to load structured table data from various data format: CSV/Excel/HTML/JSON/Markdown/MediaWiki/MediaWiki.

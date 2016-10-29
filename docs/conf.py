@@ -396,6 +396,12 @@ rp_class = u"""
 .. |LoaderNotFoundError| replace::
     :py:class:`~pytablereader.LoaderNotFoundError`
 
+.. |CsvTableFileLoader| replace::
+    :py:class:`~pytablereader.CsvTableFileLoader`
+
+.. |CsvTableTextLoader| replace::
+    :py:class:`~pytablereader.CsvTableTextLoader`
+
 .. |TableData| replace::
     :py:class:`~pytablereader.data.TableData`
 """
