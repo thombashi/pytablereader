@@ -40,7 +40,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from Markdown tables in a Markdown file.
+        Extract |TableData| from tables in a Markdown file.
         |load_source_desc_file|
 
         :return:
@@ -94,7 +94,7 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from Markdown tables in a Markdown text.
+        Extract |TableData| from tables in a Markdown text.
         |load_source_desc_text|
 
         :return:

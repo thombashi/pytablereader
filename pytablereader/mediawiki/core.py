@@ -40,7 +40,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from MediaWiki tables in a MediaWiki file.
+        Extract |TableData| from tables in a MediaWiki file.
         |load_source_desc_file|
 
         :return:
@@ -98,7 +98,7 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from MediaWiki tables in a MediaWiki text.
+        Extract |TableData| from tables in a MediaWiki text.
         |load_source_desc_text|
 
         :return:
