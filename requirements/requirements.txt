@@ -1,6 +1,7 @@
 beautifulsoup4
 DataProperty>=0.10.0
 jsonschema
+markdown2
 pathvalidate>=0.8.2
 path.py
 six

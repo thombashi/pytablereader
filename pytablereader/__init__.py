@@ -20,6 +20,8 @@ from .csv.core import CsvTableFileLoader
 from .csv.core import CsvTableTextLoader
 from .html.core import HtmlTableFileLoader
 from .html.core import HtmlTableTextLoader
+from .markdown.core import MarkdownTableFileLoader
+from .markdown.core import MarkdownTableTextLoader
 from .mediawiki.core import MediaWikiTableFileLoader
 from .mediawiki.core import MediaWikiTableTextLoader
 from .spreadsheet.excelloader import ExcelTableFileLoader
