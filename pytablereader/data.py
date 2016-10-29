@@ -150,6 +150,23 @@ class TableData(object):
 
         return dataframe
 
+    def dumps(self):
+        """
+        :return: Formatted text for pretty print.
+        :rtype: str
+        """
+
+        indent = " " * 4
+
+        return "\n".join([
+            "table_name: {}".format(self.table_name),
+            "header_list: {}".format(", ".join(self.header_list)),
+            "record_list:",
+        ] + [
+            "{:s}{}".format(indent, record)
+            for record in self.record_list
+        ])
+
     def __sanitize_header_list(self):
         new_header_list = []
 
