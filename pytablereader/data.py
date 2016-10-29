@@ -150,22 +150,44 @@ class TableData(object):
 
         return dataframe
 
-    def dumps(self):
+    def dumps(self, indent=4):
         """
         :return: Formatted text for pretty print.
         :rtype: str
+
+        :Examples:
+            .. code:: python
+
+                >>>print(tabledata.dumps())
+                TableData:
+                    table_name: sample_data
+                    header_list: attr_a, attr_b, attr_c
+                    record_list:
+                        ['1', '4', u'a']
+                        ['2', '2.1', u'bb']
+                        ['3', '120.9', u'ccc']
         """
 
-        indent = " " * 4
+        indent_str = " " * indent
 
-        return "\n".join([
-            "table_name: {}".format(self.table_name),
-            "header_list: {}".format(", ".join(self.header_list)),
-            "record_list:",
-        ] + [
-            "{:s}{}".format(indent, record)
+        message_list = ["TableData:"]
+
+        indent_level = 1
+        message_list.extend([
+            "{:s}table_name: {}".format(
+                indent_str * indent_level, self.table_name),
+            "{:s}header_list: {}".format(
+                indent_str * indent_level, ", ".join(self.header_list)),
+            "{:s}record_list:".format(indent_str * indent_level),
+        ])
+
+        indent_level += 1
+        message_list.extend([
+            "{:s}{}".format(indent_str * indent_level, record)
             for record in self.record_list
         ])
+
+        return "\n".join(message_list)
 
     def __sanitize_header_list(self):
         new_header_list = []
