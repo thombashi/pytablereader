@@ -47,3 +47,9 @@ class OpenError(IOError):
     """
     Raised when failed to open a file.
     """
+
+
+class LoaderNotFoundError(Exception):
+    """
+    Raised when appropriate loader not found.
+    """
