@@ -21,7 +21,7 @@ from .mediawiki.core import MediaWikiTableFileLoader
 from .spreadsheet.excelloader import ExcelTableFileLoader
 
 
-class FileLoaderFactory(object):
+class TableFileLoaderFactory(object):
     """
     :param str file_path: File path to loading.
     :raises pytablereader.InvalidFilePathError:

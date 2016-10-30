@@ -19,7 +19,7 @@ class Test_FileLoaderFactory_constructor:
     ])
     def test_exception(self, value, expected):
         with pytest.raises(expected):
-            ptr.FileLoaderFactory(value)
+            ptr.TableFileLoaderFactory(value)
 
 
 class Test_FileLoaderFactory_create_from_file_path:
@@ -41,7 +41,7 @@ class Test_FileLoaderFactory_create_from_file_path:
         ["valid_ext.XLSX", "xlsx", ptr.ExcelTableFileLoader],
     ])
     def test_normal(self, value, extension, expected):
-        loader_factory = ptr.FileLoaderFactory(value)
+        loader_factory = ptr.TableFileLoaderFactory(value)
         loader = loader_factory.create_from_file_path()
 
         assert loader_factory.file_extension.lower() == extension
@@ -54,7 +54,7 @@ class Test_FileLoaderFactory_create_from_file_path:
         [".txt", ptr.LoaderNotFoundError],
     ])
     def test_exception(self, value, expected):
-        loader_factory = ptr.FileLoaderFactory(value)
+        loader_factory = ptr.TableFileLoaderFactory(value)
 
         with pytest.raises(expected):
             loader_factory.create_from_file_path()
@@ -79,7 +79,7 @@ class Test_FileLoaderFactory_create_from_format_name:
         ["valid_ext.html", "AUTO", ptr.HtmlTableFileLoader],
     ])
     def test_normal(self, file_path, format_name, expected):
-        loader_factory = ptr.FileLoaderFactory(file_path)
+        loader_factory = ptr.TableFileLoaderFactory(file_path)
         loader = loader_factory.create_from_format_name(format_name)
 
         assert loader.source == file_path
@@ -92,7 +92,7 @@ class Test_FileLoaderFactory_create_from_format_name:
         ["invalid_ext.txt", "auto", ptr.LoaderNotFoundError],
     ])
     def test_exception(self, file_path, format_name, expected):
-        loader_factory = ptr.FileLoaderFactory(file_path)
+        loader_factory = ptr.TableFileLoaderFactory(file_path)
 
         with pytest.raises(expected):
             loader_factory.create_from_format_name(format_name)

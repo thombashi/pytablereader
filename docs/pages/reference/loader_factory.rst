@@ -1,10 +1,10 @@
 Table loader factory class
 ----------------------------
 
-FileLoaderFactory class
+TableFileLoaderFactory class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: pytablereader.FileLoaderFactory
+.. autoclass:: pytablereader.TableFileLoaderFactory
     :inherited-members:
     :undoc-members:
     :show-inheritance:
