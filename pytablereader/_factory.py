@@ -61,9 +61,26 @@ class FileLoaderFactory(object):
 
     def create_from_file_path(self):
         """
-        Create a file loader from file extension to loading.
+        Create a file loader from the file extension to loading file.
+        Supported file extensions are as follows:
 
-        :return: Loader that coincide with the :py:attr:`.file_path`.
+            +----------------+--------------------------------------------------+
+            |Format name     |         Loader                                   |
+            +================+==================================================+
+            |``csv``         |:py:class:`~pytablereader.CsvTableFileLoader`     |
+            +----------------+--------------------------------------------------+
+            |``xls``/``xlsx``|:py:class:`~pytablereader.ExcelTableFileLoader`   |
+            +----------------+--------------------------------------------------+
+            |``htm``/``html``|:py:class:`~pytablereader.HtmlTableFileLoader`    |
+            +----------------+--------------------------------------------------+
+            |``json``        |:py:class:`~pytablereader.JsonTableFileLoader`    |
+            +----------------+--------------------------------------------------+
+            |``md``          |:py:class:`~pytablereader.MarkdownTableFileLoader`|
+            +----------------+--------------------------------------------------+
+
+        :return:
+            Loader that coincide with the file extesnion of
+            :py:attr:`.file_path`.
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
         """
@@ -85,27 +102,33 @@ class FileLoaderFactory(object):
 
     def create_from_format_name(self, format_name):
         """
-        Create a file loader from file extension to loading.
+        Create a file loader from a format name.
+        Supported file formats are as follows:
 
-        :return:
-            Loader that coincide with the ``format_name``:
+            +---------------+---------------------------------------------------+
+            |Format name    |         Loader                                    |
+            +===============+===================================================+
+            |``"csv"``      |:py:class:`~pytablereader.CsvTableFileLoader`      |
+            +---------------+---------------------------------------------------+
+            |``"excel"``    |:py:class:`~pytablereader.ExcelTableFileLoader`    |
+            +---------------+---------------------------------------------------+
+            |``"html"``     |:py:class:`~pytablereader.HtmlTableFileLoader`     |
+            +---------------+---------------------------------------------------+
+            |``"json"``     |:py:class:`~pytablereader.JsonTableFileLoader`     |
+            +---------------+---------------------------------------------------+
+            |``"markdown"`` |:py:class:`~pytablereader.MarkdownTableFileLoader` |
+            +---------------+---------------------------------------------------+
+            |``"mediawiki"``|:py:class:`~pytablereader.MediaWikiTableFileLoader`|
+            +---------------+---------------------------------------------------+
 
-            +-----------+---------------------------------------------------+
-            |Format name|         Loader                                    |
-            +===========+===================================================+
-            |csv        |:py:class:`~pytablereader.CsvTableFileLoader`      |
-            +-----------+---------------------------------------------------+
-            |excel      |:py:class:`~pytablereader.ExcelTableFileLoader`    |
-            +-----------+---------------------------------------------------+
-            |html       |:py:class:`~pytablereader.HtmlTableFileLoader`     |
-            +-----------+---------------------------------------------------+
-            |json       |:py:class:`~pytablereader.JsonTableFileLoader`     |
-            +-----------+---------------------------------------------------+
-            |markdown   |:py:class:`~pytablereader.MarkdownTableFileLoader` |
-            +-----------+---------------------------------------------------+
-            |mediawiki  |:py:class:`~pytablereader.MediaWikiTableFileLoader`|
-            +-----------+---------------------------------------------------+
-        :raises |LoaderNotFoundError|: If appropriate file loader not found.
+        This method will call :py:meth:`.create_from_file_path` method
+        if the format name is ``"auto"``.
+
+        :param str format_name:
+            Format name string or ``"auto"`` (case insensitive).
+        :return: Loader that coincide with the ``format_name``:
+        :raises pytablereader.LoaderNotFoundError:
+            If appropriate file loader not found.
         """
 
         if format_name.lower() == "auto":
