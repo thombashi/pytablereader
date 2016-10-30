@@ -108,7 +108,7 @@ class FileLoaderFactory(object):
         :raises |LoaderNotFoundError|: If appropriate file loader not found.
         """
 
-        if format_name == "auto":
+        if format_name.lower() == "auto":
             return self.create_from_file_path()
 
         try:
@@ -127,6 +127,8 @@ class FileLoaderFactory(object):
             raise InvalidFilePathError("file path is empty")
 
     def __create_loader(self, loader_table, format_name):
+        format_name = format_name.lower()
+
         try:
             return loader_table[format_name](self.file_path)
         except KeyError:
