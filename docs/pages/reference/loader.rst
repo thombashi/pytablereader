@@ -17,14 +17,12 @@ CsvTableLoader class
 
 .. autoclass:: pytablereader.csv.core.CsvTableLoader
     :inherited-members:
-    :undoc-members:
 
 CsvTableFileLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: pytablereader.CsvTableFileLoader
     :inherited-members:
-    :undoc-members:
     :exclude-members: source_type,get_format_key,make_table_name
     :show-inheritance:
 
@@ -34,7 +32,6 @@ CsvTableTextLoader class
 
 .. autoclass:: pytablereader.CsvTableTextLoader
     :inherited-members:
-    :undoc-members:
     :exclude-members: source_type,get_format_key,make_table_name
     :show-inheritance:
 
@@ -47,7 +44,6 @@ HtmlTableFileLoader class
 
 .. autoclass:: pytablereader.HtmlTableFileLoader
     :inherited-members:
-    :undoc-members:
     :show-inheritance:
 
 
@@ -56,7 +52,6 @@ HtmlTableTextLoader class
 
 .. autoclass:: pytablereader.HtmlTableTextLoader
     :inherited-members:
-    :undoc-members:
     :show-inheritance:
 
 
@@ -68,7 +63,6 @@ JsonTableFileLoader class
 
 .. autoclass:: pytablereader.JsonTableFileLoader
     :members:
-    :undoc-members:
     :show-inheritance:
 
 
@@ -77,7 +71,6 @@ JsonTableTextLoader class
 
 .. autoclass:: pytablereader.JsonTableTextLoader
     :members:
-    :undoc-members:
     :show-inheritance:
 
 
@@ -89,7 +82,6 @@ MarkdownTableFileLoader class
 
 .. autoclass:: pytablereader.MarkdownTableFileLoader
     :members:
-    :undoc-members:
     :show-inheritance:
 
 
@@ -98,7 +90,6 @@ MarkdownTableTextLoader class
 
 .. autoclass:: pytablereader.MarkdownTableTextLoader
     :members:
-    :undoc-members:
     :show-inheritance:
 
 
@@ -110,7 +101,6 @@ MediaWikiTableFileLoader class
 
 .. autoclass:: pytablereader.MediaWikiTableFileLoader
     :members:
-    :undoc-members:
     :show-inheritance:
 
 
@@ -119,7 +109,6 @@ MediaWikiTableTextLoader class
 
 .. autoclass:: pytablereader.MediaWikiTableTextLoader
     :members:
-    :undoc-members:
     :show-inheritance:
 
 
@@ -136,7 +125,4 @@ ExcelTableFileLoader class
 
 .. autoclass:: pytablereader.ExcelTableFileLoader
     :members:
-    :undoc-members:
     :show-inheritance:
-
-
