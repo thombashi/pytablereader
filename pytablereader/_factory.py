@@ -94,10 +94,6 @@ class FileLoaderFactory(object):
                 "",
                 "acceptable file extensions are: {}.".format(
                     ", ".join(sorted(self.get_extension_loader_mapping()))),
-                "",
-                "or specify destination file format with '--from' option.",
-                "acceptable file formats to '--from' options are: {}.".format(
-                    ", ".join(sorted(self.get_format_name_loader_mapping()))),
             ]))
 
     def create_from_format_name(self, format_name):
@@ -140,8 +136,7 @@ class FileLoaderFactory(object):
         except LoaderNotFoundError as e:
             raise LoaderNotFoundError("\n".join([
                 "{:s} (unknown file format).".format(e.args[0]),
-                "specify destination file format with '--to' option.",
-                "acceptable file formats to '--to' options are: {}.".format(
+                "acceptable file formats are: {}.".format(
                     ", ".join(sorted(self.get_format_name_loader_mapping()))),
             ]))
 
