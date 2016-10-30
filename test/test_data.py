@@ -148,8 +148,8 @@ class Test_TableData_is_empty:
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list", "expected"], [
             ["tablename", [], [], True],
-            ["tablename", ["a", "b"], [], False],
-            ["tablename", [], [1, 2], False],
+            ["tablename", ["a", "b"], [], True],
+            ["tablename", [], [1, 2], True],
             ["tablename", ["a", "b"], [1, 2], False],
         ]
     )
