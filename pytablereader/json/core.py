@@ -66,7 +66,7 @@ class JsonTableFileLoader(JsonTableLoader):
             }
 
         .. code-block:: json
-            :caption: JSON Schema example (1)
+            :caption: JSON example for the JSON schema (1)
 
             [
                 {"attr_b": 4, "attr_c": "a", "attr_a": 1},
@@ -98,7 +98,7 @@ class JsonTableFileLoader(JsonTableLoader):
             }
 
         .. code-block:: json
-            :caption: JSON Schema example (2)
+            :caption: JSON example for the JSON schema (2)
 
             {
                 "table_a" : [
@@ -192,6 +192,10 @@ class JsonTableTextLoader(JsonTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
+
+        .. seealso::
+
+                :py:meth:`.JsonTableFileLoader.load()`
         """
 
         self._validate()
