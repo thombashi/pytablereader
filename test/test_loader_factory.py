@@ -25,20 +25,20 @@ class Test_FileLoaderFactory_constructor:
 class Test_FileLoaderFactory_create_from_file_path:
 
     @pytest.mark.parametrize(["value", "extension", "expected"], [
-        ["testfile.csv", "csv", ptr.CsvTableFileLoader],
-        ["testfile.CSV", "csv", ptr.CsvTableFileLoader],
-        ["testfile.html", "html", ptr.HtmlTableFileLoader],
-        ["testfile.HTML", "html", ptr.HtmlTableFileLoader],
-        ["testfile.htm", "htm", ptr.HtmlTableFileLoader],
-        ["testfile.HTM", "htm", ptr.HtmlTableFileLoader],
-        ["testfile.json", "json", ptr.JsonTableFileLoader],
-        ["testfile.JSON", "json", ptr.JsonTableFileLoader],
-        ["testfile.md", "md", ptr.MarkdownTableFileLoader],
-        ["testfile.MD", "md", ptr.MarkdownTableFileLoader],
-        ["testfile.xls", "xls", ptr.ExcelTableFileLoader],
-        ["testfile.XLS", "xls", ptr.ExcelTableFileLoader],
-        ["testfile.xlsx", "xlsx", ptr.ExcelTableFileLoader],
-        ["testfile.XLSX", "xlsx", ptr.ExcelTableFileLoader],
+        ["valid_ext.csv", "csv", ptr.CsvTableFileLoader],
+        ["valid_ext.CSV", "csv", ptr.CsvTableFileLoader],
+        ["valid_ext.html", "html", ptr.HtmlTableFileLoader],
+        ["valid_ext.HTML", "html", ptr.HtmlTableFileLoader],
+        ["valid_ext.htm", "htm", ptr.HtmlTableFileLoader],
+        ["valid_ext.HTM", "htm", ptr.HtmlTableFileLoader],
+        ["valid_ext.json", "json", ptr.JsonTableFileLoader],
+        ["valid_ext.JSON", "json", ptr.JsonTableFileLoader],
+        ["valid_ext.md", "md", ptr.MarkdownTableFileLoader],
+        ["valid_ext.MD", "md", ptr.MarkdownTableFileLoader],
+        ["valid_ext.xls", "xls", ptr.ExcelTableFileLoader],
+        ["valid_ext.XLS", "xls", ptr.ExcelTableFileLoader],
+        ["valid_ext.xlsx", "xlsx", ptr.ExcelTableFileLoader],
+        ["valid_ext.XLSX", "xlsx", ptr.ExcelTableFileLoader],
     ])
     def test_normal(self, value, extension, expected):
         loader_factory = ptr.FileLoaderFactory(value)
@@ -62,25 +62,37 @@ class Test_FileLoaderFactory_create_from_file_path:
 
 class Test_FileLoaderFactory_create_from_format_name:
 
-    @pytest.mark.parametrize(["value", "format_name", "expected"], [
-        ["testfile.html", "csv", ptr.CsvTableFileLoader],
-        ["testfile.html", "CSV", ptr.CsvTableFileLoader],
-        ["testfile.html", "excel", ptr.ExcelTableFileLoader],
-        ["testfile.html", "Excel", ptr.ExcelTableFileLoader],
-        ["testfile.json", "html", ptr.HtmlTableFileLoader],
-        ["testfile.json", "HTML", ptr.HtmlTableFileLoader],
-        ["testfile.html", "json", ptr.JsonTableFileLoader],
-        ["testfile.html", "JSON", ptr.JsonTableFileLoader],
-        ["testfile.html", "markdown", ptr.MarkdownTableFileLoader],
-        ["testfile.html", "Markdown", ptr.MarkdownTableFileLoader],
-        ["testfile.html", "mediawiki", ptr.MediaWikiTableFileLoader],
-        ["testfile.html", "MediaWiki", ptr.MediaWikiTableFileLoader],
-        ["testfile.html", "auto", ptr.HtmlTableFileLoader],
-        ["testfile.html", "AUTO", ptr.HtmlTableFileLoader],
+    @pytest.mark.parametrize(["file_path", "format_name", "expected"], [
+        ["valid_ext.html", "csv", ptr.CsvTableFileLoader],
+        ["invalid_ext.txt", "CSV", ptr.CsvTableFileLoader],
+        ["valid_ext.html", "excel", ptr.ExcelTableFileLoader],
+        ["invalid_ext.txt", "Excel", ptr.ExcelTableFileLoader],
+        ["valid_ext.json", "html", ptr.HtmlTableFileLoader],
+        ["invalid_ext.txt", "HTML", ptr.HtmlTableFileLoader],
+        ["valid_ext.html", "json", ptr.JsonTableFileLoader],
+        ["invalid_ext.txt", "JSON", ptr.JsonTableFileLoader],
+        ["valid_ext.html", "markdown", ptr.MarkdownTableFileLoader],
+        ["invalid_ext.txt", "Markdown", ptr.MarkdownTableFileLoader],
+        ["valid_ext.html", "mediawiki", ptr.MediaWikiTableFileLoader],
+        ["invalid_ext.txt", "MediaWiki", ptr.MediaWikiTableFileLoader],
+        ["valid_ext.html", "auto", ptr.HtmlTableFileLoader],
+        ["valid_ext.html", "AUTO", ptr.HtmlTableFileLoader],
     ])
-    def test_normal(self, value, format_name, expected):
-        loader_factory = ptr.FileLoaderFactory(value)
+    def test_normal(self, file_path, format_name, expected):
+        loader_factory = ptr.FileLoaderFactory(file_path)
         loader = loader_factory.create_from_format_name(format_name)
 
-        assert loader.source == value
+        assert loader.source == file_path
         assert isinstance(loader, expected)
+
+    @pytest.mark.parametrize(["file_path", "format_name", "expected"], [
+        ["valid_ext.csv", "not_exist_format", ptr.LoaderNotFoundError],
+        ["valid_ext.csv", "", ptr.LoaderNotFoundError],
+        ["valid_ext.csv", None, AttributeError],
+        ["invalid_ext.txt", "auto", ptr.LoaderNotFoundError],
+    ])
+    def test_exception(self, file_path, format_name, expected):
+        loader_factory = ptr.FileLoaderFactory(file_path)
+
+        with pytest.raises(expected):
+            loader_factory.create_from_format_name(format_name)
