@@ -64,19 +64,19 @@ class FileLoaderFactory(object):
         Create a file loader from the file extension to loading file.
         Supported file extensions are as follows:
 
-            +----------------+--------------------------------------------------+
-            |Format name     |         Loader                                   |
-            +================+==================================================+
-            |``csv``         |:py:class:`~pytablereader.CsvTableFileLoader`     |
-            +----------------+--------------------------------------------------+
-            |``xls``/``xlsx``|:py:class:`~pytablereader.ExcelTableFileLoader`   |
-            +----------------+--------------------------------------------------+
-            |``htm``/``html``|:py:class:`~pytablereader.HtmlTableFileLoader`    |
-            +----------------+--------------------------------------------------+
-            |``json``        |:py:class:`~pytablereader.JsonTableFileLoader`    |
-            +----------------+--------------------------------------------------+
-            |``md``          |:py:class:`~pytablereader.MarkdownTableFileLoader`|
-            +----------------+--------------------------------------------------+
+            +----------------+-------------------------------------+
+            |Format name     |         Loader                      |
+            +================+=====================================+
+            |``csv``         |:py:class:`~.CsvTableFileLoader`     |
+            +----------------+-------------------------------------+
+            |``xls``/``xlsx``|:py:class:`~.ExcelTableFileLoader`   |
+            +----------------+-------------------------------------+
+            |``htm``/``html``|:py:class:`~.HtmlTableFileLoader`    |
+            +----------------+-------------------------------------+
+            |``json``        |:py:class:`~.JsonTableFileLoader`    |
+            +----------------+-------------------------------------+
+            |``md``          |:py:class:`~.MarkdownTableFileLoader`|
+            +----------------+-------------------------------------+
 
         :return:
             Loader that coincide with the file extesnion of
@@ -101,21 +101,21 @@ class FileLoaderFactory(object):
         Create a file loader from a format name.
         Supported file formats are as follows:
 
-            +---------------+---------------------------------------------------+
-            |Format name    |         Loader                                    |
-            +===============+===================================================+
-            |``"csv"``      |:py:class:`~pytablereader.CsvTableFileLoader`      |
-            +---------------+---------------------------------------------------+
-            |``"excel"``    |:py:class:`~pytablereader.ExcelTableFileLoader`    |
-            +---------------+---------------------------------------------------+
-            |``"html"``     |:py:class:`~pytablereader.HtmlTableFileLoader`     |
-            +---------------+---------------------------------------------------+
-            |``"json"``     |:py:class:`~pytablereader.JsonTableFileLoader`     |
-            +---------------+---------------------------------------------------+
-            |``"markdown"`` |:py:class:`~pytablereader.MarkdownTableFileLoader` |
-            +---------------+---------------------------------------------------+
-            |``"mediawiki"``|:py:class:`~pytablereader.MediaWikiTableFileLoader`|
-            +---------------+---------------------------------------------------+
+            +---------------+--------------------------------------+
+            |Format name    |         Loader                       |
+            +===============+======================================+
+            |``"csv"``      |:py:class:`~.CsvTableFileLoader`      |
+            +---------------+--------------------------------------+
+            |``"excel"``    |:py:class:`~.ExcelTableFileLoader`    |
+            +---------------+--------------------------------------+
+            |``"html"``     |:py:class:`~.HtmlTableFileLoader`     |
+            +---------------+--------------------------------------+
+            |``"json"``     |:py:class:`~.JsonTableFileLoader`     |
+            +---------------+--------------------------------------+
+            |``"markdown"`` |:py:class:`~.MarkdownTableFileLoader` |
+            +---------------+--------------------------------------+
+            |``"mediawiki"``|:py:class:`~.MediaWikiTableFileLoader`|
+            +---------------+--------------------------------------+
 
         This method will call :py:meth:`.create_from_file_path` method
         if the format name is ``"auto"``.
