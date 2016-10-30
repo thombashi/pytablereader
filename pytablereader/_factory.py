@@ -156,13 +156,13 @@ class FileLoaderFactory(object):
             ]))
 
     @classmethod
-    def get_format_name_loader_mapping(self):
+    def get_format_name_loader_mapping(cls):
         """
         :return: Mappings of format-name and loader class.
         :rtype: dict
         """
 
-        loader_table = copy.deepcopy(self.__COMMON_LOADER_TABLE)
+        loader_table = copy.deepcopy(cls.__COMMON_LOADER_TABLE)
         loader_table.update({
             "excel": ExcelTableFileLoader,
             "markdown": MarkdownTableFileLoader,
@@ -172,14 +172,13 @@ class FileLoaderFactory(object):
         return loader_table
 
     @classmethod
-    def get_extension_loader_mapping(self):
+    def get_extension_loader_mapping(cls):
         """
         :return: Mappings of format-extension and loader class.
         :rtype: dict
         """
 
-        loader_table = copy.deepcopy(
-            self.__COMMON_LOADER_TABLE)
+        loader_table = copy.deepcopy(cls.__COMMON_LOADER_TABLE)
         loader_table .update({
             "htm": HtmlTableFileLoader,
             "md": MarkdownTableFileLoader,
