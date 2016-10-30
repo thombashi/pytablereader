@@ -165,8 +165,8 @@ class Test_JsonTableFileLoader_make_table_name:
     @pytest.mark.parametrize(["value", "source", "expected"], [
         [None, "/path/to/data.json", ValueError],
         ["", "/path/to/data.json", ValueError],
-        ["%(filename)s", None, ValueError],
-        ["%(filename)s", "", ValueError],
+        ["%(filename)s", None, InvalidTableNameError],
+        ["%(filename)s", "", InvalidTableNameError],
         [
             "%(%(filename)s)",
             "/path/to/data.json",

@@ -6,37 +6,9 @@
 
 import json
 
-import pathvalidate
 import pytest
 
-import pytablereader as ptr
-from pytablereader.error import InvalidTableNameError
-from pytablereader.data import TableData
-
-
-class ValidateTableData(TableData):
-
-    def validate_header(self, header):
-        try:
-            pathvalidate.validate_sqlite_attr_name(header)
-        except pathvalidate.ValidReservedNameError:
-            pass
-        except pathvalidate.InvalidReservedNameError:
-            raise ptr.error.InvalidHeaderNameError()
-
-
-class RenameTableData(TableData):
-
-    def validate_header(self, header):
-        try:
-            pathvalidate.validate_sqlite_attr_name(header)
-        except pathvalidate.ValidReservedNameError:
-            pass
-        except pathvalidate.InvalidReservedNameError:
-            raise ptr.error.InvalidHeaderNameError()
-
-    def rename_header(self, i):
-        return "{:s}_rename".format(self.header_list[i])
+from pytablereader import TableData
 
 
 class Test_TableData_constructor:
@@ -60,95 +32,6 @@ class Test_TableData_constructor:
         print("rhs header: {}".format(expected.header_list))
 
         assert tabledata == expected
-
-    @pytest.mark.parametrize(
-        [
-            "table_name", "header_list", "record_list", "expected"
-        ],
-        [
-            [
-                "normal", ["a", "b"], [[1, 2], [3, 4]],
-                TableData("normal", ["a", "b"], [[1, 2], [3, 4]])
-            ],
-            [
-                "normal", ["a", "b"], [[1, 2], [3, 4]],
-                TableData("normal", ["a", "b"], [[1, 2], [3, 4]])
-            ],
-        ]
-    )
-    def test_normal_validate_header(
-            self, table_name, header_list, record_list,
-            expected):
-        tabledata = TableData(table_name, header_list, record_list)
-
-        print("lhs header: {}".format(tabledata.header_list))
-        print("rhs header: {}".format(expected.header_list))
-
-        assert tabledata == expected
-
-    @pytest.mark.parametrize(
-        [
-            "table_name", "header_list", "record_list", "expected"
-        ],
-        [
-            [
-                "invalid_header", ["not", "all"], [[1, 2], [3, 4]],
-                ptr.error.InvalidHeaderNameError,
-            ],
-        ]
-    )
-    def test_exception_validate_header(
-            self, table_name, header_list, record_list,
-            expected):
-
-        with pytest.raises(expected):
-            ValidateTableData(table_name, header_list, record_list)
-
-    @pytest.mark.parametrize(
-        [
-            "table_name", "header_list", "record_list", "expected"
-        ],
-        [
-            [
-                "rename_first", ["all", "b"], [],
-                TableData("rename_first", ["all_rename", "b"], [])
-            ],
-            [
-                "rename_both", ["ADD", "AS"], [],
-                TableData(
-                    "rename_both",
-                    ["ADD_rename", "AS_rename"],
-                    [])
-            ],
-            [
-                "rename_second", ["ROLLBACK", "drop"], [],
-                TableData(
-                    "rename_second",
-                    ["ROLLBACK", "drop_rename"],
-                    [])
-            ],
-        ]
-    )
-    def test_normal_rename_header(
-            self, table_name, header_list, record_list, expected):
-        tabledata = RenameTableData(table_name, header_list, record_list)
-
-        print("lhs header: {}".format(tabledata.header_list))
-        print("rhs header: {}".format(expected.header_list))
-
-        assert tabledata == expected
-
-    @pytest.mark.parametrize(
-        ["table_name", "header_list", "record_list", "expected"], [
-            ["", ["a", "b"], [], InvalidTableNameError],
-            [None, ["a", "b"], [], InvalidTableNameError],
-            ["where", ["a", "b"], [], InvalidTableNameError],
-        ]
-    )
-    def test_exception_invalid_data(
-            self, table_name, header_list, record_list, expected):
-        with pytest.raises(expected):
-            TableData(table_name, header_list, record_list)
 
 
 class Test_TableData_as_dict:
@@ -228,17 +111,6 @@ class Test_TableData_hash:
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
         assert tabledata.__hash__() == expected
-
-    @pytest.mark.parametrize(
-        ["table_name", "header_list", "record_list", "expected"], [
-            ["", ["a", "b"], [], InvalidTableNameError],
-            [None, ["a", "b"], [], InvalidTableNameError],
-            ["where", ["a", "b"], [], InvalidTableNameError],
-        ]
-    )
-    def test_exception(self, table_name, header_list, record_list, expected):
-        with pytest.raises(expected):
-            TableData(table_name, header_list, record_list)
 
 
 class Test_TableData_is_empty_record:

@@ -17,6 +17,9 @@ from .error import LoaderNotFoundError
 
 from .data import TableData
 
+from ._tabledata_sanitizer import TableDataSanitizer
+from ._tabledata_sanitizer import SQLiteTableDataSanitizer
+
 from .csv.core import CsvTableFileLoader
 from .csv.core import CsvTableTextLoader
 from .html.core import HtmlTableFileLoader

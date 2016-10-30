@@ -124,8 +124,8 @@ class Test_CsvTableFileLoader_make_table_name:
     @pytest.mark.parametrize(["value", "source", "expected"], [
         [None, "/path/to/data.csv", ValueError],
         ["", "/path/to/data.csv", ValueError],
-        ["%(filename)s", None, ValueError],
-        ["%(filename)s", "", ValueError],
+        ["%(filename)s", None, InvalidTableNameError],
+        ["%(filename)s", "", InvalidTableNameError],
         [
             "%(%(filename)s)",
             "/path/to/data.csv",
