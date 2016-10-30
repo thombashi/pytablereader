@@ -62,13 +62,31 @@ class TableData(object):
         body = self.table_name + str(self.header_list) + str(self.record_list)
         return hashlib.sha1(body.encode("utf-8")).hexdigest()
 
+    def is_empty_header(self):
+        """
+        :return: |True| if the data :py:attr:`.header_list` is empty.
+        :rtype: bool
+        """
+
+        return dataproperty.is_empty_sequence(self.header_list)
+
     def is_empty_record(self):
         """
-        :return: ``True`` if the data records of the table is empty.
+        :return: |True| if the data :py:attr:`.record_list` is empty.
         :rtype: bool
         """
 
         return dataproperty.is_empty_sequence(self.record_list)
+
+    def is_empty(self):
+        """
+        :return:
+            |True| if the data :py:attr:`.header_list` or
+            :py:attr:`.record_list` is empty.
+        :rtype: bool
+        """
+
+        return any([self.is_empty_header(), self.is_empty_record()])
 
     def as_dict(self):
         """

@@ -113,6 +113,21 @@ class Test_TableData_hash:
         assert tabledata.__hash__() == expected
 
 
+class Test_TableData_is_empty_header:
+
+    @pytest.mark.parametrize(
+        ["table_name", "header_list", "record_list", "expected"], [
+            ["tablename", [], [], True],
+            ["tablename", ["a", "b"], [], False],
+            ["tablename", [], [1, 2], True],
+            ["tablename", ["a", "b"], [1, 2], False],
+        ]
+    )
+    def test_normal(self, table_name, header_list, record_list, expected):
+        tabledata = TableData(table_name, header_list, record_list)
+        assert tabledata.is_empty_header() == expected
+
+
 class Test_TableData_is_empty_record:
 
     @pytest.mark.parametrize(
@@ -126,6 +141,21 @@ class Test_TableData_is_empty_record:
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
         assert tabledata.is_empty_record() == expected
+
+
+class Test_TableData_is_empty:
+
+    @pytest.mark.parametrize(
+        ["table_name", "header_list", "record_list", "expected"], [
+            ["tablename", [], [], True],
+            ["tablename", ["a", "b"], [], False],
+            ["tablename", [], [1, 2], False],
+            ["tablename", ["a", "b"], [1, 2], False],
+        ]
+    )
+    def test_normal(self, table_name, header_list, record_list, expected):
+        tabledata = TableData(table_name, header_list, record_list)
+        assert tabledata.is_empty() == expected
 
 
 class Test_TableData_dumps:
