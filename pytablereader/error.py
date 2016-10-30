@@ -13,19 +13,25 @@ class ValidationError(Exception):
     """
 
 
-class InvalidTableNameError(ValueError):
+class InvalidNameError(Exception):
+    """
+    Base name error class.
+    """
+
+
+class InvalidTableNameError(InvalidNameError):
     """
     Raised when invalid table name used.
     """
 
 
-class InvalidHeaderNameError(Exception):
+class InvalidHeaderNameError(InvalidNameError):
     """
     Raised when table header name is invalid.
     """
 
 
-class InvalidFilePathError(ValueError):
+class InvalidFilePathError(InvalidNameError):
     """
     Raised when invalid file path used.
     """
