@@ -135,8 +135,8 @@ class FileLoaderFactory(object):
                 self.get_format_name_loader_mapping(), format_name)
         except LoaderNotFoundError as e:
             raise LoaderNotFoundError("\n".join([
-                "{:s} (unknown file format name).".format(e.args[0]),
-                "acceptable file format names are: {}.".format(
+                "{:s} (unknown format name).".format(e.args[0]),
+                "acceptable format names are: {}.".format(
                     ", ".join(sorted(self.get_format_name_loader_mapping()))),
             ]))
 
