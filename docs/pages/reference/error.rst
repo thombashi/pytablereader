@@ -10,7 +10,13 @@ Errors
 .. autoexception:: pytablereader.InvalidHeaderNameError
     :show-inheritance:
 
+.. autoexception:: pytablereader.InvalidPathError
+    :show-inheritance:
+    
 .. autoexception:: pytablereader.InvalidFilePathError
+    :show-inheritance:
+
+.. autoexception:: pytablereader.InvalidUrlError
     :show-inheritance:
 
 .. autoexception:: pytablereader.InvalidDataError

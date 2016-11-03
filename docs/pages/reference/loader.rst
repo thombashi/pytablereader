@@ -3,7 +3,6 @@ Table loader classes
 
 TableLoader class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. autoclass:: pytablereader.interface.TableLoader
     :inherited-members:
     :show-inheritance:
@@ -14,22 +13,18 @@ CSV loader classes
 
 CsvTableLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.csv.core.CsvTableLoader
     :inherited-members:
 
 CsvTableFileLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.CsvTableFileLoader
     :inherited-members:
-    :exclude-members: source_type,get_format_key,make_table_name
     :show-inheritance:
 
 
 CsvTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.CsvTableTextLoader
     :inherited-members:
     :exclude-members: source_type,get_format_key,make_table_name
@@ -41,18 +36,14 @@ HTML loader classes
 
 HtmlTableFileLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.HtmlTableFileLoader
     :inherited-members:
-    :show-inheritance:
 
 
 HtmlTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.HtmlTableTextLoader
     :inherited-members:
-    :show-inheritance:
 
 
 JSON loader classes
@@ -60,18 +51,14 @@ JSON loader classes
 
 JsonTableFileLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.JsonTableFileLoader
-    :members:
-    :show-inheritance:
+    :inherited-members:
 
 
 JsonTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.JsonTableTextLoader
-    :members:
-    :show-inheritance:
+    :inherited-members:
 
 
 Markdown loader classes
@@ -79,18 +66,14 @@ Markdown loader classes
 
 MarkdownTableFileLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.MarkdownTableFileLoader
-    :members:
-    :show-inheritance:
+    :inherited-members:
 
 
 MarkdownTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.MarkdownTableTextLoader
-    :members:
-    :show-inheritance:
+    :inherited-members:
 
 
 MediaWiki loader classes
@@ -98,31 +81,17 @@ MediaWiki loader classes
 
 MediaWikiTableFileLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.MediaWikiTableFileLoader
-    :members:
-    :show-inheritance:
+    :inherited-members:
 
 
 MediaWikiTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. autoclass:: pytablereader.MediaWikiTableTextLoader
-    :members:
-    :show-inheritance:
-
-
-SpreadSheetLoader class
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. autoclass:: pytablereader.spreadsheet.core.SpreadSheetLoader
-    :members:
-    :show-inheritance:
+    :inherited-members:
 
 
 ExcelTableFileLoader class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. autoclass:: pytablereader.ExcelTableFileLoader
-    :members:
-    :show-inheritance:
+    :inherited-members:

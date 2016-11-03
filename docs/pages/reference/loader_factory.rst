@@ -7,6 +7,5 @@ TableFileLoaderFactory class
 .. autoclass:: pytablereader.TableFileLoaderFactory
     :inherited-members:
     :undoc-members:
-    :show-inheritance:
 
 
