@@ -227,6 +227,44 @@ test_data_05 = Data(
     ])
 
 
+test_data_06 = Data(
+    """
+<table class="prettytable inflection-table">
+<tr>
+<th style="background:#549EA0; font-style:italic;">Case</th>
+<th style="background:#549EA0; font-style:italic;">Singular</th>
+<th style="background:#549EA0; font-style:italic;">Plural</th>
+</tr>
+<tr>
+<th style="background:#40E0D0; font-style:italic;"><a href="/wiki/nominative_case" title="nominative case">nominative</a></th>
+<td style="background:#F8F8FF;"><span class="Latn" lang="la" xml:lang="la"><strong class="selflink">val01</strong></span></td>
+<td style="background:#F8F8FF;"><span class="Latn" lang="la" xml:lang="la"><a href="/wiki/pythones#Latin" title="pythones">val02</a></span></td>
+</tr>
+<tr>
+<th style="background:#40E0D0; font-style:italic;"><a href="/wiki/genitive_case" title="genitive case">genitive</a></th>
+<td style="background:#F8F8FF;"><span class="Latn" lang="la" xml:lang="la"><a href="/wiki/pythonis#Latin" title="pythonis">val11</a></span></td>
+<td style="background:#F8F8FF;"><span class="Latn" lang="la" xml:lang="la"><a href="/wiki/pythonum#Latin" title="pythonum">val12</a></span></td>
+</tr>
+<tr>
+<th style="background:#40E0D0; font-style:italic;"><a href="/wiki/dative_case" title="dative case">dative</a></th>
+<td style="background:#F8F8FF;"><span class="Latn" lang="la" xml:lang="la"><a href="/wiki/pythoni#Latin" title="pythoni">val21</a></span></td>
+<td style="background:#F8F8FF;"><span class="Latn" lang="la" xml:lang="la"><a href="/wiki/pythonibus#Latin" title="pythonibus">val22</a></span></td>
+</tr>
+</table>
+""",
+    [
+        TableData(
+            table_name="tmp_html1",
+            header_list=["Case", "Singular", "Plural"],
+            record_list=[
+                ["nominative", "val01", "val02"],
+                ["genitive", "val11", "val12"],
+                ["dative", "val21", "val22"],
+            ]
+        ),
+    ])
+
+
 class HtmlTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
@@ -432,6 +470,11 @@ class Test_HtmlTableFileLoader_load:
                 "%(default)s",
                 test_data_05.expected,
             ],
+            [
+                6, test_data_06.value, "tmp.html",
+                "%(default)s",
+                test_data_06.expected,
+            ],
         ])
     def test_normal(
             self, tmpdir, test_id, table_text, filename,
@@ -449,9 +492,9 @@ class Test_HtmlTableFileLoader_load:
         loader.table_name = table_name
 
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
-            print("test {}".format(test_id))
-            print("  tabledata: {}".format(tabledata))
-            print("  expected:  {}".format(expected))
+            print("[test {}]".format(test_id))
+            print("actual: {}".format(tabledata.dumps()))
+            print("expected:  {}".format(expected.dumps()))
             print("")
             assert tabledata == expected
 
