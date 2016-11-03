@@ -10,12 +10,14 @@ import os.path
 
 import dataproperty
 import pathvalidate as pv
+import six
 
 from ._constant import SourceType
 from .error import InvalidFilePathError
 from .error import EmptyDataError
 
 
+@six.add_metaclass(abc.ABCMeta)
 class ValidatorInterface(object):
 
     @abc.abstractproperty
