@@ -11,6 +11,7 @@ import os.path
 import dataproperty
 import pathvalidate as pv
 import six
+from six.moves.urllib.parse import urlparse
 
 from ._constant import SourceType
 from .error import InvalidFilePathError
@@ -66,3 +67,18 @@ class TextValidator(BaseValidator):
     def validate(self):
         if dataproperty.is_empty_string(self.source):
             raise EmptyDataError("data source is empty")
+
+
+class UrlValidator(BaseValidator):
+
+    @property
+    def source_type(self):
+        return SourceType.URL
+
+    def validate(self):
+        if dataproperty.is_empty_string(self.source):
+            raise EmptyDataError("url is empty")
+
+        scheme = urlparse(self.source).scheme
+        if scheme not in ["http", "https"]:
+            raise ValueError("invalid schema: {:s}".format(scheme))

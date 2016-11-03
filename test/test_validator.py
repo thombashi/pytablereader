@@ -10,8 +10,7 @@ import pytest
 
 import pytablereader as ptr
 from pytablereader._constant import SourceType
-from pytablereader._validator import FileValidator
-from pytablereader._validator import TextValidator
+from pytablereader._validator import *
 
 
 class Test_FileValidator_validate:
@@ -65,6 +64,28 @@ class Test_TextValidator_validate:
     ])
     def test_exception(self, value, expected):
         validator = TextValidator(value)
+
+        with pytest.raises(expected):
+            validator.validate()
+
+
+class Test_UrlValidator_validate:
+
+    @pytest.mark.parametrize(["value"], [
+        ["http://www.google.com"],
+    ])
+    def test_normal(self, value):
+        validator = UrlValidator(value)
+        assert validator.source_type == SourceType.URL
+        validator.validate()
+
+    @pytest.mark.parametrize(["value", "expected"], [
+        [None, ptr.EmptyDataError],
+        ["", ptr.EmptyDataError],
+        ["www.google.com", ValueError],
+    ])
+    def test_exception(self, value, expected):
+        validator = UrlValidator(value)
 
         with pytest.raises(expected):
             validator.validate()
