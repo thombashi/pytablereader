@@ -31,9 +31,21 @@ class InvalidHeaderNameError(InvalidNameError):
     """
 
 
-class InvalidFilePathError(InvalidNameError):
+class InvalidPathError(Exception):
+    """
+    Base path error class.
+    """
+
+
+class InvalidFilePathError(InvalidPathError):
     """
     Raised when invalid file path used.
+    """
+
+
+class InvalidUrlError(InvalidPathError):
+    """
+    Raised when invalid URL used.
     """
 
 

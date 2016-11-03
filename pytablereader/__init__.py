@@ -9,7 +9,9 @@ from __future__ import absolute_import
 from .error import ValidationError
 from .error import InvalidTableNameError
 from .error import InvalidHeaderNameError
+from .error import InvalidPathError
 from .error import InvalidFilePathError
+from .error import InvalidUrlError
 from .error import InvalidDataError
 from .error import EmptyDataError
 from .error import OpenError
