@@ -122,7 +122,7 @@ class TableData(object):
 
         return dataframe
 
-    def dumps(self, indent=4):
+    def dumps(self):
         """
         :return: Formatted text for pretty print.
         :rtype: str
