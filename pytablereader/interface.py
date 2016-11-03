@@ -95,7 +95,7 @@ class TableLoader(TableLoaderInterface):
             if dataproperty.is_empty_string(self.table_name):
                 raise ValueError("table name is empty")
         except (TypeError, AttributeError):
-            raise TypeError("table_name expected a string")
+            raise TypeError("table_name must be a string")
 
     def _validate_source(self):
         self._validator.validate()
