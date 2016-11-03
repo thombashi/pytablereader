@@ -5,15 +5,13 @@
 """
 
 from __future__ import absolute_import
-import copy
-import os
+import abc
 
-import dataproperty
+import six
 
-from .error import InvalidFilePathError
-from .error import LoaderNotFoundError
-
+from ._common import get_extension
 from .csv.core import CsvTableFileLoader
+from .error import LoaderNotFoundError
 from .html.core import HtmlTableFileLoader
 from .json.core import JsonTableFileLoader
 from .markdown.core import MarkdownTableFileLoader
@@ -21,45 +19,111 @@ from .mediawiki.core import MediaWikiTableFileLoader
 from .spreadsheet.excelloader import ExcelTableFileLoader
 
 
-class TableFileLoaderFactory(object):
+@six.add_metaclass(abc.ABCMeta)
+class BaseTableLoaderFactory(object):
+
+    @property
+    def source(self):
+        """
+        :return: Data source to load.
+        :rtype: str
+        """
+
+        return self._source
+
+    def __init__(self, source):
+        self._source = source
+
+    @abc.abstractmethod
+    def create_from_path(self):  # pragma: no cover
+        pass
+
+    @abc.abstractmethod
+    def create_from_format_name(self, format_name):  # pragma: no cover
+        pass
+
+    @abc.abstractmethod
+    def _get_extension_loader_mapping(self):  # pragma: no cover
+        pass
+
+    @abc.abstractmethod
+    def _get_format_name_loader_mapping(self):  # pragma: no cover
+        pass
+
+    def get_format_name_list(self):
+        """
+        :return: Available format name List.
+        :rtype: list
+        """
+
+        return sorted(self._get_format_name_loader_mapping())
+
+    def get_extension_list(self):
+        """
+        :return: Available format-extension list.
+        :rtype: list
+        """
+
+        return sorted(self._get_extension_loader_mapping())
+
+    def _get_loader_class(self, loader_mapping, format_name):
+        try:
+            format_name = format_name.lower()
+        except AttributeError:
+            raise ValueError("format name must be a string")
+
+        try:
+            return loader_mapping[format_name]
+        except KeyError:
+            raise LoaderNotFoundError(", ".join([
+                "loader not found: format='{:s}'".format(format_name),
+                "source='{:s}'".format(self.source),
+            ]))
+
+    def _create_from_extension(self, extension):
+        try:
+            return self._get_loader_class(
+                self._get_extension_loader_mapping(), extension)(self.source)
+        except LoaderNotFoundError as e:
+            raise LoaderNotFoundError("\n".join([
+                "{:s} (unknown extension).".format(e.args[0]),
+                "",
+                "acceptable extensions are: {}.".format(
+                    ", ".join(self.get_extension_list())),
+            ]))
+
+    def _create_from_format_name(self, format_name):
+        if format_name.lower() == "auto":
+            return self.create_from_path()
+
+        try:
+            return self._get_loader_class(
+                self._get_format_name_loader_mapping(), format_name)(self.source)
+        except LoaderNotFoundError as e:
+            raise LoaderNotFoundError("\n".join([
+                "{:s} (unknown format name).".format(e.args[0]),
+                "acceptable format names are: {}.".format(
+                    ", ".join(self.get_format_name_list())),
+            ]))
+
+
+class TableFileLoaderFactory(BaseTableLoaderFactory):
     """
     :param str file_path: Path to the loading file.
     :raises pytablereader.InvalidFilePathError:
         If the ``file_path`` is a empty path.
     """
 
-    __COMMON_LOADER_TABLE = {
-        "csv": CsvTableFileLoader,
-        "html": HtmlTableFileLoader,
-        "json": JsonTableFileLoader,
-    }
-
-    @property
-    def file_path(self):
-        """
-        :return: File path to loading.
-        :rtype: str
-        """
-
-        return self.__file_path
-
     @property
     def file_extension(self):
         """
-        :return: File extension of the :py:attr:`.file_path` (without period).
+        :return: File extension of the :py:attr:`.source` (without period).
         :rtype: str
         """
 
-        return self.__file_extension
+        return get_extension(self.source)
 
-    def __init__(self, file_path):
-        self.__file_path = file_path
-
-        self.__validate()
-
-        self.__file_extension = os.path.splitext(self.file_path)[1].lstrip(".")
-
-    def create_from_file_path(self):
+    def create_from_path(self):
         """
         Create a file loader from the file extension to loading file.
         Supported file extensions are as follows:
@@ -80,21 +144,12 @@ class TableFileLoaderFactory(object):
 
         :return:
             Loader that coincide with the file extesnion of
-            :py:attr:`.file_path`.
+            :py:attr:`.source`.
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
         """
 
-        try:
-            return self.__create_loader(
-                self.__get_extension_loader_mapping(), self.file_extension)
-        except LoaderNotFoundError as e:
-            raise LoaderNotFoundError("\n".join([
-                "{:s} (unknown file extension).".format(e.args[0]),
-                "",
-                "acceptable file extensions are: {}.".format(
-                    ", ".join(self.get_extension_list())),
-            ]))
+        return self._create_from_extension(self.file_extension)
 
     def create_from_format_name(self, format_name):
         """
@@ -117,7 +172,7 @@ class TableFileLoaderFactory(object):
             |``"mediawiki"``|:py:class:`~.MediaWikiTableFileLoader`|
             +---------------+--------------------------------------+
 
-        This method will call :py:meth:`.create_from_file_path` method
+        This method will call :py:meth:`.create_from_path` method
         if the format name is ``"auto"``.
 
         :param str format_name:
@@ -127,81 +182,42 @@ class TableFileLoaderFactory(object):
             If appropriate file loader not found.
         """
 
-        if format_name.lower() == "auto":
-            return self.create_from_file_path()
+        return self._create_from_format_name(format_name)
 
-        try:
-            return self.__create_loader(
-                self.__get_format_name_loader_mapping(), format_name)
-        except LoaderNotFoundError as e:
-            raise LoaderNotFoundError("\n".join([
-                "{:s} (unknown format name).".format(e.args[0]),
-                "acceptable format names are: {}.".format(
-                    ", ".join(self.get_format_name_list())),
-            ]))
+    def _get_common_loader_mapping(self):
+        return {
+            "csv": CsvTableFileLoader,
+            "html": HtmlTableFileLoader,
+            "json": JsonTableFileLoader,
+        }
 
-    def __validate(self):
-        if dataproperty.is_empty_string(self.file_path):
-            raise InvalidFilePathError("file path is empty")
-
-    def __create_loader(self, loader_table, format_name):
-        format_name = format_name.lower()
-
-        try:
-            return loader_table[format_name](self.file_path)
-        except KeyError:
-            raise LoaderNotFoundError(", ".join([
-                "loader not found: format='{:s}'".format(format_name),
-                "path='{:s}'".format(self.file_path),
-            ]))
-
-    @classmethod
-    def get_format_name_list(cls):
-        """
-        :return: Available format name List.
-        :rtype: list
-        """
-
-        return sorted(cls.__get_format_name_loader_mapping())
-
-    @classmethod
-    def get_extension_list(cls):
-        """
-        :return: Available format-extension list.
-        :rtype: list
-        """
-
-        return sorted(cls.__get_extension_loader_mapping())
-
-    @classmethod
-    def __get_format_name_loader_mapping(cls):
-        """
-        :return: Mappings of format-name and loader class.
-        :rtype: dict
-        """
-
-        loader_table = copy.deepcopy(cls.__COMMON_LOADER_TABLE)
-        loader_table.update({
-            "excel": ExcelTableFileLoader,
-            "markdown": MarkdownTableFileLoader,
-            "mediawiki": MediaWikiTableFileLoader,
-        })
-
-        return loader_table
-
-    @classmethod
-    def __get_extension_loader_mapping(cls):
+    def _get_extension_loader_mapping(self):
         """
         :return: Mappings of format-extension and loader class.
         :rtype: dict
         """
 
-        loader_table = copy.deepcopy(cls.__COMMON_LOADER_TABLE)
+        loader_table = self._get_common_loader_mapping()
         loader_table.update({
             "htm": HtmlTableFileLoader,
             "md": MarkdownTableFileLoader,
             "xlsx": ExcelTableFileLoader,
             "xls": ExcelTableFileLoader,
+        })
+
+        return loader_table
+
+    def _get_format_name_loader_mapping(self):
+        """
+        :return: Mappings of format-name and loader class.
+        :rtype: dict
+        """
+
+        loader_table = self._get_common_loader_mapping()
+        loader_table.update({
+            "excel": ExcelTableFileLoader,
+            "markdown": MarkdownTableFileLoader,
+            "mediawiki": MediaWikiTableFileLoader,
         })
 
         return loader_table

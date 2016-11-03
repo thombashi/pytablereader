@@ -11,18 +11,7 @@ import pytest
 import pytablereader as ptr
 
 
-class Test_FileLoaderFactory_constructor:
-
-    @pytest.mark.parametrize(["value", "expected"], [
-        [None, ptr.InvalidFilePathError],
-        ["", ptr.InvalidFilePathError],
-    ])
-    def test_exception(self, value, expected):
-        with pytest.raises(expected):
-            ptr.TableFileLoaderFactory(value)
-
-
-class Test_FileLoaderFactory_create_from_file_path:
+class Test_TableFileLoaderFactory_create_from_path:
 
     @pytest.mark.parametrize(["value", "extension", "expected"], [
         ["valid_ext.csv", "csv", ptr.CsvTableFileLoader],
@@ -42,7 +31,7 @@ class Test_FileLoaderFactory_create_from_file_path:
     ])
     def test_normal(self, value, extension, expected):
         loader_factory = ptr.TableFileLoaderFactory(value)
-        loader = loader_factory.create_from_file_path()
+        loader = loader_factory.create_from_path()
 
         assert loader_factory.file_extension.lower() == extension
         assert loader.source == value
@@ -52,15 +41,17 @@ class Test_FileLoaderFactory_create_from_file_path:
         ["hoge", ptr.LoaderNotFoundError],
         ["hoge.txt", ptr.LoaderNotFoundError],
         [".txt", ptr.LoaderNotFoundError],
+        [None, ptr.InvalidFilePathError],
+        ["", ptr.InvalidFilePathError],
     ])
     def test_exception(self, value, expected):
         loader_factory = ptr.TableFileLoaderFactory(value)
 
         with pytest.raises(expected):
-            loader_factory.create_from_file_path()
+            loader_factory.create_from_path()
 
 
-class Test_FileLoaderFactory_create_from_format_name:
+class Test_TableFileLoaderFactory_create_from_format_name:
 
     @pytest.mark.parametrize(["file_path", "format_name", "expected"], [
         ["valid_ext.html", "csv", ptr.CsvTableFileLoader],
