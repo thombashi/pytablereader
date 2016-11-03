@@ -4,5 +4,6 @@ jsonschema
 markdown2
 pathvalidate>=0.8.3
 path.py
+pytablewriter>=0.12.1
 six
 xlrd
