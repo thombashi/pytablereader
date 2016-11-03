@@ -76,8 +76,8 @@ class BaseTableLoaderFactory(object):
             return loader_mapping[format_name]
         except KeyError:
             raise LoaderNotFoundError(", ".join([
-                "loader not found: format='{:s}'".format(format_name),
-                "source='{:s}'".format(self.source),
+                "loader not found: format='{}'".format(format_name),
+                "source='{}'".format(self.source),
             ]))
 
     def _create_from_extension(self, extension):
