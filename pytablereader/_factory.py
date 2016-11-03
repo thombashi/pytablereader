@@ -87,13 +87,13 @@ class TableFileLoaderFactory(object):
 
         try:
             return self.__create_loader(
-                self.get_extension_loader_mapping(), self.file_extension)
+                self.__get_extension_loader_mapping(), self.file_extension)
         except LoaderNotFoundError as e:
             raise LoaderNotFoundError("\n".join([
                 "{:s} (unknown file extension).".format(e.args[0]),
                 "",
                 "acceptable file extensions are: {}.".format(
-                    ", ".join(sorted(self.get_extension_loader_mapping()))),
+                    ", ".join(self.get_extension_list())),
             ]))
 
     def create_from_format_name(self, format_name):
@@ -132,12 +132,12 @@ class TableFileLoaderFactory(object):
 
         try:
             return self.__create_loader(
-                self.get_format_name_loader_mapping(), format_name)
+                self.__get_format_name_loader_mapping(), format_name)
         except LoaderNotFoundError as e:
             raise LoaderNotFoundError("\n".join([
                 "{:s} (unknown format name).".format(e.args[0]),
                 "acceptable format names are: {}.".format(
-                    ", ".join(sorted(self.get_format_name_loader_mapping()))),
+                    ", ".join(self.get_format_name_list())),
             ]))
 
     def __validate(self):
@@ -156,7 +156,25 @@ class TableFileLoaderFactory(object):
             ]))
 
     @classmethod
-    def get_format_name_loader_mapping(cls):
+    def get_format_name_list(cls):
+        """
+        :return: Available format name List.
+        :rtype: list
+        """
+
+        return sorted(cls.__get_format_name_loader_mapping())
+
+    @classmethod
+    def get_extension_list(cls):
+        """
+        :return: Available format-extension list.
+        :rtype: list
+        """
+
+        return sorted(cls.__get_extension_loader_mapping())
+
+    @classmethod
+    def __get_format_name_loader_mapping(cls):
         """
         :return: Mappings of format-name and loader class.
         :rtype: dict
@@ -172,7 +190,7 @@ class TableFileLoaderFactory(object):
         return loader_table
 
     @classmethod
-    def get_extension_loader_mapping(cls):
+    def __get_extension_loader_mapping(cls):
         """
         :return: Mappings of format-extension and loader class.
         :rtype: dict
