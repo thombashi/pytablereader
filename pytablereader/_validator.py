@@ -14,8 +14,9 @@ import six
 from six.moves.urllib.parse import urlparse
 
 from ._constant import SourceType
-from .error import InvalidFilePathError
 from .error import EmptyDataError
+from .error import InvalidFilePathError
+from .error import InvalidUrlError
 
 
 @six.add_metaclass(abc.ABCMeta)
@@ -77,8 +78,8 @@ class UrlValidator(BaseValidator):
 
     def validate(self):
         if dataproperty.is_empty_string(self.source):
-            raise EmptyDataError("url is empty")
+            raise InvalidUrlError("url is empty")
 
         scheme = urlparse(self.source).scheme
         if scheme not in ["http", "https"]:
-            raise ValueError("invalid schema: {:s}".format(scheme))
+            raise InvalidUrlError("invalid schema: {:s}".format(scheme))
