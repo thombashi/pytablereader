@@ -197,7 +197,7 @@ class TableFileLoaderFactory(object):
         """
 
         loader_table = copy.deepcopy(cls.__COMMON_LOADER_TABLE)
-        loader_table .update({
+        loader_table.update({
             "htm": HtmlTableFileLoader,
             "md": MarkdownTableFileLoader,
             "xlsx": ExcelTableFileLoader,
