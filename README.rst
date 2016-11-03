@@ -58,30 +58,48 @@ Load a CSV table
     # load from a csv file ---
     loader = pytablereader.CsvTableFileLoader(file_path)
     for table_data in loader.load():
-        print("load from file: {:s}".format(table_data.dumps()))
+        print("\n".join([
+            "load from file",
+            "==============",
+            "{:s}".format(table_data.dumps()),
+        ]))
 
     # load from a csv text ---
     loader = pytablereader.CsvTableTextLoader(csv_text)
     for table_data in loader.load():
-        print("load from text: {:s}".format(table_data.dumps()))
+        print("\n".join([
+            "load from text",
+            "==============",
+            "{:s}".format(table_data.dumps()),
+        ]))
 
 
 .. code::
 
-    load from file: TableData:
-        table_name: sample_data
-        header_list: attr_a, attr_b, attr_c
-        record_list:
-            ['1', '4', u'a']
-            ['2', '2.1', u'bb']
-            ['3', '120.9', u'ccc']
-    load from text: TableData:
-        table_name: csv2
-        header_list: attr_a, attr_b, attr_c
-        record_list:
-            ['1', '4', u'a']
-            ['2', '2.1', u'bb']
-            ['3', '120.9', u'ccc']
+    load from file
+    ==============
+    .. table:: sample_data
+
+        ======  ======  ======
+        attr_a  attr_b  attr_c
+        ======  ======  ======
+             1     4.0  a
+             2     2.1  bb
+             3   120.9  ccc
+        ======  ======  ======
+
+    load from text
+    ==============
+    .. table:: csv2
+
+        ======  ======  ======
+        attr_a  attr_b  attr_c
+        ======  ======  ======
+             1     4.0  a
+             2     2.1  bb
+             3   120.9  ccc
+        ======  ======  ======
+
 
 For more information
 --------------------
