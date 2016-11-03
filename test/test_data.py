@@ -10,6 +10,12 @@ import pytest
 
 from pytablereader import TableData
 
+try:
+    import pandas
+    PANDAS_IMPORT = True
+except ImportError:
+    PANDAS_IMPORT = False
+
 
 class Test_TableData_constructor:
 
@@ -64,7 +70,7 @@ class Test_TableData_as_dict:
 
 class Test_TableData_as_dataframe:
 
-    @pytest.mark.xfail
+    @pytest.mark.skipif("PANDAS_IMPORT is False")
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list"], [
             [
