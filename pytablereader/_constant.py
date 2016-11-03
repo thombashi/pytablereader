@@ -10,6 +10,7 @@ from __future__ import absolute_import
 class SourceType(object):
     TEXT = "text"
     FILE = "file"
+    URL = "url"
 
 
 class TableNameTemplate(object):

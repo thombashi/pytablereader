@@ -35,3 +35,5 @@ from .json.core import JsonTableFileLoader
 from .json.core import JsonTableTextLoader
 
 from ._factory import TableFileLoaderFactory
+
+from .urlloader import TableUrlLoader
