@@ -19,9 +19,17 @@ with open(file_path, "w") as f:
 # load from a csv file ---
 loader = pytablereader.CsvTableFileLoader(file_path)
 for table_data in loader.load():
-    print("load from file: {:s}".format(table_data.dumps()))
+    print("\n".join([
+        "load from file",
+        "==============",
+        "{:s}".format(table_data.dumps()),
+    ]))
 
 # load from a csv text ---
 loader = pytablereader.CsvTableTextLoader(csv_text)
 for table_data in loader.load():
-    print("load from text: {:s}".format(table_data.dumps()))
+    print("\n".join([
+        "load from text",
+        "==============",
+        "{:s}".format(table_data.dumps()),
+    ]))
