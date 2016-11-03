@@ -8,6 +8,8 @@ from __future__ import absolute_import
 import hashlib
 
 import dataproperty
+import pytablewriter
+import six
 
 
 class TableData(object):
@@ -129,32 +131,20 @@ class TableData(object):
             .. code:: python
 
                 >>>print(tabledata.dumps())
-                TableData:
-                    table_name: sample_data
-                    header_list: attr_a, attr_b, attr_c
-                    record_list:
-                        ['1', '4', u'a']
-                        ['2', '2.1', u'bb']
-                        ['3', '120.9', u'ccc']
+                .. table:: sample_data
+
+                    ======  ======  ======
+                    attr_a  attr_b  attr_c
+                    ======  ======  ======
+                         1     4.0  a
+                         2     2.1  bb
+                         3   120.9  ccc
+                    ======  ======  ======
         """
 
-        indent_str = " " * indent
+        writer = pytablewriter.RstSimpleTableWriter()
+        writer.set_table_data(self)
+        writer.stream = six.StringIO()
+        writer.write_table()
 
-        message_list = ["TableData:"]
-
-        indent_level = 1
-        message_list.extend([
-            "{:s}table_name: {}".format(
-                indent_str * indent_level, self.table_name),
-            "{:s}header_list: {}".format(
-                indent_str * indent_level, ", ".join(self.header_list)),
-            "{:s}record_list:".format(indent_str * indent_level),
-        ])
-
-        indent_level += 1
-        message_list.extend([
-            "{:s}{}".format(indent_str * indent_level, record)
-            for record in self.record_list
-        ])
-
-        return "\n".join(message_list)
+        return writer.stream.getvalue()
