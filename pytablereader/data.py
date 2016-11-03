@@ -13,12 +13,16 @@ import dataproperty
 class TableData(object):
     """
     Class to represent a table data structure.
+
+    :param str table_name: Name of the table.
+    :param list header_list: Table header names.
+    :param list record_list: Table data records.
     """
 
     @property
     def table_name(self):
         """
-        :return: The table name.
+        :return: Name of the table.
         :rtype: str
         """
 
@@ -27,7 +31,7 @@ class TableData(object):
     @property
     def header_list(self):
         """
-        :return: List of table header names.
+        :return: Table header names.
         :rtype: list
         """
 
@@ -36,7 +40,7 @@ class TableData(object):
     @property
     def record_list(self):
         """
-        :return: List of table data records.
+        :return: Table data records.
         :rtype: list
         """
 

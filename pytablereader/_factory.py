@@ -23,7 +23,7 @@ from .spreadsheet.excelloader import ExcelTableFileLoader
 
 class TableFileLoaderFactory(object):
     """
-    :param str file_path: File path to loading.
+    :param str file_path: Path to the loading file.
     :raises pytablereader.InvalidFilePathError:
         If the ``file_path`` is a empty path.
     """
