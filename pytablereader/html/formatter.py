@@ -5,6 +5,7 @@
 """
 
 from __future__ import absolute_import
+import re
 
 import bs4
 import dataproperty
@@ -68,9 +69,13 @@ class HtmlTableFormatter(TableFormatter):
                     self.__table_id = caption
 
         row_list = table.find_all("tr")
+        re_table_val = re.compile("td|th")
         for row in row_list:
-            col_list = row.find_all("td")
-            if dataproperty.is_empty_sequence(col_list):
+            td_list = row.find_all("td")
+            if dataproperty.is_empty_sequence(td_list):
+                if dataproperty.is_not_empty_sequence(header_list):
+                    continue
+
                 th_list = row.find_all("th")
                 if dataproperty.is_empty_sequence(th_list):
                     continue
@@ -78,8 +83,10 @@ class HtmlTableFormatter(TableFormatter):
                 header_list = [row.text.strip() for row in th_list]
                 continue
 
-            data_list = [value.text.strip() for value in col_list]
-            data_matrix.append(data_list)
+            data_matrix.append([
+                value.text.strip()
+                for value in row.find_all(re_table_val)
+            ])
 
         if dataproperty.is_empty_sequence(data_matrix):
             raise ValueError("data matrix is empty")
