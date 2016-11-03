@@ -55,10 +55,7 @@ class HtmlTableFormatter(TableFormatter):
             [(tnt.KEY, key)]
         )
 
-    def __parse_html(self, table):
-        header_list = []
-        data_matrix = []
-
+    def __parse_tag_id(self, table):
         self.__table_id = table.get("id")
 
         if self.__table_id is None:
@@ -67,6 +64,12 @@ class HtmlTableFormatter(TableFormatter):
                 caption = caption.text.strip()
                 if dataproperty.is_not_empty_string(caption):
                     self.__table_id = caption
+
+    def __parse_html(self, table):
+        header_list = []
+        data_matrix = []
+
+        self.__parse_tag_id(table)
 
         row_list = table.find_all("tr")
         re_table_val = re.compile("td|th")
