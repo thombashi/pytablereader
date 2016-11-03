@@ -14,7 +14,7 @@ from pytablereader.interface import TableLoader
 from pytablereader.data import TableData
 from pytablereader.mediawiki.formatter import MediaWikiTableFormatter
 
-
+SKIP_TEST = False
 Data = collections.namedtuple("Data", "value expected")
 
 test_data_empty = Data(
@@ -171,6 +171,7 @@ class MediaWikiTableFormatter_constructor(object):
             MediaWikiTableFormatter(source)
 
 
+@pytest.mark.skipif(SKIP_TEST)
 @pytest.mark.xfail
 class Test_MediaWikiTableFormatter_make_table_name:
 
@@ -326,6 +327,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
             print(formatter._make_table_name())
 
 
+@pytest.mark.skipif(SKIP_TEST)
 @pytest.mark.xfail
 class Test_MediaWikiTableFileLoader_load:
 
@@ -433,6 +435,7 @@ class Test_MediaWikiTableFileLoader_load:
                 pass
 
 
+@pytest.mark.skipif(SKIP_TEST)
 @pytest.mark.xfail
 class Test_MediaWikiTableTextLoader_load:
 
