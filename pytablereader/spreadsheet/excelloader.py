@@ -21,9 +21,15 @@ class ExcelTableFileLoader(SpreadSheetLoader):
     """
     Concrete class of Microsoft Excel |TM| file loader.
 
+    :param str file_path: Path to the loading Excel workbook file.
+
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(sheet)s``.
+
+    .. py:attribute:: start_row
+
+        The first row to search header row.
     """
 
     @property

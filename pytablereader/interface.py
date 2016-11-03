@@ -74,18 +74,9 @@ class TableLoader(TableLoaderInterface):
             self.__get_format_table_count())
 
     def make_table_name(self):
-        """
-        :return: Table name.
-        :rtype: str
-        """
-
         return self._make_table_name()
 
     def inc_table_count(self):
-        """
-        Increment created table counter.
-        """
-
         with self.__table_count_lock:
             self.__global_table_count += 1
             self.__format_table_count[self._format_name] = (

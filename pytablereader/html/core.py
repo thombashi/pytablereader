@@ -28,6 +28,8 @@ class HtmlTableFileLoader(HtmlTableLoader):
     """
     Concrete class of HTML file loader.
 
+    :param str file_path: Path to the loading HTML file.
+
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(filename)s_%(key)s``.
@@ -85,6 +87,8 @@ class HtmlTableFileLoader(HtmlTableLoader):
 class HtmlTableTextLoader(HtmlTableLoader):
     """
     Concrete class of HTML text loader.
+
+    :param str text: HTML text to load.
 
     .. py:attribute:: table_name
 

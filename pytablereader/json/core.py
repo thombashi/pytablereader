@@ -29,6 +29,8 @@ class JsonTableFileLoader(JsonTableLoader):
     """
     Concrete class of JSON file loader.
 
+    :param str file_path: Path to the loading JSON file.
+
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(filename)s_%(key)s``.
@@ -154,6 +156,8 @@ class JsonTableFileLoader(JsonTableLoader):
 class JsonTableTextLoader(JsonTableLoader):
     """
     Concrete class of JSON text loader.
+
+    :param str text: JSON text to load.
 
     .. py:attribute:: table_name
 

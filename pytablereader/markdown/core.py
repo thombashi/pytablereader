@@ -28,6 +28,8 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
     """
     Concrete class of Markdown file loader.
 
+    :param str file_path: Path to the loading Markdown file.
+
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(filename)s_%(key)s``.
@@ -77,6 +79,8 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
 class MarkdownTableTextLoader(MarkdownTableLoader):
     """
     Concrete class of Markdown text loader.
+
+    :param str text: Markdown text to load.
 
     .. py:attribute:: table_name
 

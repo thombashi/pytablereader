@@ -28,6 +28,8 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
     """
     Concrete class of MediaWiki file loader.
 
+    :param str file_path: Path to the loading file.
+
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(filename)s_%(key)s``.
@@ -81,6 +83,8 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
 class MediaWikiTableTextLoader(MediaWikiTableLoader):
     """
     Concrete class of MediaWiki text loader.
+
+    :param str text: MediaWiki text to load.
 
     .. py:attribute:: table_name
 

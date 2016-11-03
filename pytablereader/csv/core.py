@@ -76,6 +76,8 @@ class CsvTableFileLoader(CsvTableLoader):
     """
     Concrete class of CSV file loader.
 
+    :param str file_path: Path to the loading CSV file.
+
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(filename)s``.
@@ -129,6 +131,8 @@ class CsvTableFileLoader(CsvTableLoader):
 class CsvTableTextLoader(CsvTableLoader):
     """
     Concrete class of CSV text loader.
+
+    :param str text: CSV text to load.
 
     .. py:attribute:: table_name
 

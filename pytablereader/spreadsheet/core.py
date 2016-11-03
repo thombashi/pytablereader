@@ -16,10 +16,6 @@ class SpreadSheetLoader(TableLoader):
     Abstract class of table data.
     Especially spreadsheets that consists multiple rows.
 
-    .. py:attribute:: table_name
-
-        Table name string. Defaults to ``%(sheet)s``.
-
     .. py:attribute:: start_row
 
         The first row to search header row.
