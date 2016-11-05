@@ -4,6 +4,7 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from __future__ import print_function
 import collections
 import os
 
@@ -30,9 +31,9 @@ test_data_00 = Data(
             "tmp",
             ["attr_a", "attr_b", "attr_c"],
             [
-                ["1", "4",      six.u("a")],
-                ["2", "2.1",    six.u("bb")],
-                ["3", "120.9",  six.u("ccc")],
+                [1, 4,      six.u("a")],
+                [2, "2.1",    six.u("bb")],
+                [3, "120.9",  six.u("ccc")],
             ])
     ])
 
@@ -49,9 +50,9 @@ test_data_01 = Data(
             ["attr_a", "attr_b", "attr_c"],
             [
                 ["attr_a", "attr_b", "attr_c"],
-                ["1", "4",      six.u("a")],
-                ["2", "2.1",    six.u("bb")],
-                ["3", "120.9",  six.u("ccc")],
+                [1, 4,      six.u("a")],
+                [2, "2.1",    six.u("bb")],
+                [3, "120.9",  six.u("ccc")],
             ]),
     ])
 
@@ -64,7 +65,7 @@ test_data_02 = Data(
             "foo_bar",
             ["attr_a", "attr_b", "attr_c"],
             [
-                ["3", "120.9",  six.u("ccc")],
+                [3, "120.9",  six.u("ccc")],
             ]),
     ])
 
@@ -82,9 +83,28 @@ test_data_03 = Data(
             "tmp",
             ["attr_a", "attr_b", "attr_c"],
             [
-                ["1", "4",      six.u("a")],
-                ["2", "2.1",    six.u("bb")],
-                ["3", "120.9",  six.u("ccc")],
+                [1, 4,      six.u("a")],
+                [2, "2.1",    six.u("bb")],
+                [3, "120.9",  six.u("ccc")],
+            ])
+    ])
+
+
+test_data_04 = Data(
+    """"attr_a","attr_b","attr_c"
+1,4,"a"
+2,2.1,"bb"
+3,120.9,"ccc"
+
+""",
+    [
+        TableData(
+            "tmp",
+            ["attr_a", "attr_b", "attr_c"],
+            [
+                [1, 4,      six.u("a")],
+                [2, "2.1",    six.u("bb")],
+                [3, "120.9",  six.u("ccc")],
             ])
     ])
 
@@ -147,6 +167,7 @@ class Test_CsvTableFileLoader_load:
 
     @pytest.mark.parametrize(
         [
+            "test_id",
             "table_text",
             "filename",
             "header_list",
@@ -154,32 +175,39 @@ class Test_CsvTableFileLoader_load:
         ],
         [
             [
-                test_data_00.value,
+                0, test_data_00.value,
                 "tmp.csv",
                 [],
                 test_data_00.expected,
             ],
             [
-                test_data_01.value,
+                1, test_data_01.value,
                 "hoge/foo_bar.csv",
                 ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
             ],
             [
-                test_data_02.value,
+                2, test_data_02.value,
                 "hoge/foo_bar.csv",
                 ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
             ],
             [
-                test_data_03.value,
+                3, test_data_03.value,
                 "tmp.csv",
                 [],
                 test_data_03.expected,
             ],
+            [
+                4, test_data_04.value,
+                "tmp.csv",
+                [],
+                test_data_04.expected,
+            ],
         ])
     def test_normal(
-            self, tmpdir, table_text, filename, header_list, expected):
+            self, tmpdir,
+            test_id, table_text, filename, header_list, expected):
         p_csv = tmpdir.join(filename)
 
         parent_dir_path = os.path.dirname(str(p_csv))
@@ -193,6 +221,8 @@ class Test_CsvTableFileLoader_load:
         loader.header_list = header_list
 
         for tabletuple in loader.load():
+            print("test-id={}".format(test_id))
+            print(tabletuple.dumps())
             assert tabletuple in expected
 
     @pytest.mark.parametrize(
@@ -332,6 +362,10 @@ class Test_CsvTableTextLoader_load:
         loader.header_list = header_list
 
         for tabletuple in loader.load():
+            print(tabletuple.dumps())
+            for e in expected:
+                print(e.dumps())
+
             assert tabletuple in expected
 
     @pytest.mark.parametrize(
