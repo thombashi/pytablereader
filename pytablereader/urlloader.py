@@ -7,8 +7,6 @@
 from __future__ import absolute_import
 
 import requests
-import dataproperty
-from requests.exceptions import HTTPError
 from six.moves.urllib.parse import urlparse
 
 from ._common import get_extension

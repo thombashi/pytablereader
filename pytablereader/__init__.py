@@ -19,13 +19,7 @@ from .error import (
     LoaderNotFoundError,
     HTTPError
 )
-
 from .data import TableData
-
-from ._tabledata_sanitizer import (
-    TableDataSanitizer,
-    SQLiteTableDataSanitizer
-)
 
 from .csv.core import (
     CsvTableFileLoader,
@@ -48,7 +42,10 @@ from .mediawiki.core import (
     MediaWikiTableTextLoader
 )
 from .spreadsheet.excelloader import ExcelTableFileLoader
-
-from ._factory import TableFileLoaderFactory
-
 from .urlloader import TableUrlLoader
+
+from ._tabledata_sanitizer import (
+    TableDataSanitizer,
+    SQLiteTableDataSanitizer
+)
+from ._factory import TableFileLoaderFactory
