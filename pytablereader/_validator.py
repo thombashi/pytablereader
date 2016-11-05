@@ -14,9 +14,11 @@ import six
 from six.moves.urllib.parse import urlparse
 
 from ._constant import SourceType
-from .error import EmptyDataError
-from .error import InvalidFilePathError
-from .error import InvalidUrlError
+from .error import (
+    EmptyDataError,
+    InvalidFilePathError,
+    InvalidUrlError
+)
 
 
 @six.add_metaclass(abc.ABCMeta)

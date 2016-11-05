@@ -6,34 +6,48 @@
 
 from __future__ import absolute_import
 
-from .error import ValidationError
-from .error import InvalidTableNameError
-from .error import InvalidHeaderNameError
-from .error import InvalidPathError
-from .error import InvalidFilePathError
-from .error import InvalidUrlError
-from .error import InvalidDataError
-from .error import EmptyDataError
-from .error import OpenError
-from .error import LoaderNotFoundError
-from .error import HTTPError
+from .error import (
+    ValidationError,
+    InvalidTableNameError,
+    InvalidHeaderNameError,
+    InvalidPathError,
+    InvalidFilePathError,
+    InvalidUrlError,
+    InvalidDataError,
+    EmptyDataError,
+    OpenError,
+    LoaderNotFoundError,
+    HTTPError
+)
 
 from .data import TableData
 
-from ._tabledata_sanitizer import TableDataSanitizer
-from ._tabledata_sanitizer import SQLiteTableDataSanitizer
+from ._tabledata_sanitizer import (
+    TableDataSanitizer,
+    SQLiteTableDataSanitizer
+)
 
-from .csv.core import CsvTableFileLoader
-from .csv.core import CsvTableTextLoader
-from .html.core import HtmlTableFileLoader
-from .html.core import HtmlTableTextLoader
-from .markdown.core import MarkdownTableFileLoader
-from .markdown.core import MarkdownTableTextLoader
-from .mediawiki.core import MediaWikiTableFileLoader
-from .mediawiki.core import MediaWikiTableTextLoader
+from .csv.core import (
+    CsvTableFileLoader,
+    CsvTableTextLoader
+)
+from .html.core import (
+    HtmlTableFileLoader,
+    HtmlTableTextLoader
+)
+from .json.core import (
+    JsonTableFileLoader,
+    JsonTableTextLoader
+)
+from .markdown.core import (
+    MarkdownTableFileLoader,
+    MarkdownTableTextLoader
+)
+from .mediawiki.core import (
+    MediaWikiTableFileLoader,
+    MediaWikiTableTextLoader
+)
 from .spreadsheet.excelloader import ExcelTableFileLoader
-from .json.core import JsonTableFileLoader
-from .json.core import JsonTableTextLoader
 
 from ._factory import TableFileLoaderFactory
 

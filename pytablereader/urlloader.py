@@ -16,10 +16,12 @@ from ._constant import SourceType
 from ._factory import BaseTableLoaderFactory
 from ._validator import UrlValidator
 from .csv.core import CsvTableTextLoader
-from .error import InvalidFilePathError
-from .error import InvalidUrlError
-from .error import LoaderNotFoundError
-from .error import HTTPError
+from .error import (
+    InvalidFilePathError,
+    InvalidUrlError,
+    LoaderNotFoundError,
+    HTTPError
+)
 from .html.core import HtmlTableTextLoader
 from .interface import TableLoaderInterface
 from .json.core import JsonTableTextLoader
