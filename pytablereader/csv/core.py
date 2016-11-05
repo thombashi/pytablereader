@@ -56,7 +56,7 @@ class CsvTableLoader(TableLoader):
         self.encoding = "utf-8"
 
     @property
-    def _format_name(self):
+    def format_name(self):
         return "csv"
 
     def _to_data_matrix(self):

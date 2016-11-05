@@ -70,7 +70,7 @@ class Test_TableUrlLoader_constructor:
         expected_loader = expected("")
 
         assert loader.source_type == expected_loader.source_type
-        assert loader._format_name == expected_loader._format_name
+        assert loader.format_name == expected_loader.format_name
 
     @responses.activate
     @pytest.mark.parametrize(["value", "format_name", "expected"], [

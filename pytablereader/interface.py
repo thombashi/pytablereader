@@ -26,7 +26,7 @@ class TableLoaderInterface(object):
     """
 
     @abc.abstractproperty
-    def _format_name(self):  # pragma: no cover
+    def format_name(self):  # pragma: no cover
         pass
 
     @abc.abstractproperty
@@ -70,7 +70,7 @@ class TableLoader(TableLoaderInterface):
 
     def get_format_key(self):
         return "{:s}{:d}".format(
-            self._format_name,
+            self.format_name,
             self.__get_format_table_count())
 
     def make_table_name(self):
@@ -79,7 +79,7 @@ class TableLoader(TableLoaderInterface):
     def inc_table_count(self):
         with self.__table_count_lock:
             self.__global_table_count += 1
-            self.__format_table_count[self._format_name] = (
+            self.__format_table_count[self.format_name] = (
                 self.__get_format_table_count() + 1)
 
     @abc.abstractmethod
@@ -101,7 +101,7 @@ class TableLoader(TableLoaderInterface):
         self._validator.validate()
 
     def __get_format_table_count(self):
-        return self.__format_table_count.get(self._format_name, 0)
+        return self.__format_table_count.get(self.format_name, 0)
 
     def _get_filename_tablename_mapping(self):
         filename = ""
@@ -116,7 +116,7 @@ class TableLoader(TableLoaderInterface):
     def _get_basic_tablename_mapping(self):
         return [
             (tnt.DEFAULT, self._get_default_table_name_template()),
-            (tnt.FORMAT_NAME, self._format_name),
+            (tnt.FORMAT_NAME, self.format_name),
             (tnt.FORMAT_ID, str(self.__get_format_table_count())),
             (tnt.GLOBAL_ID, str(self.__global_table_count)),
             self._get_filename_tablename_mapping(),
@@ -146,7 +146,7 @@ class TableLoader(TableLoaderInterface):
             pathvalidate.validate_sqlite_table_name(table_name)
             return table_name
         except pathvalidate.InvalidReservedNameError:
-            return "{:s}_{:s}".format(table_name, self._format_name)
+            return "{:s}_{:s}".format(table_name, self.format_name)
         except pathvalidate.InvalidCharError as e:
             raise InvalidTableNameError(e)
 

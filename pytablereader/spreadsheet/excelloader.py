@@ -33,6 +33,10 @@ class ExcelTableFileLoader(SpreadSheetLoader):
     """
 
     @property
+    def format_name(self):
+        return "excel"
+
+    @property
     def _sheet_name(self):
         return self._worksheet.name
 

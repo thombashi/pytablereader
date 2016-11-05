@@ -42,8 +42,8 @@ class TableUrlLoader(TableLoaderInterface):
             self.__loader = loader_factory.create_from_path()
 
     @property
-    def _format_name(self):
-        return self.__loader._format_name
+    def format_name(self):
+        return self.__loader.format_name
 
     @property
     def source_type(self):

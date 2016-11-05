@@ -96,7 +96,7 @@ class Test_ExcelTableFileLoader_make_table_name:
     @pytest.mark.parametrize(["value", "source", "expected"], [
         ["%(sheet)s", "/path/to/data.xlsx", "testsheet"],
         ["%(filename)s", "/path/to/data.xlsx", "data"],
-        ["%(filename)s", "/path/to/table.xlsx", "table_spreadsheet"],
+        ["%(filename)s", "/path/to/table.xlsx", "table_excel"],
         [
             "prefix_%(filename)s_%(sheet)s",
             "/path/to/data.xlsx",
@@ -105,7 +105,7 @@ class Test_ExcelTableFileLoader_make_table_name:
         [
             "%(format_name)s%(format_id)s_%(filename)s",
             "/path/to/data.xlsx",
-            "spreadsheet0_data"
+            "excel0_data"
         ],
     ])
     def test_normal(self, monkeypatch, value, source, expected):

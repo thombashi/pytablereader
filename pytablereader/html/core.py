@@ -20,7 +20,7 @@ class HtmlTableLoader(TableLoader):
     """
 
     @property
-    def _format_name(self):
+    def format_name(self):
         return "html"
 
 

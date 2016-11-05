@@ -50,7 +50,7 @@ class SpreadSheetLoader(TableLoader):
         pass
 
     @property
-    def _format_name(self):
+    def format_name(self):
         return "spreadsheet"
 
     def _make_table_name(self):

@@ -20,7 +20,7 @@ class MediaWikiTableLoader(TableLoader):
     """
 
     @property
-    def _format_name(self):
+    def format_name(self):
         return "mediawiki"
 
 
