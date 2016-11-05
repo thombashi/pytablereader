@@ -82,4 +82,6 @@ class UrlValidator(BaseValidator):
 
         scheme = urlparse(self.source).scheme
         if scheme not in ["http", "https"]:
-            raise InvalidUrlError("invalid schema: {:s}".format(scheme))
+            raise InvalidUrlError(
+                "invalid scheme: expected=http/https, actual={}".format(
+                    scheme))
