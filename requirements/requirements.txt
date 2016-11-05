@@ -1,5 +1,5 @@
 beautifulsoup4
-DataProperty>=0.10.1
+DataProperty>=0.11.1
 jsonschema
 markdown2
 pathvalidate>=0.8.3

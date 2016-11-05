@@ -7,8 +7,7 @@
 from __future__ import absolute_import
 import csv
 
-import dataproperty
-from dataproperty.type import FloatTypeChecker
+import dataproperty as dp
 import pathvalidate
 import six
 
@@ -62,14 +61,21 @@ class CsvTableLoader(TableLoader):
 
     def _to_data_matrix(self):
         return [
-            [
-                six.b(data).decode(self.encoding, "ignore")
-                if not FloatTypeChecker(data).is_type() else data
-                for data in row
-            ]
+            [self.__modify_item(data) for data in row]
             for row in self._csv_reader
-            if dataproperty.is_not_empty_sequence(row)
+            if dp.is_not_empty_sequence(row)
         ]
+
+    def __modify_item(self, data):
+        inttype = dp.IntegerType(data)
+        if inttype.is_convertible_type():
+            return inttype.convert()
+
+        floattype = dp.FloatType(data)
+        if floattype.is_convertible_type():
+            return data
+
+        return six.b(data).decode(self.encoding, "ignore").strip()
 
 
 class CsvTableFileLoader(CsvTableLoader):
