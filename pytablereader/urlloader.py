@@ -8,6 +8,7 @@ from __future__ import absolute_import
 
 import requests
 import dataproperty
+from requests.exceptions import HTTPError
 from six.moves.urllib.parse import urlparse
 
 from ._common import get_extension
@@ -18,6 +19,7 @@ from .csv.core import CsvTableTextLoader
 from .error import InvalidFilePathError
 from .error import InvalidUrlError
 from .error import LoaderNotFoundError
+from .error import HTTPError
 from .html.core import HtmlTableTextLoader
 from .interface import TableLoaderInterface
 from .json.core import JsonTableTextLoader
@@ -99,6 +101,12 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         if loader_source_type == SourceType.TEXT:
             r = requests.get(self.__url)
+
+            try:
+                r.raise_for_status()
+            except requests.HTTPError as e:
+                raise HTTPError(e)
+
             self._source = r.text
 
         return self._create_from_extension(url_extension)
@@ -140,6 +148,12 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         if loader_source_type == SourceType.TEXT:
             r = requests.get(self.__url)
+
+            try:
+                r.raise_for_status()
+            except requests.HTTPError as e:
+                raise HTTPError(e)
+
             self._source = r.text
 
         return self._create_from_format_name(format_name)
