@@ -6,6 +6,8 @@
 
 from __future__ import absolute_import
 
+import requests
+
 
 class ValidationError(Exception):
     """
@@ -70,4 +72,10 @@ class OpenError(IOError):
 class LoaderNotFoundError(Exception):
     """
     Raised when appropriate loader not found.
+    """
+
+
+class HTTPError(requests.RequestException):
+    """
+    An HTTP error occurred.
     """

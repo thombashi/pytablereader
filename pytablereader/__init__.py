@@ -16,6 +16,7 @@ from .error import InvalidDataError
 from .error import EmptyDataError
 from .error import OpenError
 from .error import LoaderNotFoundError
+from .error import HTTPError
 
 from .data import TableData
 
