@@ -30,6 +30,9 @@ Feature
     - JSON file/text
     - Markdown file/text
     - MediaWiki file/text
+- Supported data sources to read:
+    - Local file
+    - URL
 
 Examples
 ========
@@ -122,12 +125,12 @@ Python 2.7+ or 3.3+
 
 Mandatory Python packages
 ----------------------------------
-
 - `beautifulsoup4 <https://www.crummy.com/software/BeautifulSoup/>`__
 - `DataPropery <https://github.com/thombashi/DataProperty>`__ (Used to extract data types)
 - `jsonschema <https://github.com/Julian/jsonschema>`__
 - `pathvalidate <https://github.com/thombashi/pathvalidate>`__
 - `path.py <https://github.com/jaraco/path.py>`__
+- `requests <http://python-requests.org/>`__
 - `six <https://pypi.python.org/pypi/six/>`__
 - `xlrd <https://github.com/python-excel/xlrd>`__
 
@@ -140,14 +143,12 @@ Optional Python packages
 
 Optional packages (other than Python packages)
 ------------------------------------------------
-
 - `lxml <http://lxml.de/installation.html>`__ (faster HTML convert if installed)
 - `pandoc <http://pandoc.org/>`__ (required when loading MediaWiki file)
 
 
 Test dependencies
 -----------------
-
 -  `pytest <http://pytest.org/latest/>`__
 -  `pytest-runner <https://pypi.python.org/pypi/pytest-runner>`__
 -  `tox <https://testrun.org/tox/latest/>`__
