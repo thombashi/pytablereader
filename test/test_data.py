@@ -174,6 +174,12 @@ class Test_TableData_dumps:
             [
                 "normal", ["a", "b"], [[1, 2], [3, 4]],
             ],
+            [
+                "null_header", [], [[1, 2], [3, 4]],
+            ],
+            [
+                "null_body", ["a", "b"], [],
+            ],
         ]
     )
     def test_smoke(
