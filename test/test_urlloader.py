@@ -161,6 +161,48 @@ class Test_TableUrlLoader_load:
         ]
 
         loader = ptr.TableUrlLoader(url)
+
+    @responses.activate
+    def test_normal_excel(self):
+        url = 'https://github.com/thombashi/valid/test/data/validdata.xlsx'
+
+        data_path = os.path.join(
+            os.path.dirname(__file__), "data/validdata.xlsx")
+        print(data_path)
+        with open(data_path) as f:
+            responses.add(
+                responses.GET,
+                url,
+                body=f.read(),
+                content_type='application/octet-stream',
+                status=200
+            )
+
+        expeced_list = [
+            ptr.data.TableData(
+                table_name=u'testsheet1',
+                header_list=[u'a1', u'b1', u'c1'],
+                record_list=[
+                            [u'aa1', u'ab1', u'ac1'],
+                            [1.0, 1.1, u'a'],
+                            [2.0, 2.2, u'bb'],
+                            [3.0, 3.3, u'cc'],
+                ]),
+            ptr.data.TableData(
+                table_name=u'testsheet3',
+                header_list=[u'a3', u'b3', u'c3'],
+                record_list=[
+                            [u'aa3', u'ab3', u'ac3'],
+                            [4.0, 1.1, u'a'],
+                            [5.0, u'', u'bb'],
+                            [6.0, 3.3, u''],
+                ]),
+        ]
+
+        loader = ptr.TableUrlLoader(url)
+
+        assert loader.format_name == "excel"
+
         for tabledata, expected in zip(loader.load(), expeced_list):
             assert tabledata == expected
 

@@ -5,11 +5,17 @@
 """
 
 from __future__ import absolute_import
+import os
+import tempfile
 
+import dataproperty
 import requests
 from six.moves.urllib.parse import urlparse
 
-from ._common import get_extension
+from ._common import (
+    get_extension,
+    make_temp_file_path_from_url
+)
 from ._constant import SourceType
 from ._factory import BaseTableLoaderFactory
 from ._validator import UrlValidator
@@ -59,9 +65,17 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
     def __init__(self, url, format_name=None):
         super(TableUrlLoaderFactory, self).__init__(None)
 
-        self.__url = url
-
         UrlValidator(url).validate()
+
+        self.__url = url
+        self.__temp_dir_path = None
+
+    def __del__(self):
+        if dataproperty.is_empty_string(self.__temp_dir_path):
+            return
+
+        os.removedirs(self.__temp_dir_path)
+        self.__temp_dir_path = None
 
     def create_from_path(self):
         """
@@ -97,17 +111,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         loader_class = self._get_loader_class(
             self._get_extension_loader_mapping(), url_extension)
-        loader_source_type = loader_class("").source_type
 
-        if loader_source_type == SourceType.TEXT:
-            r = requests.get(self.__url)
-
-            try:
-                r.raise_for_status()
-            except requests.HTTPError as e:
-                raise HTTPError(e)
-
-            self._source = r.text
+        self._fetch_source(loader_class)
 
         return self._create_from_extension(url_extension)
 
@@ -144,19 +149,33 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         loader_class = self._get_loader_class(
             self._get_format_name_loader_mapping(), format_name)
-        loader_source_type = loader_class("").source_type
 
-        if loader_source_type == SourceType.TEXT:
-            r = requests.get(self.__url)
-
-            try:
-                r.raise_for_status()
-            except requests.HTTPError as e:
-                raise HTTPError(e)
-
-            self._source = r.text
+        self._fetch_source(loader_class)
 
         return self._create_from_format_name(format_name)
+
+    def _fetch_source(self, loader_class):
+        loader_source_type = loader_class("").source_type
+
+        if loader_source_type not in [SourceType.TEXT, SourceType.FILE]:
+            raise ValueError(
+                "unknown loader source: type={}".format(loader_source_type))
+
+        r = requests.get(self.__url)
+
+        try:
+            r.raise_for_status()
+        except requests.HTTPError as e:
+            raise HTTPError(e)
+
+        if loader_source_type == SourceType.TEXT:
+            self._source = r.text
+        elif loader_source_type == SourceType.FILE:
+            self.__temp_dir_path = tempfile.mkdtemp()
+            self._source = "{:s}.xlsx".format(
+                make_temp_file_path_from_url(self.__temp_dir_path, self.__url))
+            with open(self._source, "wb") as f:
+                f.write(r.content)
 
     def _get_common_loader_mapping(self):
         return {
