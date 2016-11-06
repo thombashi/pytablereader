@@ -8,3 +8,6 @@ Feature
     - JSON file/text
     - Markdown file/text
     - MediaWiki file/text
+- Supported data sources to read:
+    - Local file
+    - URL
