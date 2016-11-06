@@ -6,11 +6,13 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
+import os.path
 
 import pytest
 import responses
 
 import pytablereader as ptr
+from pytablereader.interface import TableLoader
 
 
 class Test_TableUrlLoader_constructor:
@@ -104,9 +106,21 @@ class Test_TableUrlLoader_constructor:
 
 class Test_TableUrlLoader_load:
 
+    def setup_method(self, method):
+        TableLoader.clear_table_count()
+
     @responses.activate
-    def test_normal_csv(self):
-        url = 'https://raw.githubusercontent.com/valid/test/data/validdata.csv'
+    @pytest.mark.parametrize(["url", "format_name"], [
+        [
+            'https://raw.githubusercontent.com/valid/test/data/validdata.csv',
+            None,
+        ],
+        [
+            'https://raw.githubusercontent.com/valid/test/data/validdata.txt',
+            "csv",
+        ],
+    ])
+    def test_normal_csv(self, url, format_name):
         responses.add(
             responses.GET,
             url,
@@ -129,15 +143,27 @@ class Test_TableUrlLoader_load:
                 ])
         ]
 
-        loader = ptr.TableUrlLoader(url)
+        loader = ptr.TableUrlLoader(url, format_name)
+
+        assert loader.format_name == "csv"
+
         for tabledata, expected in zip(loader.load(), expeced_list):
-            # print(tabledata.dumps())
-            # print(expected.dumps())
+            print(tabledata.dumps())
+            print(expected.dumps())
             assert tabledata == expected
 
     @responses.activate
-    def test_normal_json(self):
-        url = 'https://raw.githubusercontent.com/valid/test/data/validdata.json'
+    @pytest.mark.parametrize(["url", "format_name"], [
+        [
+            'https://raw.githubusercontent.com/valid/test/data/validdata.json',
+            None,
+        ],
+        [
+            'https://raw.githubusercontent.com/valid/test/data/validdata.txt',
+            "json",
+        ],
+    ])
+    def test_normal_json(self, url, format_name):
         responses.add(
             responses.GET,
             url,
@@ -160,7 +186,12 @@ class Test_TableUrlLoader_load:
             )
         ]
 
-        loader = ptr.TableUrlLoader(url)
+        loader = ptr.TableUrlLoader(url, format_name)
+
+        assert loader.format_name == "json"
+
+        for tabledata, expected in zip(loader.load(), expeced_list):
+            assert tabledata == expected
 
     @responses.activate
     def test_normal_excel(self):
@@ -183,19 +214,19 @@ class Test_TableUrlLoader_load:
                 table_name=u'testsheet1',
                 header_list=[u'a1', u'b1', u'c1'],
                 record_list=[
-                            [u'aa1', u'ab1', u'ac1'],
-                            [1.0, 1.1, u'a'],
-                            [2.0, 2.2, u'bb'],
-                            [3.0, 3.3, u'cc'],
+                    [u'aa1', u'ab1', u'ac1'],
+                    [1.0, 1.1, u'a'],
+                    [2.0, 2.2, u'bb'],
+                    [3.0, 3.3, u'cc'],
                 ]),
             ptr.data.TableData(
                 table_name=u'testsheet3',
                 header_list=[u'a3', u'b3', u'c3'],
                 record_list=[
-                            [u'aa3', u'ab3', u'ac3'],
-                            [4.0, 1.1, u'a'],
-                            [5.0, u'', u'bb'],
-                            [6.0, 3.3, u''],
+                    [u'aa3', u'ab3', u'ac3'],
+                    [4.0, 1.1, u'a'],
+                    [5.0, u'', u'bb'],
+                    [6.0, 3.3, u''],
                 ]),
         ]
 
