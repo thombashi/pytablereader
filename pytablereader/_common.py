@@ -8,6 +8,8 @@ from __future__ import absolute_import
 import os.path
 
 import dataproperty
+import pathvalidate
+from six.moves.urllib.parse import urlparse
 
 from .error import InvalidFilePathError
 
@@ -17,3 +19,23 @@ def get_extension(file_path):
         raise InvalidFilePathError("file path is empty")
 
     return os.path.splitext(file_path)[1].lstrip(".")
+
+
+def make_temp_file_path_from_url(temp_dir_path, url):
+    try:
+        url_path = urlparse(url).path
+    except AttributeError:
+        raise InvalidFilePathError("url must be a string")
+
+    temp_name = os.path.basename(url_path.rstrip("/"))
+    if dataproperty.is_empty_string(temp_name):
+        temp_name = pathvalidate.replace_symbol(
+            temp_name, replacement_text="_")
+
+    if dataproperty.is_empty_string(temp_name):
+        raise InvalidFilePathError("invalid URL: {}".format(url))
+
+    try:
+        return os.path.join(temp_dir_path, temp_name)
+    except AttributeError:
+        raise InvalidFilePathError("temp_dir_path must be a string")
