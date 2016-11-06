@@ -205,19 +205,3 @@ class Test_TableUrlLoader_load:
 
         for tabledata, expected in zip(loader.load(), expeced_list):
             assert tabledata == expected
-
-
-"""
-@responses.activate
-def test_timeline():
-    url = 'https://github.com/timeline.json'
-    responses.add(
-        responses.GET,
-        url,
-        body='{"message":"Hello there, wayfaring stranger. If you’re reading this then you probably didn’t see our blog post a couple of years back announcing that this API would go away: http://git.io/17AROg Fear not, you should be able to get what you need from the shiny new Events API instead.","documentation_url":"https://developer.github.com/v3/activity/events/#list-public-events"}',
-        content_type='application/json; charset=utf-8',
-        status=410
-    )
-
-    loader = ptr.TableUrlLoader(url)
-"""
