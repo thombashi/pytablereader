@@ -168,18 +168,16 @@ class Test_TableData_dumps:
 
     @pytest.mark.parametrize(
         [
-            "table_name", "header_list", "record_list", "expected"
+            "table_name", "header_list", "record_list"
         ],
         [
             [
                 "normal", ["a", "b"], [[1, 2], [3, 4]],
-                ""
             ],
         ]
     )
     def test_smoke(
-            self, table_name, header_list, record_list,
-            expected):
+            self, table_name, header_list, record_list):
         tabledata = TableData(table_name, header_list, record_list)
 
         assert len(tabledata.dumps()) > 0
