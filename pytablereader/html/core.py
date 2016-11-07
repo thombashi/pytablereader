@@ -5,6 +5,7 @@
 """
 
 from __future__ import absolute_import
+import io
 
 from .._constant import SourceType
 from .._constant import TableNameTemplate as tnt
@@ -33,10 +34,16 @@ class HtmlTableFileLoader(HtmlTableLoader):
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(filename)s_%(key)s``.
+
+    .. py:attribute:: encoding
+
+        HTML file encoding. Defaults to ``"utf-8"``.
     """
 
     def __init__(self, file_path=None):
         super(HtmlTableFileLoader, self).__init__(file_path)
+
+        self.encoding = "utf-8"
 
         self._validator = FileValidator(file_path)
 
@@ -74,7 +81,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
         self._validate()
 
         formatter = None
-        with open(self.source, "r") as fp:
+        with io.open(self.source, "r", encoding=self.encoding) as fp:
             formatter = HtmlTableFormatter(fp.read())
         formatter.accept(self)
 
