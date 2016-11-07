@@ -65,10 +65,10 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
     def __init__(self, url, format_name=None):
         super(TableUrlLoaderFactory, self).__init__(None)
 
-        UrlValidator(url).validate()
-
         self.__url = url
         self.__temp_dir_path = None
+
+        UrlValidator(url).validate()
 
     def __del__(self):
         if dataproperty.is_empty_string(self.__temp_dir_path):
