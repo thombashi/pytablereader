@@ -27,6 +27,9 @@ def make_temp_file_path_from_url(temp_dir_path, url):
     except AttributeError:
         raise InvalidFilePathError("url must be a string")
 
+    if dataproperty.is_empty_string(url_path):
+        raise InvalidFilePathError("invalid URL path: {}".format(url_path))
+
     temp_name = os.path.basename(url_path.rstrip("/"))
     if dataproperty.is_empty_string(temp_name):
         temp_name = pathvalidate.replace_symbol(
@@ -37,5 +40,5 @@ def make_temp_file_path_from_url(temp_dir_path, url):
 
     try:
         return os.path.join(temp_dir_path, temp_name)
-    except AttributeError:
+    except (TypeError, AttributeError):
         raise InvalidFilePathError("temp_dir_path must be a string")

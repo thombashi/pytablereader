@@ -200,7 +200,7 @@ class Test_TableUrlLoader_load:
         data_path = os.path.join(
             os.path.dirname(__file__), "data/validdata.xlsx")
         print(data_path)
-        with open(data_path) as f:
+        with open(data_path, "rb") as f:
             responses.add(
                 responses.GET,
                 url,
