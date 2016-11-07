@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import
 import os.path
+import posixpath
 
 import dataproperty
 import pathvalidate
@@ -39,6 +40,6 @@ def make_temp_file_path_from_url(temp_dir_path, url):
         raise InvalidFilePathError("invalid URL: {}".format(url))
 
     try:
-        return os.path.join(temp_dir_path, temp_name)
+        return posixpath.join(temp_dir_path, temp_name)
     except (TypeError, AttributeError):
         raise InvalidFilePathError("temp_dir_path must be a string")

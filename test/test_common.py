@@ -35,12 +35,12 @@ class Test_make_temp_file_path_from_url:
         [
             "/tmp",
             "https://raw.githubusercontent.com/valid/test/data/validext.csv",
-            "/tmp/validext.csv",
+            "/tmp/validext.csv"
         ],
         [
             "/tmp",
             "https://raw.githubusercontent.com/valid/test/data/validext/",
-            "/tmp/validext",
+            "/tmp/validext"
         ],
     ])
     def test_normal(self, temp_dir_path, value, expected):
