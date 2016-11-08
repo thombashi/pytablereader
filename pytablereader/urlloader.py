@@ -36,9 +36,11 @@ from .spreadsheet.excelloader import ExcelTableFileLoader
 
 class TableUrlLoader(TableLoaderInterface):
 
-    def __init__(self, url, format_name=None):
+    def __init__(self, url, format_name=None, proxies=None):
         self.__url = url
-        loader_factory = TableUrlLoaderFactory(url)
+        self.__proxies = proxies
+
+        loader_factory = TableUrlLoaderFactory(url, proxies)
 
         try:
             self.__loader = loader_factory.create_from_format_name(format_name)
@@ -62,10 +64,11 @@ class TableUrlLoader(TableLoaderInterface):
 
 class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
-    def __init__(self, url, format_name=None):
+    def __init__(self, url, format_name=None, proxies=None):
         super(TableUrlLoaderFactory, self).__init__(None)
 
         self.__url = url
+        self.__proxies = proxies
         self.__temp_dir_path = None
 
         UrlValidator(url).validate()
@@ -161,7 +164,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             raise ValueError(
                 "unknown loader source: type={}".format(loader_source_type))
 
-        r = requests.get(self.__url)
+        r = requests.get(self.__url, proxies=self.__proxies)
 
         try:
             r.raise_for_status()
