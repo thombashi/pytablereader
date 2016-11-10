@@ -13,10 +13,14 @@ import pathvalidate
 import path
 import six
 
-from ._constant import SourceType
-from ._constant import TableNameTemplate as tnt
-from .error import InvalidTableNameError
-from .error import InvalidDataError
+from ._constant import (
+    SourceType,
+    TableNameTemplate as tnt
+)
+from .error import (
+    InvalidTableNameError,
+    InvalidDataError
+)
 
 
 @six.add_metaclass(abc.ABCMeta)
