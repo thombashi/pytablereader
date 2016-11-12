@@ -1,6 +1,9 @@
 pytablereader
 =============
 
+.. image:: https://badge.fury.io/py/pytablereader.svg
+    :target: https://badge.fury.io/py/pytablereader
+
 .. image:: https://img.shields.io/pypi/pyversions/pytablereader.svg
    :target: https://pypi.python.org/pypi/pytablereader
 
