@@ -66,8 +66,6 @@ class Test_TableFileLoaderFactory_create_from_format_name:
         ["invalid_ext.txt", "Markdown", ptr.MarkdownTableFileLoader],
         ["valid_ext.html", "mediawiki", ptr.MediaWikiTableFileLoader],
         ["invalid_ext.txt", "MediaWiki", ptr.MediaWikiTableFileLoader],
-        ["valid_ext.html", "auto", ptr.HtmlTableFileLoader],
-        ["valid_ext.html", "AUTO", ptr.HtmlTableFileLoader],
     ])
     def test_normal(self, file_path, format_name, expected):
         loader_factory = ptr.TableFileLoaderFactory(file_path)
@@ -79,8 +77,9 @@ class Test_TableFileLoaderFactory_create_from_format_name:
     @pytest.mark.parametrize(["file_path", "format_name", "expected"], [
         ["valid_ext.csv", "not_exist_format", ptr.LoaderNotFoundError],
         ["valid_ext.csv", "", ptr.LoaderNotFoundError],
-        ["valid_ext.csv", None, AttributeError],
-        ["invalid_ext.txt", "auto", ptr.LoaderNotFoundError],
+        ["valid_ext.csv", None, TypeError],
+        ["valid_ext.csv", 0, TypeError],
+        ["valid_ext.csv", "auto", ptr.LoaderNotFoundError],
     ])
     def test_exception(self, file_path, format_name, expected):
         loader_factory = ptr.TableFileLoaderFactory(file_path)

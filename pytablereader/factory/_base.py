@@ -64,7 +64,7 @@ class BaseTableLoaderFactory(object):
         try:
             format_name = format_name.lower()
         except AttributeError:
-            raise ValueError("format name must be a string")
+            raise TypeError("format name must be a string")
 
         try:
             return loader_mapping[format_name]
@@ -90,9 +90,6 @@ class BaseTableLoaderFactory(object):
             ]))
 
     def _create_from_format_name(self, format_name):
-        if format_name.lower() == "auto":
-            return self.create_from_path()
-
         try:
             loader = self._get_loader_class(
                 self._get_format_name_loader_mapping(), format_name)(self.source)

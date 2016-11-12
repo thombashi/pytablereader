@@ -40,7 +40,7 @@ class TableUrlLoader(TableLoaderManager):
 
         try:
             loader = loader_factory.create_from_format_name(format_name)
-        except (LoaderNotFoundError, ValueError):
+        except (LoaderNotFoundError, TypeError):
             loader = loader_factory.create_from_path()
 
         super(TableUrlLoader, self).__init__(loader)

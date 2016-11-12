@@ -114,14 +114,11 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             |``"mediawiki"``|:py:class:`~.MediaWikiTableTextLoader`|
             +---------------+--------------------------------------+
 
-        This method will call :py:meth:`.create_from_path` method
-        if the format name is ``"auto"``.
-
-        :param str format_name:
-            Format name string or ``"auto"`` (case insensitive).
+        :param str format_name: Format name string (case insensitive).
         :return: Loader that coincide with the ``format_name``:
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
+        :raises TypeError: If ``format_name`` is not a string.
         """
 
         loader_class = self._get_loader_class(
