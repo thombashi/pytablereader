@@ -20,6 +20,7 @@ from .error import (
     HTTPError
 )
 from .data import TableData
+from ._logger import logger
 
 from .csv.core import (
     CsvTableFileLoader,

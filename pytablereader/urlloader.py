@@ -18,6 +18,7 @@ from ._common import (
 )
 from ._constant import SourceType
 from ._factory import BaseTableLoaderFactory
+from ._logger import logger
 from ._validator import UrlValidator
 from .csv.core import CsvTableTextLoader
 from .error import (
@@ -129,6 +130,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         except InvalidFilePathError:
             raise InvalidUrlError("url must include path")
 
+        logger.debug(
+            "create_from_path: url_extension={}".format(url_extension))
         loader_class = self._get_loader_class(
             self._get_extension_loader_mapping(), url_extension)
 
@@ -187,6 +190,14 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             r.raise_for_status()
         except requests.HTTPError as e:
             raise HTTPError(e)
+
+        logger.debug("\n".join([
+            "_fetch_source: ",
+            "  source-type={}".format(loader_source_type),
+            "  content-type={}".format(r.headers["Content-Type"]),
+            "  encoding={}".format(r.encoding),
+            "  status-code={}".format(r.status_code),
+        ]))
 
         self._encoding = r.encoding
 

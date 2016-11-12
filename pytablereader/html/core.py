@@ -9,6 +9,7 @@ import io
 
 from .._constant import SourceType
 from .._constant import TableNameTemplate as tnt
+from .._logger import logger
 from .._validator import FileValidator
 from .._validator import TextValidator
 from ..interface import TableLoader
@@ -80,6 +81,12 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
         self._validate()
 
+        logger.debug("\n".join([
+            "loading html file:",
+            "  path={}".format(self.source),
+            "  encoding={}".format(self.encoding),
+        ]))
+
         formatter = None
         with io.open(self.source, "r", encoding=self.encoding) as fp:
             formatter = HtmlTableFormatter(fp.read())
@@ -135,6 +142,10 @@ class HtmlTableTextLoader(HtmlTableLoader):
         """
 
         self._validate()
+
+        logger.debug("\n".join([
+            "loading html text",
+        ]))
 
         formatter = HtmlTableFormatter(self.source)
         formatter.accept(self)
