@@ -55,6 +55,13 @@ class TableUrlLoader(TableLoaderInterface):
     def source_type(self):
         return self.__loader.source_type
 
+    @property
+    def encoding(self):
+        try:
+            return self.__loader.encoding
+        except AttributeError:
+            return None
+
     def load(self):
         return self.__loader.load()
 
@@ -170,6 +177,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             r.raise_for_status()
         except requests.HTTPError as e:
             raise HTTPError(e)
+
+        self._encoding = r.encoding
 
         if loader_source_type == SourceType.TEXT:
             self._source = r.text

@@ -33,6 +33,7 @@ class BaseTableLoaderFactory(object):
 
     def __init__(self, source):
         self._source = source
+        self._encoding = "utf-8"
 
     @abc.abstractmethod
     def create_from_path(self):  # pragma: no cover
@@ -82,8 +83,11 @@ class BaseTableLoaderFactory(object):
 
     def _create_from_extension(self, extension):
         try:
-            return self._get_loader_class(
+            loader = self._get_loader_class(
                 self._get_extension_loader_mapping(), extension)(self.source)
+            loader.encoding = self._encoding
+
+            return loader
         except LoaderNotFoundError as e:
             raise LoaderNotFoundError("\n".join([
                 "{:s} (unknown extension).".format(e.args[0]),
@@ -97,8 +101,11 @@ class BaseTableLoaderFactory(object):
             return self.create_from_path()
 
         try:
-            return self._get_loader_class(
+            loader = self._get_loader_class(
                 self._get_format_name_loader_mapping(), format_name)(self.source)
+            loader.encoding = self._encoding
+
+            return loader
         except LoaderNotFoundError as e:
             raise LoaderNotFoundError("\n".join([
                 "{:s} (unknown format name).".format(e.args[0]),
