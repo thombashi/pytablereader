@@ -35,6 +35,16 @@ from .spreadsheet.excelloader import ExcelTableFileLoader
 
 
 class TableUrlLoader(TableLoaderInterface):
+    """
+    Loader class to loading tables from URL.
+
+    :param str url: URL to load.
+    :param str format_name: Defaults to |None|.
+    :param dict proxies: Defaults to |None|.
+
+        .. seealso::
+            - `requests proxies <http://requests-docs-ja.readthedocs.io/en/latest/user/advanced/#proxies>`__
+    """
 
     def __init__(self, url, format_name=None, proxies=None):
         self.__url = url
