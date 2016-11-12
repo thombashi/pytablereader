@@ -138,12 +138,25 @@ test_data_04 = Data(
       <td align="left">ccc</td>
     </tr>
 </table>
+
 <table>
 </table>
+
 <table>
     <tr></tr>
     <tr></tr>
 </table>
+
+<table class="img_right_top"  width="258" >
+ <tr class="odd">
+  <td style="width:258px;">
+    <a href="./screenshot.html?num=001" target="_blank" style="text-decoration: none;">
+    link text
+    </a>
+  </td>
+ </tr>
+</table>
+
 <table>
     <tr>
       <th>a</th>
@@ -175,6 +188,13 @@ test_data_04 = Data(
         ),
         TableData(
             table_name=u"tmp_html2",
+            header_list=[],
+            record_list=[
+                [u'link text'],
+            ]
+        ),
+        TableData(
+            table_name=u"tmp_html3",
             header_list=[u'a', u'b'],
             record_list=[
                 [u'1', u'123.1'],
@@ -493,8 +513,8 @@ class Test_HtmlTableFileLoader_load:
 
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
             print("[test {}]".format(test_id))
-            print("actual: {}".format(tabledata.dumps()))
             print("expected:  {}".format(expected.dumps()))
+            print("actual: {}".format(tabledata.dumps()))
             print("")
             assert tabledata == expected
 

@@ -79,6 +79,8 @@ class Test_TableUrlLoader_constructor:
         [None, None, ptr.InvalidUrlError],
         ["", None, ptr.InvalidUrlError],
         ["https://github.com/", None, ptr.InvalidUrlError],
+        ["/tmp/test.txt", None, ptr.InvalidUrlError],
+        ["c:\\tmp\test.txt", None, ptr.InvalidUrlError],
         [
             "https://raw.githubusercontent.com/invalid/test/data/invalidext.txt",
             None, ptr.LoaderNotFoundError
