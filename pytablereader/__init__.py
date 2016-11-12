@@ -49,4 +49,4 @@ from ._tabledata_sanitizer import (
     TableDataSanitizer,
     SQLiteTableDataSanitizer
 )
-from ._factory import TableFileLoaderFactory
+from .factory import TableFileLoaderFactory
