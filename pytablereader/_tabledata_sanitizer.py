@@ -166,12 +166,14 @@ class TableDataSanitizer(TableDataSanitizerInterface):
 
 class SQLiteTableDataSanitizer(TableDataSanitizer):
 
-    __RE_PREPROCESS = re.compile("[^a-zA-Z0-9_]")
+    __RE_PREPROCESS = re.compile("[^a-zA-Z0-9]+")
     __RENAME_TEMPLATE = "rename_{:s}"
 
     def _preprocess_table_name(self):
         try:
-            return self.__RE_PREPROCESS.sub("", self._tabledata.table_name)
+            new_name = self.__RE_PREPROCESS.sub(
+                "_", self._tabledata.table_name)
+            return new_name.strip("_")
         except TypeError:
             raise InvalidTableNameError(
                 "table name must be a string: value='{}'".format(

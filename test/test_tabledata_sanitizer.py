@@ -27,11 +27,11 @@ class Test_SQLiteTableDataSanitizer:
                 TableData("OFFSET", ["abort", "ASC"], [[1, 2], [3, 4]])
             ],
             [
-                r"a!b\c#d$e%f&g'h(i)j",
+                r"@a!b\c#d$e%f&g'h(i)j_",
                 [r"a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v"],
                 [[1, 2], [3, 4]],
                 TableData(
-                    "abcdefghij",
+                    "a_b_c_d_e_f_g_h_i_j",
                     ["abcdefghij", "klmnopqrstuv"], [[1, 2], [3, 4]])
             ],
             [
@@ -45,6 +45,13 @@ class Test_SQLiteTableDataSanitizer:
                 TableData(
                     "rename_0invalid_tn",
                     ["rename_1invalid", "rename_where"], [[1, 2], [3, 4]])
+            ],
+            [
+                "Python (programming language) - Wikipedia, the free encyclopedia.html",
+                ["a b", "c d"], [[1, 2], [3, 4]],
+                TableData(
+                    "Python_programming_language_Wikipedia_the_free_encyclopedia_html",
+                    ["ab", "cd"], [[1, 2], [3, 4]])
             ],
         ]
     )
