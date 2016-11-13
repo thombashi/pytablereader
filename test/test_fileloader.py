@@ -10,6 +10,7 @@ from __future__ import print_function
 from path import Path
 import pytest
 
+import pathvalidate as pv
 import pytablereader as ptr
 from pytablereader.interface import TableLoader
 import pytablewriter as ptw
@@ -55,13 +56,14 @@ class Test_TableFileLoader_constructor:
         ],
     ])
     def test_normal(self, tmpdir, file_path, format_name, expected):
-        p_file_path = Path(str(tmpdir.join(file_path)))
-        p_file_path.parent.makedirs_p()
+        test_file_path = Path(str(tmpdir.join(
+            pv.replace_symbol(file_path, "") + Path(file_path).ext)))
+        test_file_path.parent.makedirs_p()
 
-        with open(p_file_path, "w") as f:
+        with open(test_file_path, "w") as f:
             f.write('''{}''')
 
-        loader = ptr.TableFileLoader(p_file_path, format_name)
+        loader = ptr.TableFileLoader(test_file_path, format_name)
         expected_loader = expected("")
 
         assert loader.source_type == expected_loader.source_type
@@ -103,7 +105,8 @@ class Test_TableFileLoader_load:
         ],
     ])
     def test_normal_csv(self,  tmpdir, file_path, format_name):
-        p_file_path = Path(str(tmpdir.join(file_path)))
+        filename = pv.replace_symbol(file_path, "")
+        p_file_path = Path(str(tmpdir.join(filename + Path(file_path).ext)))
         p_file_path.parent.makedirs_p()
 
         with open(p_file_path, "w") as f:
@@ -114,7 +117,7 @@ class Test_TableFileLoader_load:
 
         expeced_list = [
             ptr.TableData(
-                "validdata",
+                filename,
                 ["attr_a", "attr_b", "attr_c"],
                 [
                     [1, 4,      "a"],
