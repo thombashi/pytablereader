@@ -5,7 +5,8 @@ Reference
    :maxdepth: 3
 
    data
-   loader
+   basic_loader
+   format_specific_loader
    loader_factory
    error
 

@@ -1,5 +1,5 @@
-Table loader classes
-----------------------------
+Format Specific Table Loader Classes
+--------------------------------------------
 
 TableLoader class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -8,7 +8,7 @@ TableLoader class
     :show-inheritance:
 
 
-CSV loader classes
+CSV Loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 CsvTableLoader class
@@ -31,7 +31,7 @@ CsvTableTextLoader class
     :show-inheritance:
 
     
-HTML loader classes
+HTML Loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 HtmlTableFileLoader class
@@ -46,7 +46,7 @@ HtmlTableTextLoader class
     :inherited-members:
 
 
-JSON loader classes
+JSON Loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 JsonTableFileLoader class
@@ -61,7 +61,7 @@ JsonTableTextLoader class
     :inherited-members:
 
 
-Markdown loader classes
+Markdown Loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MarkdownTableFileLoader class
@@ -76,7 +76,7 @@ MarkdownTableTextLoader class
     :inherited-members:
 
 
-MediaWiki loader classes
+MediaWiki Loader classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MediaWikiTableFileLoader class

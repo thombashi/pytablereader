@@ -30,3 +30,6 @@ Errors
 
 .. autoexception:: pytablereader.LoaderNotFoundError
     :show-inheritance:
+
+.. autoexception:: pytablereader.HTTPError
+    :show-inheritance:
