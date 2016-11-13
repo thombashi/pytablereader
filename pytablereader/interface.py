@@ -146,13 +146,7 @@ class TableLoader(TableLoaderInterface):
             raise InvalidTableNameError(
                 "table name is empty after the template replacement")
 
-        try:
-            pathvalidate.validate_sqlite_table_name(table_name)
-            return table_name
-        except pathvalidate.InvalidReservedNameError:
-            return "{:s}_{:s}".format(table_name, self.format_name)
-        except pathvalidate.InvalidCharError as e:
-            raise InvalidTableNameError(e)
+        return table_name
 
     @classmethod
     def clear_table_count(cls):

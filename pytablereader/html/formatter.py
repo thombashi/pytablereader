@@ -50,9 +50,16 @@ class HtmlTableFormatter(TableFormatter):
         if dataproperty.is_empty_string(key):
             key = self._loader.get_format_key()
 
+        try:
+            title = self.__soup.title.text
+        except AttributeError:
+            title = ""
+
         return self._loader._replace_table_name_template(
-            self._loader._get_basic_tablename_mapping() +
-            [(tnt.KEY, key)]
+            self._loader._get_basic_tablename_mapping() + [
+                (tnt.KEY, key),
+                (tnt.TITLE, title),
+            ]
         )
 
     def __parse_tag_id(self, table):

@@ -15,16 +15,18 @@ from pytablereader.data import TableData
 from pytablereader.html.formatter import HtmlTableFormatter
 
 
-Data = collections.namedtuple("Data", "value expected")
+Data = collections.namedtuple("Data", "value table_name expected")
 
 test_data_empty = Data(
     """[]""",
+    "",
     [
         TableData("tmp", [], []),
     ])
 
 test_data_01 = Data(
-    """<table>
+    value="""<title>title</title>
+<table>
   <thead>
     <tr>
       <th>a</th>
@@ -51,9 +53,10 @@ test_data_01 = Data(
   </tbody>
 </table>
 """,
-    [
+    table_name="%(default)s",
+    expected=[
         TableData(
-            table_name=u"html1",
+            table_name=u"title_html1",
             header_list=[u'a', u'b', u'c'],
             record_list=[
                 [u'1', u'123.1', u'a'],
@@ -64,7 +67,8 @@ test_data_01 = Data(
     ])
 
 test_data_02 = Data(
-    """<table id="tablename">
+    value="""<title>hoge</title>
+<table id="tablename">
     <caption>caption</caption>
     <tr>
       <th>a</th>
@@ -88,7 +92,8 @@ test_data_02 = Data(
     </tr>
 </table>
 """,
-    [
+    table_name="%(key)s",
+    expected=[
         TableData(
             table_name=u"tablename",
             header_list=[u'a', u'b', u'c'],
@@ -101,7 +106,7 @@ test_data_02 = Data(
     ])
 
 test_data_03 = Data(
-    """
+    value="""
 <html>
   <head>
     header
@@ -111,10 +116,11 @@ test_data_03 = Data(
   </body>
 </html>
 """,
-    [])
+    table_name="%(default)s",
+    expected=[])
 
 test_data_04 = Data(
-    """
+    value="""<title>test_data_04</title>
 <table id="tablename">
     <caption>caption</caption>
     <tr>
@@ -176,9 +182,10 @@ test_data_04 = Data(
     </tr>
 </table>
 """,
-    [
+    table_name="%(default)s",
+    expected=[
         TableData(
-            table_name=u"tmp_tablename",
+            table_name=u"test_data_04_tablename",
             header_list=[u'a', u'b', u'c'],
             record_list=[
                 [u'1', u'123.1', u'a'],
@@ -187,14 +194,14 @@ test_data_04 = Data(
             ]
         ),
         TableData(
-            table_name=u"tmp_html2",
+            table_name=u"test_data_04_html2",
             header_list=[],
             record_list=[
                 [u'link text'],
             ]
         ),
         TableData(
-            table_name=u"tmp_html3",
+            table_name=u"test_data_04_html3",
             header_list=[u'a', u'b'],
             record_list=[
                 [u'1', u'123.1'],
@@ -206,7 +213,7 @@ test_data_04 = Data(
 
 
 test_data_05 = Data(
-    """<table>
+    value="""<table>
   <caption>captiontest</caption>
   <thead>
     <tr>
@@ -234,9 +241,10 @@ test_data_05 = Data(
   </tbody>
 </table>
 """,
-    [
+    table_name="%(default)s",
+    expected=[
         TableData(
-            table_name=u"tmp_captiontest",
+            table_name=u"_captiontest",
             header_list=[u'a', u'b', u'c'],
             record_list=[
                 [u'1', u'123.1', u'a'],
@@ -248,7 +256,7 @@ test_data_05 = Data(
 
 
 test_data_06 = Data(
-    """
+    value="""<title>test_data_06</title>
 <table class="prettytable inflection-table">
 <tr>
 <th style="background:#549EA0; font-style:italic;">Case</th>
@@ -272,9 +280,10 @@ test_data_06 = Data(
 </tr>
 </table>
 """,
-    [
+    table_name="%(default)s",
+    expected=[
         TableData(
-            table_name="tmp_html1",
+            table_name="test_data_06_html1",
             header_list=["Case", "Singular", "Plural"],
             record_list=[
                 ["nominative", "val01", "val02"],
@@ -334,7 +343,7 @@ class Test_HtmlTableFormatter_make_table_name:
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
         [
-            ["%(default)s",  "/path/to/data.html", "data_htmltable"],
+            ["%(default)s",  "/path/to/data.html", "_htmltable"],
         ] + FILE_LOADER_TEST_DATA)
     def test_normal_HtmlTableFileLoader_valid_tag(
             self, monkeypatch, value, source, expected):
@@ -351,7 +360,12 @@ class Test_HtmlTableFormatter_make_table_name:
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
         [
-            ["%(default)s",  "/path/to/data.html", "data_html0"],
+            [
+                "%(%(filename)s)",
+                "/path/to/data.html",
+                "%(data)"
+            ],
+            ["%(default)s",  "/path/to/data.html", "_html0"],
         ] + FILE_LOADER_TEST_DATA)
     def test_normal_HtmlTableFileLoader_null_tag(
             self, monkeypatch, value, source, expected):
@@ -368,11 +382,6 @@ class Test_HtmlTableFormatter_make_table_name:
     @pytest.mark.parametrize(["value", "source", "expected"], [
         [None, "/path/to/data.html", ValueError],
         ["", "/path/to/data.html", ValueError],
-        [
-            "%(%(filename)s)",
-            "/path/to/data.html",
-            ptr.InvalidTableNameError  # %(data)
-        ],
     ])
     def test_HtmlTableFileLoader_exception(
             self, monkeypatch, value, source, expected):
@@ -388,19 +397,21 @@ class Test_HtmlTableFormatter_make_table_name:
             formatter._make_table_name()
 
     @pytest.mark.parametrize(["value", "expected"], [
-        ["%(default)s", "htmltable"],
+        ["%(default)s", "validtag_htmltable"],
         ["%(key)s", "htmltable"],
         ["%(format_name)s%(format_id)s", "html0"],
         ["%(filename)s%(format_name)s%(format_id)s", "html0"],
         ["tablename", "tablename"],
-        ["table", "table_html"],
     ])
     def test_normal_HtmlTableTextLoader_valid_tag(
             self, monkeypatch, value, expected):
         monkeypatch.setattr(
             HtmlTableFormatter, "table_id", self.valid_tag_property)
 
-        source = "<table></table>"
+        source = """
+        <title>validtag</title>
+        <table></table>
+        """
         loader = ptr.HtmlTableTextLoader(source)
         loader.table_name = value
         formatter = HtmlTableFormatter(source)
@@ -409,19 +420,21 @@ class Test_HtmlTableFormatter_make_table_name:
         assert formatter._make_table_name() == expected
 
     @pytest.mark.parametrize(["value", "expected"], [
-        ["%(default)s", "html0"],
+        ["%(default)s", "nulltag_html0"],
         ["%(key)s", "html0"],
         ["%(format_name)s%(format_id)s", "html0"],
         ["%(filename)s%(format_name)s%(format_id)s", "html0"],
         ["tablename", "tablename"],
-        ["table", "table_html"],
     ])
     def test_normal_HtmlTableTextLoader_null_tag(
             self, monkeypatch, value, expected):
         monkeypatch.setattr(
             HtmlTableFormatter, "table_id", self.null_tag_property)
 
-        source = "<table></table>"
+        source = """
+        <title>nulltag</title>
+        <table></table>
+        """
         loader = ptr.HtmlTableTextLoader(source)
         loader.table_name = value
         formatter = HtmlTableFormatter(source)
@@ -466,33 +479,33 @@ class Test_HtmlTableFileLoader_load:
         ],
         [
             [
-                1, test_data_01.value, "tmp.html",
-                "%(key)s",
+                1, test_data_01.value, "tmp1.html",
+                test_data_01.table_name,
                 test_data_01.expected
             ],
             [
-                2, test_data_02.value, "tmp.html",
-                "%(key)s",
+                2, test_data_02.value, "tmp2.html",
+                test_data_02.table_name,
                 test_data_02.expected,
             ],
             [
-                3, test_data_03.value, "tmp.html",
-                "%(default)s",
+                3, test_data_03.value, "tmp3.html",
+                test_data_03.table_name,
                 test_data_03.expected,
             ],
             [
-                4, test_data_04.value, "tmp.html",
-                "%(default)s",
+                4, test_data_04.value, "tmp4.html",
+                test_data_04.table_name,
                 test_data_04.expected,
             ],
             [
-                5, test_data_05.value, "tmp.html",
-                "%(default)s",
+                5, test_data_05.value, "tmp5.html",
+                test_data_04.table_name,
                 test_data_05.expected,
             ],
             [
-                6, test_data_06.value, "tmp.html",
-                "%(default)s",
+                6, test_data_06.value, "tmp6.html",
+                test_data_06.table_name,
                 test_data_06.expected,
             ],
         ])
@@ -568,17 +581,17 @@ class Test_HtmlTableTextLoader_load:
         [
             [
                 test_data_01.value,
-                "%(default)s",
+                test_data_01.table_name,
                 test_data_01.expected,
             ],
             [
                 test_data_02.value,
-                "%(default)s",
+                test_data_02.table_name,
                 test_data_02.expected,
             ],
             [
                 test_data_03.value,
-                "%(default)s",
+                test_data_03.table_name,
                 test_data_03.expected,
             ],
         ])
@@ -587,6 +600,7 @@ class Test_HtmlTableTextLoader_load:
         loader.table_name = table_name
 
         for tabletuple in loader.load():
+            print(tabletuple.dumps())
             assert tabletuple in expected_tabletuple_list
 
     @pytest.mark.parametrize(["table_text", "expected"], [

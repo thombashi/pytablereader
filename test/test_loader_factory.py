@@ -30,7 +30,7 @@ class Test_TableFileLoaderFactory_create_from_path:
         ["valid_ext.XLSX", "xlsx", ptr.ExcelTableFileLoader],
     ])
     def test_normal(self, value, extension, expected):
-        loader_factory = ptr.TableFileLoaderFactory(value)
+        loader_factory = ptr.factory.TableFileLoaderFactory(value)
         loader = loader_factory.create_from_path()
 
         assert loader_factory.file_extension.lower() == extension
@@ -45,7 +45,7 @@ class Test_TableFileLoaderFactory_create_from_path:
         ["", ptr.InvalidFilePathError],
     ])
     def test_exception(self, value, expected):
-        loader_factory = ptr.TableFileLoaderFactory(value)
+        loader_factory = ptr.factory.TableFileLoaderFactory(value)
 
         with pytest.raises(expected):
             loader_factory.create_from_path()
@@ -68,7 +68,7 @@ class Test_TableFileLoaderFactory_create_from_format_name:
         ["invalid_ext.txt", "MediaWiki", ptr.MediaWikiTableFileLoader],
     ])
     def test_normal(self, file_path, format_name, expected):
-        loader_factory = ptr.TableFileLoaderFactory(file_path)
+        loader_factory = ptr.factory.TableFileLoaderFactory(file_path)
         loader = loader_factory.create_from_format_name(format_name)
 
         assert loader.source == file_path
@@ -82,7 +82,7 @@ class Test_TableFileLoaderFactory_create_from_format_name:
         ["valid_ext.csv", "auto", ptr.LoaderNotFoundError],
     ])
     def test_exception(self, file_path, format_name, expected):
-        loader_factory = ptr.TableFileLoaderFactory(file_path)
+        loader_factory = ptr.factory.TableFileLoaderFactory(file_path)
 
         with pytest.raises(expected):
             loader_factory.create_from_format_name(format_name)

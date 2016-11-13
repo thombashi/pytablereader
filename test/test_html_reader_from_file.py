@@ -18,8 +18,7 @@ class Test_HtmlTableTextLoader_load:
     def test_smoke(self, tmpdir, filename):
         test_data_file_path = os.path.join(
             os.path.dirname(__file__), "data", filename)
-        loader_factory = ptr.TableFileLoaderFactory(test_data_file_path)
-        loader = loader_factory.create_from_path()
+        loader = ptr.TableFileLoader(test_data_file_path)
 
         success_count = 0
 

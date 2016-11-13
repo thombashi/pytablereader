@@ -134,6 +134,11 @@ class Test_CsvTableFileLoader_make_table_name:
             "/path/to/data.csv",
             "csv0_data",
         ],
+        [
+            "%(%(filename)s)",
+            "/path/to/data.csv",
+            "%(data)"
+        ],
     ])
     def test_normal(self, value, source, expected):
         loader = ptr.CsvTableFileLoader(source)
@@ -146,11 +151,6 @@ class Test_CsvTableFileLoader_make_table_name:
         ["", "/path/to/data.csv", ValueError],
         ["%(filename)s", None, InvalidTableNameError],
         ["%(filename)s", "", InvalidTableNameError],
-        [
-            "%(%(filename)s)",
-            "/path/to/data.csv",
-            InvalidTableNameError,  # "%(data)"
-        ],
     ])
     def test_exception(self, value, source, expected):
         loader = ptr.CsvTableFileLoader(source)
@@ -295,7 +295,6 @@ class Test_CsvTableTextLoader_make_table_name:
     @pytest.mark.parametrize(["value", "expected"], [
         ["%(format_name)s%(format_id)s", "csv0"],
         ["tablename", "tablename"],
-        ["table", "table_csv"],
     ])
     def test_normal(self, value, expected):
         loader = ptr.CsvTableTextLoader("dummy")

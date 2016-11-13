@@ -4,6 +4,7 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from __future__ import print_function
 import collections
 from path import Path
 
@@ -155,6 +156,11 @@ class Test_JsonTableFileLoader_make_table_name:
         ],
         ["hoge_%(filename)s", None, "hoge_"],
         ["hoge_%(filename)s", "", "hoge_"],
+        [
+            "%(%(filename)s)",
+            "/path/to/data.json",
+            "%(data)"
+        ],
     ])
     def test_normal(self, value, source, expected):
         loader = ptr.JsonTableFileLoader(source)
@@ -167,11 +173,6 @@ class Test_JsonTableFileLoader_make_table_name:
         ["", "/path/to/data.json", ValueError],
         ["%(filename)s", None, InvalidTableNameError],
         ["%(filename)s", "", InvalidTableNameError],
-        [
-            "%(%(filename)s)",
-            "/path/to/data.json",
-            InvalidTableNameError  # %(data)
-        ],
     ])
     def test_exception(self, value, source, expected):
         loader = ptr.JsonTableFileLoader(source)
@@ -292,7 +293,7 @@ class Test_JsonTableTextLoader_make_table_name:
     @pytest.mark.parametrize(["value", "expected"], [
         ["%(format_name)s%(format_id)s", "json0"],
         ["tablename", "tablename"],
-        ["table", "table_json"],
+        ["[table]", "[table]"],
     ])
     def test_normal(self, value, expected):
         loader = ptr.JsonTableTextLoader("dummy")
@@ -301,7 +302,6 @@ class Test_JsonTableTextLoader_make_table_name:
         assert loader.make_table_name() == expected
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
-        ["[]", "%(filename)s", InvalidTableNameError],
         [None, "tablename", ValueError],
         ["", "tablename", ValueError],
     ])

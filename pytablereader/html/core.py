@@ -25,6 +25,9 @@ class HtmlTableLoader(TableLoader):
     def format_name(self):
         return "html"
 
+    def _get_default_table_name_template(self):
+        return "{:s}_{:s}".format(tnt.TITLE, tnt.KEY)
+
 
 class HtmlTableFileLoader(HtmlTableLoader):
     """
@@ -34,7 +37,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
     .. py:attribute:: table_name
 
-        Table name string. Defaults to ``%(filename)s_%(key)s``.
+        Table name string. Defaults to ``%(title)s_%(key)s``.
 
     .. py:attribute:: encoding
 
@@ -61,6 +64,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
             format specifier     value after the replacement
             ===================  ==============================================
             ``%(filename)s``     |filename_desc|
+            ``%(title)s``        Title tag text of the html.
             ``%(key)s``          | This is replaced to :
                                  | **(1)** ``id`` attribute of the table tag
                                  | **(2)** ``%(format_name)s%(format_id)s``
@@ -94,9 +98,6 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
         return formatter.to_table_data()
 
-    def _get_default_table_name_template(self):
-        return "{:s}_{:s}".format(tnt.FILENAME, tnt.KEY)
-
 
 class HtmlTableTextLoader(HtmlTableLoader):
     """
@@ -106,7 +107,7 @@ class HtmlTableTextLoader(HtmlTableLoader):
 
     .. py:attribute:: table_name
 
-        Table name string. Defaults to ``%(key)s``.
+        Table name string. Defaults to ``%(title)s_%(key)s``.
     """
 
     def __init__(self, text):
@@ -127,6 +128,7 @@ class HtmlTableTextLoader(HtmlTableLoader):
             format specifier     value after the replacement
             ===================  ==============================================
             ``%(filename)s``     ``""``
+            ``%(title)s``        Title tag text of the html.
             ``%(key)s``          | This is replaced to :
                                  | **(1)** ``id`` attribute of the table tag
                                  | **(2)** ``%(format_name)s%(format_id)s``
@@ -151,6 +153,3 @@ class HtmlTableTextLoader(HtmlTableLoader):
         formatter.accept(self)
 
         return formatter.to_table_data()
-
-    def _get_default_table_name_template(self):
-        return "{:s}".format(tnt.KEY)
