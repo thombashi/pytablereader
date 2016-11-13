@@ -43,8 +43,10 @@ from .mediawiki.core import (
     MediaWikiTableTextLoader
 )
 from .spreadsheet.excelloader import ExcelTableFileLoader
-from .loadermanager import TableUrlLoader
-
+from .loadermanager import (
+    TableFileLoader,
+    TableUrlLoader
+)
 from ._tabledata_sanitizer import (
     TableDataSanitizer,
     SQLiteTableDataSanitizer
