@@ -9,7 +9,6 @@ import abc
 import threading
 
 import dataproperty
-import pathvalidate
 import path
 import six
 
