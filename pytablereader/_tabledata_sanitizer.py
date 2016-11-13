@@ -74,8 +74,12 @@ class TableDataSanitizer(TableDataSanitizerInterface):
     @abc.abstractmethod
     def _sanitize_table_name(self, table_name):
         """
-        must return a sanitized table name.
-        sanitized table name should valid with _validate_table_name method.
+        Must return a valid table name.
+        The table name must be a valid name with
+        :py:meth:`~._validate_table_name` method.
+
+        This method called when :py:meth:`~._validate_table_name` method raise
+        :py:class:`~.InvalidTableNameError`.
 
         :param str header: Table name to sanitize.
         :return: Sanitized table name.
@@ -110,7 +114,8 @@ class TableDataSanitizer(TableDataSanitizerInterface):
     @abc.abstractmethod
     def _sanitize_header(self, header):
         """
-        This method called when :py:meth:`._validate_header` method raise
+        Must return a valid header name.
+        This method called when :py:meth:`~._validate_header` method raise
         :py:class:`~.InvalidHeaderNameError`.
         Override this method in subclass if you want to rename invalid
         table header element.
