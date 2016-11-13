@@ -6,8 +6,8 @@
 
 from __future__ import print_function
 import collections
-import os
 
+from path import Path
 import pytest
 import six
 
@@ -208,16 +208,13 @@ class Test_CsvTableFileLoader_load:
     def test_normal(
             self, tmpdir,
             test_id, table_text, filename, header_list, expected):
-        p_csv = tmpdir.join(filename)
+        file_path = Path(str(tmpdir.join(filename)))
+        file_path.parent.makedirs_p()
 
-        parent_dir_path = os.path.dirname(str(p_csv))
-        if not os.path.isdir(parent_dir_path):
-            os.makedirs(parent_dir_path)
-
-        with open(str(p_csv), "w") as f:
+        with open(file_path, "w") as f:
             f.write(table_text)
 
-        loader = ptr.CsvTableFileLoader(str(p_csv))
+        loader = ptr.CsvTableFileLoader(file_path)
         loader.header_list = header_list
 
         for tabletuple in loader.load():

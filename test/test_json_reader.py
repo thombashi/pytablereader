@@ -5,7 +5,7 @@
 """
 
 import collections
-import os
+from path import Path
 
 import pytest
 
@@ -222,16 +222,13 @@ class Test_JsonTableFileLoader_load:
     def test_normal(
             self, tmpdir, table_text, filename,
             table_name, expected_tabletuple_list):
-        p_file_path = tmpdir.join(filename)
+        file_path = Path(str(tmpdir.join(filename)))
+        file_path.parent.makedirs_p()
 
-        parent_dir_path = os.path.dirname(str(p_file_path))
-        if not os.path.isdir(parent_dir_path):
-            os.makedirs(parent_dir_path)
-
-        with open(str(p_file_path), "w") as f:
+        with open(file_path, "w") as f:
             f.write(table_text)
 
-        loader = ptr.JsonTableFileLoader(str(p_file_path))
+        loader = ptr.JsonTableFileLoader(file_path)
         loader.table_name = table_name
 
         load = False

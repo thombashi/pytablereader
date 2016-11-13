@@ -58,10 +58,10 @@ class Test_TableFileLoader_constructor:
         p_file_path = Path(str(tmpdir.join(file_path)))
         p_file_path.parent.makedirs_p()
 
-        with open(str(p_file_path), "w") as f:
+        with open(p_file_path, "w") as f:
             f.write('''{}''')
 
-        loader = ptr.TableFileLoader(file_path, format_name)
+        loader = ptr.TableFileLoader(p_file_path, format_name)
         expected_loader = expected("")
 
         assert loader.source_type == expected_loader.source_type
@@ -106,7 +106,7 @@ class Test_TableFileLoader_load:
         p_file_path = Path(str(tmpdir.join(file_path)))
         p_file_path.parent.makedirs_p()
 
-        with open(str(p_file_path), "w") as f:
+        with open(p_file_path, "w") as f:
             f.write('''"attr_a","attr_b","attr_c"
     1,4,"a"
     2,2.1,"bb"
@@ -123,7 +123,7 @@ class Test_TableFileLoader_load:
                 ])
         ]
 
-        loader = ptr.TableFileLoader(str(p_file_path), format_name)
+        loader = ptr.TableFileLoader(p_file_path, format_name)
 
         assert loader.format_name == "csv"
 
@@ -146,7 +146,7 @@ class Test_TableFileLoader_load:
         p_file_path = Path(str(tmpdir.join(file_path)))
         p_file_path.parent.makedirs_p()
 
-        with open(str(p_file_path), "w") as f:
+        with open(p_file_path, "w") as f:
             f.write('''[
         {"attr_a": 1},
         {"attr_b": 2.1, "attr_c": "bb"}
@@ -163,7 +163,7 @@ class Test_TableFileLoader_load:
             )
         ]
 
-        loader = ptr.TableFileLoader(str(p_file_path), format_name)
+        loader = ptr.TableFileLoader(p_file_path, format_name)
 
         assert loader.format_name == "json"
 
@@ -197,13 +197,13 @@ class Test_TableFileLoader_load:
         ]
 
         writer = ptw.ExcelXlsxTableWriter()
-        writer.open_workbook(str(p_file_path))
+        writer.open_workbook(p_file_path)
         for tabledata in tabledata_list:
             writer.set_table_data(tabledata)
         writer.write_table()
         writer.close()
 
-        loader = ptr.TableFileLoader(str(p_file_path))
+        loader = ptr.TableFileLoader(p_file_path)
 
         assert loader.format_name == "excel"
 

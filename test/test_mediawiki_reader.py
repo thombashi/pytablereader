@@ -5,8 +5,8 @@
 """
 
 import collections
-import os
 
+from path import Path
 import pytest
 
 import pytablereader as ptr
@@ -369,16 +369,13 @@ class Test_MediaWikiTableFileLoader_load:
     def test_normal(
             self, tmpdir, test_id, table_text, filename,
             table_name, expected_tabledata_list):
-        p_file_path = tmpdir.join(filename)
+        file_path = Path(str(tmpdir.join(filename)))
+        file_path.parent.makedirs_p()
 
-        parent_dir_path = os.path.dirname(str(p_file_path))
-        if not os.path.isdir(parent_dir_path):
-            os.makedirs(parent_dir_path)
-
-        with open(str(p_file_path), "w") as f:
+        with open(file_path, "w") as f:
             f.write(table_text)
 
-        loader = ptr.MediaWikiTableFileLoader(str(p_file_path))
+        loader = ptr.MediaWikiTableFileLoader(file_path)
         loader.table_name = table_name
 
         load = False
