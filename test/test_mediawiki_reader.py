@@ -229,6 +229,11 @@ class Test_MediaWikiTableFormatter_make_table_name:
         ["value", "source", "expected"],
         [
             ["%(default)s",  "/path/to/data.mediawiki", "data_mediawiki0"],
+            [
+                "%(%(filename)s)",
+                "/path/to/data.mediawiki",
+                "%(data)"
+            ],
         ] + FILE_LOADER_TEST_DATA)
     def test_normal_MediaWikiTableFileLoader_null_tag(
             self, monkeypatch, value, source, expected):
@@ -245,11 +250,6 @@ class Test_MediaWikiTableFormatter_make_table_name:
     @pytest.mark.parametrize(["value", "source", "expected"], [
         [None, "/path/to/data.mediawiki", ValueError],
         ["", "/path/to/data.mediawiki", ValueError],
-        [
-            "%(%(filename)s)",
-            "/path/to/data.mediawiki",
-            ptr.InvalidTableNameError  # %(data)
-        ],
     ])
     def test_MediaWikiTableFileLoader_exception(
             self, monkeypatch, value, source, expected):
@@ -270,7 +270,6 @@ class Test_MediaWikiTableFormatter_make_table_name:
         ["%(format_name)s%(format_id)s", "mediawiki0"],
         ["%(filename)s%(format_name)s%(format_id)s", "mediawiki0"],
         ["tablename", "tablename"],
-        ["table", "table_mediawiki"],
     ])
     def test_normal_MediaWikiTableTextLoader_valid_tag(
             self, monkeypatch, value, expected):
@@ -291,7 +290,6 @@ class Test_MediaWikiTableFormatter_make_table_name:
         ["%(format_name)s%(format_id)s", "mediawiki0"],
         ["%(filename)s%(format_name)s%(format_id)s", "mediawiki0"],
         ["tablename", "tablename"],
-        ["table", "table_mediawiki"],
     ])
     def test_normal_MediaWikiTableTextLoader_null_tag(
             self, monkeypatch, value, expected):
