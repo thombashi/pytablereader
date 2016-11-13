@@ -7,6 +7,7 @@
 from __future__ import absolute_import
 import hashlib
 
+from .error import InvalidDataError
 import dataproperty
 import pytablewriter
 import six
@@ -48,10 +49,12 @@ class TableData(object):
 
         return self.__record_list
 
-    def __init__(self, table_name, header_list, record_list):
+    def __init__(self, table_name, header_list, record_list, none_value=None):
+        self.__none_value = none_value
+
         self.__table_name = table_name
         self.__header_list = header_list
-        self.__record_list = record_list
+        self.__record_list = self.__to_record_list(record_list)
 
     def __repr__(self):
         return "table_name={}, header_list={}, record_list={}".format(
@@ -148,3 +151,53 @@ class TableData(object):
         writer.write_table()
 
         return writer.stream.getvalue()
+
+    def __convert(self, value):
+        if value is None:
+            return self.__none_value
+
+        return value
+
+    def __to_record(self, value):
+        """
+        Convert values to a record.
+
+        :param value: Value to be converted.
+        :type value: |dict|/|namedtuple|/|list|/|tuple|
+        :raises ValueError: If the ``value`` is invalid.
+        """
+
+        try:
+            # dictionary to list
+            return [
+                self.__convert(value.get(header))
+                for header in self.header_list
+            ]
+        except AttributeError:
+            pass
+
+        try:
+            # namedtuple to list
+            dict_value = value._asdict()
+            return [
+                self.__convert(dict_value.get(header))
+                for header in self.header_list
+            ]
+        except AttributeError:
+            pass
+
+        try:
+            return list(value)
+        except TypeError:
+            raise InvalidDataError(
+                "record must be a list or tuple: actual={}".format(value))
+
+    def __to_record_list(self, record_list):
+        """
+        Convert matrix to records
+        """
+
+        return [
+            self.__to_record(record)
+            for record in record_list
+        ]
