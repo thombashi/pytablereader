@@ -42,7 +42,7 @@ class TableFileLoader(TableLoaderManager):
 
     def load(self):
         """
-        Loading table data from a file as a ``format_name`` format.
+        Loading table data from a file as ``format_name`` format.
         Automatically detect file format if ``format_name`` is |None|.
 
         :return: Loaded table data iterator.
