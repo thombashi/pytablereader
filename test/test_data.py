@@ -4,11 +4,13 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from collections import namedtuple
 import json
 
 import pytest
 
 from pytablereader import TableData
+from pytablereader import InvalidDataError
 
 try:
     import pandas
@@ -17,10 +19,27 @@ except ImportError:
     PANDAS_IMPORT = False
 
 
+attr_list_2 = ["attr_a", "attr_b"]
+
+NamedTuple2 = namedtuple("NamedTuple2", " ".join(attr_list_2))
+
+
 class Test_TableData_constructor:
 
+    __MIXED_DATA = [
+        [1, 2],
+        (3, 4),
+        {"attr_a": 5, "attr_b": 6},
+        {"attr_a": 7, "attr_b": 8, "not_exist_attr": 100},
+        {"attr_a": 9},
+        {"attr_b": 10},
+        {},
+        NamedTuple2(11, None),
+    ]
+
     @pytest.mark.parametrize(
-        ["table_name", "header_list", "record_list", "expected"], [
+        ["table_name", "header_list", "record_list", "expected"],
+        [
             [
                 "empty_records", ["a", "b"], [],
                 TableData("empty_records", ["a", "b"], [])
@@ -34,10 +53,65 @@ class Test_TableData_constructor:
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
 
-        print("lhs header: {}".format(tabledata.header_list))
-        print("rhs header: {}".format(expected.header_list))
+        print("expected: {}".format(expected.dumps()))
+        print("actusl: {}".format(tabledata.dumps()))
 
         assert tabledata == expected
+
+    @pytest.mark.parametrize(
+        ["table_name", "header_list", "record_list", "none_value", "expected"],
+        [
+            [
+                "mixdata",
+                attr_list_2,
+                __MIXED_DATA,
+                None,
+                TableData("mixdata", attr_list_2, [
+                    [1, 2],
+                    [3, 4],
+                    [5, 6],
+                    [7, 8],
+                    [9, None],
+                    [None, 10],
+                    [None, None],
+                    [11, None],
+                ]),
+            ],
+            [
+                "mixdata",
+                attr_list_2,
+                __MIXED_DATA,
+                "NULL",
+                TableData("mixdata", attr_list_2, [
+                    [1, 2],
+                    [3, 4],
+                    [5, 6],
+                    [7, 8],
+                    [9, "NULL"],
+                    ["NULL", 10],
+                    ["NULL", "NULL"],
+                    [11, "NULL"],
+                ]),
+            ],
+        ]
+    )
+    def test_normal_none_value(
+            self, table_name, header_list, record_list, none_value, expected):
+        tabledata = TableData(table_name, header_list, record_list, none_value)
+
+        print("expected: {}".format(expected.dumps()))
+        print("actusl: {}".format(tabledata.dumps()))
+
+        assert tabledata == expected
+
+    @pytest.mark.parametrize(
+        ["table_name", "header_list", "record_list", "expected"], [
+            ["tablename", ["a", "b"], [1, 2], InvalidDataError],
+        ]
+    )
+    def test_exception(self, table_name, header_list, record_list, expected):
+        with pytest.raises(expected):
+            TableData(table_name, header_list, record_list)
 
 
 class Test_TableData_as_dict:
@@ -108,10 +182,6 @@ class Test_TableData_hash:
                 "tablename", ["a", "c"], [],
                 "9091fdf20816c2790f51eced4a95c8a33131699e"
             ],
-            [
-                "tablename", ["a", "b"], [1, 2],
-                "9503bdae29a7a696e9c65460c7877489f3d00440"
-            ],
         ]
     )
     def test_normal(self, table_name, header_list, record_list, expected):
@@ -126,7 +196,6 @@ class Test_TableData_is_empty_header:
             ["tablename", [], [], True],
             ["tablename", ["a", "b"], [], False],
             ["tablename", [], [1, 2], True],
-            ["tablename", ["a", "b"], [1, 2], False],
         ]
     )
     def test_normal(self, table_name, header_list, record_list, expected):
@@ -141,7 +210,7 @@ class Test_TableData_is_empty_record:
             ["tablename", [], [], True],
             ["tablename", ["a", "b"], [], True],
             ["tablename", [], [1, 2], False],
-            ["tablename", ["a", "b"], [1, 2], False],
+            ["tablename", ["a", "b"], [[1, 2]], False],
         ]
     )
     def test_normal(self, table_name, header_list, record_list, expected):
@@ -156,7 +225,7 @@ class Test_TableData_is_empty:
             ["tablename", [], [], True],
             ["tablename", ["a", "b"], [], True],
             ["tablename", [], [1, 2], True],
-            ["tablename", ["a", "b"], [1, 2], False],
+            ["tablename", ["a", "b"], [[1, 2]], False],
         ]
     )
     def test_normal(self, table_name, header_list, record_list, expected):

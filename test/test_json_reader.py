@@ -129,6 +129,26 @@ test_data_04 = Data(
         ),
     ])
 
+test_data_05 = Data(
+    """[
+    {"attr_b": "4", "attr_c": "a", "attr_a": "1"},
+    {"attr_b": "2.1", "attr_c": "bb", "attr_a": "2"},
+    {"attr_b": "120.9", "attr_c": "ccc", "attr_a": "3"}
+]""",
+    [
+        TableData(
+            "json1",
+            ["attr_a", "attr_b", "attr_c"],
+            [
+                {u'attr_a': u'1', u'attr_b': u'4', u'attr_c': u'a'},
+                {u'attr_a': u'2', u'attr_b': u'2.1', u'attr_c': u'bb'},
+                {u'attr_a': u'3', u'attr_b': u'120.9',
+                    u'attr_c': u'ccc'},
+            ]
+        ),
+    ]
+)
+
 
 class Test_JsonTableFileLoader_make_table_name:
 
@@ -233,8 +253,9 @@ class Test_JsonTableFileLoader_load:
         loader.table_name = table_name
 
         load = False
-        for tabletuple in loader.load():
-            assert tabletuple in expected_tabletuple_list
+        for tabledata in loader.load():
+            print(tabledata.dumps())
+            assert tabledata in expected_tabletuple_list
             load = True
 
         assert load
@@ -340,6 +361,11 @@ class Test_JsonTableTextLoader_load:
                 "%(default)s",
                 test_data_03.expected
             ],
+            [
+                test_data_05.value,
+                "%(key)s",
+                test_data_05.expected
+            ],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):
         ptr.JsonTableFileLoader.clear_table_count()
@@ -348,6 +374,7 @@ class Test_JsonTableTextLoader_load:
 
         load = False
         for tabledata in loader.load():
+            print(tabledata.dumps())
             assert tabledata in expected_tabletuple_list
             load = True
 
