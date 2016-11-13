@@ -87,6 +87,7 @@ class BaseTableLoaderFactory(object):
                 "",
                 "acceptable extensions are: {}.".format(
                     ", ".join(self.get_extension_list())),
+                "actual: '{}'".format(extension)
             ]))
 
     def _create_from_format_name(self, format_name):
