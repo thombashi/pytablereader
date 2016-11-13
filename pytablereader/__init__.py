@@ -51,4 +51,3 @@ from ._tabledata_sanitizer import (
     TableDataSanitizer,
     SQLiteTableDataSanitizer
 )
-from .factory import TableFileLoaderFactory
