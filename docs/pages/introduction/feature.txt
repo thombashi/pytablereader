@@ -9,5 +9,5 @@ Feature
     - Markdown file/text
     - MediaWiki file/text
 - Supported data sources to read:
-    - Local file
+    - Files
     - URL
