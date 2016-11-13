@@ -72,8 +72,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             +----------------+-------------------------------------+
 
         :return:
-            Loader that coincide with the file extesnion of
-            :py:attr:`.source`.
+            Loader that coincide with the file extension of the URL.
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
         """

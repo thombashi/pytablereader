@@ -17,6 +17,13 @@ class TableFileLoader(TableLoaderManager):
 
     :param str file_path: Path to the file to load.
     :param str format_name: Data format name to load.
+        Supported formats are:
+            * ``"csv"``
+            * ``"excel"``
+            * ``"html"``
+            * ``"json"``
+            * ``"markdown"``
+            * ``"mediawiki"``
     :raise pytablereader.InvalidFilePathError:
         If ``file_path`` is a invalid file path.
     :raises pytablereader.LoaderNotFoundError:
@@ -32,3 +39,19 @@ class TableFileLoader(TableLoaderManager):
             loader = loader_factory.create_from_path()
 
         super(TableFileLoader, self).__init__(loader)
+
+    def load(self):
+        """
+        Loading table data from a file as a ``format_name`` format.
+        Automatically detect file format if ``format_name`` is |None|.
+
+        :return: Loaded table data iterator.
+        :rtype: |TableData| iterator
+
+        .. seealso::
+
+            * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_format_name`
+            * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_path`
+        """
+
+        return super(TableFileLoader, self).load()

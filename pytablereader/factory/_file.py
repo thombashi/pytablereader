@@ -53,8 +53,8 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             +----------------+-------------------------------------+
 
         :return:
-            Loader that coincide with the file extesnion of
-            :py:attr:`.source`.
+            Loader that coincide with the file extesnion of the
+            :py:attr:`.file_extension`.
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
         """
