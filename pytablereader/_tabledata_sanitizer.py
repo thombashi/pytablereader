@@ -200,9 +200,9 @@ class SQLiteTableDataSanitizer(TableDataSanitizer):
     def _validate_header(self, header):
         try:
             pv.validate_sqlite_attr_name(header)
-        except pv.ValidReservedNameError:
+        except pv.ReservedNameError:
             pass
-        except (pv.InvalidReservedNameError, pv.InvalidCharError) as e:
+        except pv.InvalidCharError as e:
             raise InvalidHeaderNameError(e)
 
     def _sanitize_header(self, header):

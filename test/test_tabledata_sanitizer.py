@@ -34,17 +34,17 @@ class Test_SQLiteTableDataSanitizer:
                     "a_b_c_d_e_f_g_h_i_j",
                     ["abcdefghij", "klmnopqrstuv"], [[1, 2], [3, 4]])
             ],
-            [
+            [  # SQLite reserved keywords
                 "ALL", ["and", "Index"], [[1, 2], [3, 4]],
                 TableData(
                     "rename_ALL",
-                    ["rename_and", "rename_Index"], [[1, 2], [3, 4]])
+                    ["and", "Index"], [[1, 2], [3, 4]])
             ],
             [
                 "0invalid_tn", ["1invalid", "where"], [[1, 2], [3, 4]],
                 TableData(
                     "rename_0invalid_tn",
-                    ["rename_1invalid", "rename_where"], [[1, 2], [3, 4]])
+                    ["rename_1invalid", "where"], [[1, 2], [3, 4]])
             ],
             [
                 "Python (programming language) - Wikipedia, the free encyclopedia.html",
