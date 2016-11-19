@@ -23,8 +23,9 @@ class CsvTableFormatter(TableFormatter):
                 dataproperty.is_empty_string(header) for header in header_list
             ]):
                 raise InvalidDataError(
-                    "the first line includes empty string item: "
-                    "the first line expected to contain header data.")
+                    "the first line includes empty string item."
+                    "all of the items should contain header name."
+                    "actual={}".format(header_list))
 
             data_matrix = self._source_data[1:]
         else:
