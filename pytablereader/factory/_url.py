@@ -57,22 +57,19 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from the file extension to loading file.
         Supported file extensions are as follows:
 
-            +----------------+-------------------------------------+
-            |Format name     |         Loader                      |
-            +================+=====================================+
-            |``csv``         |:py:class:`~.CsvTableTextLoader`     |
-            +----------------+-------------------------------------+
-            |``xls``/``xlsx``|:py:class:`~.ExcelTableFileLoader`   |
-            +----------------+-------------------------------------+
-            |``htm``/``html``|:py:class:`~.HtmlTableTextLoader`    |
-            +----------------+-------------------------------------+
-            |``json``        |:py:class:`~.JsonTableTextLoader`    |
-            +----------------+-------------------------------------+
-            |``md``          |:py:class:`~.MarkdownTableTextLoader`|
-            +----------------+-------------------------------------+
+            ================  =====================================
+            Format name                Loader                      
+            ================  =====================================
+            ``csv``           :py:class:`~.CsvTableTextLoader`     
+            ``xls``/``xlsx``  :py:class:`~.ExcelTableFileLoader`   
+            ``htm``/``html``  :py:class:`~.HtmlTableTextLoader`    
+            ``json``          :py:class:`~.JsonTableTextLoader`    
+            ``md``            :py:class:`~.MarkdownTableTextLoader`
+            ================  =====================================
 
         :return:
             Loader that coincide with the file extension of the URL.
+        :raises pytablereader.InvalidUrlError: If unacceptable URL format.
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
         """
@@ -97,21 +94,16 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from a format name.
         Supported file formats are as follows:
 
-            +---------------+--------------------------------------+
-            |Format name    |         Loader                       |
-            +===============+======================================+
-            |``"csv"``      |:py:class:`~.CsvTableTextLoader`      |
-            +---------------+--------------------------------------+
-            |``"excel"``    |:py:class:`~.ExcelTableFileLoader`    |
-            +---------------+--------------------------------------+
-            |``"html"``     |:py:class:`~.HtmlTableTextLoader`     |
-            +---------------+--------------------------------------+
-            |``"json"``     |:py:class:`~.JsonTableTextLoader`     |
-            +---------------+--------------------------------------+
-            |``"markdown"`` |:py:class:`~.MarkdownTableTextLoader` |
-            +---------------+--------------------------------------+
-            |``"mediawiki"``|:py:class:`~.MediaWikiTableTextLoader`|
-            +---------------+--------------------------------------+
+            ===============  ======================================
+            Format name               Loader                       
+            ===============  ======================================
+            ``"csv"``        :py:class:`~.CsvTableTextLoader`      
+            ``"excel"``      :py:class:`~.ExcelTableFileLoader`    
+            ``"html"``       :py:class:`~.HtmlTableTextLoader`     
+            ``"json"``       :py:class:`~.JsonTableTextLoader`     
+            ``"markdown"``   :py:class:`~.MarkdownTableTextLoader` 
+            ``"mediawiki"``  :py:class:`~.MediaWikiTableTextLoader`
+            ===============  ======================================
 
         :param str format_name: Format name string (case insensitive).
         :return: Loader that coincide with the ``format_name``:

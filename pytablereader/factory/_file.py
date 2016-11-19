@@ -38,19 +38,15 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from the file extension to loading file.
         Supported file extensions are as follows:
 
-            +----------------+-------------------------------------+
-            |Format name     |         Loader                      |
-            +================+=====================================+
-            |``csv``         |:py:class:`~.CsvTableFileLoader`     |
-            +----------------+-------------------------------------+
-            |``xls``/``xlsx``|:py:class:`~.ExcelTableFileLoader`   |
-            +----------------+-------------------------------------+
-            |``htm``/``html``|:py:class:`~.HtmlTableFileLoader`    |
-            +----------------+-------------------------------------+
-            |``json``        |:py:class:`~.JsonTableFileLoader`    |
-            +----------------+-------------------------------------+
-            |``md``          |:py:class:`~.MarkdownTableFileLoader`|
-            +----------------+-------------------------------------+
+            ================  =====================================
+            Format name                Loader                      
+            ================  =====================================
+            ``csv``           :py:class:`~.CsvTableFileLoader`     
+            ``xls``/``xlsx``  :py:class:`~.ExcelTableFileLoader`   
+            ``htm``/``html``  :py:class:`~.HtmlTableFileLoader`    
+            ``json``          :py:class:`~.JsonTableFileLoader`    
+            ``md``            :py:class:`~.MarkdownTableFileLoader`
+            ================  =====================================
 
         :return:
             Loader that coincide with the file extesnion of the
@@ -66,21 +62,16 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from a format name.
         Supported file formats are as follows:
 
-            +---------------+--------------------------------------+
-            |Format name    |         Loader                       |
-            +===============+======================================+
-            |``"csv"``      |:py:class:`~.CsvTableFileLoader`      |
-            +---------------+--------------------------------------+
-            |``"excel"``    |:py:class:`~.ExcelTableFileLoader`    |
-            +---------------+--------------------------------------+
-            |``"html"``     |:py:class:`~.HtmlTableFileLoader`     |
-            +---------------+--------------------------------------+
-            |``"json"``     |:py:class:`~.JsonTableFileLoader`     |
-            +---------------+--------------------------------------+
-            |``"markdown"`` |:py:class:`~.MarkdownTableFileLoader` |
-            +---------------+--------------------------------------+
-            |``"mediawiki"``|:py:class:`~.MediaWikiTableFileLoader`|
-            +---------------+--------------------------------------+
+            ===============  ======================================
+            Format name               Loader                       
+            ===============  ======================================
+            ``"csv"``        :py:class:`~.CsvTableFileLoader`      
+            ``"excel"``      :py:class:`~.ExcelTableFileLoader`    
+            ``"html"``       :py:class:`~.HtmlTableFileLoader`     
+            ``"json"``       :py:class:`~.JsonTableFileLoader`     
+            ``"markdown"``   :py:class:`~.MarkdownTableFileLoader` 
+            ``"mediawiki"``  :py:class:`~.MediaWikiTableFileLoader`
+            ===============  ======================================
 
         :param str format_name: Format name string (case insensitive).
         :return: Loader that coincide with the ``format_name``:
