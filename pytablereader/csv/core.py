@@ -124,7 +124,10 @@ class CsvTableFileLoader(CsvTableLoader):
         self._validate()
         pathvalidate.validate_file_path(self.source)
 
-        if platform.system() == "Windows":
+        if all([
+            platform.system() == "Windows",
+            six.PY3
+        ]):
             self._csv_reader = csv.reader(
                 io.open(self.source, "r", encoding=self.encoding),
                 delimiter=self.delimiter, quotechar=self.quotechar)
