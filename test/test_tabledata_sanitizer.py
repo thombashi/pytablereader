@@ -4,6 +4,8 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from __future__ import unicode_literals
+
 import pytest
 
 import pytablereader as ptr
@@ -53,6 +55,25 @@ class Test_SQLiteTableDataSanitizer:
                     "Python_programming_language_Wikipedia_the_free_encyclopedia_html",
                     ["ab", "cd"], [[1, 2], [3, 4]])
             ],
+            [
+                "multibyte csv",
+                ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
+                [
+                    ["山田", "太郎", "2001/1/1", "100-0002",
+                        "東京都千代田区皇居外苑", "03-1234-5678"],
+                    ["山田", "次郎", "2001/1/2", "251-0036",
+                        "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
+                ],
+                TableData(
+                    "multibyte_csv",
+                    ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
+                    [
+                        ["山田", "太郎", "2001/1/1", "100-0002",
+                         "東京都千代田区皇居外苑", "03-1234-5678"],
+                        ["山田", "次郎", "2001/1/2", "251-0036",
+                         "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
+                    ])
+            ],
         ]
     )
     def test_normal(
@@ -62,8 +83,8 @@ class Test_SQLiteTableDataSanitizer:
         sanitizer = SQLiteTableDataSanitizer(tabledata)
         new_tabledata = sanitizer.sanitize()
 
-        print("lhs: {}".format(new_tabledata.dumps()))
-        print("rhs: {}".format(expected.dumps()))
+        print(u"lhs: {}".format(new_tabledata.dumps()))
+        print(u"rhs: {}".format(expected.dumps()))
 
         assert new_tabledata == expected
 

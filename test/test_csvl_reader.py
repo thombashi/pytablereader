@@ -5,11 +5,12 @@
 """
 
 from __future__ import print_function
+from __future__ import unicode_literals
 import collections
+import io
 
 from path import Path
 import pytest
-import six
 
 import pytablereader as ptr
 from pytablereader.interface import TableLoader
@@ -31,9 +32,9 @@ test_data_00 = Data(
             "tmp",
             ["attr_a", "attr_b", "attr_c"],
             [
-                [1, 4,      six.u("a")],
-                [2, "2.1",    six.u("bb")],
-                [3, "120.9",  six.u("ccc")],
+                [1, 4,      "a"],
+                [2, "2.1",    "bb"],
+                [3, "120.9",  "ccc"],
             ])
     ])
 
@@ -50,9 +51,9 @@ test_data_01 = Data(
             ["attr_a", "attr_b", "attr_c"],
             [
                 ["attr_a", "attr_b", "attr_c"],
-                [1, 4,      six.u("a")],
-                [2, "2.1",    six.u("bb")],
-                [3, "120.9",  six.u("ccc")],
+                [1, 4,      "a"],
+                [2, "2.1",    "bb"],
+                [3, "120.9",  "ccc"],
             ]),
     ])
 
@@ -65,7 +66,7 @@ test_data_02 = Data(
             "foo_bar",
             ["attr_a", "attr_b", "attr_c"],
             [
-                [3, "120.9",  six.u("ccc")],
+                [3, "120.9",  "ccc"],
             ]),
     ])
 
@@ -83,12 +84,11 @@ test_data_03 = Data(
             "tmp",
             ["attr_a", "attr_b", "attr_c"],
             [
-                [1, 4,      six.u("a")],
-                [2, "2.1",    six.u("bb")],
-                [3, "120.9",  six.u("ccc")],
+                [1, 4,      "a"],
+                [2, "2.1",    "bb"],
+                [3, "120.9",  "ccc"],
             ])
     ])
-
 
 test_data_04 = Data(
     """"attr_a","attr_b","attr_c"
@@ -102,9 +102,26 @@ test_data_04 = Data(
             "tmp",
             ["attr_a", "attr_b", "attr_c"],
             [
-                [1, 4,      six.u("a")],
-                [2, "2.1",    six.u("bb")],
-                [3, "120.9",  six.u("ccc")],
+                [1, 4,      "a"],
+                [2, "2.1",    "bb"],
+                [3, "120.9",  "ccc"],
+            ])
+    ])
+
+test_data_05 = Data(
+    """"姓","名","生年月日","郵便番号","住所","電話番号"
+"山田","太郎","2001/1/1","100-0002","東京都千代田区皇居外苑","03-1234-5678"
+"山田","次郎","2001/1/2","251-0036","神奈川県藤沢市江の島１丁目","03-9999-9999"
+""",
+    [
+        TableData(
+            "tmp",
+            ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
+            [
+                ["山田", "太郎", "2001/1/1", "100-0002",
+                    "東京都千代田区皇居外苑", "03-1234-5678"],
+                ["山田", "次郎", "2001/1/2", "251-0036",
+                    "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
             ])
     ])
 
@@ -204,6 +221,12 @@ class Test_CsvTableFileLoader_load:
                 [],
                 test_data_04.expected,
             ],
+            [
+                5, test_data_05.value,
+                "tmp.csv",
+                [],
+                test_data_05.expected,
+            ],
         ])
     def test_normal(
             self, tmpdir,
@@ -211,7 +234,7 @@ class Test_CsvTableFileLoader_load:
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
-        with open(file_path, "w") as f:
+        with io.open(file_path, "w", encoding="utf8") as f:
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(file_path)
@@ -256,7 +279,7 @@ class Test_CsvTableFileLoader_load:
             self, tmpdir, table_text, filename, header_list, expected):
         p_csv = tmpdir.join(filename)
 
-        with open(str(p_csv), "w") as f:
+        with io.open(str(p_csv), "w", encoding="utf8") as f:
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(str(p_csv))
@@ -283,7 +306,7 @@ class Test_CsvTableFileLoader_load:
         loader.header_list = header_list
 
         with pytest.raises(expected):
-            for tabletuple in loader.load():
+            for _tabletuple in loader.load():
                 pass
 
 
@@ -419,5 +442,5 @@ class Test_CsvTableTextLoader_load:
         loader.header_list = header_list
 
         with pytest.raises(expected):
-            for tabletuple in loader.load():
+            for _tabletuple in loader.load():
                 pass
