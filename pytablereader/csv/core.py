@@ -53,7 +53,7 @@ class CsvTableLoader(TableLoader):
         self.header_list = ()
         self.delimiter = ","
         self.quotechar = '"'
-        self.encoding = "utf-8"
+        self.encoding = None
 
     @property
     def format_name(self):
@@ -75,7 +75,10 @@ class CsvTableLoader(TableLoader):
         if floattype.is_convertible_type():
             return data
 
-        return six.b(data).decode(self.encoding, "ignore").strip()
+        if dp.is_empty_string(self.encoding):
+            return dp.to_unicode(data)
+        else:
+            return six.b(data).decode(self.encoding, "ignore").strip()
 
 
 class CsvTableFileLoader(CsvTableLoader):
