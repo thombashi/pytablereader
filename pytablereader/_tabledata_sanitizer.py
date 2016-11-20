@@ -8,6 +8,7 @@ from __future__ import absolute_import
 import abc
 import re
 
+import dataproperty
 import pathvalidate as pv
 import six
 
@@ -191,6 +192,12 @@ class SQLiteTableDataSanitizer(TableDataSanitizer):
         return self.__RENAME_TEMPLATE.format(table_name)
 
     def _preprocess_header(self, header):
+        if dataproperty.is_empty_string(header):
+            raise InvalidHeaderNameError("header is empty")
+
+        if dataproperty.is_multibyte_str(header):
+            return header
+
         try:
             return self.__RE_PREPROCESS.sub("", header)
         except TypeError:
