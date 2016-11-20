@@ -9,6 +9,7 @@ import abc
 
 import six
 
+from .._logger import logger
 from ..error import LoaderNotFoundError
 
 
@@ -91,6 +92,9 @@ class BaseTableLoaderFactory(object):
             ]))
 
     def _create_from_format_name(self, format_name):
+        logger.debug(
+            "_create_from_format_name: format_name={}".format(format_name))
+
         try:
             loader = self._get_loader_class(
                 self._get_format_name_loader_mapping(), format_name)(self.source)
