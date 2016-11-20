@@ -6,6 +6,8 @@
 
 from __future__ import absolute_import
 
+import dataproperty
+
 from ..error import LoaderNotFoundError
 from ..factory import TableFileLoaderFactory
 from ._base import TableLoaderManager
@@ -33,9 +35,9 @@ class TableFileLoader(TableLoaderManager):
     def __init__(self, file_path, format_name=None):
         loader_factory = TableFileLoaderFactory(file_path)
 
-        try:
+        if dataproperty.is_not_empty_string(format_name):
             loader = loader_factory.create_from_format_name(format_name)
-        except (LoaderNotFoundError, TypeError):
+        else:
             loader = loader_factory.create_from_path()
 
         super(TableFileLoader, self).__init__(loader)

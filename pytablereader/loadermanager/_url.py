@@ -6,6 +6,8 @@
 
 from __future__ import absolute_import
 
+import dataproperty
+
 from ..error import LoaderNotFoundError
 from ..factory import TableUrlLoaderFactory
 from ._base import TableLoaderManager
@@ -38,9 +40,9 @@ class TableUrlLoader(TableLoaderManager):
     def __init__(self, url, format_name=None, encoding=None, proxies=None):
         loader_factory = TableUrlLoaderFactory(url, encoding, proxies)
 
-        try:
+        if dataproperty.is_not_empty_string(format_name):
             loader = loader_factory.create_from_format_name(format_name)
-        except (LoaderNotFoundError, TypeError):
+        else:
             loader = loader_factory.create_from_path()
 
         super(TableUrlLoader, self).__init__(loader)
