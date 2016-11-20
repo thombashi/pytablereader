@@ -6,6 +6,8 @@
 
 from __future__ import absolute_import
 import csv
+import io
+import platform
 
 import dataproperty as dp
 import pathvalidate
@@ -53,7 +55,7 @@ class CsvTableLoader(TableLoader):
         self.header_list = ()
         self.delimiter = ","
         self.quotechar = '"'
-        self.encoding = None
+        self.encoding = "utf-8"
 
     @property
     def format_name(self):
@@ -75,10 +77,7 @@ class CsvTableLoader(TableLoader):
         if floattype.is_convertible_type():
             return data
 
-        if dp.is_empty_string(self.encoding):
-            return dp.to_unicode(data)
-        else:
-            return six.b(data).decode(self.encoding, "ignore").strip()
+        return dp.to_unicode(data)
 
 
 class CsvTableFileLoader(CsvTableLoader):
@@ -125,9 +124,15 @@ class CsvTableFileLoader(CsvTableLoader):
         self._validate()
         pathvalidate.validate_file_path(self.source)
 
-        self._csv_reader = csv.reader(
-            open(self.source, "r"),
-            delimiter=self.delimiter, quotechar=self.quotechar)
+        if platform.system() == "Windows":
+            self._csv_reader = csv.reader(
+                io.open(self.source, "r", encoding=self.encoding),
+                delimiter=self.delimiter, quotechar=self.quotechar)
+        else:
+            self._csv_reader = csv.reader(
+                open(self.source, "r"),
+                delimiter=self.delimiter, quotechar=self.quotechar)
+
         formatter = CsvTableFormatter(self._to_data_matrix())
         formatter.accept(self)
 

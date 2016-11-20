@@ -234,7 +234,7 @@ class Test_CsvTableFileLoader_load:
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
-        with io.open(file_path, "w", encoding="utf8") as f:
+        with io.open(file_path, "w", encoding="utf-8") as f:
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(file_path)

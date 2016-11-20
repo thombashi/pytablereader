@@ -5,7 +5,7 @@ logbook
 markdown2
 pathvalidate>=0.9.3
 path.py
-pytablewriter>=0.12.7
+pytablewriter>=0.12.8
 requests
 six
 xlrd
