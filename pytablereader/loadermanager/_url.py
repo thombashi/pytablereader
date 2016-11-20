@@ -35,8 +35,8 @@ class TableUrlLoader(TableLoaderManager):
         If loader received an HTTP error when access to the URL.
     """
 
-    def __init__(self, url, format_name=None, proxies=None):
-        loader_factory = TableUrlLoaderFactory(url, proxies)
+    def __init__(self, url, format_name=None, encoding=None, proxies=None):
+        loader_factory = TableUrlLoaderFactory(url, encoding, proxies)
 
         try:
             loader = loader_factory.create_from_format_name(format_name)

@@ -36,12 +36,14 @@ from ._base import BaseTableLoaderFactory
 
 class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
-    def __init__(self, url, format_name=None, proxies=None):
+    def __init__(self, url, encoding=None, proxies=None):
         super(TableUrlLoaderFactory, self).__init__(None)
 
         self.__url = url
         self.__proxies = proxies
         self.__temp_dir_path = None
+
+        self._encoding = encoding
 
         UrlValidator(url).validate()
 
@@ -133,15 +135,16 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         except requests.HTTPError as e:
             raise HTTPError(e)
 
+        if dataproperty.is_empty_string(self._encoding):
+            self._encoding = r.encoding
+
         logger.debug("\n".join([
             "_fetch_source: ",
             "  source-type={}".format(loader_source_type),
             "  content-type={}".format(r.headers["Content-Type"]),
-            "  encoding={}".format(r.encoding),
+            "  encoding={}".format(self._encoding),
             "  status-code={}".format(r.status_code),
         ]))
-
-        self._encoding = r.encoding
 
         if loader_source_type == SourceType.TEXT:
             self._source = r.text
