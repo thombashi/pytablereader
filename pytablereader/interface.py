@@ -145,7 +145,7 @@ class TableLoader(TableLoaderInterface):
             raise InvalidTableNameError(
                 "table name is empty after the template replacement")
 
-        return table_name
+        return table_name.strip("_")
 
     @classmethod
     def clear_table_count(cls):

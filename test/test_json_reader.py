@@ -174,8 +174,8 @@ class Test_JsonTableFileLoader_make_table_name:
             "/path/to/data.json",
             "json0_data"
         ],
-        ["hoge_%(filename)s", None, "hoge_"],
-        ["hoge_%(filename)s", "", "hoge_"],
+        ["hoge_%(filename)s", None, "hoge"],
+        ["hoge_%(filename)s", "", "hoge"],
         [
             "%(%(filename)s)",
             "/path/to/data.json",

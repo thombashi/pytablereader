@@ -213,7 +213,6 @@ test_data_04 = Data(
         ),
     ])
 
-
 test_data_05 = Data(
     value="""<table>
   <caption>captiontest</caption>
@@ -246,7 +245,7 @@ test_data_05 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name="_captiontest",
+            table_name="captiontest",
             header_list=['a', 'b', 'c'],
             record_list=[
                 ['1', '123.1', 'a'],
@@ -255,7 +254,6 @@ test_data_05 = Data(
             ]
         ),
     ])
-
 
 test_data_06 = Data(
     value="""<title>test_data_06</title>
@@ -327,7 +325,7 @@ test_data_07 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name="_html1",
+            table_name="html1",
             header_list=[],
             record_list=[
                 ["Deutsch", "English", "Español", "Français"],
@@ -387,7 +385,7 @@ class Test_HtmlTableFormatter_make_table_name:
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
         [
-            ["%(default)s",  "/path/to/data.html", "_htmltable"],
+            ["%(default)s",  "/path/to/data.html", "htmltable"],
         ] + FILE_LOADER_TEST_DATA)
     def test_normal_HtmlTableFileLoader_valid_tag(
             self, monkeypatch, value, source, expected):
@@ -409,7 +407,7 @@ class Test_HtmlTableFormatter_make_table_name:
                 "/path/to/data.html",
                 "%(data)"
             ],
-            ["%(default)s",  "/path/to/data.html", "_html0"],
+            ["%(default)s",  "/path/to/data.html", "html0"],
         ] + FILE_LOADER_TEST_DATA)
     def test_normal_HtmlTableFileLoader_null_tag(
             self, monkeypatch, value, source, expected):
