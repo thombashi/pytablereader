@@ -41,12 +41,16 @@ class Test_TableData_constructor:
         ["table_name", "header_list", "record_list", "expected"],
         [
             [
+                "normal", ["a", "b"], [[1, 2], [3, 4]],
+                TableData("normal", ["a", "b"], [[1, 2], [3, 4]])
+            ],
+            [
                 "empty_records", ["a", "b"], [],
                 TableData("empty_records", ["a", "b"], [])
             ],
             [
-                "normal", ["a", "b"], [[1, 2], [3, 4]],
-                TableData("normal", ["a", "b"], [[1, 2], [3, 4]])
+                "empty_header", [], [[1, 2], [3, 4]],
+                TableData("empty_header", [], [[1, 2], [3, 4]])
             ],
         ]
     )

@@ -8,7 +8,7 @@ from __future__ import absolute_import
 import hashlib
 
 from .error import InvalidDataError
-import dataproperty
+import dataproperty as dp
 import pytablewriter
 import six
 
@@ -77,7 +77,7 @@ class TableData(object):
         :rtype: bool
         """
 
-        return dataproperty.is_empty_sequence(self.header_list)
+        return dp.is_empty_sequence(self.header_list)
 
     def is_empty_record(self):
         """
@@ -85,7 +85,7 @@ class TableData(object):
         :rtype: bool
         """
 
-        return dataproperty.is_empty_sequence(self.record_list)
+        return dp.is_empty_sequence(self.record_list)
 
     def is_empty(self):
         """
@@ -196,6 +196,9 @@ class TableData(object):
         """
         Convert matrix to records
         """
+
+        if dp.is_empty_sequence(self.header_list):
+            return record_list
 
         return [
             self.__to_record(record)
