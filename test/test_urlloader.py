@@ -40,6 +40,14 @@ class Test_TableUrlLoader_constructor:
             None, ptr.HtmlTableTextLoader
         ],
         [
+            "https://raw.githubusercontent.com/valid/test/data/validext.asp",
+            None, ptr.HtmlTableTextLoader
+        ],
+        [
+            "https://raw.githubusercontent.com/valid/test/data/validext.aspx/",
+            None, ptr.HtmlTableTextLoader
+        ],
+        [
             "https://raw.githubusercontent.com/valid/test/data/validext.json",
             None, ptr.JsonTableTextLoader
         ],

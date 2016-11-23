@@ -170,6 +170,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         loader_table = self._get_common_loader_mapping()
         loader_table.update({
+            "asp": HtmlTableTextLoader,
+            "aspx": HtmlTableTextLoader,
             "htm": HtmlTableTextLoader,
             "md": MarkdownTableTextLoader,
             "xls": ExcelTableFileLoader,
