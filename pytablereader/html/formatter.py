@@ -8,7 +8,7 @@ from __future__ import absolute_import
 import re
 
 import bs4
-import dataproperty
+import dataproperty as dp
 
 from .._constant import TableNameTemplate as tnt
 from ..data import TableData
@@ -25,7 +25,7 @@ class HtmlTableFormatter(TableFormatter):
     def __init__(self, source_data):
         super(HtmlTableFormatter, self).__init__(source_data)
 
-        if dataproperty.is_empty_string(source_data):
+        if dp.is_empty_string(source_data):
             raise InvalidDataError
 
         try:
@@ -47,7 +47,7 @@ class HtmlTableFormatter(TableFormatter):
 
     def _make_table_name(self):
         key = self.table_id
-        if dataproperty.is_empty_string(key):
+        if dp.is_empty_string(key):
             key = self._loader.get_format_key()
 
         try:
@@ -69,7 +69,7 @@ class HtmlTableFormatter(TableFormatter):
             caption = table.find("caption")
             if caption is not None:
                 caption = caption.text.strip()
-                if dataproperty.is_not_empty_string(caption):
+                if dp.is_not_empty_string(caption):
                     self.__table_id = caption
 
     def __parse_html(self, table):
@@ -82,12 +82,12 @@ class HtmlTableFormatter(TableFormatter):
         re_table_val = re.compile("td|th")
         for row in row_list:
             td_list = row.find_all("td")
-            if dataproperty.is_empty_sequence(td_list):
-                if dataproperty.is_not_empty_sequence(header_list):
+            if dp.is_empty_sequence(td_list):
+                if dp.is_not_empty_sequence(header_list):
                     continue
 
                 th_list = row.find_all("th")
-                if dataproperty.is_empty_sequence(th_list):
+                if dp.is_empty_sequence(th_list):
                     continue
 
                 header_list = [row.text.strip() for row in th_list]
@@ -98,7 +98,7 @@ class HtmlTableFormatter(TableFormatter):
                 for value in row.find_all(re_table_val)
             ])
 
-        if dataproperty.is_empty_sequence(data_matrix):
+        if dp.is_empty_sequence(data_matrix):
             raise ValueError("data matrix is empty")
 
         self._loader.inc_table_count()
