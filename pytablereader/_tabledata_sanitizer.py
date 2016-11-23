@@ -11,9 +11,13 @@ import re
 import dataproperty
 import pathvalidate as pv
 import six
+from six.moves import range
 
-from .error import InvalidTableNameError
-from .error import InvalidHeaderNameError
+from .error import (
+    InvalidTableNameError,
+    InvalidHeaderNameError,
+    EmptyDataError
+)
 from .data import TableData
 
 
@@ -49,7 +53,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
 
         return TableData(
             self.__sanitize_table_name(),
-            self.__sanitize_header_list(),
+            self._sanitize_header_list(),
             self._tabledata.record_list)
 
     def _preprocess_table_name(self):
@@ -87,7 +91,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
         :rtype: str
         """
 
-    def _preprocess_header(self, header):
+    def _preprocess_header(self, col, header):
         """
         Always calld before a header validation.
         You must return preprocessed header.
@@ -145,11 +149,11 @@ class TableDataSanitizer(TableDataSanitizerInterface):
 
         return new_table_name
 
-    def __sanitize_header_list(self):
+    def _sanitize_header_list(self):
         new_header_list = []
 
-        for header in self._tabledata.header_list:
-            header = self._preprocess_header(header)
+        for col, header in enumerate(self._tabledata.header_list):
+            header = self._preprocess_header(col, header)
 
             try:
                 self._validate_header(header)
@@ -169,6 +173,7 @@ class SQLiteTableDataSanitizer(TableDataSanitizer):
 
     __RE_PREPROCESS = re.compile("[^a-zA-Z0-9]+")
     __RENAME_TEMPLATE = "rename_{:s}"
+    __COMPLEMENT_HEADER_TEMPLATE = "complement_attr_{:d}"
 
     def _preprocess_table_name(self):
         try:
@@ -191,9 +196,9 @@ class SQLiteTableDataSanitizer(TableDataSanitizer):
     def _sanitize_table_name(self, table_name):
         return self.__RENAME_TEMPLATE.format(table_name)
 
-    def _preprocess_header(self, header):
+    def _preprocess_header(self, col, header):
         if dataproperty.is_empty_string(header):
-            raise InvalidHeaderNameError("header is empty")
+            return self.__COMPLEMENT_HEADER_TEMPLATE.format(col)
 
         if dataproperty.is_multibyte_str(header):
             return header
@@ -207,10 +212,22 @@ class SQLiteTableDataSanitizer(TableDataSanitizer):
     def _validate_header(self, header):
         try:
             pv.validate_sqlite_attr_name(header)
-        except pv.ReservedNameError:
+        except (pv.NullNameError, pv.ReservedNameError):
             pass
         except pv.InvalidCharError as e:
             raise InvalidHeaderNameError(e)
 
     def _sanitize_header(self, header):
         return self.__RENAME_TEMPLATE.format(header)
+
+    def _sanitize_header_list(self):
+        if dataproperty.is_empty_sequence(self._tabledata.header_list):
+            try:
+                return [
+                    self.__COMPLEMENT_HEADER_TEMPLATE.format(col)
+                    for col in range(len(self._tabledata.record_list[0]))
+                ]
+            except IndexError:
+                raise EmptyDataError("header list and data body are empty")
+
+        return super(SQLiteTableDataSanitizer, self)._sanitize_header_list()

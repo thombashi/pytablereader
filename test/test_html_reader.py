@@ -4,6 +4,8 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from __future__ import unicode_literals
+import io
 import collections
 
 from path import Path
@@ -56,12 +58,12 @@ test_data_01 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name=u"title_html1",
-            header_list=[u'a', u'b', u'c'],
+            table_name="title_html1",
+            header_list=['a', 'b', 'c'],
             record_list=[
-                [u'1', u'123.1', u'a'],
-                [u'2', u'2.2', u'bb'],
-                [u'3', u'3.3', u'ccc'],
+                ['1', '123.1', 'a'],
+                ['2', '2.2', 'bb'],
+                ['3', '3.3', 'ccc'],
             ]
         ),
     ])
@@ -95,12 +97,12 @@ test_data_02 = Data(
     table_name="%(key)s",
     expected=[
         TableData(
-            table_name=u"tablename",
-            header_list=[u'a', u'b', u'c'],
+            table_name="tablename",
+            header_list=['a', 'b', 'c'],
             record_list=[
-                [u'1', u'123.1', u'a'],
-                [u'2', u'2.2', u'bb'],
-                [u'3', u'3.3', u'ccc'],
+                ['1', '123.1', 'a'],
+                ['2', '2.2', 'bb'],
+                ['3', '3.3', 'ccc'],
             ]
         ),
     ])
@@ -185,28 +187,28 @@ test_data_04 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name=u"test_data_04_tablename",
-            header_list=[u'a', u'b', u'c'],
+            table_name="test_data_04_tablename",
+            header_list=['a', 'b', 'c'],
             record_list=[
-                [u'1', u'123.1', u'a'],
-                [u'2', u'2.2', u'bb'],
-                [u'3', u'3.3', u'ccc'],
+                ['1', '123.1', 'a'],
+                ['2', '2.2', 'bb'],
+                ['3', '3.3', 'ccc'],
             ]
         ),
         TableData(
-            table_name=u"test_data_04_html2",
+            table_name="test_data_04_html2",
             header_list=[],
             record_list=[
-                [u'link text'],
+                ['link text'],
             ]
         ),
         TableData(
-            table_name=u"test_data_04_html3",
-            header_list=[u'a', u'b'],
+            table_name="test_data_04_html3",
+            header_list=['a', 'b'],
             record_list=[
-                [u'1', u'123.1'],
-                [u'2', u'2.2'],
-                [u'3', u'3.3'],
+                ['1', '123.1'],
+                ['2', '2.2'],
+                ['3', '3.3'],
             ]
         ),
     ])
@@ -244,12 +246,12 @@ test_data_05 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name=u"_captiontest",
-            header_list=[u'a', u'b', u'c'],
+            table_name="_captiontest",
+            header_list=['a', 'b', 'c'],
             record_list=[
-                [u'1', u'123.1', u'a'],
-                [u'2', u'2.2', u'bb'],
-                [u'3', u'3.3', u'ccc'],
+                ['1', '123.1', 'a'],
+                ['2', '2.2', 'bb'],
+                ['3', '3.3', 'ccc'],
             ]
         ),
     ])
@@ -289,6 +291,48 @@ test_data_06 = Data(
                 ["nominative", "val01", "val02"],
                 ["genitive", "val11", "val12"],
                 ["dative", "val21", "val22"],
+            ]
+        ),
+    ])
+
+test_data_07 = Data(
+    value="""
+            <div class="locale-selection-panel site-flag site-flag-lang" style="top: -245px; display: none;">
+                <div class="content" role="menu">
+                    <table class="all-locales" cellspacing="0" autogeneratecolumns="false" allowpaging="false" allowsorting="false" style="border-collapse: collapse;">
+                        <tbody>
+                            <tr>
+                                    <td><a title="Deutsch" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=de-de&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">Deutsch</a></td>
+                                    <td><a title="English" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=en-us&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">English</a></td>
+                                    <td><a title="Español" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=es-es&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">Español</a></td>
+                                    <td><a title="Français" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=fr-fr&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">Français</a></td>
+                            </tr><tr>
+                                    <td><a title="Italiano" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=it-it&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">Italiano</a></td>
+                                    <td><a title="日本語" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=ja-jp&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link selected" role="menuitem">日本語</a></td>
+                                    <td><a title="한국어" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=ko-kr&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">한국어</a></td>
+                                    <td><a title="Português" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=pt-br&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">Português</a></td>
+                            </tr><tr>
+                                    <td><a title="" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=ru-ru&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">Pусский</a></td>
+                                    <td><a title="简体中文" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=zh-cn&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">简体中文</a></td>
+                                    <td><a title="繁體中文" href="https://msdn.microsoft.com/ja-jp/?action=selectlocale&amp;currentlocale=ja-jp&amp;newlocale=zh-tw&amp;frompage=/ja-jp/library/windows/desktop/hh802691" class="locale-link" role="menuitem">繁體中文</a></td>
+                                    <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="arrow">
+                         </div>
+                </div>
+            </div>
+""",
+    table_name="%(default)s",
+    expected=[
+        TableData(
+            table_name="_html1",
+            header_list=[],
+            record_list=[
+                ["Deutsch", "English", "Español", "Français"],
+                ["Italiano", "日本語", "한국어", "Português"],
+                ["Pусский", "简体中文", "繁體中文", ""],
             ]
         ),
     ])
@@ -500,13 +544,18 @@ class Test_HtmlTableFileLoader_load:
             ],
             [
                 5, test_data_05.value, "tmp5.html",
-                test_data_04.table_name,
+                test_data_05.table_name,
                 test_data_05.expected,
             ],
             [
                 6, test_data_06.value, "tmp6.html",
                 test_data_06.table_name,
                 test_data_06.expected,
+            ],
+            [
+                7, test_data_07.value, "tmp7.html",
+                test_data_07.table_name,
+                test_data_07.expected,
             ],
         ])
     def test_normal(
@@ -515,7 +564,7 @@ class Test_HtmlTableFileLoader_load:
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
-        with open(file_path, "w") as f:
+        with io.open(file_path, "w", encoding="utf-8") as f:
             f.write(table_text)
 
         loader = ptr.HtmlTableFileLoader(file_path)

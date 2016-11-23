@@ -29,6 +29,19 @@ class Test_SQLiteTableDataSanitizer:
                 TableData("OFFSET", ["abort", "ASC"], [[1, 2], [3, 4]])
             ],
             [
+                "all_missing_header", [], [[1, 2], [3, 4]],
+                TableData(
+                    "all_missing_header",
+                    ["complement_attr_0", "complement_attr_1"],
+                    [[1, 2], [3, 4]])
+            ],
+            [
+                "part_missing_header", ["", "b", None], [],
+                TableData(
+                    "part_missing_header",
+                    ["complement_attr_0", "b", "complement_attr_2"], [])
+            ],
+            [
                 r"@a!b\c#d$e%f&g'h(i)j_",
                 [r"a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v"],
                 [[1, 2], [3, 4]],
@@ -83,8 +96,8 @@ class Test_SQLiteTableDataSanitizer:
         sanitizer = SQLiteTableDataSanitizer(tabledata)
         new_tabledata = sanitizer.sanitize()
 
-        print(u"lhs: {}".format(new_tabledata.dumps()))
-        print(u"rhs: {}".format(expected.dumps()))
+        print("lhs: {}".format(new_tabledata.dumps()))
+        print("rhs: {}".format(expected.dumps()))
 
         assert new_tabledata == expected
 
@@ -92,8 +105,7 @@ class Test_SQLiteTableDataSanitizer:
         ["table_name", "header_list", "record_list", "expected"], [
             ["", ["a", "b"], [], ptr.InvalidTableNameError],
             [None, ["a", "b"], [], ptr.InvalidTableNameError],
-            ["dummy", ["", "b"], [], ptr.InvalidHeaderNameError],
-            ["dummy", ["a", None], [], ptr.InvalidHeaderNameError],
+            ["dummy", [], [], ptr.EmptyDataError],
         ]
     )
     def test_exception_invalid_data(

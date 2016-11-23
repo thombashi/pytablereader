@@ -94,7 +94,7 @@ class HtmlTableFormatter(TableFormatter):
                 continue
 
             data_matrix.append([
-                value.text.strip()
+                value.get_text().strip()
                 for value in row.find_all(re_table_val)
             ])
 
