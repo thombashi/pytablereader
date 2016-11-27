@@ -417,12 +417,30 @@ class Test_CsvTableTextLoader_load:
                 ValueError,
             ],
         ])
-    def test_exception(self, table_text, table_name, header_list, expected):
+    def test_exception_insufficient_data(
+            self, table_text, table_name, header_list, expected):
         loader = ptr.CsvTableTextLoader(table_text)
         loader.table_name = table_name
         loader.header_list = header_list
 
         with pytest.raises(expected):
+            for _tabletuple in loader.load():
+                pass
+
+    def test_exception_invalid_csv(self):
+        table_text = """nan = float("nan")
+inf = float("inf")
+TEST_TABLE_NAME = "test_table"
+TEST_DB_NAME = "test_db"
+NOT_EXIT_FILE_PATH = "/not/existing/file/__path__"
+
+NamedTuple = namedtuple("NamedTuple", "attr_a attr_b")
+NamedTupleEx = namedtuple("NamedTupleEx", "attr_a attr_b attr_c")
+"""
+        loader = ptr.CsvTableTextLoader(table_text)
+        loader.table_name = "dummy"
+
+        with pytest.raises(ptr.InvalidDataError):
             for _tabletuple in loader.load():
                 pass
 

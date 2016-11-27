@@ -17,6 +17,7 @@ from .._constant import SourceType
 from .._constant import TableNameTemplate as tnt
 from .._validator import FileValidator
 from .._validator import TextValidator
+from ..error import InvalidDataError
 from ..interface import TableLoader
 from .formatter import CsvTableFormatter
 
@@ -62,11 +63,14 @@ class CsvTableLoader(TableLoader):
         return "csv"
 
     def _to_data_matrix(self):
-        return [
-            [self.__modify_item(data) for data in row]
-            for row in self._csv_reader
-            if dp.is_not_empty_sequence(row)
-        ]
+        try:
+            return [
+                [self.__modify_item(data) for data in row]
+                for row in self._csv_reader
+                if dp.is_not_empty_sequence(row)
+            ]
+        except csv.Error as e:
+            raise InvalidDataError(e)
 
     def __modify_item(self, data):
         inttype = dp.IntegerType(data)
