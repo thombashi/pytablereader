@@ -41,9 +41,9 @@ test_data_00 = Data(
 test_data_01 = Data(
     "\n".join([
         '"attr_a","attr_b","attr_c"',
-        '1,4,"a"',
-        '2,2.1,"bb"',
-        '3,120.9,"ccc"',
+        ' 1,4,"a"',
+        '2, 2.1,"bb"',
+        '3,120.9, "ccc"',
     ]),
     [
         TableData(

@@ -130,11 +130,13 @@ class CsvTableFileLoader(CsvTableLoader):
         ]):
             self._csv_reader = csv.reader(
                 io.open(self.source, "r", encoding=self.encoding),
-                delimiter=self.delimiter, quotechar=self.quotechar)
+                delimiter=self.delimiter, quotechar=self.quotechar,
+                strict=True, skipinitialspace=True)
         else:
             self._csv_reader = csv.reader(
                 open(self.source, "r"),
-                delimiter=self.delimiter, quotechar=self.quotechar)
+                delimiter=self.delimiter, quotechar=self.quotechar,
+                strict=True, skipinitialspace=True)
 
         formatter = CsvTableFormatter(self._to_data_matrix())
         formatter.accept(self)
@@ -190,7 +192,8 @@ class CsvTableTextLoader(CsvTableLoader):
 
         self._csv_reader = csv.reader(
             six.StringIO(self.source.strip()),
-            delimiter=self.delimiter, quotechar=self.quotechar)
+            delimiter=self.delimiter, quotechar=self.quotechar,
+            strict=True, skipinitialspace=True)
         formatter = CsvTableFormatter(self._to_data_matrix())
         formatter.accept(self)
 

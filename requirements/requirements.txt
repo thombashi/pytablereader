@@ -1,11 +1,11 @@
 beautifulsoup4
-DataProperty>=0.13.0
+DataProperty>=0.13.3
 jsonschema
 logbook
 markdown2
 pathvalidate>=0.9.3
 path.py
-pytablewriter>=0.12.8
+pytablewriter>=0.13.0
 requests
 six
 xlrd
