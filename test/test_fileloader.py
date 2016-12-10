@@ -202,7 +202,7 @@ class Test_TableFileLoader_load:
         writer = ptw.ExcelXlsxTableWriter()
         writer.open_workbook(p_file_path)
         for tabledata in tabledata_list:
-            writer.set_table_data(tabledata)
+            writer.from_tabledata(tabledata)
         writer.write_table()
         writer.close()
 

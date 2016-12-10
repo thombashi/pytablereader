@@ -146,7 +146,7 @@ class TableData(object):
         """
 
         writer = pytablewriter.RstSimpleTableWriter()
-        writer.set_table_data(self)
+        writer.from_tabledata(self)
         writer.stream = six.StringIO()
         writer.write_table()
 

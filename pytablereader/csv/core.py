@@ -10,6 +10,7 @@ import io
 import platform
 
 import dataproperty as dp
+from mbstrdecoder import MultiByteStrDecoder
 import pathvalidate
 import six
 
@@ -81,7 +82,7 @@ class CsvTableLoader(TableLoader):
         if floattype.is_convertible_type():
             return data
 
-        return dp.to_unicode(data)
+        return MultiByteStrDecoder(data).unicode_str
 
 
 class CsvTableFileLoader(CsvTableLoader):
