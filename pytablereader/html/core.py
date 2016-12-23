@@ -7,11 +7,15 @@
 from __future__ import absolute_import
 import io
 
-from .._constant import SourceType
-from .._constant import TableNameTemplate as tnt
+from .._constant import (
+    SourceType,
+    TableNameTemplate as tnt
+)
 from .._logger import logger
-from .._validator import FileValidator
-from .._validator import TextValidator
+from .._validator import (
+    FileValidator,
+    TextValidator
+)
 from ..interface import TableLoader
 from .formatter import HtmlTableFormatter
 

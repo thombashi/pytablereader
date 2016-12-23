@@ -14,10 +14,14 @@ from mbstrdecoder import MultiByteStrDecoder
 import pathvalidate
 import six
 
-from .._constant import SourceType
-from .._constant import TableNameTemplate as tnt
-from .._validator import FileValidator
-from .._validator import TextValidator
+from .._constant import (
+    SourceType,
+    TableNameTemplate as tnt
+)
+from .._validator import (
+    FileValidator,
+    TextValidator
+)
 from ..error import InvalidDataError
 from ..interface import TableLoader
 from .formatter import CsvTableFormatter

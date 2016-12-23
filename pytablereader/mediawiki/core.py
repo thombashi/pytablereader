@@ -6,10 +6,14 @@
 
 from __future__ import absolute_import
 
-from .._constant import SourceType
-from .._constant import TableNameTemplate as tnt
-from .._validator import FileValidator
-from .._validator import TextValidator
+from .._constant import (
+    SourceType,
+    TableNameTemplate as tnt
+)
+from .._validator import (
+    FileValidator,
+    TextValidator
+)
 from ..interface import TableLoader
 from .formatter import MediaWikiTableFormatter
 
