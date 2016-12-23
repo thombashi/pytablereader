@@ -6,6 +6,7 @@
 
 from __future__ import unicode_literals
 
+import pytablewriter as ptw
 import pytest
 
 import pytablereader as ptr
@@ -96,8 +97,8 @@ class Test_SQLiteTableDataSanitizer:
         sanitizer = SQLiteTableDataSanitizer(tabledata)
         new_tabledata = sanitizer.sanitize()
 
-        print("lhs: {}".format(new_tabledata.dumps()))
-        print("rhs: {}".format(expected.dumps()))
+        print("lhs: {}".format(ptw.dump_tabledata(new_tabledata)))
+        print("rhs: {}".format(ptw.dump_tabledata(expected)))
 
         assert new_tabledata == expected
 

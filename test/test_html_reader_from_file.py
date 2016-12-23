@@ -7,6 +7,7 @@
 import os
 
 import pytest
+import pytablewriter as ptw
 import pytablereader as ptr
 
 
@@ -26,7 +27,7 @@ class Test_HtmlTableTextLoader_load:
             if tabledata.is_empty():
                 continue
 
-            assert len(tabledata.dumps()) > 10
+            assert len(ptw.dump_tabledata(tabledata)) > 10
 
             success_count += 1
 

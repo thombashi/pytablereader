@@ -9,6 +9,7 @@ import collections
 from path import Path
 
 import pytest
+import pytablewriter as ptw
 
 import pytablereader as ptr
 from pytablereader.interface import TableLoader
@@ -254,7 +255,8 @@ class Test_JsonTableFileLoader_load:
 
         load = False
         for tabledata in loader.load():
-            print(tabledata.dumps())
+            print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+
             assert tabledata in expected_tabletuple_list
             load = True
 
@@ -374,7 +376,8 @@ class Test_JsonTableTextLoader_load:
 
         load = False
         for tabledata in loader.load():
-            print(tabledata.dumps())
+            print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+
             assert tabledata in expected_tabletuple_list
             load = True
 

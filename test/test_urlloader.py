@@ -8,6 +8,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 import os.path
 
+import pytablewriter as ptw
 import pytest
 import responses
 
@@ -158,8 +159,9 @@ class Test_TableUrlLoader_load:
         assert loader.format_name == "csv"
 
         for tabledata, expected in zip(loader.load(), expeced_list):
-            print(tabledata.dumps())
-            print(expected.dumps())
+            print("expected: {}".format(ptw.dump_tabledata(expected)))
+            print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+
             assert tabledata == expected
 
     @responses.activate

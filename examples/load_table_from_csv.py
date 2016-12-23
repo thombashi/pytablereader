@@ -2,7 +2,10 @@
 # encoding: utf-8
 
 from __future__ import print_function
-import pytablereader
+
+import pytablereader as ptr
+import pytablewriter as ptw
+
 
 # prepare data ---
 file_path = "sample_data.csv"
@@ -17,19 +20,19 @@ with open(file_path, "w") as f:
     f.write(csv_text)
 
 # load from a csv file ---
-loader = pytablereader.CsvTableFileLoader(file_path)
+loader = ptr.CsvTableFileLoader(file_path)
 for table_data in loader.load():
     print("\n".join([
         "load from file",
         "==============",
-        "{:s}".format(table_data.dumps()),
+        "{:s}".format(ptw.dump_tabledata(table_data)),
     ]))
 
 # load from a csv text ---
-loader = pytablereader.CsvTableTextLoader(csv_text)
+loader = ptr.CsvTableTextLoader(csv_text)
 for table_data in loader.load():
     print("\n".join([
         "load from text",
         "==============",
-        "{:s}".format(table_data.dumps()),
+        "{:s}".format(ptw.dump_tabledata(table_data)),
     ]))

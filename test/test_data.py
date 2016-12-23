@@ -7,6 +7,7 @@
 from collections import namedtuple
 import json
 
+import pytablewriter as ptw
 import pytest
 
 from pytablereader import TableData
@@ -57,8 +58,8 @@ class Test_TableData_constructor:
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
 
-        print("expected: {}".format(expected.dumps()))
-        print("actusl: {}".format(tabledata.dumps()))
+        print("expected: {}".format(ptw.dump_tabledata(expected)))
+        print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
 
         assert tabledata == expected
 
@@ -103,8 +104,8 @@ class Test_TableData_constructor:
             self, table_name, header_list, record_list, none_value, expected):
         tabledata = TableData(table_name, header_list, record_list, none_value)
 
-        print("expected: {}".format(expected.dumps()))
-        print("actusl: {}".format(tabledata.dumps()))
+        print("expected: {}".format(ptw.dump_tabledata(expected)))
+        print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
 
         assert tabledata == expected
 
@@ -259,4 +260,4 @@ class Test_TableData_dumps:
             self, table_name, header_list, record_list):
         tabledata = TableData(table_name, header_list, record_list)
 
-        assert len(tabledata.dumps()) > 0
+        assert len(ptw.dump_tabledata(tabledata)) > 0

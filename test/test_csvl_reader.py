@@ -10,6 +10,7 @@ import collections
 import io
 
 from path import Path
+import pytablewriter as ptw
 import pytest
 
 import pytablereader as ptr
@@ -240,10 +241,11 @@ class Test_CsvTableFileLoader_load:
         loader = ptr.CsvTableFileLoader(file_path)
         loader.header_list = header_list
 
-        for tabletuple in loader.load():
+        for tabledata in loader.load():
             print("test-id={}".format(test_id))
-            print(tabletuple.dumps())
-            assert tabletuple in expected
+            print(ptw.dump_tabledata(tabledata))
+
+            assert tabledata in expected
 
     @pytest.mark.parametrize(
         [
@@ -380,12 +382,12 @@ class Test_CsvTableTextLoader_load:
         loader.table_name = table_name
         loader.header_list = header_list
 
-        for tabletuple in loader.load():
-            print(tabletuple.dumps())
+        for tabledata in loader.load():
+            print(ptw.dump_tabledata(tabledata))
             for e in expected:
-                print(e.dumps())
+                print(ptw.dump_tabledata(e))
 
-            assert tabletuple in expected
+            assert tabledata in expected
 
     @pytest.mark.parametrize(
         [

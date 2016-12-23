@@ -8,6 +8,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 
 from path import Path
+import pytablewriter as ptw
 import pytest
 
 import pathvalidate as pv
@@ -131,8 +132,9 @@ class Test_TableFileLoader_load:
         assert loader.format_name == "csv"
 
         for tabledata, expected in zip(loader.load(), expeced_list):
-            print(tabledata.dumps())
-            print(expected.dumps())
+            print(ptw.dump_tabledata(expected))
+            print(ptw.dump_tabledata(tabledata))
+
             assert tabledata == expected
 
     @pytest.mark.parametrize(["file_path", "format_name"], [

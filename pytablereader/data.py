@@ -125,33 +125,6 @@ class TableData(object):
 
         return dataframe
 
-    def dumps(self):
-        """
-        :return: Formatted text for pretty print.
-        :rtype: str
-
-        :Examples:
-            .. code:: python
-
-                >>>print(tabledata.dumps())
-                .. table:: sample_data
-
-                    ======  ======  ======
-                    attr_a  attr_b  attr_c
-                    ======  ======  ======
-                         1     4.0  a
-                         2     2.1  bb
-                         3   120.9  ccc
-                    ======  ======  ======
-        """
-
-        writer = pytablewriter.RstSimpleTableWriter()
-        writer.from_tabledata(self)
-        writer.stream = six.StringIO()
-        writer.write_table()
-
-        return writer.stream.getvalue()
-
     def __convert(self, value):
         if value is None:
             return self.__none_value

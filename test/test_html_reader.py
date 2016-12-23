@@ -9,6 +9,7 @@ import io
 import collections
 
 from path import Path
+import pytablewriter as ptw
 import pytest
 
 import pytablereader as ptr
@@ -570,9 +571,10 @@ class Test_HtmlTableFileLoader_load:
 
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
             print("[test {}]".format(test_id))
-            print("expected:  {}".format(expected.dumps()))
-            print("actual: {}".format(tabledata.dumps()))
+            print("expected: {}".format(ptw.dump_tabledata(expected)))
+            print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
             print("")
+
             assert tabledata == expected
 
     @pytest.mark.parametrize(
@@ -646,9 +648,10 @@ class Test_HtmlTableTextLoader_load:
         loader = ptr.HtmlTableTextLoader(table_text)
         loader.table_name = table_name
 
-        for tabletuple in loader.load():
-            print(tabletuple.dumps())
-            assert tabletuple in expected_tabletuple_list
+        for tabledata in loader.load():
+            print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+
+            assert tabledata in expected_tabletuple_list
 
     @pytest.mark.parametrize(["table_text", "expected"], [
         ["", ptr.InvalidDataError],
