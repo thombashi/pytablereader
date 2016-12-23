@@ -9,8 +9,6 @@ import hashlib
 
 from .error import InvalidDataError
 import dataproperty as dp
-import pytablewriter
-import six
 
 
 class TableData(object):
