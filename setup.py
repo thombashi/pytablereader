@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+"""
+.. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
+"""
+
 import os.path
 import setuptools
 import sys
@@ -23,7 +30,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 
 setuptools.setup(
     name="pytablereader",
-    version="0.6.8",
+    version="0.7.0",
     url="https://github.com/thombashi/pytablereader",
 
     author="Tsuyoshi Hombashi",
@@ -33,7 +40,7 @@ setuptools.setup(
     install_requires=install_requires,
     keywords=[
         "table", "reader", "pandas",
-        "CSV", "Excel", "HTML", "JSON", "Markdown", "MediaWiki",
+        "CSV", "Excel", "HTML", "JSON", "LTSV", "Markdown", "MediaWiki", "TSV",
     ],
     long_description=long_description,
     license="MIT License",
