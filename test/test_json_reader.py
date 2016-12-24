@@ -141,9 +141,9 @@ test_data_05 = Data(
             "json1",
             ["attr_a", "attr_b", "attr_c"],
             [
-                {u'attr_a': u'1', u'attr_b': u'4', u'attr_c': u'a'},
-                {u'attr_a': u'2', u'attr_b': u'2.1', u'attr_c': u'bb'},
-                {u'attr_a': u'3', u'attr_b': u'120.9',
+                {u'attr_a': 1, u'attr_b': 4, u'attr_c': u'a'},
+                {u'attr_a': 2, u'attr_b': u'2.1', u'attr_c': u'bb'},
+                {u'attr_a': 3, u'attr_b': u'120.9',
                     u'attr_c': u'ccc'},
             ]
         ),

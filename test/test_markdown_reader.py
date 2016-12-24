@@ -35,9 +35,9 @@ test_data_01 = Data(
             table_name=u"markdown1",
             header_list=[u'a', u'b', u'c'],
             record_list=[
-                [u'1', u'123.1', u'a'],
-                [u'2', u'2.2', u'bb'],
-                [u'3', u'3.3', u'ccc'],
+                [1, u'123.1', u'a'],
+                [2, u'2.2', u'bb'],
+                [3, u'3.3', u'ccc'],
             ]
         ),
     ])
@@ -55,9 +55,9 @@ test_data_02 = Data(
             table_name=u"markdown1",
             header_list=[u'a', u'b', u'c'],
             record_list=[
-                [u'1', u'123.1', u'a'],
-                [u'2', u'2.2', u'bb'],
-                [u'3', u'3.3', u'ccc'],
+                [1, u'123.1', u'a'],
+                [2, u'2.2', u'bb'],
+                [3, u'3.3', u'ccc'],
             ]
         ),
     ])
@@ -81,8 +81,8 @@ test_data_04 = Data(
             table_name=u"tmp_markdown1",
             header_list=[u'a', u'b', u'c'],
             record_list=[
-                [u'1', u'123.1', u'a'],
-                [u'2', u'2.2', u'bb'],
+                [1, u'123.1', u'a'],
+                [2, u'2.2', u'bb'],
                 [u'3', u'3.3', u'ccc'],
             ]
         ),
@@ -90,8 +90,8 @@ test_data_04 = Data(
             table_name=u"tmp_markdown2",
             header_list=[u'a', u'b'],
             record_list=[
-                [u'1', u'123.1'],
-                [u'2', u'2.2'],
+                [1, u'123.1'],
+                [2, u'2.2'],
                 [u'3', u'3.3'],
             ]
         ),

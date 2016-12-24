@@ -62,9 +62,9 @@ test_data_01 = Data(
             table_name="title_html1",
             header_list=['a', 'b', 'c'],
             record_list=[
-                ['1', '123.1', 'a'],
-                ['2', '2.2', 'bb'],
-                ['3', '3.3', 'ccc'],
+                [1, '123.1', 'a'],
+                [2, '2.2', 'bb'],
+                [3, '3.3', 'ccc'],
             ]
         ),
     ])
@@ -101,9 +101,9 @@ test_data_02 = Data(
             table_name="tablename",
             header_list=['a', 'b', 'c'],
             record_list=[
-                ['1', '123.1', 'a'],
-                ['2', '2.2', 'bb'],
-                ['3', '3.3', 'ccc'],
+                [1, '123.1', 'a'],
+                [2, '2.2', 'bb'],
+                [3, '3.3', 'ccc'],
             ]
         ),
     ])
@@ -191,9 +191,9 @@ test_data_04 = Data(
             table_name="test_data_04_tablename",
             header_list=['a', 'b', 'c'],
             record_list=[
-                ['1', '123.1', 'a'],
-                ['2', '2.2', 'bb'],
-                ['3', '3.3', 'ccc'],
+                [1, '123.1', 'a'],
+                [2, '2.2', 'bb'],
+                [3, '3.3', 'ccc'],
             ]
         ),
         TableData(
@@ -207,9 +207,9 @@ test_data_04 = Data(
             table_name="test_data_04_html3",
             header_list=['a', 'b'],
             record_list=[
-                ['1', '123.1'],
-                ['2', '2.2'],
-                ['3', '3.3'],
+                [1, '123.1'],
+                [2, '2.2'],
+                [3, '3.3'],
             ]
         ),
     ])
@@ -249,9 +249,9 @@ test_data_05 = Data(
             table_name="captiontest",
             header_list=['a', 'b', 'c'],
             record_list=[
-                ['1', '123.1', 'a'],
-                ['2', '2.2', 'bb'],
-                ['3', '3.3', 'ccc'],
+                [1, '123.1', 'a'],
+                [2, '2.2', 'bb'],
+                [3, '3.3', 'ccc'],
             ]
         ),
     ])

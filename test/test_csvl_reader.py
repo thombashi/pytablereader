@@ -7,6 +7,7 @@
 from __future__ import print_function
 from __future__ import unicode_literals
 import collections
+from decimal import Decimal
 import io
 
 from path import Path
@@ -33,9 +34,9 @@ test_data_00 = Data(
             "tmp",
             ["attr_a", "attr_b", "attr_c"],
             [
-                [1, 4,      "a"],
-                [2, "2.1",    "bb"],
-                [3, "120.9",  "ccc"],
+                [1, 4, "a"],
+                [2, Decimal("2.1"), "bb"],
+                [3, Decimal("120.9"), "ccc"],
             ])
     ])
 
@@ -52,7 +53,7 @@ test_data_01 = Data(
             ["attr_a", "attr_b", "attr_c"],
             [
                 ["attr_a", "attr_b", "attr_c"],
-                [1, 4,      "a"],
+                [1, 4, "a"],
                 [2, "2.1",    "bb"],
                 [3, "120.9",  "ccc"],
             ]),
@@ -103,9 +104,9 @@ test_data_04 = Data(
             "tmp",
             ["attr_a", "attr_b", "attr_c"],
             [
-                [1, 4,      "a"],
-                [2, "2.1",    "bb"],
-                [3, "120.9",  "ccc"],
+                [1, 4, "a"],
+                [2, "2.1", "bb"],
+                [3, "120.9", "ccc"],
             ])
     ])
 

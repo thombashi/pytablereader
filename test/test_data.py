@@ -10,8 +10,11 @@ import json
 import pytablewriter as ptw
 import pytest
 
-from pytablereader import TableData
-from pytablereader import InvalidDataError
+from pytablereader import (
+    TableData,
+    InvalidDataError,
+    TableItemModifier
+)
 
 try:
     import pandas
@@ -102,7 +105,9 @@ class Test_TableData_constructor:
     )
     def test_normal_none_value(
             self, table_name, header_list, record_list, none_value, expected):
-        tabledata = TableData(table_name, header_list, record_list, none_value)
+        tabledata = TableData(
+            table_name, header_list, record_list,
+            item_modifier=TableItemModifier(none_value=none_value))
 
         print("expected: {}".format(ptw.dump_tabledata(expected)))
         print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
