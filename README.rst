@@ -48,8 +48,9 @@ Load a CSV table
 
 .. code:: python
 
-    from __future__ import print_function
-    import pytablereader
+    import pytablereader as ptr
+    import pytablewriter as ptw
+
 
     # prepare data ---
     file_path = "sample_data.csv"
@@ -64,21 +65,21 @@ Load a CSV table
         f.write(csv_text)
 
     # load from a csv file ---
-    loader = pytablereader.CsvTableFileLoader(file_path)
+    loader = ptr.CsvTableFileLoader(file_path)
     for table_data in loader.load():
         print("\n".join([
             "load from file",
             "==============",
-            "{:s}".format(table_data.dumps()),
+            "{:s}".format(ptw.dump_tabledata(table_data)),
         ]))
 
     # load from a csv text ---
-    loader = pytablereader.CsvTableTextLoader(csv_text)
+    loader = ptr.CsvTableTextLoader(csv_text)
     for table_data in loader.load():
         print("\n".join([
             "load from text",
             "==============",
-            "{:s}".format(table_data.dumps()),
+            "{:s}".format(ptw.dump_tabledata(table_data)),
         ]))
 
 
@@ -155,10 +156,11 @@ Optional packages (other than Python packages)
 
 Test dependencies
 -----------------
--  `pytest <http://pytest.org/latest/>`__
--  `pytest-runner <https://pypi.python.org/pypi/pytest-runner>`__
--  `tox <https://testrun.org/tox/latest/>`__
--  `XlsxWriter <http://xlsxwriter.readthedocs.io/>`__
+- `pytablewriter <https://github.com/thombashi/pytablewriter>`__
+- `pytest <http://pytest.org/latest/>`__
+- `pytest-runner <https://pypi.python.org/pypi/pytest-runner>`__
+- `tox <https://testrun.org/tox/latest/>`__
+- `XlsxWriter <http://xlsxwriter.readthedocs.io/>`__
 
 Documentation
 =============
@@ -169,5 +171,5 @@ Related Project
 ===============
 
 - `pytablewriter <https://github.com/thombashi/pytablewriter>`__
-    - Loaded table data with ``pytablereader`` can write another table format by ``pytablewriter``.
+    - Tabular data loaded by ``pytablereader`` can be written another tabular data format with ``pytablewriter``.
 
