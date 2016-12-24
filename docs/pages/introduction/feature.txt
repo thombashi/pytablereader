@@ -6,8 +6,10 @@ Features
     - Microsoft Excel :superscript:`TM`
     - HTML
     - JSON
+    - `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
     - Markdown
     - MediaWiki
+    - Tab separated values (TSV)
 - Supported data sources to read:
     - Files on a local file system
     - Accessible URL
