@@ -56,6 +56,10 @@ class Test_TableUrlLoader_constructor:
             "https://github.com/validext.md",
             None, ptr.MarkdownTableTextLoader
         ],
+        [
+            "https://raw.githubusercontent.com/valid/test/data/validext.tsv",
+            None, ptr.TsvTableTextLoader
+        ],
         ["https://github.com/validext.txt", "csv", ptr.CsvTableTextLoader],
         ["https://github.com/validext.txt", "html", ptr.HtmlTableTextLoader],
         ["https://github.com/validext.txt", "json", ptr.JsonTableTextLoader],
@@ -67,6 +71,7 @@ class Test_TableUrlLoader_constructor:
             "https://github.com/invalidext.txt",
             "mediawiki", ptr.MediaWikiTableTextLoader
         ],
+        ["https://github.com/validext.txt", "tsv", ptr.TsvTableTextLoader],
     ])
     def test_normal(self, value, format_name, expected):
         responses.add(
@@ -211,7 +216,7 @@ class Test_TableUrlLoader_load:
 
         data_path = os.path.join(
             os.path.dirname(__file__), "data/validdata.xlsx")
-        print(data_path)
+
         with open(data_path, "rb") as f:
             responses.add(
                 responses.GET,

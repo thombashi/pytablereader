@@ -31,6 +31,7 @@ from ..json.core import JsonTableTextLoader
 from ..markdown.core import MarkdownTableTextLoader
 from ..mediawiki.core import MediaWikiTableTextLoader
 from ..spreadsheet.excelloader import ExcelTableFileLoader
+from ..tsv.core import TsvTableTextLoader
 from ._base import BaseTableLoaderFactory
 
 
@@ -67,6 +68,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             ``htm``/``html``/``asp``/``aspx``  :py:class:`~.HtmlTableTextLoader`    
             ``json``                           :py:class:`~.JsonTableTextLoader`    
             ``md``                             :py:class:`~.MarkdownTableTextLoader`
+            ``tsv``                            :py:class:`~.TsvTableTextLoader`     
             =================================  =====================================
 
         :return:
@@ -105,6 +107,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             ``"json"``       :py:class:`~.JsonTableTextLoader`     
             ``"markdown"``   :py:class:`~.MarkdownTableTextLoader` 
             ``"mediawiki"``  :py:class:`~.MediaWikiTableTextLoader`
+            ``"tsv"``        :py:class:`~.TsvTableTextLoader`      
             ===============  ======================================
 
         :param str format_name: Format name string (case insensitive).
@@ -160,6 +163,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             "csv": CsvTableTextLoader,
             "html": HtmlTableTextLoader,
             "json": JsonTableTextLoader,
+            "tsv": TsvTableTextLoader,
         }
 
     def _get_extension_loader_mapping(self):

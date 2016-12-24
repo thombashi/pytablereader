@@ -14,6 +14,7 @@ from ..json.core import JsonTableFileLoader
 from ..markdown.core import MarkdownTableFileLoader
 from ..mediawiki.core import MediaWikiTableFileLoader
 from ..spreadsheet.excelloader import ExcelTableFileLoader
+from ..tsv.core import TsvTableFileLoader
 from ._base import BaseTableLoaderFactory
 
 
@@ -86,6 +87,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             "csv": CsvTableFileLoader,
             "html": HtmlTableFileLoader,
             "json": JsonTableFileLoader,
+            "tsv": TsvTableFileLoader,
         }
 
     def _get_extension_loader_mapping(self):

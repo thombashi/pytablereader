@@ -51,3 +51,7 @@ from ._tabledata_sanitizer import (
     TableDataSanitizer,
     SQLiteTableDataSanitizer
 )
+from .tsv.core import (
+    TsvTableFileLoader,
+    TsvTableTextLoader
+)
