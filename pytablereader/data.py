@@ -7,8 +7,10 @@
 from __future__ import absolute_import
 import hashlib
 
-from .error import InvalidDataError
 import dataproperty as dp
+
+from ._table_item_modifier import TableItemModifier
+from .error import InvalidDataError
 
 
 class TableData(object):
@@ -47,8 +49,12 @@ class TableData(object):
 
         return self.__record_list
 
-    def __init__(self, table_name, header_list, record_list, none_value=None):
-        self.__none_value = none_value
+    def __init__(
+            self, table_name, header_list, record_list, item_modifier=None):
+        if item_modifier is None:
+            self.__item_modifier = TableItemModifier()
+        else:
+            self.__item_modifier = item_modifier
 
         self.__table_name = table_name
         self.__header_list = header_list
@@ -129,19 +135,19 @@ class TableData(object):
 
         return value
 
-    def __to_record(self, value):
+    def __to_record(self, values):
         """
         Convert values to a record.
 
-        :param value: Value to be converted.
-        :type value: |dict|/|namedtuple|/|list|/|tuple|
+        :param values: Value to be converted.
+        :type values: |dict|/|namedtuple|/|list|/|tuple|
         :raises ValueError: If the ``value`` is invalid.
         """
 
         try:
             # dictionary to list
             return [
-                self.__convert(value.get(header))
+                self.__item_modifier.modify_data(values.get(header))
                 for header in self.header_list
             ]
         except AttributeError:
@@ -149,19 +155,22 @@ class TableData(object):
 
         try:
             # namedtuple to list
-            dict_value = value._asdict()
+            dict_value = values._asdict()
             return [
-                self.__convert(dict_value.get(header))
+                self.__item_modifier.modify_data(dict_value.get(header))
                 for header in self.header_list
             ]
         except AttributeError:
             pass
 
         try:
-            return list(value)
+            # return list(value)
+            return [
+                self.__item_modifier.modify_data(value) for value in values
+            ]
         except TypeError:
             raise InvalidDataError(
-                "record must be a list or tuple: actual={}".format(value))
+                "record must be a list or tuple: actual={}".format(values))
 
     def __to_record_list(self, record_list):
         """
