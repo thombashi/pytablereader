@@ -101,7 +101,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
     `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
     format file loader class.
 
-    :param str file_path: Path to the loading TSV file.
+    :param str file_path: Path to the loading LTSV file.
 
     .. py:attribute:: table_name
 
@@ -134,7 +134,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
             ===================  ========================================
         :rtype: |TableData| iterator
         :raises pytablereader.InvalidHeaderNameError:
-            If an invalid label name is included in the TSV file.
+            If an invalid label name is included in the LTSV file.
         :raises pytablereader.InvalidDataError:
             If the LTSV data is invalid.
         """
@@ -159,7 +159,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
     `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
     format text loader class.
 
-    :param str text: CSV text to load.
+    :param str text: LTSV text to load.
 
     .. py:attribute:: table_name
 
@@ -190,7 +190,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
             ===================  ========================================
         :rtype: |TableData| iterator
         :raises pytablereader.InvalidHeaderNameError:
-            If an invalid label name is included in the TSV file.
+            If an invalid label name is included in the LTSV file.
         :raises pytablereader.InvalidDataError:
             If the LTSV data is invalid.
         """
