@@ -30,7 +30,7 @@ class MarkdownTableLoader(TableLoader):
 
 class MarkdownTableFileLoader(MarkdownTableLoader):
     """
-    Concrete class of Markdown file loader.
+    Markdown format file loader class.
 
     :param str file_path: Path to the loading Markdown file.
 
@@ -46,7 +46,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from tables in a Markdown file.
+        Extract tabular data as |TableData| incetances from a Markdown file.
         |load_source_desc_file|
 
         :return:
@@ -82,7 +82,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
 
 class MarkdownTableTextLoader(MarkdownTableLoader):
     """
-    Concrete class of Markdown text loader.
+    Markdown format text loader class.
 
     :param str text: Markdown text to load.
 
@@ -102,7 +102,7 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from tables in a Markdown text.
+        Extract tabular data as |TableData| incetances from a Markdown text object.
         |load_source_desc_text|
 
         :return:

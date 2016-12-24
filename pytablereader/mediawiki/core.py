@@ -30,7 +30,7 @@ class MediaWikiTableLoader(TableLoader):
 
 class MediaWikiTableFileLoader(MediaWikiTableLoader):
     """
-    Concrete class of MediaWiki file loader.
+    MediaWiki format file loader class .
 
     :param str file_path: Path to the loading file.
 
@@ -46,7 +46,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from tables in a MediaWiki file.
+        Extract tabular data as |TableData| incetances from a MediaWiki file.
         |load_source_desc_file|
 
         :return:
@@ -86,7 +86,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
 
 class MediaWikiTableTextLoader(MediaWikiTableLoader):
     """
-    Concrete class of MediaWiki text loader.
+    MediaWiki format text loader class.
 
     :param str text: MediaWiki text to load.
 
@@ -106,7 +106,8 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from tables in a MediaWiki text.
+        Extract tabular data as |TableData| incetances from a MediaWiki text
+        object.
         |load_source_desc_text|
 
         :return:

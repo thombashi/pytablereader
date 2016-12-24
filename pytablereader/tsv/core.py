@@ -18,8 +18,7 @@ from ..csv.core import (
 
 class TsvTableFileLoader(CsvTableFileLoader):
     """
-    Concrete class of a table file loader for
-    tab separated values (TSV) format.
+    Tab separated values (TSV) format file loader class.
 
     :param str file_path: Path to the loading TSV file.
 
@@ -38,8 +37,7 @@ class TsvTableFileLoader(CsvTableFileLoader):
 
 class TsvTableTextLoader(CsvTableTextLoader):
     """
-    Concrete class of a table text loader for
-    tab separated values (TSV) format.
+    Tab separated values (TSV) format text loader class.
 
     :param str text: TSV text to load.
 

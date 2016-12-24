@@ -19,7 +19,7 @@ from .core import SpreadSheetLoader
 
 class ExcelTableFileLoader(SpreadSheetLoader):
     """
-    Concrete class of Microsoft Excel |TM| file loader.
+    Microsoft Excel |TM| format file loader class.
 
     :param str file_path: Path to the loading Excel workbook file.
 
@@ -55,7 +55,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
     def load(self):
         """
-        Load table data from an Excel file.
+        Extract tabular data as |TableData| incetances from a Excel file.
         |spreadsheet_load_desc|
 
         :return:

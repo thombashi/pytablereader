@@ -91,7 +91,7 @@ class CsvTableLoader(TableLoader):
 
 class CsvTableFileLoader(CsvTableLoader):
     """
-    Concrete class of CSV file loader.
+    CSV format file loader class.
 
     :param str file_path: Path to the loading CSV file.
 
@@ -107,7 +107,7 @@ class CsvTableFileLoader(CsvTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from a CSV file.
+        Extract tabular data as |TableData| incetances from a CSV file.
         |load_source_desc_file|
 
         :return:
@@ -158,7 +158,7 @@ class CsvTableFileLoader(CsvTableLoader):
 
 class CsvTableTextLoader(CsvTableLoader):
     """
-    Concrete class of CSV text loader.
+    CSV format text loader class.
 
     :param str text: CSV text to load.
 
@@ -174,7 +174,7 @@ class CsvTableTextLoader(CsvTableLoader):
 
     def load(self):
         """
-        Extract table data from a CSV text.
+        Extract tabular data as |TableData| incetances from a CSV text object.
         |load_source_desc_text|
 
         :return:

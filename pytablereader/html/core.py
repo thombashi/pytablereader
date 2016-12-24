@@ -35,7 +35,7 @@ class HtmlTableLoader(TableLoader):
 
 class HtmlTableFileLoader(HtmlTableLoader):
     """
-    Concrete class of HTML file loader.
+    HTML format file loader class.
 
     :param str file_path: Path to the loading HTML file.
 
@@ -57,7 +57,8 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from HTML table tags in a HTML file.
+        Extract tabular data as |TableData| incetances from HTML table tags in
+        a HTML file.
         |load_source_desc_file|
 
         :return:
@@ -105,7 +106,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
 class HtmlTableTextLoader(HtmlTableLoader):
     """
-    Concrete class of HTML text loader.
+    HTML format text loader class.
 
     :param str text: HTML text to load.
 
@@ -121,7 +122,8 @@ class HtmlTableTextLoader(HtmlTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from HTML table tags in a HTML text.
+        Extract tabular data as |TableData| incetances from HTML table tags in
+        a HTML text object.
         |load_source_desc_text|
 
         :return:

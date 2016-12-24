@@ -31,7 +31,7 @@ class JsonTableLoader(TableLoader):
 
 class JsonTableFileLoader(JsonTableLoader):
     """
-    Concrete class of JSON file loader.
+    JSON format file loader class.
 
     :param str file_path: Path to the loading JSON file.
 
@@ -47,7 +47,7 @@ class JsonTableFileLoader(JsonTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from a JSON file.
+        Extract tabular data as |TableData| incetances from a JSON file.
         |load_source_desc_file|
 
         This method can be loading two types of JSON formats:
@@ -159,7 +159,7 @@ class JsonTableFileLoader(JsonTableLoader):
 
 class JsonTableTextLoader(JsonTableLoader):
     """
-    Concrete class of JSON text loader.
+    JSON format text loader class.
 
     :param str text: JSON text to load.
 
@@ -179,7 +179,7 @@ class JsonTableTextLoader(JsonTableLoader):
 
     def load(self):
         """
-        Extract |TableData| from a JSON text.
+        Extract tabular data as |TableData| incetances from a JSON text object.
         |load_source_desc_text|
 
         :return:
@@ -203,7 +203,7 @@ class JsonTableTextLoader(JsonTableLoader):
 
         .. seealso::
 
-                :py:meth:`.JsonTableFileLoader.load()`
+            :py:meth:`.JsonTableFileLoader.load()`
         """
 
         self._validate()
