@@ -5,10 +5,10 @@
 """
 
 from __future__ import absolute_import
+from __future__ import unicode_literals
 import io
 
 import dataproperty as dp
-from mbstrdecoder import MultiByteStrDecoder
 import pathvalidate as pv
 from six.moves import zip
 
@@ -65,7 +65,13 @@ class LtsvTableLoader(TableLoader):
                         "invalid lstv item found: line={}, col={}, item='{}'".format(
                             row_idx, col_idx, ltsv_item))
 
-                label = self.__strip_quote(label)
+                try:
+                    label = label.strip('"')
+                except AttributeError:
+                    raise InvalidHeaderNameError(
+                        "label must be a str: line={}, col={}, label='{}'".format(
+                            row_idx, col_idx, label))
+
                 try:
                     pv.validate_ltsv_label(label)
                 except (pv.NullNameError, pv.InvalidCharError):
@@ -73,27 +79,11 @@ class LtsvTableLoader(TableLoader):
                         "invalid label found: line={}, col={}, label='{}'".format(
                             row_idx, col_idx, label))
 
-                ltsv_record[label] = self.__modify_item(value)
+                ltsv_record[label] = value
 
             data_matrix.append(ltsv_record)
 
         return data_matrix
-
-    def __strip_quote(self, value):
-        return value.strip('"')
-
-    def __modify_item(self, item):
-        data = self.__strip_quote(item)
-
-        inttype = dp.IntegerType(data)
-        if inttype.is_convertible_type():
-            return inttype.convert()
-
-        floattype = dp.FloatType(data)
-        if floattype.is_convertible_type():
-            return floattype.convert()
-
-        return MultiByteStrDecoder(data).unicode_str
 
 
 class LtsvTableFileLoader(LtsvTableLoader):
