@@ -376,10 +376,10 @@ rp_method = u"""
     The header row requires all of the columns has value (except empty columns).
 
 .. |load_source_desc_file| replace:: 
-    :py:attr:`.source` attribute should contain path to the file to load.
+    :py:attr:`.source` attribute should contain a path to the file to load.
 
 .. |load_source_desc_text| replace:: 
-    :py:attr:`.source` attribute should contain text to load.
+    :py:attr:`.source` attribute should contain a text object to load.
 
 .. |load_table_name_desc| replace:: 
     Table name determined by the value of

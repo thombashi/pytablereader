@@ -22,7 +22,6 @@ CsvTableFileLoader class
     :inherited-members:
     :show-inheritance:
 
-
 CsvTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.CsvTableTextLoader
@@ -39,7 +38,6 @@ HtmlTableFileLoader class
 .. autoclass:: pytablereader.HtmlTableFileLoader
     :inherited-members:
 
-
 HtmlTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.HtmlTableTextLoader
@@ -54,11 +52,27 @@ JsonTableFileLoader class
 .. autoclass:: pytablereader.JsonTableFileLoader
     :inherited-members:
 
-
 JsonTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.JsonTableTextLoader
     :inherited-members:
+
+
+LTSV Loader classes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+LtsvTableFileLoader class
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. autoclass:: pytablereader.LtsvTableFileLoader
+    :inherited-members:
+    :show-inheritance:
+
+LtsvTableTextLoader class
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. autoclass:: pytablereader.LtsvTableTextLoader
+    :inherited-members:
+    :exclude-members: source_type,get_format_key,make_table_name
+    :show-inheritance:
 
 
 Markdown Loader classes
@@ -68,7 +82,6 @@ MarkdownTableFileLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.MarkdownTableFileLoader
     :inherited-members:
-
 
 MarkdownTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -83,7 +96,6 @@ MediaWikiTableFileLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.MediaWikiTableFileLoader
     :inherited-members:
-
 
 MediaWikiTableTextLoader class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
