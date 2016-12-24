@@ -34,6 +34,10 @@ from .json.core import (
     JsonTableFileLoader,
     JsonTableTextLoader
 )
+from .ltsv.core import (
+    LtsvTableFileLoader,
+    LtsvTableTextLoader
+)
 from .markdown.core import (
     MarkdownTableFileLoader,
     MarkdownTableTextLoader
