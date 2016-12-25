@@ -124,6 +124,46 @@ class Test_TableData_constructor:
             TableData(table_name, header_list, record_list)
 
 
+class Test_TableData_eq:
+
+    __DATA_0 = TableData(
+        "Sheet1",
+        [
+            'i', 'f', 'c', 'if', 'ifc', 'bool',
+            'inf', 'nan', 'mix_num', 'time',
+        ],
+        [
+            [
+                1, "1.1", 'aa', 1, 1, 'True',
+                float("inf"), "nan", 1,
+                '2017-01-01T00:00:00',
+            ],
+            [
+                2, "2.2", 'bbb', "2.2", "2.2", 'False',
+                float("inf"), float("NaN"), float("inf"),
+                '2017-01-02 03:04:05+09:00',
+            ],
+            [
+                3, "3.33", 'cccc', -3, 'ccc', 'True',
+                float("inf"), float("NaN"), float("NaN"),
+                '2017-01-01T00:00:00',
+            ],
+        ])
+
+    __DATA_1 = TableData(
+        "tablename",
+        ["a", "b", "c", "dd", "e"],
+        []
+    )
+
+    @pytest.mark.parametrize(["lhs",  "rhs", "expected"], [
+        [__DATA_0, __DATA_0, True],
+        [__DATA_0, __DATA_1, False],
+    ])
+    def test_normal(self, lhs, rhs, expected):
+        assert (lhs == rhs) == expected
+
+
 class Test_TableData_as_dict:
 
     @pytest.mark.parametrize(
