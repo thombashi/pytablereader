@@ -5,8 +5,10 @@
 """
 
 from __future__ import absolute_import
+from __future__ import unicode_literals
 from __future__ import print_function
 
+from mbstrdecoder import MultiByteStrDecoder
 from path import Path
 import pytablewriter as ptw
 import pytest
@@ -44,6 +46,7 @@ class Test_TableFileLoader_constructor:
             None, ptr.MarkdownTableFileLoader
         ],
         ["/tmp/validext.txt", "csv", ptr.CsvTableFileLoader],
+        ["/tmp/テスト.txt".encode("utf_8"), "csv", ptr.CsvTableFileLoader],
         ["/tmp/validext.txt", "html", ptr.HtmlTableFileLoader],
         ["/tmp/validext.txt", "json", ptr.JsonTableFileLoader],
         [
@@ -57,7 +60,8 @@ class Test_TableFileLoader_constructor:
     ])
     def test_normal(self, tmpdir, file_path, format_name, expected):
         test_file_path = Path(str(tmpdir.join(
-            pv.replace_symbol(file_path, "") + Path(file_path).ext)))
+            pv.replace_symbol(file_path, "") +
+            Path(MultiByteStrDecoder(file_path).unicode_str).ext)))
         test_file_path.parent.makedirs_p()
 
         with open(test_file_path, "w") as f:
@@ -161,8 +165,8 @@ class Test_TableFileLoader_load:
                 "validdata_json1",
                 ["attr_a", "attr_b", "attr_c"],
                 [
-                    {u'attr_a': 1},
-                    {u'attr_b': 2.1, u'attr_c': u'bb'},
+                    {'attr_a': 1},
+                    {'attr_b': 2.1, 'attr_c': 'bb'},
                 ]
             )
         ]
@@ -181,22 +185,22 @@ class Test_TableFileLoader_load:
 
         tabledata_list = [
             ptr.data.TableData(
-                table_name=u'testsheet1',
-                header_list=[u'a1', u'b1', u'c1'],
+                table_name='testsheet1',
+                header_list=['a1', 'b1', 'c1'],
                 record_list=[
-                    [u'aa1', u'ab1', u'ac1'],
-                    [1.0, 1.1, u'a'],
-                    [2.0, 2.2, u'bb'],
-                    [3.0, 3.3, u'cc'],
+                    ['aa1', 'ab1', 'ac1'],
+                    [1.0, 1.1, 'a'],
+                    [2.0, 2.2, 'bb'],
+                    [3.0, 3.3, 'cc'],
                 ]),
             ptr.data.TableData(
-                table_name=u'testsheet3',
-                header_list=[u'a3', u'b3', u'c3'],
+                table_name='testsheet3',
+                header_list=['a3', 'b3', 'c3'],
                 record_list=[
-                    [u'aa3', u'ab3', u'ac3'],
-                    [4.0, 1.1, u'a'],
-                    [5.0, u'', u'bb'],
-                    [6.0, 3.3, u''],
+                    ['aa3', 'ab3', 'ac3'],
+                    [4.0, 1.1, 'a'],
+                    [5.0, '', 'bb'],
+                    [6.0, 3.3, ''],
                 ]),
         ]
 
