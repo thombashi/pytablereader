@@ -12,6 +12,7 @@ from mbstrdecoder import MultiByteStrDecoder
 from path import Path
 import pytablewriter as ptw
 import pytest
+import six
 
 import pathvalidate as pv
 import pytablereader as ptr
@@ -59,9 +60,10 @@ class Test_TableFileLoader_constructor:
         ],
     ])
     def test_normal(self, tmpdir, file_path, format_name, expected):
-        test_file_path = Path(str(tmpdir.join(
-            pv.replace_symbol(file_path, "") +
-            Path(MultiByteStrDecoder(file_path).unicode_str).ext)))
+        # test_file_path = Path(str(tmpdir.join(
+        #    Path(MultiByteStrDecoder(file_path).unicode_str).ext)))
+        test_file_path = Path(six.text_type(tmpdir.join(
+            Path(MultiByteStrDecoder(file_path).unicode_str))))
         test_file_path.parent.makedirs_p()
 
         with open(test_file_path, "w") as f:
@@ -110,7 +112,8 @@ class Test_TableFileLoader_load:
     ])
     def test_normal_csv(self,  tmpdir, file_path, format_name):
         filename = pv.replace_symbol(file_path, "")
-        p_file_path = Path(str(tmpdir.join(filename + Path(file_path).ext)))
+        p_file_path = Path(
+            six.text_type(tmpdir.join(filename + Path(file_path).ext)))
         p_file_path.parent.makedirs_p()
 
         with open(p_file_path, "w") as f:

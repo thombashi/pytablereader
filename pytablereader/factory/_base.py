@@ -5,6 +5,7 @@
 """
 
 from __future__ import absolute_import
+from __future__ import unicode_literals
 import abc
 
 import six
@@ -97,7 +98,8 @@ class BaseTableLoaderFactory(object):
 
         try:
             loader = self._get_loader_class(
-                self._get_format_name_loader_mapping(), format_name)(self.source)
+                self._get_format_name_loader_mapping(),
+                format_name)(self.source)
             loader.encoding = self._encoding
 
             return loader
