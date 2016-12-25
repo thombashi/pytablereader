@@ -64,11 +64,18 @@ class TableData(object):
         return "table_name={}, header_list={}, record_list={}".format(
             self.table_name, self.header_list, self.record_list)
 
-    def __eq__(self, other):
+    def __eq__(self, rhs):
         return all([
-            self.table_name == other.table_name,
-            self.header_list == other.header_list,
-            self.record_list == other.record_list,
+            self.table_name == rhs.table_name,
+            self.header_list == rhs.header_list,
+            all([
+                all([
+                    self.__compare_helper(lhs, rhs)
+                    for lhs, rhs in zip(lhs_list, rhs_list)
+                ])
+                for lhs_list, rhs_list
+                in zip(self.record_list, rhs.record_list)
+            ]),
         ])
 
     def __hash__(self):
@@ -128,6 +135,12 @@ class TableData(object):
         dataframe.columns = self.header_list
 
         return dataframe
+
+    def __compare_helper(self, lhs, rhs):
+        if dp.NanType(lhs).is_type() and dp.NanType(rhs).is_type():
+            return True
+
+        return lhs == rhs
 
     def __convert(self, value):
         if value is None:
