@@ -64,17 +64,17 @@ class TableData(object):
         return "table_name={}, header_list={}, record_list={}".format(
             self.table_name, self.header_list, self.record_list)
 
-    def __eq__(self, rhs):
+    def __eq__(self, other):
         return all([
-            self.table_name == rhs.table_name,
-            self.header_list == rhs.header_list,
+            self.table_name == other.table_name,
+            self.header_list == other.header_list,
             all([
                 all([
                     self.__compare_helper(lhs, rhs)
                     for lhs, rhs in zip(lhs_list, rhs_list)
                 ])
                 for lhs_list, rhs_list
-                in zip(self.record_list, rhs.record_list)
+                in zip(self.record_list, other.record_list)
             ]),
         ])
 
