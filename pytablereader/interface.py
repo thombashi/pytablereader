@@ -16,10 +16,7 @@ from ._constant import (
     SourceType,
     TableNameTemplate as tnt
 )
-from .error import (
-    InvalidTableNameError,
-    InvalidDataError
-)
+from .error import InvalidTableNameError
 
 
 @six.add_metaclass(abc.ABCMeta)

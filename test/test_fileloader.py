@@ -14,7 +14,6 @@ import pytest
 import pathvalidate as pv
 import pytablereader as ptr
 from pytablereader.interface import TableLoader
-import pytablewriter as ptw
 
 
 class Test_TableFileLoader_constructor:

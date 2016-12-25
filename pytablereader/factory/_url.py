@@ -23,7 +23,6 @@ from ..csv.core import CsvTableTextLoader
 from ..error import (
     InvalidFilePathError,
     InvalidUrlError,
-    LoaderNotFoundError,
     HTTPError
 )
 from ..html.core import HtmlTableTextLoader

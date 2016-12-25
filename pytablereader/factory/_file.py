@@ -8,7 +8,6 @@ from __future__ import absolute_import
 
 from .._common import get_extension
 from ..csv.core import CsvTableFileLoader
-from ..error import LoaderNotFoundError
 from ..html.core import HtmlTableFileLoader
 from ..json.core import JsonTableFileLoader
 from ..markdown.core import MarkdownTableFileLoader

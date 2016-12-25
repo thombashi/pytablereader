@@ -14,10 +14,7 @@ from mbstrdecoder import MultiByteStrDecoder
 import pathvalidate
 import six
 
-from .._constant import (
-    SourceType,
-    TableNameTemplate as tnt
-)
+from .._constant import TableNameTemplate as tnt
 from .._validator import (
     FileValidator,
     TextValidator
