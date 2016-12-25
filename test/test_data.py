@@ -241,28 +241,3 @@ class Test_TableData_is_empty:
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
         assert tabledata.is_empty() == expected
-
-
-class Test_TableData_dumps:
-
-    @pytest.mark.parametrize(
-        [
-            "table_name", "header_list", "record_list"
-        ],
-        [
-            [
-                "normal", ["a", "b"], [[1, 2], [3, 4]],
-            ],
-            [
-                "null_header", [], [[1, 2], [3, 4]],
-            ],
-            [
-                "null_body", ["a", "b"], [],
-            ],
-        ]
-    )
-    def test_smoke(
-            self, table_name, header_list, record_list):
-        tabledata = TableData(table_name, header_list, record_list)
-
-        assert len(ptw.dump_tabledata(tabledata)) > 0
