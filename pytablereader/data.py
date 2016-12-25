@@ -164,7 +164,6 @@ class TableData(object):
             pass
 
         try:
-            # return list(value)
             return [
                 self.__item_modifier.modify_data(value) for value in values
             ]
