@@ -27,7 +27,7 @@ class Test_TableFileLoader_constructor:
             None, ptr.CsvTableFileLoader
         ],
         [
-            "c:\\tmp\valid\test\data\validext.csv",
+            "/tmp/valid/test/新しいフォルダー/新しいテキスト ドキュメント.csv".encode("utf_8"),
             None, ptr.CsvTableFileLoader
         ],
         [
@@ -41,10 +41,6 @@ class Test_TableFileLoader_constructor:
         [
             "/tmp/valid/test/data/validext.json",
             None, ptr.JsonTableFileLoader
-        ],
-        [
-            "https://github.com/validext.md",
-            None, ptr.MarkdownTableFileLoader
         ],
         ["/tmp/validext.txt", "csv", ptr.CsvTableFileLoader],
         ["/tmp/テスト.txt".encode("utf_8"), "csv", ptr.CsvTableFileLoader],
@@ -60,8 +56,6 @@ class Test_TableFileLoader_constructor:
         ],
     ])
     def test_normal(self, tmpdir, file_path, format_name, expected):
-        # test_file_path = Path(str(tmpdir.join(
-        #    Path(MultiByteStrDecoder(file_path).unicode_str).ext)))
         test_file_path = Path(six.text_type(tmpdir.join(
             Path(MultiByteStrDecoder(file_path).unicode_str))))
         test_file_path.parent.makedirs_p()
