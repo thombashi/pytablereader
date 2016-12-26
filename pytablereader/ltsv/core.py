@@ -65,12 +65,7 @@ class LtsvTableLoader(TableLoader):
                         "invalid lstv item found: line={}, col={}, item='{}'".format(
                             row_idx, col_idx, ltsv_item))
 
-                try:
-                    label = label.strip('"')
-                except AttributeError:
-                    raise InvalidHeaderNameError(
-                        "label must be a str: line={}, col={}, label='{}'".format(
-                            row_idx, col_idx, label))
+                label = label.strip('"')
 
                 try:
                     pv.validate_ltsv_label(label)
