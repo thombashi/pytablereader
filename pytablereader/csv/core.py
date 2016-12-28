@@ -51,6 +51,22 @@ class CsvTableLoader(TableLoader):
         Encoding of the CSV data.
     """
 
+    @property
+    def delimiter(self):
+        return str(MultiByteStrDecoder(self.__delimiter).unicode_str)
+
+    @delimiter.setter
+    def delimiter(self, value):
+        self.__delimiter = value
+
+    @property
+    def quotechar(self):
+        return str(MultiByteStrDecoder(self.__quotechar).unicode_str)
+
+    @quotechar.setter
+    def quotechar(self, value):
+        self.__quotechar = value
+
     def __init__(self, source):
         super(CsvTableLoader, self).__init__(source)
 
