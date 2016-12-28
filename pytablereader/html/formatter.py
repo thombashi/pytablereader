@@ -25,6 +25,8 @@ class HtmlTableFormatter(TableFormatter):
     def __init__(self, source_data):
         super(HtmlTableFormatter, self).__init__(source_data)
 
+        self.__table_id = None
+
         if dp.is_empty_string(source_data):
             raise InvalidDataError
 
