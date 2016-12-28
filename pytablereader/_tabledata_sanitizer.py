@@ -131,7 +131,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
         """
 
     def __validate_header_list(self):
-        for header in self.header_list:
+        for header in self._tabledata.header_list:
             self._validate_header(header)
 
     def __sanitize_table_name(self):
