@@ -220,24 +220,17 @@ class Test_TableData_as_dataframe:
 class Test_TableData_hash:
 
     @pytest.mark.parametrize(
-        ["table_name", "header_list", "record_list", "expected"], [
-            [
-                "tablename", ["a", "b"], [],
-                "a7f56e50b5e19da065f90113b519e12421e8bbc2"
-            ],
-            [
-                "tablenam", ["a", "b"], [],
-                "16ba358dc22c0827cad275087d3daa4952d7fe10"
-            ],
-            [
-                "tablename", ["a", "c"], [],
-                "9091fdf20816c2790f51eced4a95c8a33131699e"
-            ],
+        ["table_name", "header_list", "record_list"], [
+            ["tablename", ["a", "b"], []],
         ]
     )
-    def test_normal(self, table_name, header_list, record_list, expected):
-        tabledata = TableData(table_name, header_list, record_list)
-        assert tabledata.__hash__() == expected
+    def test_normal(self, table_name, header_list, record_list):
+        tabledata_a0 = TableData(table_name, header_list, record_list)
+        tabledata_a1 = TableData(table_name, header_list, record_list)
+        tabledata_b0 = TableData("dummy", header_list, record_list)
+
+        assert tabledata_a0.__hash__() == tabledata_a1.__hash__()
+        assert tabledata_a0.__hash__() != tabledata_b0.__hash__()
 
 
 class Test_TableData_is_empty_header:
