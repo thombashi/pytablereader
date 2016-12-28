@@ -5,6 +5,7 @@
 """
 
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
 from .._common import get_extension
 from ..csv.core import CsvTableFileLoader
