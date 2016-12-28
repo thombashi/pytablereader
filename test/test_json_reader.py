@@ -5,6 +5,7 @@
 """
 
 from __future__ import print_function
+from __future__ import unicode_literals
 import collections
 from path import Path
 
@@ -36,10 +37,10 @@ test_data_01 = Data(
             "json1",
             ["attr_a", "attr_b", "attr_c"],
             [
-                {u'attr_a': 1, u'attr_b': 4, u'attr_c': u'a'},
-                {u'attr_a': 2, u'attr_b': 2.1, u'attr_c': u'bb'},
-                {u'attr_a': 3, u'attr_b': 120.9,
-                    u'attr_c': u'ccc'},
+                {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
+                {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
+                {'attr_a': 3, 'attr_b': 120.9,
+                    'attr_c': 'ccc'},
             ]
         ),
     ])
@@ -54,8 +55,8 @@ test_data_02 = Data(
             "json1",
             ["attr_a", "attr_b", "attr_c"],
             [
-                {u'attr_a': 1},
-                {u'attr_b': 2.1, u'attr_c': u'bb'},
+                {'attr_a': 1},
+                {'attr_b': 2.1, 'attr_c': 'bb'},
             ]
         ),
     ])
@@ -78,19 +79,19 @@ test_data_03 = Data(
             u"table_a",
             [u"attr_a", u"attr_b", u"attr_c"],
             [
-                {u'attr_a': 1, u'attr_b': 4, u'attr_c': u'a'},
-                {u'attr_a': 2, u'attr_b': 2.1, u'attr_c': u'bb'},
-                {u'attr_a': 3, u'attr_b': 120.9,
-                    u'attr_c': u'ccc'},
+                {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
+                {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
+                {'attr_a': 3, 'attr_b': 120.9,
+                    'attr_c': 'ccc'},
             ]
         ),
         TableData(
             u"table_b",
             [u"a", u"b"],
             [
-                {u'a': 1, u'b': 4},
-                {u'a': 2, },
-                {u'a': 3, u'b': 120.9},
+                {'a': 1, 'b': 4},
+                {'a': 2, },
+                {'a': 3, 'b': 120.9},
             ]
         ),
     ])
@@ -113,19 +114,19 @@ test_data_04 = Data(
             u"table_a",
             [u"attr_a", u"attr_b", u"attr_c"],
             [
-                {u'attr_a': 1, u'attr_b': 4, u'attr_c': u'a'},
-                {u'attr_a': 2, u'attr_b': 2.1, u'attr_c': u'bb'},
-                {u'attr_a': 3, u'attr_b': 120.9,
-                    u'attr_c': u'ccc'},
+                {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
+                {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
+                {'attr_a': 3, 'attr_b': 120.9,
+                    'attr_c': 'ccc'},
             ]
         ),
         TableData(
             u"table_b",
             [u"a", u"b"],
             [
-                {u'a': 1, u'b': 4},
-                {u'a': 2, },
-                {u'a': 3, u'b': 120.9},
+                {'a': 1, 'b': 4},
+                {'a': 2, },
+                {'a': 3, 'b': 120.9},
             ]
         ),
     ])
@@ -141,10 +142,10 @@ test_data_05 = Data(
             "json1",
             ["attr_a", "attr_b", "attr_c"],
             [
-                {u'attr_a': 1, u'attr_b': 4, u'attr_c': u'a'},
-                {u'attr_a': 2, u'attr_b': u'2.1', u'attr_c': u'bb'},
-                {u'attr_a': 3, u'attr_b': u'120.9',
-                    u'attr_c': u'ccc'},
+                {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
+                {'attr_a': 2, 'attr_b': '2.1', 'attr_c': 'bb'},
+                {'attr_a': 3, 'attr_b': '120.9',
+                    'attr_c': 'ccc'},
             ]
         ),
     ]

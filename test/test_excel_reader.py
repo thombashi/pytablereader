@@ -4,6 +4,8 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from __future__ import unicode_literals
+
 import pytest
 import xlsxwriter
 
@@ -147,22 +149,22 @@ class Test_ExcelTableFileLoader_load:
                 0,
                 [
                     ptr.data.TableData(
-                        table_name=u'testsheet1',
-                        header_list=[u'a1', u'b1', u'c1'],
+                        table_name="testsheet1",
+                        header_list=["a1", "b1", "c1"],
                         record_list=[
-                            [u'aa1', u'ab1', u'ac1'],
-                            [1.0, 1.1, u'a'],
-                            [2.0, 2.2, u'bb'],
-                            [3.0, 3.3, u'cc'],
+                            ["aa1", "ab1", "ac1"],
+                            [1.0, 1.1, "a"],
+                            [2.0, 2.2, "bb"],
+                            [3.0, 3.3, "cc"],
                         ]),
                     ptr.data.TableData(
-                        table_name=u'testsheet3',
-                        header_list=[u'a3', u'b3', u'c3'],
+                        table_name="testsheet3",
+                        header_list=["a3", "b3", "c3"],
                         record_list=[
-                            [u'aa3', u'ab3', u'ac3'],
-                            [4.0, 1.1, u'a'],
-                            [5.0, u'', u'bb'],
-                            [6.0, 3.3, u''],
+                            ["aa3", "ab3", "ac3"],
+                            [4.0, 1.1, "a"],
+                            [5.0, "", "bb"],
+                            [6.0, 3.3, ""],
                         ]),
                 ]
             ],
@@ -171,21 +173,21 @@ class Test_ExcelTableFileLoader_load:
                 2,
                 [
                     ptr.data.TableData(
-                        table_name=u'tmp_testsheet1',
-                        header_list=[u'aa1', u'ab1', u'ac1'],
+                        table_name="tmp_testsheet1",
+                        header_list=["aa1", "ab1", "ac1"],
                         record_list=[
-                            [1.0, 1.1, u'a'],
-                            [2.0, 2.2, u'bb'],
-                            [3.0, 3.3, u'cc'],
+                            [1.0, 1.1, "a"],
+                            [2.0, 2.2, "bb"],
+                            [3.0, 3.3, "cc"],
                         ]),
                     ptr.data.TableData(
-                        table_name=u'tmp_testsheet3',
-                        header_list=[u'a3', u'b3', u'c3'],
+                        table_name="tmp_testsheet3",
+                        header_list=["a3", "b3", "c3"],
                         record_list=[
-                            [u'aa3', u'ab3', u'ac3'],
-                            [4.0, 1.1, u'a'],
-                            [5.0, u'', u'bb'],
-                            [6.0, 3.3, u''],
+                            ["aa3", "ab3", "ac3"],
+                            [4.0, 1.1, "a"],
+                            [5.0, "", "bb"],
+                            [6.0, 3.3, ""],
                         ]),
                 ]
             ],

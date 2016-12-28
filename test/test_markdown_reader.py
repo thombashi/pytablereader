@@ -4,6 +4,7 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from __future__ import unicode_literals
 import collections
 
 from path import Path
@@ -33,11 +34,11 @@ test_data_01 = Data(
     [
         TableData(
             table_name=u"markdown1",
-            header_list=[u'a', u'b', u'c'],
+            header_list=['a', 'b', 'c'],
             record_list=[
-                [1, u'123.1', u'a'],
-                [2, u'2.2', u'bb'],
-                [3, u'3.3', u'ccc'],
+                [1, '123.1', 'a'],
+                [2, '2.2', 'bb'],
+                [3, '3.3', 'ccc'],
             ]
         ),
     ])
@@ -53,11 +54,11 @@ test_data_02 = Data(
     [
         TableData(
             table_name=u"markdown1",
-            header_list=[u'a', u'b', u'c'],
+            header_list=['a', 'b', 'c'],
             record_list=[
-                [1, u'123.1', u'a'],
-                [2, u'2.2', u'bb'],
-                [3, u'3.3', u'ccc'],
+                [1, '123.1', 'a'],
+                [2, '2.2', 'bb'],
+                [3, '3.3', 'ccc'],
             ]
         ),
     ])
@@ -79,20 +80,20 @@ test_data_04 = Data(
     [
         TableData(
             table_name=u"tmp_markdown1",
-            header_list=[u'a', u'b', u'c'],
+            header_list=['a', 'b', 'c'],
             record_list=[
-                [1, u'123.1', u'a'],
-                [2, u'2.2', u'bb'],
-                [u'3', u'3.3', u'ccc'],
+                [1, '123.1', 'a'],
+                [2, '2.2', 'bb'],
+                ['3', '3.3', 'ccc'],
             ]
         ),
         TableData(
             table_name=u"tmp_markdown2",
-            header_list=[u'a', u'b'],
+            header_list=['a', 'b'],
             record_list=[
-                [1, u'123.1'],
-                [2, u'2.2'],
-                [u'3', u'3.3'],
+                [1, '123.1'],
+                [2, '2.2'],
+                ['3', '3.3'],
             ]
         ),
     ])
