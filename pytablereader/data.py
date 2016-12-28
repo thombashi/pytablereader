@@ -133,7 +133,8 @@ class TableData(object):
         import pandas
 
         dataframe = pandas.DataFrame(self.record_list)
-        dataframe.columns = self.header_list
+        if not self.is_empty_header():
+            dataframe.columns = self.header_list
 
         return dataframe
 
