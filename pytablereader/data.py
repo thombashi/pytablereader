@@ -118,11 +118,28 @@ class TableData(object):
         :rtype: dict
         """
 
-        return {
-            "table_name": self.table_name,
-            "header_list": self.header_list,
-            "record_list": self.record_list,
-        }
+        old_modifier = self.__item_modifier
+        self.__item_modifier = JsonTableItemModifier()
+
+        dict_body = []
+        for value_list in self.record_list:
+            if dp.is_empty_sequence(value_list):
+                continue
+
+            dict_record = [
+                (header, self.__item_modifier.modify_data(value))
+                for header, value in zip(self.header_list, value_list)
+                if value is not None
+            ]
+
+            if dp.is_empty_sequence(dict_record):
+                continue
+
+            dict_body.append(dict(dict_record))
+
+        self.__item_modifier = old_modifier
+
+        return {self.table_name: dict_body}
 
     def as_dataframe(self):
         """

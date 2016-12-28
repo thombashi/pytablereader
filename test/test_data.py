@@ -6,6 +6,7 @@
 
 from __future__ import unicode_literals
 from collections import namedtuple
+from decimal import Decimal
 import json
 
 import dataproperty as dp
@@ -171,20 +172,22 @@ class Test_TableData_as_dict:
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list", "expected"], [
             [
-                "empty_records", ["a", "b"], [],
-                """{
-                    "table_name": "empty_records",
-                    "header_list": ["a", "b"],
-                    "record_list": []
-                }"""
+                "normal", ["a", "b"], [[1, 2], [3, 4]],
+                """{"normal": [{"a": 1, "b": 2}, {"a": 3, "b": 4}]}"""
             ],
             [
-                "normal", ["a", "b"], [[1, 2], [3, 4]],
-                """{
-                    "table_name": "normal",
-                    "header_list": ["a", "b"],
-                    "record_list": [[1, 2], [3, 4]]
-                }"""
+                "number", ["a", "b"], [[1, 2.0], [3.3, Decimal("4.4")]],
+                """{"number": [{"a": 1, "b": 2}, {"a": 3.3, "b": 4.4}]}"""
+            ],
+            [
+                "include_none",
+                ["a", "b"],
+                [[None, 2], [None, None], [3, None], [None, None]],
+                """{"include_none": [{"b": 2}, {"a": 3}]}"""
+            ],
+            [
+                "empty_records", ["a", "b"], [],
+                """{"empty_records": []}"""
             ],
 
         ]
@@ -192,6 +195,16 @@ class Test_TableData_as_dict:
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
         assert tabledata.as_dict() == json.loads(expected)
+
+    @pytest.mark.parametrize(
+        ["table_name", "header_list", "record_list", "expected"], [
+            ["none_header", None, [[1, 2], [3, 4]], TypeError],
+            ["none_records", ["a", "b"], None, TypeError],
+        ]
+    )
+    def test_exception(self, table_name, header_list, record_list, expected):
+        with pytest.raises(expected):
+            TableData(table_name, header_list, record_list).as_dict()
 
 
 class Test_TableData_as_dataframe:
