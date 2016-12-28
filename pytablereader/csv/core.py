@@ -53,6 +53,7 @@ class CsvTableLoader(TableLoader):
 
     @property
     def delimiter(self):
+        # "delimiter" must be string, not unicode
         return str(MultiByteStrDecoder(self.__delimiter).unicode_str)
 
     @delimiter.setter
@@ -61,6 +62,7 @@ class CsvTableLoader(TableLoader):
 
     @property
     def quotechar(self):
+        # "quotechar" must be string, not unicode
         return str(MultiByteStrDecoder(self.__quotechar).unicode_str)
 
     @quotechar.setter
