@@ -10,7 +10,10 @@ import hashlib
 
 import dataproperty as dp
 
-from ._table_item_modifier import TableItemModifier
+from ._table_item_modifier import (
+    TableItemModifier,
+    JsonTableItemModifier
+)
 from .error import InvalidDataError
 
 

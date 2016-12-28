@@ -16,32 +16,54 @@ class TableItemModifier(object):
     def __init__(
             self, none_value=None, strip_str='"',
             is_strict_int=False, is_strict_float=False):
-        self.__none_value = none_value
-        self.__strip_str = strip_str
-        self.__is_strict_int = is_strict_int
-        self.__is_strict_float = is_strict_float
+        self._none_value = none_value
+        self._strip_str = strip_str
+        self._is_strict_int = is_strict_int
+        self._is_strict_float = is_strict_float
 
     def modify_header(self, header):
-        return self.__strip_quote(header)
+        return self._strip_quote(header)
 
     def modify_data(self, input_data):
-        try:
-            data = self.__strip_quote(input_data)
-        except AttributeError:
-            if input_data is None:
-                return self.__none_value
+        if input_data is None:
+            return self._none_value
 
-            data = input_data
+        data = self._preprocess_data(input_data)
 
-        inttype = dp.IntegerType(data, is_strict=self.__is_strict_int)
+        inttype = dp.IntegerType(data, is_strict=self._is_strict_int)
         if inttype.is_convertible_type():
             return inttype.convert()
 
-        floattype = dp.FloatType(data, is_strict=self.__is_strict_float)
+        floattype = dp.FloatType(data, is_strict=self._is_strict_float)
         if floattype.is_convertible_type():
             return floattype.convert()
 
         return MultiByteStrDecoder(data).unicode_str
 
-    def __strip_quote(self, value):
-        return value.strip(self.__strip_str)
+    def _preprocess_data(self, data):
+        try:
+            return self._strip_quote(data)
+        except AttributeError:
+            return data
+
+    def _strip_quote(self, value):
+        return value.strip(self._strip_str)
+
+
+class JsonTableItemModifier(TableItemModifier):
+
+    def modify_data(self, input_data):
+        if input_data is None:
+            return self._none_value
+
+        data = self._preprocess_data(input_data)
+
+        inttype = dp.IntegerType(data, is_strict=self._is_strict_int)
+        if inttype.is_convertible_type():
+            return inttype.convert()
+
+        floattype = dp.FloatType(data, is_strict=self._is_strict_float)
+        if floattype.is_convertible_type():
+            return float(data)
+
+        return MultiByteStrDecoder(data).unicode_str
