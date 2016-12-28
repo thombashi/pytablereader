@@ -8,7 +8,6 @@ from __future__ import absolute_import
 
 import dataproperty
 
-from ..error import LoaderNotFoundError
 from ..factory import TableFileLoaderFactory
 from ._base import TableLoaderManager
 

@@ -9,7 +9,6 @@ from __future__ import absolute_import
 from six.moves import range
 import xlrd
 
-from .._constant import SourceType
 from .._validator import FileValidator
 from ..error import InvalidDataError
 from ..error import OpenError

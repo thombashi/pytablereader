@@ -10,7 +10,6 @@ import io
 
 import dataproperty as dp
 import pathvalidate as pv
-from six.moves import zip
 
 from .._constant import TableNameTemplate as tnt
 from .._validator import (

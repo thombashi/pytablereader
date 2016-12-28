@@ -7,10 +7,7 @@
 from __future__ import absolute_import
 import io
 
-from .._constant import (
-    SourceType,
-    TableNameTemplate as tnt
-)
+from .._constant import TableNameTemplate as tnt
 from .._logger import logger
 from .._validator import (
     FileValidator,
