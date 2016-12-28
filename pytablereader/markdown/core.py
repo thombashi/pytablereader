@@ -69,7 +69,6 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
 
         self._validate()
 
-        formatter = None
         with open(self.source, "r") as fp:
             formatter = MarkdownTableFormatter(fp.read())
         formatter.accept(self)

@@ -93,7 +93,6 @@ class HtmlTableFileLoader(HtmlTableLoader):
             "  encoding={}".format(self.encoding),
         ]))
 
-        formatter = None
         with io.open(self.source, "r", encoding=self.encoding) as fp:
             formatter = HtmlTableFormatter(fp.read())
         formatter.accept(self)

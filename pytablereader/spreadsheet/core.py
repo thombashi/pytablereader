@@ -56,9 +56,9 @@ class SpreadSheetLoader(TableLoader):
     def _make_table_name(self):
         mapping = self._get_basic_tablename_mapping()
         try:
-            mapping.append((tnt.SHEET,  self._sheet_name))
+            mapping.append((tnt.SHEET, self._sheet_name))
         except AttributeError:
-            mapping.append((tnt.SHEET,  ""))
+            mapping.append((tnt.SHEET, ""))
 
         return self._replace_table_name_template(mapping)
 

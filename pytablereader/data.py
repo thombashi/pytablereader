@@ -142,12 +142,6 @@ class TableData(object):
 
         return lhs == rhs
 
-    def __convert(self, value):
-        if value is None:
-            return self.__none_value
-
-        return value
-
     def __to_record(self, values):
         """
         Convert values to a record.

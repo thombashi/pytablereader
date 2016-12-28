@@ -143,7 +143,7 @@ class MultipleJsonTableConverter(JsonConverter):
         return self._loader._replace_table_name_template(
             self._loader._get_basic_tablename_mapping() +
             [
-                (tnt.KEY,  self.__table_key),
+                (tnt.KEY, self.__table_key),
             ],
         )
 
