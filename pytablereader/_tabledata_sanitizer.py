@@ -42,7 +42,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
         self._tabledata = tabledata
 
     def validate(self):
-        self._validate_table_name()
+        self._validate_table_name(self._tabledata)
         self.__validate_header_list()
 
     def sanitize(self):
