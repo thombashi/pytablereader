@@ -78,7 +78,9 @@ class LtsvTableLoader(TableLoader):
 
             data_matrix.append(ltsv_record)
 
-        return data_matrix
+        # using generator to prepare for future enhancement to support
+        # iterative load.
+        yield data_matrix
 
 
 class LtsvTableFileLoader(LtsvTableLoader):
@@ -130,10 +132,11 @@ class LtsvTableFileLoader(LtsvTableLoader):
         self._ltsv_input_stream = io.open(
             self.source, "r", encoding=self.encoding)
 
-        formatter = SingleJsonTableConverter(self._to_data_matrix())
-        formatter.accept(self)
+        for data_matrix in self._to_data_matrix():
+            formatter = SingleJsonTableConverter(data_matrix)
+            formatter.accept(self)
 
-        return formatter.to_table_data()
+            return formatter.to_table_data()
 
     def _get_default_table_name_template(self):
         return tnt.FILENAME
@@ -184,10 +187,11 @@ class LtsvTableTextLoader(LtsvTableLoader):
 
         self._ltsv_input_stream = self.source.splitlines()
 
-        formatter = SingleJsonTableConverter(self._to_data_matrix())
-        formatter.accept(self)
+        for data_matrix in self._to_data_matrix():
+            formatter = SingleJsonTableConverter(data_matrix)
+            formatter.accept(self)
 
-        return formatter.to_table_data()
+            return formatter.to_table_data()
 
     def _get_default_table_name_template(self):
         return "{:s}{:s}".format(tnt.FORMAT_NAME, tnt.FORMAT_ID)
