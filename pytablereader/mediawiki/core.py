@@ -74,7 +74,6 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
 
         self._validate()
 
-        formatter = None
         with open(self.source, "r") as fp:
             formatter = MediaWikiTableFormatter(fp.read())
         formatter.accept(self)
