@@ -55,7 +55,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
         return TableData(
             self.__sanitize_table_name(),
             self._sanitize_header_list(),
-            self._tabledata.record_list)
+            self._tabledata.value_matrix)
 
     def _preprocess_table_name(self):
         """
@@ -226,7 +226,7 @@ class SQLiteTableDataSanitizer(TableDataSanitizer):
             try:
                 return [
                     self.__COMPLEMENT_HEADER_TEMPLATE.format(col)
-                    for col in range(len(self._tabledata.record_list[0]))
+                    for col in range(len(self._tabledata.value_matrix[0]))
                 ]
             except IndexError:
                 raise EmptyDataError("header list and data body are empty")

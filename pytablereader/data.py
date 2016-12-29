@@ -45,13 +45,20 @@ class TableData(object):
         return self.__header_list
 
     @property
-    def record_list(self):
+    def value_matrix(self):
         """
         :return: Table data records.
         :rtype: list
         """
 
         return self.__record_list
+
+    @property
+    def record_list(self):
+        # alias property of value_matrix. this method will be deleted in the
+        # future
+
+        return self.value_matrix
 
     def __init__(
             self, table_name, header_list, record_list, item_modifier=None):
@@ -66,7 +73,7 @@ class TableData(object):
 
     def __repr__(self):
         return "table_name={}, header_list={}, record_list={}".format(
-            self.table_name, self.header_list, self.record_list)
+            self.table_name, self.header_list, self.value_matrix)
 
     def __eq__(self, other):
         return all([
@@ -78,12 +85,12 @@ class TableData(object):
                     for lhs, rhs in zip(lhs_list, rhs_list)
                 ])
                 for lhs_list, rhs_list
-                in zip(self.record_list, other.record_list)
+                in zip(self.value_matrix, other.value_matrix)
             ]),
         ])
 
     def __hash__(self):
-        body = self.table_name + str(self.header_list) + str(self.record_list)
+        body = self.table_name + str(self.header_list) + str(self.value_matrix)
         return hashlib.sha1(body.encode("utf-8")).hexdigest()
 
     def is_empty_header(self):
@@ -96,17 +103,17 @@ class TableData(object):
 
     def is_empty_record(self):
         """
-        :return: |True| if the data :py:attr:`.record_list` is empty.
+        :return: |True| if the data :py:attr:`.value_matrix` is empty.
         :rtype: bool
         """
 
-        return dp.is_empty_sequence(self.record_list)
+        return dp.is_empty_sequence(self.value_matrix)
 
     def is_empty(self):
         """
         :return:
             |True| if the data :py:attr:`.header_list` or
-            :py:attr:`.record_list` is empty.
+            :py:attr:`.value_matrix` is empty.
         :rtype: bool
         """
 
@@ -122,7 +129,7 @@ class TableData(object):
         self.__item_modifier = JsonTableItemModifier()
 
         dict_body = []
-        for value_list in self.record_list:
+        for value_list in self.value_matrix:
             if dp.is_empty_sequence(value_list):
                 continue
 
@@ -152,7 +159,7 @@ class TableData(object):
 
         import pandas
 
-        dataframe = pandas.DataFrame(self.record_list)
+        dataframe = pandas.DataFrame(self.value_matrix)
         if not self.is_empty_header():
             dataframe.columns = self.header_list
 
