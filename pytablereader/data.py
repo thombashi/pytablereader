@@ -10,10 +10,7 @@ import hashlib
 
 import dataproperty as dp
 
-from ._table_item_modifier import (
-    TableItemModifier,
-    JsonTableItemModifier
-)
+from ._table_item_modifier import TableItemModifier
 from .error import InvalidDataError
 
 
@@ -126,7 +123,7 @@ class TableData(object):
         """
 
         old_modifier = self.__item_modifier
-        self.__item_modifier = JsonTableItemModifier()
+        self.__item_modifier = TableItemModifier(float_type=float)
 
         dict_body = []
         for value_list in self.value_matrix:

@@ -1,5 +1,5 @@
 beautifulsoup4
-DataProperty>=0.13.9
+DataProperty>=0.14.0
 jsonschema
 logbook
 markdown2
