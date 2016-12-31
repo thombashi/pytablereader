@@ -165,8 +165,8 @@ class Test_TableUrlLoader_load:
         assert loader.format_name == "csv"
 
         for tabledata, expected in zip(loader.load(), expeced_list):
-            print("expected: {}".format(ptw.dump_tabledata(expected)))
-            print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+            print("[expected]\n{}".format(ptw.dump_tabledata(expected)))
+            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
 
             assert tabledata == expected
 

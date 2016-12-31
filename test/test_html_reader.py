@@ -572,7 +572,7 @@ class Test_HtmlTableFileLoader_load:
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
             print("[test {}]".format(test_id))
             print("expected: {}".format(ptw.dump_tabledata(expected)))
-            print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+            print("actual: {}".format(ptw.dump_tabledata(tabledata)))
             print("")
 
             assert tabledata == expected
@@ -649,7 +649,7 @@ class Test_HtmlTableTextLoader_load:
         loader.table_name = table_name
 
         for tabledata in loader.load():
-            print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
 
             assert tabledata in expected_tabletuple_list
 
