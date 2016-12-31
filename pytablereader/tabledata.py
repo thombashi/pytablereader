@@ -111,7 +111,7 @@ class TableData(object):
 
         return any([self.is_empty_header(), self.is_empty_record()])
 
-    def as_dict(self):
+    def asdict(self):
         """
         :return: Table data as a |dict| instance.
         :rtype: dict
@@ -213,3 +213,9 @@ class TableData(object):
             self.__to_record(record)
             for record in record_list
         ]
+
+    def as_dict(self):
+        return self.asdict()
+
+        # alias to asdict method.
+        # this method will be deleted in the future.
