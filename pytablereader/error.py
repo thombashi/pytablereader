@@ -11,7 +11,7 @@ import requests
 
 class ValidationError(Exception):
     """
-    Raised when data is not properly formatted.
+    Exception raised when data is not properly formatted.
     """
 
 
@@ -23,13 +23,13 @@ class InvalidNameError(Exception):
 
 class InvalidTableNameError(InvalidNameError):
     """
-    Raised when invalid table name used.
+    Exception raised when invalid table name used.
     """
 
 
 class InvalidHeaderNameError(InvalidNameError):
     """
-    Raised when table header name is invalid.
+    Exception raised when table header name is invalid.
     """
 
 
@@ -41,37 +41,37 @@ class InvalidPathError(Exception):
 
 class InvalidFilePathError(InvalidPathError):
     """
-    Raised when invalid file path used.
+    Exception raised when invalid file path used.
     """
 
 
 class InvalidUrlError(InvalidPathError):
     """
-    Raised when invalid URL used.
+    Exception raised when invalid URL used.
     """
 
 
 class InvalidDataError(ValueError):
     """
-    Raised when data is invalid to load.
+    Exception raised when data is invalid to load.
     """
 
 
 class EmptyDataError(InvalidDataError):
     """
-    Raised when data is not included valid table data.
+    Exception raised when data is not included valid table data.
     """
 
 
 class OpenError(IOError):
     """
-    Raised when failed to open a file.
+    Exception raised when failed to open a file.
     """
 
 
 class LoaderNotFoundError(Exception):
     """
-    Raised when appropriate loader not found.
+    Exception raised when appropriate loader not found.
     """
 
 

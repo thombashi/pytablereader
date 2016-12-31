@@ -118,7 +118,7 @@ class TableData(object):
 
     def as_dict(self):
         """
-        :return: Table data as a dictionary.
+        :return: Table data as a |dict| instance.
         :rtype: dict
         """
 
@@ -147,7 +147,7 @@ class TableData(object):
 
     def as_dataframe(self):
         """
-        :return: Table data as a Pandas data frame.
+        :return: Table data as a ``pandas.DataFrame`` instance.
         :rtype: pandas.DataFrame
 
         .. note::
