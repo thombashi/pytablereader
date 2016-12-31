@@ -9,9 +9,9 @@ from __future__ import unicode_literals
 
 import dataproperty
 
-from ..data import TableData
 from ..error import InvalidDataError
 from ..formatter import TableFormatter
+from ..tabledata import TableData
 
 
 class CsvTableFormatter(TableFormatter):

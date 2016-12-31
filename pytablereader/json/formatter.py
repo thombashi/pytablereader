@@ -12,9 +12,9 @@ import jsonschema
 import six
 
 from .._constant import TableNameTemplate as tnt
-from ..data import TableData
 from ..error import ValidationError
 from ..formatter import TableFormatter
+from ..tabledata import TableData
 
 
 class JsonConverter(TableFormatter):

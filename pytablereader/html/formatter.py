@@ -12,9 +12,9 @@ import bs4
 import dataproperty as dp
 
 from .._constant import TableNameTemplate as tnt
-from ..data import TableData
 from ..error import InvalidDataError
 from ..formatter import TableFormatter
+from ..tabledata import TableData
 
 
 class HtmlTableFormatter(TableFormatter):

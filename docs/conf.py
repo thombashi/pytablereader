@@ -403,13 +403,13 @@ rp_class = u"""
     :py:class:`~pytablereader.CsvTableTextLoader`
 
 .. |TableData| replace::
-    :py:class:`~pytablereader.data.TableData`
+    :py:class:`~pytablereader.TableData`
 """
 
 rst_prolog = (
     rp_common +
     rp_method +
     rp_class +
-    rp_docstring + 
+    rp_docstring +
     rp_builtin
 )

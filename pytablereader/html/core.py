@@ -33,7 +33,7 @@ class HtmlTableLoader(TableLoader):
 
 class HtmlTableFileLoader(HtmlTableLoader):
     """
-    HTML format file loader class.
+    HTML format tabular data file loader class.
 
     :param str file_path: Path to the loading HTML file.
 

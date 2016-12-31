@@ -10,7 +10,7 @@ import pytablewriter as ptw
 import pytest
 
 import pytablereader as ptr
-from pytablereader.data import TableData
+from pytablereader import TableData
 from pytablereader._tabledata_sanitizer import SQLiteTableDataSanitizer
 
 

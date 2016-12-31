@@ -14,7 +14,7 @@ import pytablewriter as ptw
 
 import pytablereader as ptr
 from pytablereader.interface import TableLoader
-from pytablereader.data import TableData
+from pytablereader import TableData
 from pytablereader import InvalidTableNameError
 
 

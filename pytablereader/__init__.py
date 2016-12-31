@@ -19,7 +19,7 @@ from .error import (
     LoaderNotFoundError,
     HTTPError
 )
-from .data import TableData
+from .tabledata import TableData
 from ._logger import logger
 from ._table_item_modifier import TableItemModifier
 

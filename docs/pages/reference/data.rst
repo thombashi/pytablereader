@@ -4,7 +4,7 @@ Data Structure
 TableData
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: pytablereader.data.TableData
+.. autoclass:: pytablereader.TableData
     :members:
     :exclude-members: record_list
     :undoc-members:

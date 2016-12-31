@@ -13,7 +13,7 @@ import xlrd
 from .._validator import FileValidator
 from ..error import InvalidDataError
 from ..error import OpenError
-from ..data import TableData
+from ..tabledata import TableData
 from .core import SpreadSheetLoader
 
 

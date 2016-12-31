@@ -228,7 +228,7 @@ class Test_TableUrlLoader_load:
             )
 
         expeced_list = [
-            ptr.data.TableData(
+            ptr.TableData(
                 table_name='testsheet1',
                 header_list=['a1', 'b1', 'c1'],
                 record_list=[
@@ -237,7 +237,7 @@ class Test_TableUrlLoader_load:
                     [2.0, 2.2, 'bb'],
                     [3.0, 3.3, 'cc'],
                 ]),
-            ptr.data.TableData(
+            ptr.TableData(
                 table_name='testsheet3',
                 header_list=['a3', 'b3', 'c3'],
                 record_list=[

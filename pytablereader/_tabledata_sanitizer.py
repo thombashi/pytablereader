@@ -19,7 +19,7 @@ from .error import (
     InvalidHeaderNameError,
     EmptyDataError
 )
-from .data import TableData
+from .tabledata import TableData
 
 
 @six.add_metaclass(abc.ABCMeta)

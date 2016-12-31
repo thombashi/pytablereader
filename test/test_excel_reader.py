@@ -148,7 +148,7 @@ class Test_ExcelTableFileLoader_load:
                 "%(sheet)s",
                 0,
                 [
-                    ptr.data.TableData(
+                    ptr.TableData(
                         table_name="testsheet1",
                         header_list=["a1", "b1", "c1"],
                         record_list=[
@@ -157,7 +157,7 @@ class Test_ExcelTableFileLoader_load:
                             [2.0, 2.2, "bb"],
                             [3.0, 3.3, "cc"],
                         ]),
-                    ptr.data.TableData(
+                    ptr.TableData(
                         table_name="testsheet3",
                         header_list=["a3", "b3", "c3"],
                         record_list=[
@@ -172,7 +172,7 @@ class Test_ExcelTableFileLoader_load:
                 "%(filename)s_%(sheet)s",
                 2,
                 [
-                    ptr.data.TableData(
+                    ptr.TableData(
                         table_name="tmp_testsheet1",
                         header_list=["aa1", "ab1", "ac1"],
                         record_list=[
@@ -180,7 +180,7 @@ class Test_ExcelTableFileLoader_load:
                             [2.0, 2.2, "bb"],
                             [3.0, 3.3, "cc"],
                         ]),
-                    ptr.data.TableData(
+                    ptr.TableData(
                         table_name="tmp_testsheet3",
                         header_list=["a3", "b3", "c3"],
                         record_list=[
