@@ -10,7 +10,6 @@ import hashlib
 
 import dataproperty as dp
 
-from ._table_item_modifier import TableItemModifier
 from .error import InvalidDataError
 
 
@@ -58,11 +57,7 @@ class TableData(object):
         return self.value_matrix
 
     def __init__(
-            self, table_name, header_list, record_list, item_modifier=None):
-        if item_modifier is None:
-            self.__item_modifier = TableItemModifier()
-        else:
-            self.__item_modifier = item_modifier
+            self, table_name, header_list, record_list):
 
         self.__table_name = table_name
         self.__header_list = header_list
@@ -122,8 +117,9 @@ class TableData(object):
         :rtype: dict
         """
 
-        old_modifier = self.__item_modifier
-        self.__item_modifier = TableItemModifier(float_type=float)
+        dp_extractor = dp.DataPropertyExtractor()
+        dp_extractor.strip_str = '"'
+        dp_extractor.float_type = float
 
         dict_body = []
         for value_list in self.value_matrix:
@@ -131,7 +127,7 @@ class TableData(object):
                 continue
 
             dict_record = [
-                (header, self.__item_modifier.modify_data(value))
+                (header, dp_extractor.to_dataproperty(value).data)
                 for header, value in zip(self.header_list, value_list)
                 if value is not None
             ]
@@ -140,8 +136,6 @@ class TableData(object):
                 continue
 
             dict_body.append(dict(dict_record))
-
-        self.__item_modifier = old_modifier
 
         return {self.table_name: dict_body}
 
@@ -177,10 +171,13 @@ class TableData(object):
         :raises ValueError: If the ``value`` is invalid.
         """
 
+        dp_extractor = dp.DataPropertyExtractor()
+        dp_extractor.strip_str = '"'
+
         try:
             # dictionary to list
             return [
-                self.__item_modifier.modify_data(values.get(header))
+                dp_extractor.to_dataproperty(values.get(header)).data
                 for header in self.header_list
             ]
         except AttributeError:
@@ -190,7 +187,7 @@ class TableData(object):
             # namedtuple to list
             dict_value = values._asdict()
             return [
-                self.__item_modifier.modify_data(dict_value.get(header))
+                dp_extractor.to_dataproperty(dict_value.get(header)).data
                 for header in self.header_list
             ]
         except AttributeError:
@@ -198,7 +195,7 @@ class TableData(object):
 
         try:
             return [
-                self.__item_modifier.modify_data(value) for value in values
+                dp_extractor.to_dataproperty(value).data for value in values
             ]
         except TypeError:
             raise InvalidDataError(

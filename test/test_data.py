@@ -16,7 +16,6 @@ import pytest
 from pytablereader import (
     TableData,
     InvalidDataError,
-    TableItemModifier
 )
 
 try:
@@ -70,13 +69,12 @@ class Test_TableData_constructor:
         assert tabledata == expected
 
     @pytest.mark.parametrize(
-        ["table_name", "header_list", "record_list", "none_value", "expected"],
+        ["table_name", "header_list", "record_list", "expected"],
         [
             [
                 "mixdata",
                 attr_list_2,
                 __MIXED_DATA,
-                None,
                 TableData("mixdata", attr_list_2, [
                     [1, 2],
                     [3, 4],
@@ -88,29 +86,12 @@ class Test_TableData_constructor:
                     [11, None],
                 ]),
             ],
-            [
-                "mixdata",
-                attr_list_2,
-                __MIXED_DATA,
-                "NULL",
-                TableData("mixdata", attr_list_2, [
-                    [1, 2],
-                    [3, 4],
-                    [5, 6],
-                    [7, 8],
-                    [9, "NULL"],
-                    ["NULL", 10],
-                    ["NULL", "NULL"],
-                    [11, "NULL"],
-                ]),
-            ],
         ]
     )
     def test_normal_none_value(
-            self, table_name, header_list, record_list, none_value, expected):
+            self, table_name, header_list, record_list, expected):
         tabledata = TableData(
-            table_name, header_list, record_list,
-            item_modifier=TableItemModifier(none_value=none_value))
+            table_name, header_list, record_list)
 
         print("expected: {}".format(ptw.dump_tabledata(expected)))
         print("actusl: {}".format(ptw.dump_tabledata(tabledata)))

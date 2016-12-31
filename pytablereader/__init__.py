@@ -21,7 +21,6 @@ from .error import (
 )
 from .tabledata import TableData
 from ._logger import logger
-from ._table_item_modifier import TableItemModifier
 
 from .csv.core import (
     CsvTableFileLoader,
