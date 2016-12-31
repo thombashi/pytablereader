@@ -25,7 +25,7 @@ def write_examples(maker):
     maker.write_chapter("For more information")
     maker.write_line_list([
         "More examples are available at ",
-        "http://{:s}.readthedocs.org/en/latest/pages/examples/index.html".format(
+        "http://{:s}.rtfd.io/en/latest/pages/examples/index.html".format(
             PROJECT_NAME),
     ])
 
@@ -48,7 +48,7 @@ def main():
     maker.set_indent_level(0)
     maker.write_chapter("Documentation")
     maker.write_line_list([
-        "http://{:s}.readthedocs.org/en/latest/".format(PROJECT_NAME),
+        "http://{:s}.rtfd.io/".format(PROJECT_NAME),
     ])
 
     maker.write_chapter("Related Project")
