@@ -40,15 +40,17 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from the file extension to loading file.
         Supported file extensions are as follows:
 
-            ================  =====================================
-            Format name                Loader                      
-            ================  =====================================
-            ``csv``           :py:class:`~.CsvTableFileLoader`     
-            ``xls``/``xlsx``  :py:class:`~.ExcelTableFileLoader`   
-            ``htm``/``html``  :py:class:`~.HtmlTableFileLoader`    
-            ``json``          :py:class:`~.JsonTableFileLoader`    
-            ``md``            :py:class:`~.MarkdownTableFileLoader`
-            ================  =====================================
+            ====================  =====================================
+            Format name                Loader                          
+            ====================  =====================================
+            ``"csv"``             :py:class:`~.CsvTableFileLoader`     
+            ``"xls"``/``"xlsx"``  :py:class:`~.ExcelTableFileLoader`   
+            ``"htm"``/``"html"``  :py:class:`~.HtmlTableFileLoader`    
+            ``"json"``            :py:class:`~.JsonTableFileLoader`    
+            ``"ltsv"``            :py:class:`~.LtsvTableFileLoader`    
+            ``"md"``              :py:class:`~.MarkdownTableFileLoader`
+            ``"tsv"``             :py:class:`~.TsvTableFileLoader`     
+            ====================  =====================================
 
         :return:
             Loader that coincide with the file extesnion of the
@@ -71,8 +73,10 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             ``"excel"``      :py:class:`~.ExcelTableFileLoader`    
             ``"html"``       :py:class:`~.HtmlTableFileLoader`     
             ``"json"``       :py:class:`~.JsonTableFileLoader`     
+            ``"ltsv"``       :py:class:`~.LtsvTableFileLoader`     
             ``"markdown"``   :py:class:`~.MarkdownTableFileLoader` 
             ``"mediawiki"``  :py:class:`~.MediaWikiTableFileLoader`
+            ``"tsv"``        :py:class:`~.TsvTableFileLoader`      
             ===============  ======================================
 
         :param str format_name: Format name string (case insensitive).

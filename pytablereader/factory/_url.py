@@ -61,16 +61,17 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from the file extension to loading file.
         Supported file extensions are as follows:
 
-            =================================  =====================================
-            Format name                                 Loader                      
-            =================================  =====================================
-            ``csv``                            :py:class:`~.CsvTableTextLoader`     
-            ``xls``/``xlsx``                   :py:class:`~.ExcelTableFileLoader`   
-            ``htm``/``html``/``asp``/``aspx``  :py:class:`~.HtmlTableTextLoader`    
-            ``json``                           :py:class:`~.JsonTableTextLoader`    
-            ``md``                             :py:class:`~.MarkdownTableTextLoader`
-            ``tsv``                            :py:class:`~.TsvTableTextLoader`     
-            =================================  =====================================
+            =========================================  =====================================
+            Format name                                 Loader                              
+            =========================================  =====================================
+            ``"csv"``                                  :py:class:`~.CsvTableTextLoader`     
+            ``"xls"``/``"xlsx"``                       :py:class:`~.ExcelTableFileLoader`   
+            ``"htm"``/``"html"``/``"asp"``/``"aspx"``  :py:class:`~.HtmlTableTextLoader`    
+            ``"json"``                                 :py:class:`~.JsonTableTextLoader`    
+            ``"ltsv"``                                 :py:class:`~.LtsvTableTextLoader`    
+            ``"md"``                                   :py:class:`~.MarkdownTableTextLoader`
+            ``"tsv"``                                  :py:class:`~.TsvTableTextLoader`     
+            =========================================  =====================================
 
         :return:
             Loader that coincide with the file extension of the URL.
@@ -106,6 +107,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             ``"excel"``      :py:class:`~.ExcelTableFileLoader`    
             ``"html"``       :py:class:`~.HtmlTableTextLoader`     
             ``"json"``       :py:class:`~.JsonTableTextLoader`     
+            ``"ltsv"``       :py:class:`~.LtsvTableTextLoader`     
             ``"markdown"``   :py:class:`~.MarkdownTableTextLoader` 
             ``"mediawiki"``  :py:class:`~.MediaWikiTableTextLoader`
             ``"tsv"``        :py:class:`~.TsvTableTextLoader`      
