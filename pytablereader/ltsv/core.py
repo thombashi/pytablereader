@@ -35,16 +35,16 @@ class LtsvTableLoader(TableLoader):
         Encoding of the LTSV data.
     """
 
+    @property
+    def format_name(self):
+        return "ltsv"
+
     def __init__(self, source):
         super(LtsvTableLoader, self).__init__(source)
 
         self.encoding = "utf-8"
 
         self._ltsv_input_stream = None
-
-    @property
-    def format_name(self):
-        return "ltsv"
 
     def _to_data_matrix(self):
         from collections import OrderedDict

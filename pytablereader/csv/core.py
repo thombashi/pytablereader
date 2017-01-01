@@ -52,6 +52,10 @@ class CsvTableLoader(TableLoader):
     """
 
     @property
+    def format_name(self):
+        return "csv"
+
+    @property
     def delimiter(self):
         # "delimiter" must be string, not unicode
         return str(MultiByteStrDecoder(self.__delimiter).unicode_str)
@@ -78,10 +82,6 @@ class CsvTableLoader(TableLoader):
         self.delimiter = ","
         self.quotechar = '"'
         self.encoding = "utf-8"
-
-    @property
-    def format_name(self):
-        return "csv"
 
     def _to_data_matrix(self):
         try:
