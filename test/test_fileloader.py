@@ -30,18 +30,13 @@ class Test_TableFileLoader_constructor:
             "/tmp/valid/test/新しいフォルダー/新しいテキスト ドキュメント.csv".encode("utf_8"),
             None, ptr.CsvTableFileLoader
         ],
-        [
-            "/tmp/valid/test/data/validext.xlsx",
-            None, ptr.ExcelTableFileLoader
-        ],
-        [
-            "/tmp/valid/test/data/validext.html",
-            None, ptr.HtmlTableFileLoader
-        ],
-        [
-            "/tmp/valid/test/data/validext.json",
-            None, ptr.JsonTableFileLoader
-        ],
+        ["/tmp/validext.xlsx", None, ptr.ExcelTableFileLoader],
+        ["/tmp/validext.html", None, ptr.HtmlTableFileLoader],
+        ["/tmp/validext.json", None, ptr.JsonTableFileLoader],
+        ["/tmp/validext.ltsv", None, ptr.LtsvTableFileLoader],
+        ["/tmp/validext.md", None, ptr.MarkdownTableFileLoader],
+        ["/tmp/validext.tsv", None, ptr.TsvTableFileLoader],
+
         ["/tmp/validext.txt", "csv", ptr.CsvTableFileLoader],
         ["/tmp/テスト.txt".encode("utf_8"), "csv", ptr.CsvTableFileLoader],
         ["/tmp/validext.txt", "html", ptr.HtmlTableFileLoader],

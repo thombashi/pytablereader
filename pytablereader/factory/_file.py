@@ -11,6 +11,7 @@ from .._common import get_extension
 from ..csv.core import CsvTableFileLoader
 from ..html.core import HtmlTableFileLoader
 from ..json.core import JsonTableFileLoader
+from ..ltsv.core import LtsvTableFileLoader
 from ..markdown.core import MarkdownTableFileLoader
 from ..mediawiki.core import MediaWikiTableFileLoader
 from ..spreadsheet.excelloader import ExcelTableFileLoader
@@ -87,6 +88,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             "csv": CsvTableFileLoader,
             "html": HtmlTableFileLoader,
             "json": JsonTableFileLoader,
+            "ltsv": LtsvTableFileLoader,
             "tsv": TsvTableFileLoader,
         }
 

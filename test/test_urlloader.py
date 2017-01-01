@@ -54,6 +54,10 @@ class Test_TableUrlLoader_constructor:
             None, ptr.JsonTableTextLoader
         ],
         [
+            "https://github.com/validext.ltsv",
+            None, ptr.LtsvTableTextLoader
+        ],
+        [
             "https://github.com/validext.md",
             None, ptr.MarkdownTableTextLoader
         ],

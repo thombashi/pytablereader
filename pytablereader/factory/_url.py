@@ -28,6 +28,7 @@ from ..error import (
 )
 from ..html.core import HtmlTableTextLoader
 from ..json.core import JsonTableTextLoader
+from ..ltsv.core import LtsvTableTextLoader
 from ..markdown.core import MarkdownTableTextLoader
 from ..mediawiki.core import MediaWikiTableTextLoader
 from ..spreadsheet.excelloader import ExcelTableFileLoader
@@ -163,6 +164,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             "csv": CsvTableTextLoader,
             "html": HtmlTableTextLoader,
             "json": JsonTableTextLoader,
+            "ltsv": LtsvTableTextLoader,
             "tsv": TsvTableTextLoader,
         }
 
