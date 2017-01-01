@@ -28,6 +28,10 @@ class TsvTableFileLoader(CsvTableFileLoader):
         Table name string. Defaults to ``%(filename)s``.
     """
 
+    @property
+    def format_name(self):
+        return "tsv"
+
     def __init__(self, file_path):
         super(TsvTableFileLoader, self).__init__(file_path)
 
@@ -46,6 +50,10 @@ class TsvTableTextLoader(CsvTableTextLoader):
 
         Table name string. Defaults to ``%(format_name)s%(format_id)s``.
     """
+
+    @property
+    def format_name(self):
+        return "tsv"
 
     def __init__(self, text):
         super(TsvTableTextLoader, self).__init__(text)

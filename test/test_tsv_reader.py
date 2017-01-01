@@ -115,7 +115,7 @@ class Test_TsvTableFileLoader_make_table_name:
         [
             "%(format_name)s%(format_id)s_%(filename)s",
             "/path/to/data.tsv",
-            "csv0_data",
+            "tsv0_data",
         ],
         [
             "%(%(filename)s)",
@@ -232,12 +232,12 @@ class Test_TsvTableFileLoader_load:
         ])
     def test_exception(
             self, tmpdir, table_text, filename, header_list, expected):
-        p_csv = tmpdir.join(filename)
+        p_tsv = tmpdir.join(filename)
 
-        with io.open(str(p_csv), "w", encoding="utf8") as f:
+        with io.open(str(p_tsv), "w", encoding="utf8") as f:
             f.write(table_text)
 
-        loader = ptr.TsvTableFileLoader(str(p_csv))
+        loader = ptr.TsvTableFileLoader(str(p_tsv))
         loader.header_list = header_list
 
         with pytest.raises(expected):
@@ -271,7 +271,7 @@ class Test_TsvTableTextLoader_make_table_name:
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(["value", "expected"], [
-        ["%(format_name)s%(format_id)s", "csv0"],
+        ["%(format_name)s%(format_id)s", "tsv0"],
         ["tablename", "tablename"],
     ])
     def test_normal(self, value, expected):
