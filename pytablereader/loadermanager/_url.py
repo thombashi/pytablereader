@@ -19,12 +19,10 @@ class TableUrlLoader(TableLoaderManager):
     :param str url: URL to load.
     :param str format_name: Data format name to load.
         Supported formats are:
-            * ``"csv"``
-            * ``"excel"``
-            * ``"html"``
-            * ``"json"``
-            * ``"markdown"``
-            * ``"mediawiki"``
+        ``"csv"``, ``"excel"``, ``"html"``, ``"json"``, ``"ltsv"``,
+        ``"markdown"``, ``"mediawiki"``, ``"tsv"``.
+        If the value is |None|, automatically detect file format from
+        the ``url``.
     :param dict proxies: http/https proxy information.
 
         .. seealso::
