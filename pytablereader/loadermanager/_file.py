@@ -54,3 +54,21 @@ class TableFileLoader(TableLoaderManager):
         """
 
         return super(TableFileLoader, self).load()
+
+    @classmethod
+    def get_format_name_list(cls):
+        """
+        :return:
+            Available format name List. These names can be used
+            :py:class:`.TableFileLoader` class constructor.
+        :rtype: list
+
+        :Examples:
+
+            .. code:: python
+
+                >>> pytablereader.TableFileLoader.get_format_name_list()
+                ['csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'tsv']
+        """
+
+        return TableFileLoaderFactory("dummy").get_format_name_list()

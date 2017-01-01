@@ -17,6 +17,17 @@ import pytablereader as ptr
 from pytablereader.interface import TableLoader
 
 
+class Test_TableUrlLoader_get_format_name_list:
+
+    def test_normal(self):
+        format_name_list = ptr.TableUrlLoader.get_format_name_list()
+
+        assert format_name_list == [
+            'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki',
+            'tsv',
+        ]
+
+
 class Test_TableUrlLoader_constructor:
 
     @responses.activate

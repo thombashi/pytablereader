@@ -58,3 +58,21 @@ class TableUrlLoader(TableLoaderManager):
         """
 
         return super(TableUrlLoader, self).load()
+
+    @classmethod
+    def get_format_name_list(cls):
+        """
+        :return:
+            Available format name List. These names can be used
+            :py:class:`.TableUrlLoader` class constructor.
+        :rtype: list
+
+        :Examples:
+
+            .. code:: python
+
+                >>> pytablereader.TableUrlLoaderFactory.get_format_name_list()
+                ['csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'tsv']
+        """
+
+        return TableUrlLoaderFactory("http://dummy.com/").get_format_name_list()

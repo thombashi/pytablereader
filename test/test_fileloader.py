@@ -19,6 +19,17 @@ import pytablereader as ptr
 from pytablereader.interface import TableLoader
 
 
+class Test_TableFileLoader_get_format_name_list:
+
+    def test_normal(self):
+        format_name_list = ptr.TableFileLoader.get_format_name_list()
+
+        assert format_name_list == [
+            'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki',
+            'tsv',
+        ]
+
+
 class Test_TableFileLoader_constructor:
 
     @pytest.mark.parametrize(["file_path", "format_name", "expected"], [
