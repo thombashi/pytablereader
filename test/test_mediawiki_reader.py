@@ -379,9 +379,9 @@ class Test_MediaWikiTableFileLoader_load:
 
         load = False
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
-            print("test {}".format(test_id))
-            print("  tabledata: {}".format(tabledata))
-            print("  expected:  {}".format(expected))
+            print("--- test {} ---".format(test_id))
+            print("[tabledata]\n{}".format(tabledata))
+            print("[expected]\n{}".format(expected))
             print("")
             assert tabledata == expected
 
@@ -466,9 +466,9 @@ class Test_MediaWikiTableTextLoader_load:
 
         load = False
         for tabledata in loader.load():
-            print("id: {}".format(test_id))
-            print("  tabledata: {}".format(tabledata))
-            print("  expected:")
+            print("--- id {} ---".format(test_id))
+            print("[tabledata]\n{}".format(tabledata))
+            print("[expected]")
             for expected in expected_tabletuple_list:
                 print("    {}".format(expected))
             print("")

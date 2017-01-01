@@ -570,9 +570,9 @@ class Test_HtmlTableFileLoader_load:
         loader.table_name = table_name
 
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
-            print("[test {}]".format(test_id))
-            print("expected: {}".format(ptw.dump_tabledata(expected)))
-            print("actual: {}".format(ptw.dump_tabledata(tabledata)))
+            print("--- test {} ---".format(test_id))
+            print("[expected]\n{}".format(ptw.dump_tabledata(expected)))
+            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
             print("")
 
             assert tabledata == expected

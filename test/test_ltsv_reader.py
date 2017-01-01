@@ -124,8 +124,8 @@ class Test_LtsvTableFileLoader_load:
 
         for tabledata in loader.load():
             print("test-id={}".format(test_id))
-            print("[expected]: {}".format(ptw.dump_tabledata(expected)))
-            print("[actual]: {}".format(ptw.dump_tabledata(tabledata)))
+            print("[expected]\n{}".format(ptw.dump_tabledata(expected)))
+            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
 
             assert tabledata == expected
 
