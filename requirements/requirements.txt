@@ -1,9 +1,9 @@
 beautifulsoup4
-DataProperty>=0.15.1
+DataProperty>=0.15.2
 jsonschema
 logbook
 markdown2
-mbstrdecoder>=0.2.0
+mbstrdecoder>=0.2.1
 pathvalidate>=0.12.1
 path.py
 requests
