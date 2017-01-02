@@ -56,5 +56,4 @@ docs/_build/
 # PyBuilder
 target/
 desktop.ini
-*.ipynb
 upgrade.sh
