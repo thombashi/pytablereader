@@ -360,8 +360,8 @@ class Test_MarkdownTableFileLoader_load:
             raise ValueError("should not reach this line")
 
     @pytest.mark.parametrize(["filename", "expected"], [
-        ["", IOError],
-        [None, IOError],
+        ["", ptr.InvalidFilePathError],
+        [None, ptr.InvalidFilePathError],
     ])
     def test_exception(
             self, tmpdir, filename, expected):

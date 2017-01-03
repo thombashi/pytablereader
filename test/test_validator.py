@@ -30,8 +30,8 @@ class Test_FileValidator_validate:
         validator.validate()
 
     @pytest.mark.parametrize(["value", "expected"], [
-        [None, IOError],
-        ["", IOError],
+        [None, ptr.InvalidFilePathError],
+        ["", ptr.InvalidFilePathError],
     ])
     def test_exception_null(self, value, expected):
         validator = FileValidator(value)

@@ -604,8 +604,8 @@ class Test_HtmlTableFileLoader_load:
                 pass
 
     @pytest.mark.parametrize(["filename", "expected"], [
-        ["", IOError],
-        [None, IOError],
+        ["", ptr.InvalidFilePathError],
+        [None, ptr.InvalidFilePathError],
     ])
     def test_exception_null_filename(
             self, tmpdir, filename, expected):

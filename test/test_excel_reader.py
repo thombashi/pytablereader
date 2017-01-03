@@ -230,8 +230,8 @@ class Test_ExcelTableFileLoader_load:
             "expected",
         ],
         [
-            ["", IOError],
-            [None, IOError],
+            ["", ptr.InvalidFilePathError],
+            [None, ptr.InvalidFilePathError],
         ])
     def test_null_file_path(self, source, expected):
         loader = ptr.ExcelTableFileLoader(source)

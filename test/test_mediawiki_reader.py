@@ -420,8 +420,8 @@ class Test_MediaWikiTableFileLoader_load:
             raise ValueError("should not reach this line")
 
     @pytest.mark.parametrize(["filename", "expected"], [
-        ["", IOError],
-        [None, IOError],
+        ["", ptr.InvalidFilePathError],
+        [None, ptr.InvalidFilePathError],
     ])
     def test_exception_null(
             self, tmpdir, filename, expected):

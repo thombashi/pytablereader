@@ -4,7 +4,7 @@ jsonschema
 logbook
 markdown2
 mbstrdecoder>=0.2.1
-pathvalidate>=0.12.1
+pathvalidate>=0.13.0
 path.py
 requests
 six
