@@ -13,28 +13,36 @@ import pytablereader as ptr
 from pytablereader.interface import TableLoader
 
 
+def write_worksheet(worksheet, table):
+    for row_idx, row in enumerate(table):
+        for col_idx, item in enumerate(row):
+            worksheet.write(row_idx, col_idx, item)
+
+
 @pytest.fixture
 def valid_excel_file_path(tmpdir):
     test_file_path = tmpdir.join("tmp.xlsx")
     workbook = xlsxwriter.Workbook(str(test_file_path))
 
-    worksheet = workbook.add_worksheet("testsheet1")
-    table = [
+    write_worksheet(workbook.add_worksheet("boolsheet"), table=[
+        ["true", "false", "tf", "lost"],
+        ["True", "False", "True", "True"],
+        ["true", "false", "False", ""],
+        ["TRUE", "FALSE", "False", "False"],
+    ])
+
+    write_worksheet(workbook.add_worksheet("testsheet1"), table=[
         ["", "", "", ""],
         ["", "a1", "b1", "c1"],
         ["", "aa1", "ab1", "ac1"],
         ["", 1, 1.1, "a"],
         ["", 2, 2.2, "bb"],
         ["", 3, 3.3, "cc"],
-    ]
-    for row_idx, row in enumerate(table):
-        for col_idx, item in enumerate(row):
-            worksheet.write(row_idx, col_idx, item)
+    ])
 
     worksheet = workbook.add_worksheet("testsheet2")
 
-    worksheet = workbook.add_worksheet("testsheet3")
-    table = [
+    write_worksheet(workbook.add_worksheet("testsheet3"), table=[
         ["", "", ""],
         ["", "", ""],
         ["a3", "b3", "c3"],
@@ -42,21 +50,14 @@ def valid_excel_file_path(tmpdir):
         [4, 1.1, "a"],
         [5, "", "bb"],
         [6, 3.3, ""],
-    ]
-    for row_idx, row in enumerate(table):
-        for col_idx, item in enumerate(row):
-            worksheet.write(row_idx, col_idx, item)
+    ])
 
-    worksheet = workbook.add_worksheet("invalid_sheet")
-    table = [
+    write_worksheet(workbook.add_worksheet("invalid_sheet"), table=[
         ["", "", "", ""],
         ["", "a", "", "c"],
         ["", "aa", "ab", ""],
         ["", "", 1.1, "a"],
-    ]
-    for row_idx, row in enumerate(table):
-        for col_idx, item in enumerate(row):
-            worksheet.write(row_idx, col_idx, item)
+    ])
 
     workbook.close()
 
@@ -68,16 +69,12 @@ def invalid_excel_file_path(tmpdir):
     test_file_path = tmpdir.join("invalid.xlsx")
     workbook = xlsxwriter.Workbook(str(test_file_path))
 
-    worksheet = workbook.add_worksheet("testsheet1")
-    table = [
+    write_worksheet(workbook.add_worksheet("testsheet1"), table=[
         ["", "", "", ""],
         ["", "a", "", "c"],
         ["", "aa", "ab", ""],
         ["", "", 1.1, "a"],
-    ]
-    for row_idx, row in enumerate(table):
-        for col_idx, item in enumerate(row):
-            worksheet.write(row_idx, col_idx, item)
+    ])
 
     worksheet = workbook.add_worksheet("testsheet2")
 
@@ -149,6 +146,14 @@ class Test_ExcelTableFileLoader_load:
                 0,
                 [
                     ptr.TableData(
+                        table_name="boolsheet",
+                        header_list=["true", "false", "tf", "lost"],
+                        record_list=[
+                            [True, False, True, True],
+                            [True, False, False, ""],
+                            [True, False, False, False],
+                        ]),
+                    ptr.TableData(
                         table_name="testsheet1",
                         header_list=["a1", "b1", "c1"],
                         record_list=[
@@ -172,6 +177,10 @@ class Test_ExcelTableFileLoader_load:
                 "%(filename)s_%(sheet)s",
                 2,
                 [
+                    ptr.TableData(
+                        table_name="tmp_boolsheet",
+                        header_list=["TRUE", "FALSE", "False", "False"],
+                        record_list=[]),
                     ptr.TableData(
                         table_name="tmp_testsheet1",
                         header_list=["aa1", "ab1", "ac1"],
