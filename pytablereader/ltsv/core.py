@@ -127,7 +127,6 @@ class LtsvTableFileLoader(LtsvTableLoader):
         """
 
         self._validate()
-        pv.validate_file_path(self.source)
 
         self._ltsv_input_stream = io.open(
             self.source, "r", encoding=self.encoding)

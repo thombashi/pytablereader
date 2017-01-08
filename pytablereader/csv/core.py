@@ -12,7 +12,6 @@ import platform
 
 import dataproperty as dp
 from mbstrdecoder import MultiByteStrDecoder
-import pathvalidate
 import six
 
 from .._constant import TableNameTemplate as tnt
@@ -147,7 +146,6 @@ class CsvTableFileLoader(CsvTableLoader):
         """
 
         self._validate()
-        pathvalidate.validate_file_path(self.source)
 
         if all([
             platform.system() == "Windows",
