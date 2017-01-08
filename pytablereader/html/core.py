@@ -72,11 +72,11 @@ class HtmlTableFileLoader(HtmlTableLoader):
             ===================  ==============================================
             ``%(filename)s``     |filename_desc|
             ``%(title)s``        Title tag text of the html.
-            ``%(key)s``          | This is replaced to :
+            ``%(key)s``          | This is replaced to:
                                  | **(1)** ``id`` attribute of the table tag
                                  | **(2)** ``%(format_name)s%(format_id)s``
-                                 | if ``id`` attribute is not included
-                                 | in the table tag.
+                                 | if ``id`` attribute not present in the
+                                 | table tag.
             ``%(format_name)s``  ``"html"``
             ``%(format_id)s``    |format_id_desc|
             ``%(global_id)s``    |global_id|
