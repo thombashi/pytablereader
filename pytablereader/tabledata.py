@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 import hashlib
 
 import dataproperty as dp
+import six
 
 from .error import InvalidDataError
 
@@ -82,7 +83,11 @@ class TableData(object):
         ])
 
     def __hash__(self):
-        body = self.table_name + str(self.header_list) + str(self.value_matrix)
+        body = (
+            self.table_name +
+            six.text_type(self.header_list) +
+            six.text_type(self.value_matrix)
+        )
         return hashlib.sha1(body.encode("utf-8")).hexdigest()
 
     def is_empty_header(self):
