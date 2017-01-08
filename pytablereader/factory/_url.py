@@ -87,7 +87,9 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             raise InvalidUrlError("url must include path")
 
         logger.debug(
-            "create_from_path: url_extension={}".format(url_extension))
+            "TableUrlLoaderFactory.create_from_path: extension={}".format(
+                url_extension))
+
         loader_class = self._get_loader_class(
             self._get_extension_loader_mapping(), url_extension)
 
@@ -119,6 +121,10 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             If appropriate file loader not found.
         :raises TypeError: If ``format_name`` is not a string.
         """
+
+        logger.debug(
+            "TableUrlLoaderFactory.create_from_format_name: name={}".format(
+                format_name))
 
         loader_class = self._get_loader_class(
             self._get_format_name_loader_mapping(), format_name)

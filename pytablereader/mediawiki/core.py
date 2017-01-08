@@ -11,6 +11,10 @@ from .._constant import (
     SourceType,
     TableNameTemplate as tnt
 )
+from .._logger import (
+    FileSourceLogger,
+    TextSourceLogger,
+)
 from .._validator import (
     FileValidator,
     TextValidator
@@ -44,6 +48,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
         super(MediaWikiTableFileLoader, self).__init__(file_path)
 
         self._validator = FileValidator(file_path)
+        self._logger = FileSourceLogger(self)
 
     def load(self):
         """
@@ -73,6 +78,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         with open(self.source, "r") as fp:
             formatter = MediaWikiTableFormatter(fp.read())
@@ -103,6 +109,7 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
         super(MediaWikiTableTextLoader, self).__init__(text)
 
         self._validator = TextValidator(text)
+        self._logger = TextSourceLogger(self)
 
     def load(self):
         """
@@ -133,6 +140,7 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         formatter = MediaWikiTableFormatter(self.source)
         formatter.accept(self)

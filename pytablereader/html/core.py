@@ -9,7 +9,10 @@ from __future__ import unicode_literals
 import io
 
 from .._constant import TableNameTemplate as tnt
-from .._logger import logger
+from .._logger import (
+    FileSourceLogger,
+    TextSourceLogger,
+)
 from .._validator import (
     FileValidator,
     TextValidator
@@ -52,6 +55,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
         self.encoding = "utf-8"
 
         self._validator = FileValidator(file_path)
+        self._logger = FileSourceLogger(self)
 
     def load(self):
         """
@@ -87,12 +91,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
         """
 
         self._validate()
-
-        logger.debug("\n".join([
-            "loading html file:",
-            "  path={}".format(self.source),
-            "  encoding={}".format(self.encoding),
-        ]))
+        self._logger.logging_load()
 
         with io.open(self.source, "r", encoding=self.encoding) as fp:
             formatter = HtmlTableFormatter(fp.read())
@@ -116,6 +115,7 @@ class HtmlTableTextLoader(HtmlTableLoader):
         super(HtmlTableTextLoader, self).__init__(text)
 
         self._validator = TextValidator(text)
+        self._logger = TextSourceLogger(self)
 
     def load(self):
         """
@@ -147,10 +147,7 @@ class HtmlTableTextLoader(HtmlTableLoader):
         """
 
         self._validate()
-
-        logger.debug("\n".join([
-            "loading html text",
-        ]))
+        self._logger.logging_load()
 
         formatter = HtmlTableFormatter(self.source)
         formatter.accept(self)

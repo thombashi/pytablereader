@@ -12,6 +12,10 @@ import dataproperty as dp
 import pathvalidate as pv
 
 from .._constant import TableNameTemplate as tnt
+from .._logger import (
+    FileSourceLogger,
+    TextSourceLogger,
+)
 from .._validator import (
     FileValidator,
     TextValidator
@@ -99,6 +103,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
         super(LtsvTableFileLoader, self).__init__(file_path)
 
         self._validator = FileValidator(file_path)
+        self._logger = FileSourceLogger(self)
 
         self.__file = None
 
@@ -127,6 +132,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         self._ltsv_input_stream = io.open(
             self.source, "r", encoding=self.encoding)
@@ -157,6 +163,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
         super(LtsvTableTextLoader, self).__init__(text)
 
         self._validator = TextValidator(text)
+        self._logger = TextSourceLogger(self)
 
     def load(self):
         """
@@ -183,6 +190,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         self._ltsv_input_stream = self.source.splitlines()
 

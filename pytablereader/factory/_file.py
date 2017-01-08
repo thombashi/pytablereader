@@ -8,6 +8,7 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 
 from .._common import get_extension
+from .._logger import logger
 from ..csv.core import CsvTableFileLoader
 from ..html.core import HtmlTableFileLoader
 from ..json.core import JsonTableFileLoader
@@ -59,6 +60,10 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             If appropriate file loader not found.
         """
 
+        logger.debug(
+            "TableFileLoaderFactory.create_from_path: extension={}".format(
+                self.file_extension))
+
         return self._create_from_extension(self.file_extension)
 
     def create_from_format_name(self, format_name):
@@ -84,6 +89,10 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
         """
+
+        logger.debug(
+            "TableFileLoaderFactory.create_from_format_name: name={}".format(
+                self.file_extension))
 
         return self._create_from_format_name(format_name)
 

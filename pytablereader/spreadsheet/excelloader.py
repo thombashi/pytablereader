@@ -10,6 +10,7 @@ from __future__ import unicode_literals
 from six.moves import range
 import xlrd
 
+from .._logger import FileSourceLogger
 from .._validator import FileValidator
 from ..error import InvalidDataError
 from ..error import OpenError
@@ -52,6 +53,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
         super(ExcelTableFileLoader, self).__init__(file_path)
 
         self._validator = FileValidator(file_path)
+        self._logger = FileSourceLogger(self)
 
     def load(self):
         """
@@ -80,6 +82,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         try:
             workbook = xlrd.open_workbook(self.source)

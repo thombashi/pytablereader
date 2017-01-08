@@ -12,6 +12,10 @@ from .._constant import (
     SourceType,
     TableNameTemplate as tnt
 )
+from .._logger import (
+    FileSourceLogger,
+    TextSourceLogger,
+)
 from .._validator import (
     FileValidator,
     TextValidator
@@ -45,6 +49,7 @@ class JsonTableFileLoader(JsonTableLoader):
         super(JsonTableFileLoader, self).__init__(file_path)
 
         self._validator = FileValidator(file_path)
+        self._logger = FileSourceLogger(self)
 
     def load(self):
         """
@@ -145,6 +150,7 @@ class JsonTableFileLoader(JsonTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         with open(self.source, "r") as fp:
             json_buffer = json.load(fp)
@@ -177,6 +183,7 @@ class JsonTableTextLoader(JsonTableLoader):
         super(JsonTableTextLoader, self).__init__(text)
 
         self._validator = TextValidator(text)
+        self._logger = TextSourceLogger(self)
 
     def load(self):
         """
@@ -208,6 +215,7 @@ class JsonTableTextLoader(JsonTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         json_buffer = json.loads(self.source)
 

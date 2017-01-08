@@ -68,6 +68,7 @@ class TableLoader(TableLoaderInterface):
         self.table_name = tnt.DEFAULT
         self.source = source
         self._validator = None
+        self._logger = None
 
     def get_format_key(self):
         return "{:s}{:d}".format(

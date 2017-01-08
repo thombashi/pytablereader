@@ -15,6 +15,10 @@ from mbstrdecoder import MultiByteStrDecoder
 import six
 
 from .._constant import TableNameTemplate as tnt
+from .._logger import (
+    FileSourceLogger,
+    TextSourceLogger,
+)
 from .._validator import (
     FileValidator,
     TextValidator
@@ -119,6 +123,7 @@ class CsvTableFileLoader(CsvTableLoader):
         super(CsvTableFileLoader, self).__init__(file_path)
 
         self._validator = FileValidator(file_path)
+        self._logger = FileSourceLogger(self)
 
     def load(self):
         """
@@ -146,6 +151,7 @@ class CsvTableFileLoader(CsvTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         if all([
             platform.system() == "Windows",
@@ -185,6 +191,7 @@ class CsvTableTextLoader(CsvTableLoader):
         super(CsvTableTextLoader, self).__init__(text)
 
         self._validator = TextValidator(text)
+        self._logger = TextSourceLogger(self)
 
     def load(self):
         """
@@ -212,6 +219,7 @@ class CsvTableTextLoader(CsvTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         self._csv_reader = csv.reader(
             six.StringIO(self.source.strip()),

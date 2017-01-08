@@ -11,6 +11,10 @@ from .._constant import (
     SourceType,
     TableNameTemplate as tnt
 )
+from .._logger import (
+    FileSourceLogger,
+    TextSourceLogger,
+)
 from .._validator import (
     FileValidator,
     TextValidator
@@ -44,6 +48,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
         super(MarkdownTableFileLoader, self).__init__(file_path)
 
         self._validator = FileValidator(file_path)
+        self._logger = FileSourceLogger(self)
 
     def load(self):
         """
@@ -69,6 +74,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         with open(self.source, "r") as fp:
             formatter = MarkdownTableFormatter(fp.read())
@@ -99,6 +105,7 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
         super(MarkdownTableTextLoader, self).__init__(text)
 
         self._validator = TextValidator(text)
+        self._logger = TextSourceLogger(self)
 
     def load(self):
         """
@@ -124,6 +131,7 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
         """
 
         self._validate()
+        self._logger.logging_load()
 
         formatter = MarkdownTableFormatter(self.source)
         formatter.accept(self)
