@@ -24,6 +24,9 @@ from .error import (
 
 @six.add_metaclass(abc.ABCMeta)
 class ValidatorInterface(object):
+    """
+    Interface class for data source validator.
+    """
 
     @abc.abstractproperty
     def source_type(self):
@@ -35,6 +38,9 @@ class ValidatorInterface(object):
 
 
 class BaseValidator(ValidatorInterface):
+    """
+    Abstract base class for data source validator.
+    """
 
     @property
     def source(self):
@@ -45,6 +51,9 @@ class BaseValidator(ValidatorInterface):
 
 
 class FileValidator(BaseValidator):
+    """
+    Validator class for file data source.
+    """
 
     @property
     def source_type(self):
@@ -63,6 +72,9 @@ class FileValidator(BaseValidator):
 
 
 class TextValidator(BaseValidator):
+    """
+    Validator class for text object data source.
+    """
 
     @property
     def source_type(self):
@@ -74,6 +86,9 @@ class TextValidator(BaseValidator):
 
 
 class UrlValidator(BaseValidator):
+    """
+    Validator class for URL data source.
+    """
 
     @property
     def source_type(self):
