@@ -6,12 +6,15 @@
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
+
 import abc
 import re
 
 import dataproperty
-import pathvalidate as pv
 import six
+import typepy
+
+import pathvalidate as pv
 from six.moves import range
 
 from .error import (
@@ -198,7 +201,7 @@ class SQLiteTableDataSanitizer(TableDataSanitizer):
         return self.__RENAME_TEMPLATE.format(table_name)
 
     def _preprocess_header(self, col, header):
-        if dataproperty.is_empty_string(header):
+        if typepy.is_null_string(header):
             return self.__COMPLEMENT_HEADER_TEMPLATE.format(col)
 
         if dataproperty.is_multibyte_str(header):
@@ -222,7 +225,7 @@ class SQLiteTableDataSanitizer(TableDataSanitizer):
         return self.__RENAME_TEMPLATE.format(header)
 
     def _sanitize_header_list(self):
-        if dataproperty.is_empty_sequence(self._tabledata.header_list):
+        if typepy.is_empty_sequence(self._tabledata.header_list):
             try:
                 return [
                     self.__COMPLEMENT_HEADER_TEMPLATE.format(col)

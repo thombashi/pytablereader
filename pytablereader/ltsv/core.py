@@ -8,7 +8,7 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 import io
 
-import dataproperty as dp
+import typepy
 import pathvalidate as pv
 
 from .._constant import TableNameTemplate as tnt
@@ -56,7 +56,7 @@ class LtsvTableLoader(TableLoader):
         data_matrix = []
 
         for row_idx, row in enumerate(self._ltsv_input_stream):
-            if dp.is_empty_sequence(row):
+            if typepy.is_empty_sequence(row):
                 continue
 
             ltsv_record = OrderedDict()

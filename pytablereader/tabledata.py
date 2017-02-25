@@ -6,10 +6,13 @@
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
+
 import hashlib
 
-import dataproperty as dp
 import six
+import typepy
+
+import dataproperty as dp
 
 from .error import InvalidDataError
 
@@ -96,7 +99,7 @@ class TableData(object):
         :rtype: bool
         """
 
-        return dp.is_empty_sequence(self.header_list)
+        return typepy.is_empty_sequence(self.header_list)
 
     def is_empty_record(self):
         """
@@ -104,7 +107,7 @@ class TableData(object):
         :rtype: bool
         """
 
-        return dp.is_empty_sequence(self.value_matrix)
+        return typepy.is_empty_sequence(self.value_matrix)
 
     def is_empty(self):
         """
@@ -128,7 +131,7 @@ class TableData(object):
 
         dict_body = []
         for value_list in self.value_matrix:
-            if dp.is_empty_sequence(value_list):
+            if typepy.is_empty_sequence(value_list):
                 continue
 
             dict_record = [
@@ -137,7 +140,7 @@ class TableData(object):
                 if value is not None
             ]
 
-            if dp.is_empty_sequence(dict_record):
+            if typepy.is_empty_sequence(dict_record):
                 continue
 
             dict_body.append(dict(dict_record))
@@ -162,7 +165,9 @@ class TableData(object):
         return dataframe
 
     def __compare_helper(self, lhs, rhs):
-        if dp.NanType(lhs).is_type() and dp.NanType(rhs).is_type():
+        from typepy.type import Nan
+
+        if Nan(lhs).is_type() and Nan(rhs).is_type():
             return True
 
         return lhs == rhs
@@ -211,7 +216,7 @@ class TableData(object):
         Convert matrix to records
         """
 
-        if dp.is_empty_sequence(self.header_list):
+        if typepy.is_empty_sequence(self.header_list):
             return record_list
 
         return [

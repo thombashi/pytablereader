@@ -6,7 +6,7 @@
 
 from __future__ import absolute_import
 
-import dataproperty
+import typepy
 
 from ..factory import TableUrlLoaderFactory
 from ._base import TableLoaderManager
@@ -37,7 +37,7 @@ class TableUrlLoader(TableLoaderManager):
     def __init__(self, url, format_name=None, encoding=None, proxies=None):
         loader_factory = TableUrlLoaderFactory(url, encoding, proxies)
 
-        if dataproperty.is_not_empty_string(format_name):
+        if typepy.is_not_null_string(format_name):
             loader = loader_factory.create_from_format_name(format_name)
         else:
             loader = loader_factory.create_from_path()

@@ -6,11 +6,13 @@
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
+
 import os
 import tempfile
 
-import dataproperty
 import requests
+import typepy
+
 from six.moves.urllib.parse import urlparse
 
 from .._common import (
@@ -50,7 +52,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         UrlValidator(url).validate()
 
     def __del__(self):
-        if dataproperty.is_empty_string(self.__temp_dir_path):
+        if typepy.is_null_string(self.__temp_dir_path):
             return
 
         os.removedirs(self.__temp_dir_path)
@@ -147,7 +149,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         except requests.HTTPError as e:
             raise HTTPError(e)
 
-        if dataproperty.is_empty_string(self._encoding):
+        if typepy.is_null_string(self._encoding):
             self._encoding = r.encoding
 
         logger.debug("\n".join([

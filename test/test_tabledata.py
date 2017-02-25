@@ -5,18 +5,20 @@
 """
 
 from __future__ import unicode_literals
+
 from collections import namedtuple
 from decimal import Decimal
 import json
-
-import dataproperty as dp
-import pytablewriter as ptw
-import pytest
 
 from pytablereader import (
     TableData,
     InvalidDataError,
 )
+import pytest
+import typepy
+
+import pytablewriter as ptw
+
 
 try:
     import pandas
@@ -203,7 +205,7 @@ class Test_TableData_as_dataframe:
         tabledata = TableData(table_name, header_list, record_list)
 
         dataframe = pandas.DataFrame(record_list)
-        if dp.is_not_empty_sequence(header_list):
+        if typepy.is_not_empty_sequence(header_list):
             dataframe.columns = header_list
 
         print("lhs: {}".format(tabledata.as_dataframe()))

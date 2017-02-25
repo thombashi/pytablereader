@@ -6,12 +6,14 @@
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
+
 import abc
 import os.path
 
-import dataproperty
-import pathvalidate as pv
 import six
+import typepy
+
+import pathvalidate as pv
 from six.moves.urllib.parse import urlparse
 
 from ._constant import SourceType
@@ -81,7 +83,7 @@ class TextValidator(BaseValidator):
         return SourceType.TEXT
 
     def validate(self):
-        if dataproperty.is_empty_string(self.source):
+        if typepy.is_null_string(self.source):
             raise EmptyDataError("data source is empty")
 
 
@@ -95,7 +97,7 @@ class UrlValidator(BaseValidator):
         return SourceType.URL
 
     def validate(self):
-        if dataproperty.is_empty_string(self.source):
+        if typepy.is_null_string(self.source):
             raise InvalidUrlError("url is empty")
 
         scheme = urlparse(self.source).scheme

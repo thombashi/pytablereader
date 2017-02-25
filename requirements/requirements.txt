@@ -8,4 +8,5 @@ pathvalidate>=0.13.0
 path.py
 requests
 six
+typepy>=0.0.4
 xlrd

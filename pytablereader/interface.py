@@ -6,12 +6,13 @@
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
+
 import abc
 import threading
 
-import dataproperty
 import path
 import six
+import typepy
 
 from ._constant import (
     SourceType,
@@ -94,7 +95,7 @@ class TableLoader(TableLoaderInterface):
 
     def _validate_table_name(self):
         try:
-            if dataproperty.is_empty_string(self.table_name):
+            if typepy.is_null_string(self.table_name):
                 raise ValueError("table name is empty")
         except (TypeError, AttributeError):
             raise TypeError("table_name must be a string")
@@ -109,7 +110,7 @@ class TableLoader(TableLoaderInterface):
         filename = ""
         if all([
             self.source_type == SourceType.FILE,
-            dataproperty.is_not_empty_string(self.source),
+            typepy.is_not_null_string(self.source),
         ]):
             filename = path.Path(self.source).namebase
 
@@ -140,7 +141,7 @@ class TableLoader(TableLoaderInterface):
             self._get_basic_tablename_mapping())
 
     def _sanitize_table_name(self, table_name):
-        if dataproperty.is_empty_string(table_name):
+        if typepy.is_null_string(table_name):
             raise InvalidTableNameError(
                 "table name is empty after the template replacement")
 

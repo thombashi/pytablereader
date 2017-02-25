@@ -10,9 +10,9 @@ import csv
 import io
 import platform
 
-import dataproperty as dp
 from mbstrdecoder import MultiByteStrDecoder
 import six
+import typepy
 
 from .._constant import TableNameTemplate as tnt
 from .._logger import (
@@ -91,19 +91,21 @@ class CsvTableLoader(TableLoader):
             return [
                 [self.__modify_item(data) for data in row]
                 for row in self._csv_reader
-                if dp.is_not_empty_sequence(row)
+                if typepy.is_not_empty_sequence(row)
             ]
         except csv.Error as e:
             raise InvalidDataError(e)
 
     def __modify_item(self, data):
-        inttype = dp.IntegerType(data)
-        if inttype.is_convertible_type():
-            return inttype.convert()
+        try:
+            return typepy.type.Integer(data).convert()
+        except typepy.TypeConversionError:
+            pass
 
-        floattype = dp.FloatType(data)
-        if floattype.is_convertible_type():
-            return data
+        try:
+            return typepy.type.RealNumber(data).convert()
+        except typepy.TypeConversionError:
+            pass
 
         return MultiByteStrDecoder(data).unicode_str
 

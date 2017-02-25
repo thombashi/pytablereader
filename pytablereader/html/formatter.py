@@ -9,7 +9,7 @@ from __future__ import unicode_literals
 import re
 
 import bs4
-import dataproperty as dp
+import typepy
 
 from .._constant import TableNameTemplate as tnt
 from ..error import InvalidDataError
@@ -28,7 +28,7 @@ class HtmlTableFormatter(TableFormatter):
 
         self.__table_id = None
 
-        if dp.is_empty_string(source_data):
+        if typepy.is_null_string(source_data):
             raise InvalidDataError
 
         try:
@@ -50,7 +50,7 @@ class HtmlTableFormatter(TableFormatter):
 
     def _make_table_name(self):
         key = self.table_id
-        if dp.is_empty_string(key):
+        if typepy.is_null_string(key):
             key = self._loader.get_format_key()
 
         try:
@@ -72,7 +72,7 @@ class HtmlTableFormatter(TableFormatter):
             caption = table.find("caption")
             if caption is not None:
                 caption = caption.text.strip()
-                if dp.is_not_empty_string(caption):
+                if typepy.is_not_null_string(caption):
                     self.__table_id = caption
 
     def __parse_html(self, table):
@@ -85,12 +85,12 @@ class HtmlTableFormatter(TableFormatter):
         re_table_val = re.compile("td|th")
         for row in row_list:
             td_list = row.find_all("td")
-            if dp.is_empty_sequence(td_list):
-                if dp.is_not_empty_sequence(header_list):
+            if typepy.is_empty_sequence(td_list):
+                if typepy.is_not_empty_sequence(header_list):
                     continue
 
                 th_list = row.find_all("th")
-                if dp.is_empty_sequence(th_list):
+                if typepy.is_empty_sequence(th_list):
                     continue
 
                 header_list = [row.text.strip() for row in th_list]
@@ -101,7 +101,7 @@ class HtmlTableFormatter(TableFormatter):
                 for value in row.find_all(re_table_val)
             ])
 
-        if dp.is_empty_sequence(data_matrix):
+        if typepy.is_empty_sequence(data_matrix):
             raise ValueError("data matrix is empty")
 
         self._loader.inc_table_count()

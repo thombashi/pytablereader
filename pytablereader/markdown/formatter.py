@@ -7,7 +7,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-import dataproperty
+import typepy
 
 from ..error import InvalidDataError
 from ..html.formatter import HtmlTableFormatter
@@ -18,7 +18,7 @@ class MarkdownTableFormatter(HtmlTableFormatter):
     def __init__(self, source_data):
         import markdown2
 
-        if dataproperty.is_empty_string(source_data):
+        if typepy.is_null_string(source_data):
             raise InvalidDataError
 
         super(MarkdownTableFormatter, self).__init__(

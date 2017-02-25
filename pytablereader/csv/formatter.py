@@ -7,7 +7,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-import dataproperty
+import typepy
 
 from ..error import InvalidDataError
 from ..formatter import TableFormatter
@@ -17,11 +17,11 @@ from ..tabledata import TableData
 class CsvTableFormatter(TableFormatter):
 
     def to_table_data(self):
-        if dataproperty.is_empty_sequence(self._loader.header_list):
+        if typepy.is_empty_sequence(self._loader.header_list):
             header_list = self._source_data[0]
 
             if any([
-                dataproperty.is_empty_string(header) for header in header_list
+                typepy.is_null_string(header) for header in header_list
             ]):
                 raise InvalidDataError(
                     "the first line includes empty string item."
