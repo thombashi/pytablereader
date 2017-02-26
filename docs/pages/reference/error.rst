@@ -1,4 +1,4 @@
-Errors
+Exceptions
 ----------------------------
 
 .. autoexception:: pytablereader.ValidationError
@@ -32,4 +32,7 @@ Errors
     :show-inheritance:
 
 .. autoexception:: pytablereader.HTTPError
+    :show-inheritance:
+
+.. autoexception:: pytablereader.ProxyError
     :show-inheritance:

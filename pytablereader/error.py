@@ -78,4 +78,18 @@ class LoaderNotFoundError(Exception):
 class HTTPError(requests.RequestException):
     """
     An HTTP error occurred.
+
+    .. seealso::
+
+        http://docs.python-requests.org/en/master/api/#exceptions
+    """
+
+
+class ProxyError(requests.exceptions.ProxyError):
+    """
+    A proxy error occurred.
+
+    .. seealso::
+
+        http://docs.python-requests.org/en/master/_modules/requests/exceptions/
     """

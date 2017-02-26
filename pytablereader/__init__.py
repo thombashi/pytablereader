@@ -30,7 +30,8 @@ from .error import (
     EmptyDataError,
     OpenError,
     LoaderNotFoundError,
-    HTTPError
+    HTTPError,
+    ProxyError,
 )
 from .html.core import (
     HtmlTableFileLoader,
