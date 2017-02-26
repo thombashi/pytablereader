@@ -21,6 +21,7 @@ Mandatory Python packages
 - `path.py <https://github.com/jaraco/path.py>`__
 - `requests <http://python-requests.org/>`__
 - `six <https://pypi.python.org/pypi/six/>`__
+- `typepy <https://github.com/thombashi/typepy>`__
 - `xlrd <https://github.com/python-excel/xlrd>`__
 
 Optional Python packages
