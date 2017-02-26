@@ -26,7 +26,8 @@ from ..csv.core import CsvTableTextLoader
 from ..error import (
     InvalidFilePathError,
     InvalidUrlError,
-    HTTPError
+    HTTPError,
+    ProxyError,
 )
 from ..html.core import HtmlTableTextLoader
 from ..json.core import JsonTableTextLoader
@@ -95,7 +96,10 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         loader_class = self._get_loader_class(
             self._get_extension_loader_mapping(), url_extension)
 
-        self._fetch_source(loader_class)
+        try:
+            self._fetch_source(loader_class)
+        except requests.exceptions.ProxyError as e:
+            raise ProxyError(e)
 
         return self._create_from_extension(url_extension)
 
@@ -131,7 +135,10 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         loader_class = self._get_loader_class(
             self._get_format_name_loader_mapping(), format_name)
 
-        self._fetch_source(loader_class)
+        try:
+            self._fetch_source(loader_class)
+        except requests.exceptions.ProxyError as e:
+            raise ProxyError(e)
 
         return self._create_from_format_name(format_name)
 
