@@ -6,6 +6,19 @@
 
 from __future__ import absolute_import
 
+from ._logger import (
+    logger,
+    set_logger,
+    set_log_level,
+)
+from ._tabledata_sanitizer import (
+    TableDataSanitizer,
+    SQLiteTableDataSanitizer
+)
+from .csv.core import (
+    CsvTableFileLoader,
+    CsvTableTextLoader
+)
 from .error import (
     ValidationError,
     InvalidTableNameError,
@@ -19,13 +32,6 @@ from .error import (
     LoaderNotFoundError,
     HTTPError
 )
-from .tabledata import TableData
-from ._logger import logger
-
-from .csv.core import (
-    CsvTableFileLoader,
-    CsvTableTextLoader
-)
 from .html.core import (
     HtmlTableFileLoader,
     HtmlTableTextLoader
@@ -33,6 +39,10 @@ from .html.core import (
 from .json.core import (
     JsonTableFileLoader,
     JsonTableTextLoader
+)
+from .loadermanager import (
+    TableFileLoader,
+    TableUrlLoader
 )
 from .ltsv.core import (
     LtsvTableFileLoader,
@@ -47,14 +57,7 @@ from .mediawiki.core import (
     MediaWikiTableTextLoader
 )
 from .spreadsheet.excelloader import ExcelTableFileLoader
-from .loadermanager import (
-    TableFileLoader,
-    TableUrlLoader
-)
-from ._tabledata_sanitizer import (
-    TableDataSanitizer,
-    SQLiteTableDataSanitizer
-)
+from .tabledata import TableData
 from .tsv.core import (
     TsvTableFileLoader,
     TsvTableTextLoader

@@ -13,6 +13,32 @@ import six
 
 
 logger = logbook.Logger("pytablereader")
+logger.disable()
+
+
+def set_logger(is_enable):
+    if is_enable:
+        logger.enable()
+    else:
+        logger.disable()
+
+
+def set_log_level(log_level):
+    """
+    Set logging level of this module. Using
+    `logbook <http://logbook.readthedocs.io/en/stable/>`__ module for logging.
+
+    :param int log_level:
+        One of the log level of
+        `logbook <http://logbook.readthedocs.io/en/stable/api/base.html>`__.
+        Disabled logging if ``log_level`` is ``logbook.NOTSET``.
+    """
+
+    if log_level == logbook.NOTSET:
+        set_logger(is_enable=False)
+    else:
+        set_logger(is_enable=True)
+        logger.level = log_level
 
 
 @six.add_metaclass(abc.ABCMeta)
@@ -32,8 +58,8 @@ class BaseLogger(LoggerInterface):
 class FileSourceLogger(BaseLogger):
 
     def logging_load(self):
-        message = "loading {:s} {:s}: path={}".format(
-            self._loader.format_name, self._loader.source_type,
+        message = "loading {:s}: format={:s}, path={}".format(
+            self._loader.source_type, self._loader.format_name,
             self._loader.source)
 
         try:
