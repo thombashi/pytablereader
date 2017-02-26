@@ -18,6 +18,9 @@ pytablereader
 .. image:: https://coveralls.io/repos/github/thombashi/pytablereader/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/pytablereader?branch=master
 
+.. image:: https://img.shields.io/github/stars/thombashi/pytablereader.svg?style=social&label=Star
+   :target: https://github.com/thombashi/pytablereader
+
 Summary
 -------
 
@@ -141,6 +144,7 @@ Mandatory Python packages
 - `path.py <https://github.com/jaraco/path.py>`__
 - `requests <http://python-requests.org/>`__
 - `six <https://pypi.python.org/pypi/six/>`__
+- `typepy <https://github.com/thombashi/typepy>`__
 - `xlrd <https://github.com/python-excel/xlrd>`__
 
 Optional Python packages

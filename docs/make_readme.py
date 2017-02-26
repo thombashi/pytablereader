@@ -5,8 +5,10 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from __future__ import unicode_literals
 import sys
 
+from path import Path
 import readmemaker
 
 
@@ -18,9 +20,11 @@ def write_examples(maker):
     maker.set_indent_level(0)
     maker.write_chapter("Examples")
 
+    examples_root = Path("pages").joinpath("examples")
+
     maker.inc_indent_level()
     maker.write_chapter("Load a CSV table")
-    maker.write_example_file("load_csv.txt")
+    maker.write_file(examples_root.joinpath("load_csv.txt"))
 
     maker.write_chapter("For more information")
     maker.write_line_list([
