@@ -200,10 +200,7 @@ class Test_TableData_as_dataframe:
         ]
     )
     def test_normal(self, table_name, header_list, record_list):
-        import pandas
-
         tabledata = TableData(table_name, header_list, record_list)
-
         dataframe = pandas.DataFrame(record_list)
         if typepy.is_not_empty_sequence(header_list):
             dataframe.columns = header_list
