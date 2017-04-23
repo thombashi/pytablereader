@@ -7,11 +7,15 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+from pytablereader._constant import SourceType
+from pytablereader._validator import (
+    FileValidator,
+    TextValidator,
+    UrlValidator,
+)
 import pytest
 
 import pytablereader as ptr
-from pytablereader._constant import SourceType
-from pytablereader._validator import *
 
 
 class Test_FileValidator_validate:
