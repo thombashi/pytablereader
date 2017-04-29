@@ -85,6 +85,20 @@ class TableData(object):
             ]),
         ])
 
+    def __ne__(self, other):
+        return any([
+            self.table_name != other.table_name,
+            self.header_list != other.header_list,
+            any([
+                any([
+                    not self.__compare_helper(lhs, rhs)
+                    for lhs, rhs in zip(lhs_list, rhs_list)
+                ])
+                for lhs_list, rhs_list
+                in zip(self.value_matrix, other.value_matrix)
+            ]),
+        ])
+
     def __hash__(self):
         body = (
             self.table_name +

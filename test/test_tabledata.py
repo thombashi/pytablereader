@@ -148,6 +148,7 @@ class Test_TableData_eq:
     ])
     def test_normal(self, lhs, rhs, expected):
         assert (lhs == rhs) == expected
+        assert (lhs != rhs) == (not expected)
 
 
 class Test_TableData_as_dict:
