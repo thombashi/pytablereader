@@ -46,7 +46,7 @@ class TableLoaderInterface(object):
 
 class TableLoader(TableLoaderInterface):
     """
-    Abstract class of table data file loader.
+    The abstract class of table data file loader.
 
     .. py:attribute:: table_name
 

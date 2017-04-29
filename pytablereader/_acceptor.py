@@ -23,7 +23,7 @@ class LoaderAcceptorInterface(object):
 
 class LoaderAcceptor(LoaderAcceptorInterface):
     """
-    Abstract class of table loader acceptor.
+    The abstract class of table loader acceptor.
     """
 
     def __init__(self):

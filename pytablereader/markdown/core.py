@@ -25,7 +25,7 @@ from .formatter import MarkdownTableFormatter
 
 class MarkdownTableLoader(TableLoader):
     """
-    Abstract class of Markdown table loader.
+    The abstract class of Markdown table loaders.
     """
 
     @property
@@ -35,7 +35,7 @@ class MarkdownTableLoader(TableLoader):
 
 class MarkdownTableFileLoader(MarkdownTableLoader):
     """
-    Markdown format file loader class.
+    A file loader class to extract tabular data from Markdown files.
 
     :param str file_path: Path to the loading Markdown file.
 
@@ -52,7 +52,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a Markdown file.
+        Extract tabular data as |TableData| instances from a Markdown file.
         |load_source_desc_file|
 
         :return:
@@ -88,7 +88,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
 
 class MarkdownTableTextLoader(MarkdownTableLoader):
     """
-    Markdown format text loader class.
+    A text loader class to extract tabular data from Markdown text data.
 
     :param str text: Markdown text to load.
 
@@ -109,7 +109,8 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a Markdown text object.
+        Extract tabular data as |TableData| instances from a Markdown text
+        object.
         |load_source_desc_text|
 
         :return:

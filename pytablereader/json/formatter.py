@@ -19,7 +19,7 @@ from ..tabledata import TableData
 
 class JsonConverter(TableFormatter):
     """
-    Abstract class of JSON data converter.
+    The abstract class of JSON data converter.
     """
 
     def __init__(self, json_buffer):

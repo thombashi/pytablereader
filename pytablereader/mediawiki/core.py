@@ -25,7 +25,7 @@ from .formatter import MediaWikiTableFormatter
 
 class MediaWikiTableLoader(TableLoader):
     """
-    Abstract class of MediaWiki table loader.
+    The abstract class of MediaWiki table loaders.
     """
 
     @property
@@ -35,7 +35,7 @@ class MediaWikiTableLoader(TableLoader):
 
 class MediaWikiTableFileLoader(MediaWikiTableLoader):
     """
-    MediaWiki format file loader class .
+    A file loader class to extract tabular data from MediaWiki files.
 
     :param str file_path: Path to the loading file.
 
@@ -52,7 +52,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a MediaWiki file.
+        Extract tabular data as |TableData| instances from a MediaWiki file.
         |load_source_desc_file|
 
         :return:
@@ -92,7 +92,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
 
 class MediaWikiTableTextLoader(MediaWikiTableLoader):
     """
-    MediaWiki format text loader class.
+    A text loader class to extract tabular data from MediaWiki text data.
 
     :param str text: MediaWiki text to load.
 
@@ -113,7 +113,7 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a MediaWiki text
+        Extract tabular data as |TableData| instances from a MediaWiki text
         object.
         |load_source_desc_text|
 

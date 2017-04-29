@@ -30,7 +30,7 @@ from .formatter import CsvTableFormatter
 
 class CsvTableLoader(TableLoader):
     """
-    Abstract class of CSV table loader.
+    The abstract class of CSV table loaders.
 
     .. py:attribute:: header_list
 
@@ -112,7 +112,7 @@ class CsvTableLoader(TableLoader):
 
 class CsvTableFileLoader(CsvTableLoader):
     """
-    CSV format file loader class.
+    A file loader class to extract tabular data from CSV files.
 
     :param str file_path: Path to the loading CSV file.
 
@@ -129,7 +129,7 @@ class CsvTableFileLoader(CsvTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a CSV file.
+        Extract tabular data as |TableData| instances from a CSV file.
         |load_source_desc_file|
 
         :return:
@@ -180,7 +180,7 @@ class CsvTableFileLoader(CsvTableLoader):
 
 class CsvTableTextLoader(CsvTableLoader):
     """
-    CSV format text loader class.
+    A text loader class to extract tabular data from CSV text data.
 
     :param str text: CSV text to load.
 
@@ -197,7 +197,7 @@ class CsvTableTextLoader(CsvTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a CSV text object.
+        Extract tabular data as |TableData| instances from a CSV text object.
         |load_source_desc_text|
 
         :return:

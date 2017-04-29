@@ -16,7 +16,7 @@ from .error import InvalidDataError
 @six.add_metaclass(abc.ABCMeta)
 class TableFormatterInterface(object):
     """
-    Abstract class of table data validator.
+    The abstract class of table data validator.
     """
 
     @abc.abstractmethod
@@ -26,7 +26,7 @@ class TableFormatterInterface(object):
 
 class TableFormatter(LoaderAcceptor, TableFormatterInterface):
     """
-    Abstract class of |TableData| formatter.
+    The abstract class of |TableData| formatter.
     """
 
     def _validate_source_data(self):

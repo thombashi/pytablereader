@@ -23,7 +23,7 @@ from .formatter import HtmlTableFormatter
 
 class HtmlTableLoader(TableLoader):
     """
-    Abstract class of HTML table loader.
+    The abstract class of HTML table loaders.
     """
 
     @property
@@ -36,7 +36,7 @@ class HtmlTableLoader(TableLoader):
 
 class HtmlTableFileLoader(HtmlTableLoader):
     """
-    HTML format tabular data file loader class.
+    A file loader class to extract tabular data from HTML files.
 
     :param str file_path: Path to the loading HTML file.
 
@@ -59,7 +59,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from HTML table tags in
+        Extract tabular data as |TableData| instances from HTML table tags in
         a HTML file.
         |load_source_desc_file|
 
@@ -102,7 +102,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
 class HtmlTableTextLoader(HtmlTableLoader):
     """
-    HTML format text loader class.
+    A text loader class to extract tabular data from HTML text data.
 
     :param str text: HTML text to load.
 
@@ -119,7 +119,7 @@ class HtmlTableTextLoader(HtmlTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from HTML table tags in
+        Extract tabular data as |TableData| instances from HTML table tags in
         a HTML text object.
         |load_source_desc_text|
 

@@ -26,7 +26,7 @@ from .formatter import JsonTableFormatter
 
 class JsonTableLoader(TableLoader):
     """
-    Abstract class of JSON table loader.
+    The abstract class of JSON table loaders.
     """
 
     @property
@@ -36,7 +36,7 @@ class JsonTableLoader(TableLoader):
 
 class JsonTableFileLoader(JsonTableLoader):
     """
-    JSON format file loader class.
+    A file loader class to extract tabular data from JSON files.
 
     :param str file_path: Path to the loading JSON file.
 
@@ -53,7 +53,7 @@ class JsonTableFileLoader(JsonTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a JSON file.
+        Extract tabular data as |TableData| instances from a JSON file.
         |load_source_desc_file|
 
         This method can be loading two types of JSON formats:
@@ -166,7 +166,7 @@ class JsonTableFileLoader(JsonTableLoader):
 
 class JsonTableTextLoader(JsonTableLoader):
     """
-    JSON format text loader class.
+    A text loader class to extract tabular data from JSON text data.
 
     :param str text: JSON text to load.
 
@@ -187,7 +187,7 @@ class JsonTableTextLoader(JsonTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a JSON text object.
+        Extract tabular data as |TableData| instances from a JSON text object.
         |load_source_desc_text|
 
         :return:

@@ -32,7 +32,7 @@ class LtsvTableLoader(TableLoader):
     """
     Abstract class of
     `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
-    format table loader.
+    format table loaders.
 
     .. py:attribute:: encoding
 
@@ -109,7 +109,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a LTSV file.
+        Extract tabular data as |TableData| instances from a LTSV file.
         |load_source_desc_file|
 
         :return:
@@ -167,7 +167,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| incetances from a LTSV text object.
+        Extract tabular data as |TableData| instances from a LTSV text object.
         |load_source_desc_text|
 
         :return:

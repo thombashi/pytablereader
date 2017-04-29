@@ -14,7 +14,7 @@ from ..interface import TableLoader
 
 class SpreadSheetLoader(TableLoader):
     """
-    Abstract class of table data.
+    The abstract class of table data.
     Especially spreadsheets that consists multiple rows.
 
     .. py:attribute:: start_row
