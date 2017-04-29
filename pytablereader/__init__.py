@@ -58,6 +58,7 @@ from .mediawiki.core import (
     MediaWikiTableTextLoader
 )
 from .spreadsheet.excelloader import ExcelTableFileLoader
+from .spreadsheet.gsloader import GoogleSheetsTableLoader
 from .tabledata import TableData
 from .tsv.core import (
     TsvTableFileLoader,
