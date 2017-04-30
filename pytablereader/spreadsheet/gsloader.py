@@ -152,8 +152,10 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
             "a{:d}".format(i)
             for i in range(len(self.__all_values[0]))
         ]
-        con.create_table_with_data(
-            tmp_table_name, header_list, self.__all_values)
+        con.create_table_from_data_matrix(
+            table_name=tmp_table_name,
+            attr_name_list=header_list,
+            data_matrix=self.__all_values)
         for col_idx, header in enumerate(header_list):
             result = con.select(
                 select=SqlQuery.to_attr_str(header), table_name=tmp_table_name)
