@@ -10,6 +10,7 @@ Features
     - `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
     - Markdown
     - MediaWiki
+    - SQLite
     - Tab separated values (TSV)
 - Supported data sources to read:
     - Files on a local file system

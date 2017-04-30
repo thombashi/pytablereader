@@ -1,1 +1,1 @@
-A python library to load structured table data from files/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/TSV.
+A python library to load structured table data from files/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/SQLite/TSV.
