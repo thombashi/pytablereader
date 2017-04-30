@@ -56,11 +56,8 @@ class SqliteFileLoader(TableLoader):
             If the Markdown data is invalid or empty.
         """
 
-        from simplesqlite import SimpleSQLite
-
         self._validate()
 
-        #formatter = SqliteTableFormatter(SimpleSQLite(self.source, "r"))
         formatter = SqliteTableFormatter(self.source)
         formatter.accept(self)
 
