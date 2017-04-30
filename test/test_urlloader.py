@@ -7,14 +7,15 @@
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
+
 import os.path
 
-import pytablewriter as ptw
+from pytablereader.interface import TableLoader
 import pytest
-import responses
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
+import pytablewriter as ptw
+import responses
 
 
 class Test_TableUrlLoader_get_format_name_list:
@@ -24,7 +25,7 @@ class Test_TableUrlLoader_get_format_name_list:
 
         assert format_name_list == [
             'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki',
-            'tsv',
+            'sqlite', 'tsv',
         ]
 
 
@@ -71,6 +72,14 @@ class Test_TableUrlLoader_constructor:
         [
             "https://github.com/validext.md",
             None, ptr.MarkdownTableTextLoader
+        ],
+        [
+            "https://raw.githubusercontent.com/valid/test/data/validext.sqlite",
+            None, ptr.SqliteFileLoader
+        ],
+        [
+            "https://raw.githubusercontent.com/valid/test/data/validext.sqlite3",
+            None, ptr.SqliteFileLoader
         ],
         [
             "https://raw.githubusercontent.com/valid/test/data/validext.tsv",

@@ -20,7 +20,7 @@ class TableFileLoader(TableLoaderManager):
     :param str format_name: Data format name to load.
         Supported formats are:
         ``"csv"``, ``"excel"``, ``"html"``, ``"json"``, ``"ltsv"``,
-        ``"markdown"``, ``"mediawiki"``, ``"tsv"``.
+        ``"markdown"``, ``"mediawiki"``, ``"sqlite"``, ``"tsv"``.
         If the value is |None|, automatically detect file format from
         the ``file_path``.
     :raise pytablereader.InvalidFilePathError:
@@ -68,7 +68,7 @@ class TableFileLoader(TableLoaderManager):
             .. code:: python
 
                 >>> pytablereader.TableFileLoader.get_format_name_list()
-                ['csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'tsv']
+                ['csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'tsv']
         """
 
         return TableFileLoaderFactory("dummy").get_format_name_list()

@@ -5,18 +5,18 @@
 """
 
 from __future__ import absolute_import
-from __future__ import unicode_literals
 from __future__ import print_function
+from __future__ import unicode_literals
 
 from mbstrdecoder import MultiByteStrDecoder
 from path import Path
-import pytablewriter as ptw
+from pytablereader.interface import TableLoader
 import pytest
 import six
 
 import pathvalidate as pv
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
+import pytablewriter as ptw
 
 
 class Test_TableFileLoader_get_format_name_list:
@@ -26,7 +26,7 @@ class Test_TableFileLoader_get_format_name_list:
 
         assert format_name_list == [
             'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki',
-            'tsv',
+            'sqlite', 'tsv',
         ]
 
 

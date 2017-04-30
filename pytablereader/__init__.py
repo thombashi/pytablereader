@@ -59,6 +59,7 @@ from .mediawiki.core import (
 )
 from .spreadsheet.excelloader import ExcelTableFileLoader
 from .spreadsheet.gsloader import GoogleSheetsTableLoader
+from .sqlite.core import SqliteFileLoader
 from .tabledata import TableData
 from .tsv.core import (
     TsvTableFileLoader,

@@ -25,6 +25,8 @@ class Test_TableFileLoaderFactory_create_from_path:
         ["valid_ext.JSON", "json", ptr.JsonTableFileLoader],
         ["valid_ext.md", "md", ptr.MarkdownTableFileLoader],
         ["valid_ext.MD", "md", ptr.MarkdownTableFileLoader],
+        ["valid_ext.sqlite", "sqlite", ptr.SqliteFileLoader],
+        ["valid_ext.sqlite3", "sqlite3", ptr.SqliteFileLoader],
         ["valid_ext.tsv", "tsv", ptr.TsvTableFileLoader],
         ["valid_ext.TSV", "tsv", ptr.TsvTableFileLoader],
         ["valid_ext.xls", "xls", ptr.ExcelTableFileLoader],
@@ -69,6 +71,7 @@ class Test_TableFileLoaderFactory_create_from_format_name:
         ["invalid_ext.txt", "Markdown", ptr.MarkdownTableFileLoader],
         ["valid_ext.html", "mediawiki", ptr.MediaWikiTableFileLoader],
         ["invalid_ext.txt", "MediaWiki", ptr.MediaWikiTableFileLoader],
+        ["valid_ext.db", "sqlite", ptr.SqliteFileLoader],
         ["valid_ext.html", "tsv", ptr.TsvTableFileLoader],
         ["invalid_ext.txt", "TSV", ptr.TsvTableFileLoader],
     ])

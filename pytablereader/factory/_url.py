@@ -17,7 +17,7 @@ from six.moves.urllib.parse import urlparse
 
 from .._common import (
     get_extension,
-    make_temp_file_path_from_url
+    make_temp_file_path_from_url,
 )
 from .._constant import SourceType
 from .._logger import logger
@@ -35,6 +35,7 @@ from ..ltsv.core import LtsvTableTextLoader
 from ..markdown.core import MarkdownTableTextLoader
 from ..mediawiki.core import MediaWikiTableTextLoader
 from ..spreadsheet.excelloader import ExcelTableFileLoader
+from ..sqlite.core import SqliteFileLoader
 from ..tsv.core import TsvTableTextLoader
 from ._base import BaseTableLoaderFactory
 
@@ -73,6 +74,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             ``"json"``                                 :py:class:`~.JsonTableTextLoader`    
             ``"ltsv"``                                 :py:class:`~.LtsvTableTextLoader`    
             ``"md"``                                   :py:class:`~.MarkdownTableTextLoader`
+            ``"sqlite"``/``"sqlite3"``                 :py:class:`~.SqliteFileLoader`       
             ``"tsv"``                                  :py:class:`~.TsvTableTextLoader`     
             =========================================  =====================================
 
@@ -108,18 +110,19 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from a format name.
         Supported file formats are as follows:
 
-            ===============  ======================================
-            Format name               Loader                       
-            ===============  ======================================
-            ``"csv"``        :py:class:`~.CsvTableTextLoader`      
-            ``"excel"``      :py:class:`~.ExcelTableFileLoader`    
-            ``"html"``       :py:class:`~.HtmlTableTextLoader`     
-            ``"json"``       :py:class:`~.JsonTableTextLoader`     
-            ``"ltsv"``       :py:class:`~.LtsvTableTextLoader`     
-            ``"markdown"``   :py:class:`~.MarkdownTableTextLoader` 
-            ``"mediawiki"``  :py:class:`~.MediaWikiTableTextLoader`
-            ``"tsv"``        :py:class:`~.TsvTableTextLoader`      
-            ===============  ======================================
+            ==========================  ======================================
+            Format name                 Loader                       
+            ==========================  ======================================
+            ``"csv"``                   :py:class:`~.CsvTableTextLoader`      
+            ``"excel"``                 :py:class:`~.ExcelTableFileLoader`    
+            ``"html"``                  :py:class:`~.HtmlTableTextLoader`     
+            ``"json"``                  :py:class:`~.JsonTableTextLoader`     
+            ``"ltsv"``                  :py:class:`~.LtsvTableTextLoader`     
+            ``"markdown"``              :py:class:`~.MarkdownTableTextLoader` 
+            ``"mediawiki"``             :py:class:`~.MediaWikiTableTextLoader`
+            ``"sqlite"``                :py:class:`~.SqliteFileLoader`        
+            ``"tsv"``                   :py:class:`~.TsvTableTextLoader`      
+            ==========================  ======================================
 
         :param str format_name: Format name string (case insensitive).
         :return: Loader that coincide with the ``format_name``:
@@ -182,6 +185,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             "html": HtmlTableTextLoader,
             "json": JsonTableTextLoader,
             "ltsv": LtsvTableTextLoader,
+            "sqlite": SqliteFileLoader,
             "tsv": TsvTableTextLoader,
         }
 
@@ -197,6 +201,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             "aspx": HtmlTableTextLoader,
             "htm": HtmlTableTextLoader,
             "md": MarkdownTableTextLoader,
+            "sqlite3": SqliteFileLoader,
             "xls": ExcelTableFileLoader,
             "xlsx": ExcelTableFileLoader,
         })

@@ -16,6 +16,7 @@ from ..ltsv.core import LtsvTableFileLoader
 from ..markdown.core import MarkdownTableFileLoader
 from ..mediawiki.core import MediaWikiTableFileLoader
 from ..spreadsheet.excelloader import ExcelTableFileLoader
+from ..sqlite.core import SqliteFileLoader
 from ..tsv.core import TsvTableFileLoader
 from ._base import BaseTableLoaderFactory
 
@@ -41,17 +42,18 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from the file extension to loading file.
         Supported file extensions are as follows:
 
-            ====================  =====================================
-            Format name                Loader                          
-            ====================  =====================================
-            ``"csv"``             :py:class:`~.CsvTableFileLoader`     
-            ``"xls"``/``"xlsx"``  :py:class:`~.ExcelTableFileLoader`   
-            ``"htm"``/``"html"``  :py:class:`~.HtmlTableFileLoader`    
-            ``"json"``            :py:class:`~.JsonTableFileLoader`    
-            ``"ltsv"``            :py:class:`~.LtsvTableFileLoader`    
-            ``"md"``              :py:class:`~.MarkdownTableFileLoader`
-            ``"tsv"``             :py:class:`~.TsvTableFileLoader`     
-            ====================  =====================================
+            ==========================  =====================================
+            Format name                 Loader                               
+            ==========================  =====================================
+            ``"csv"``                   :py:class:`~.CsvTableFileLoader`     
+            ``"xls"``/``"xlsx"``        :py:class:`~.ExcelTableFileLoader`   
+            ``"htm"``/``"html"``        :py:class:`~.HtmlTableFileLoader`    
+            ``"json"``                  :py:class:`~.JsonTableFileLoader`    
+            ``"ltsv"``                  :py:class:`~.LtsvTableFileLoader`    
+            ``"md"``                    :py:class:`~.MarkdownTableFileLoader`
+            ``"sqlite"``/``"sqlite3"``  :py:class:`~.SqliteFileLoader`       
+            ``"tsv"``                   :py:class:`~.TsvTableFileLoader`     
+            ==========================  =====================================
 
         :return:
             Loader that coincide with the file extesnion of the
@@ -81,6 +83,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             ``"ltsv"``       :py:class:`~.LtsvTableFileLoader`     
             ``"markdown"``   :py:class:`~.MarkdownTableFileLoader` 
             ``"mediawiki"``  :py:class:`~.MediaWikiTableFileLoader`
+            ``"sqlite"``     :py:class:`~.SqliteFileLoader`        
             ``"tsv"``        :py:class:`~.TsvTableFileLoader`      
             ===============  ======================================
 
@@ -102,6 +105,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             "html": HtmlTableFileLoader,
             "json": JsonTableFileLoader,
             "ltsv": LtsvTableFileLoader,
+            "sqlite": SqliteFileLoader,
             "tsv": TsvTableFileLoader,
         }
 
@@ -115,6 +119,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         loader_table.update({
             "htm": HtmlTableFileLoader,
             "md": MarkdownTableFileLoader,
+            "sqlite3": SqliteFileLoader,
             "xlsx": ExcelTableFileLoader,
             "xls": ExcelTableFileLoader,
         })
