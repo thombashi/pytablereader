@@ -24,25 +24,26 @@ pytablereader
 Summary
 -------
 
-A python library to load structured table data from files/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/TSV.
+A python library to load structured table data from files/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/SQLite/TSV.
 
 Features
 --------
 
 - Extract structured tabular data from various data format:
     - CSV
-    - Microsoft Excel :superscript:`TM`
+    - Microsoft Excel :superscript:`TM` file
     - `Google Sheets <https://www.google.com/intl/en_us/sheets/about/>`_
     - HTML
     - JSON
     - `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
     - Markdown
     - MediaWiki
+    - SQLite database file
     - Tab separated values (TSV)
 - Supported data sources to read:
     - Files on a local file system
-    - Accessible URL
-    - ``str`` instance
+    - Accessible URLs
+    - ``str`` instances
 
 
 Examples
