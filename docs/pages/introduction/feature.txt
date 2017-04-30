@@ -4,6 +4,7 @@ Features
 - Extract structured tabular data from various data format:
     - CSV
     - Microsoft Excel :superscript:`TM`
+    - `Google Sheets <https://www.google.com/intl/en_us/sheets/about/>`_
     - HTML
     - JSON
     - `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__

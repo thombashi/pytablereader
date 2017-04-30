@@ -385,7 +385,7 @@ rp_method = u"""
     Table name determined by the value of
     :py:attr:`~pytablereader.interface.TableLoader.table_name`.
     Following format specifiers in the
-    :py:attr:`~pytablereader.interface.TableLoader.table_name`.
+    :py:attr:`~pytablereader.interface.TableLoader.table_name`
     are replaced with specific strings:
 """
 

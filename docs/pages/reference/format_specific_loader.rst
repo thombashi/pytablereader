@@ -8,21 +8,21 @@ TableLoader class
     :show-inheritance:
 
 
-CSV Loader classes
+CSV Loader Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-CsvTableLoader class
+CSV Table Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.csv.core.CsvTableLoader
     :inherited-members:
 
-CsvTableFileLoader class
+CSV File Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.CsvTableFileLoader
     :inherited-members:
     :show-inheritance:
 
-CsvTableTextLoader class
+CSV Text Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.CsvTableTextLoader
     :inherited-members:
@@ -30,44 +30,44 @@ CsvTableTextLoader class
     :show-inheritance:
 
     
-HTML Loader classes
+HTML Loader Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-HtmlTableFileLoader class
+HTML File Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.HtmlTableFileLoader
     :inherited-members:
 
-HtmlTableTextLoader class
+HTML Text Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.HtmlTableTextLoader
     :inherited-members:
 
 
-JSON Loader classes
+JSON Loader Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-JsonTableFileLoader class
+Json File Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.JsonTableFileLoader
     :inherited-members:
 
-JsonTableTextLoader class
+Json Text Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.JsonTableTextLoader
     :inherited-members:
 
 
-LTSV Loader classes
+LTSV Loader Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-LtsvTableFileLoader class
+LTSV File Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.LtsvTableFileLoader
     :inherited-members:
     :show-inheritance:
 
-LtsvTableTextLoader class
+LTSV Text Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.LtsvTableTextLoader
     :inherited-members:
@@ -75,35 +75,51 @@ LtsvTableTextLoader class
     :show-inheritance:
 
 
-Markdown Loader classes
+Markdown Loader Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-MarkdownTableFileLoader class
+Markdown File Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.MarkdownTableFileLoader
     :inherited-members:
 
-MarkdownTableTextLoader class
+Markdown Text Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.MarkdownTableTextLoader
     :inherited-members:
 
 
-MediaWiki Loader classes
+MediaWiki Loader Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-MediaWikiTableFileLoader class
+MediaWiki File Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.MediaWikiTableFileLoader
     :inherited-members:
 
-MediaWikiTableTextLoader class
+MediaWiki Text Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.MediaWikiTableTextLoader
     :inherited-members:
 
 
-ExcelTableFileLoader class
+Spread Sheet Loader Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Excel File Loader
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.ExcelTableFileLoader
+    :inherited-members:
+
+Google Sheets Loader
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. autoclass:: pytablereader.GoogleSheetsTableLoader
+    :inherited-members:
+
+
+Database Loader Classes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SQLite File Loader
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. autoclass:: pytablereader.SqliteFileLoader
     :inherited-members:
