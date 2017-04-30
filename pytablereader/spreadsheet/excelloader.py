@@ -7,8 +7,9 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-from six.moves import range
 import xlrd
+
+from six.moves import range
 
 from .._logger import FileSourceLogger
 from .._validator import FileValidator

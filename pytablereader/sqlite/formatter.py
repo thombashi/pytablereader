@@ -7,7 +7,6 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-from simplesqlite.sqlquery import SqlQuery
 import typepy
 
 from .._constant import TableNameTemplate as tnt
@@ -28,6 +27,7 @@ class SqliteTableFormatter(TableFormatter):
 
     def to_table_data(self):
         from simplesqlite import SimpleSQLite
+        from simplesqlite.sqlquery import SqlQuery
 
         con = SimpleSQLite(self._source_data, "r")
 
