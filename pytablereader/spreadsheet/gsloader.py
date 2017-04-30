@@ -6,8 +6,6 @@
 
 from __future__ import absolute_import
 
-from simplesqlite import connect_sqlite_db_mem
-from simplesqlite.sqlquery import SqlQuery
 import typepy
 
 from .._constant import TableNameTemplate as tnt
@@ -145,6 +143,9 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         return self._replace_table_name_template(mapping)
 
     def __strip_empty_col(self):
+        from simplesqlite import connect_sqlite_db_mem
+        from simplesqlite.sqlquery import SqlQuery
+
         con = connect_sqlite_db_mem()
 
         tmp_table_name = "tmp"
