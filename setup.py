@@ -42,6 +42,7 @@ setuptools.setup(
     keywords=[
         "table", "reader", "pandas",
         "CSV", "Excel", "HTML", "JSON", "LTSV", "Markdown", "MediaWiki", "TSV",
+        "SQLite",
     ],
     long_description=long_description,
     license="MIT License",
