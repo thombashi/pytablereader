@@ -32,6 +32,10 @@ class TableUrlLoader(TableLoaderManager):
         If appropriate loader not found to loading the URL.
     :raises pytablereader.HTTPError:
         If loader received an HTTP error when access to the URL.
+
+    :Examples:
+
+        :ref:`example-url-table-loader`
     """
 
     def __init__(self, url, format_name=None, encoding=None, proxies=None):

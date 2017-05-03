@@ -119,6 +119,10 @@ class CsvTableFileLoader(CsvTableLoader):
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(filename)s``.
+
+    :Examples:
+
+        :ref:`example-csv-table-loader`
     """
 
     def __init__(self, file_path):
@@ -187,6 +191,10 @@ class CsvTableTextLoader(CsvTableLoader):
     .. py:attribute:: table_name
 
         Table name string. Defaults to ``%(format_name)s%(format_id)s``.
+
+    :Examples:
+
+        :ref:`example-csv-table-loader`
     """
 
     def __init__(self, text):

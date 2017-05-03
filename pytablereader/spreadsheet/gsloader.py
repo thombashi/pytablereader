@@ -30,6 +30,10 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         - `gspread <https://github.com/burnash/gspread>`_
         - `oauth2client <https://pypi.python.org/pypi/oauth2client>`_
         - `pyOpenSSL <https://pypi.python.org/pypi/pyOpenSSL>`_
+
+    :Examples:
+
+        :ref:`example-gs-table-loader`
     """
 
     @property
