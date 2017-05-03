@@ -1,13 +1,13 @@
-Table loader factory class
+Table Loader Factory Classes
 ----------------------------
 
-TableFileLoaderFactory class
+File Loader Factory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: pytablereader.factory.TableFileLoaderFactory
     :inherited-members:
     :undoc-members:
 
-TableUrlLoaderFactory class
+Url Loader Factory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: pytablereader.factory.TableUrlLoaderFactory
     :inherited-members:

@@ -402,8 +402,14 @@ rp_class = u"""
 .. |CsvTableTextLoader| replace::
     :py:class:`~pytablereader.CsvTableTextLoader`
 
+.. |GoogleSheetsTableLoader| replace::
+    :py:class:`~pytablereader.GoogleSheetsTableLoader`
+
 .. |TableData| replace::
     :py:class:`~pytablereader.TableData`
+
+.. |TableUrlLoader| replace::
+    :py:class:`~pytablereader.TableUrlLoader`
 """
 
 rst_prolog = (

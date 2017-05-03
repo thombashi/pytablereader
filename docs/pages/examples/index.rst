@@ -5,3 +5,5 @@ Examples
    :maxdepth: 3
 
    csv
+   url
+   gs

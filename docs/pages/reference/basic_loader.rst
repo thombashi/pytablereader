@@ -1,14 +1,13 @@
-Basic Table Loader Classes
+Table Loader Wrapper Classes
 ----------------------------
 
-File Loader Class
+File Loader Wrapper
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: pytablereader.TableFileLoader
     :inherited-members:
 
 
-URL Loader Class
+URL Loader Wrapper
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: pytablereader.TableUrlLoader
     :inherited-members:
-
