@@ -7,6 +7,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+from decimal import Decimal
 import hashlib
 
 import six
@@ -63,7 +64,11 @@ class TableData(object):
     def __init__(
             self, table_name, header_list, record_list, is_strip_quote=False):
 
-        self.__is_strip_quote = is_strip_quote
+        self.__dp_extractor = dp.DataPropertyExtractor()
+        self.__dp_extractor.strip_str_header = '"'
+        if is_strip_quote:
+            self.__dp_extractor.strip_str_value = '"'
+
         self.__table_name = table_name
         self.__header_list = header_list
         self.__record_list = self.__to_record_list(record_list)
@@ -140,11 +145,7 @@ class TableData(object):
         :rtype: dict
         """
 
-        dp_extractor = dp.DataPropertyExtractor()
-        dp_extractor.strip_str_header = '"'
-        if self.__is_strip_quote:
-            dp_extractor.strip_str_value = '"'
-        dp_extractor.float_type = float
+        self.__dp_extractor.float_type = float
 
         dict_body = []
         for value_list in self.value_matrix:
@@ -152,7 +153,7 @@ class TableData(object):
                 continue
 
             dict_record = [
-                (header, dp_extractor.to_dataproperty(value).data)
+                (header, self.__dp_extractor.to_dataproperty(value).data)
                 for header, value in zip(self.header_list, value_list)
                 if value is not None
             ]
@@ -198,15 +199,10 @@ class TableData(object):
         :raises ValueError: If the ``value`` is invalid.
         """
 
-        dp_extractor = dp.DataPropertyExtractor()
-        dp_extractor.strip_str_header = '"'
-        if self.__is_strip_quote:
-            dp_extractor.strip_str_value = '"'
-
         try:
             # dictionary to list
             return [
-                dp_extractor.to_dataproperty(values.get(header)).data
+                self.__dp_extractor.to_dataproperty(values.get(header)).data
                 for header in self.header_list
             ]
         except AttributeError:
@@ -216,7 +212,8 @@ class TableData(object):
             # namedtuple to list
             dict_value = values._asdict()
             return [
-                dp_extractor.to_dataproperty(dict_value.get(header)).data
+                self.__dp_extractor.to_dataproperty(
+                    dict_value.get(header)).data
                 for header in self.header_list
             ]
         except AttributeError:
@@ -224,7 +221,7 @@ class TableData(object):
 
         try:
             return [
-                dp_extractor.to_dataproperty(value).data for value in values
+                self.__dp_extractor.to_dataproperty(value).data for value in values
             ]
         except TypeError:
             raise InvalidDataError(
@@ -234,6 +231,8 @@ class TableData(object):
         """
         Convert matrix to records
         """
+
+        self.__dp_extractor.float_type = Decimal
 
         if typepy.is_empty_sequence(self.header_list):
             return record_list
