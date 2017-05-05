@@ -31,7 +31,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 
 setuptools.setup(
     name="pytablereader",
-    version="0.9.1",
+    version="0.9.2",
     url="https://github.com/thombashi/pytablereader",
 
     author="Tsuyoshi Hombashi",
