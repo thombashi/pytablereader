@@ -6,18 +6,19 @@
 
 from __future__ import print_function
 from __future__ import unicode_literals
+
 import collections
 from decimal import Decimal
 import io
 
 from path import Path
-import pytablewriter as ptw
+from pytablereader import InvalidTableNameError
+from pytablereader import TableData
+from pytablereader.interface import TableLoader
 import pytest
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
-from pytablereader import TableData
-from pytablereader import InvalidTableNameError
+import pytablewriter as ptw
 
 
 Data = collections.namedtuple("Data", "value expected")
@@ -127,6 +128,37 @@ test_data_05 = Data(
             ])
     ])
 
+test_data_06 = Data(
+    """smokey,Linux 3.0-ARCH,x86
+12345678901,12345 1234567890123,123
+12345678901,1234567890123456789,12345
+11 bytes,19 bytes,5 byt
+test line:,"Some \"\"comma, quote\"\"",foo
+skylight,Linux 3.0-ARCH,x86
+polaris,Linux 3.0-ARCH,amd64
+asgard,Windows 6.1.7600,amd64
+galileo,Windows 6.2.8102,x86
+kepler,Windows 6.2.8123,amd64
+wrfbox,Windows 6.2.8133,amd64
+""",
+    [
+        TableData(
+            "tmp",
+            ["smokey", "Linux 3.0-ARCH", "x86"],
+            [
+                [12345678901, "12345 1234567890123", 123],
+                [12345678901, 1234567890123456789, 12345],
+                ["11 bytes", "19 bytes", "5 byt"],
+                ["test line:", 'Some "comma, quote"', "foo"],
+                ["skylight", "Linux 3.0-ARCH", "x86"],
+                ["polaris", "Linux 3.0-ARCH", "amd64"],
+                ["asgard", "Windows 6.1.7600", "amd64"],
+                ["galileo", "Windows 6.2.8102", "x86"],
+                ["kepler", "Windows 6.2.8123", "amd64"],
+                ["wrfbox", "Windows 6.2.8133", "amd64"],
+            ])
+    ])
+
 
 class Test_CsvTableFileLoader_make_table_name:
 
@@ -228,6 +260,12 @@ class Test_CsvTableFileLoader_load:
                 "tmp.csv",
                 [],
                 test_data_05.expected,
+            ],
+            [
+                6, test_data_06.value,
+                "tmp.csv",
+                [],
+                test_data_06.expected,
             ],
         ])
     def test_normal(

@@ -61,8 +61,9 @@ class TableData(object):
         return self.value_matrix
 
     def __init__(
-            self, table_name, header_list, record_list):
+            self, table_name, header_list, record_list, is_strip_quote=False):
 
+        self.__is_strip_quote = is_strip_quote
         self.__table_name = table_name
         self.__header_list = header_list
         self.__record_list = self.__to_record_list(record_list)
@@ -140,7 +141,9 @@ class TableData(object):
         """
 
         dp_extractor = dp.DataPropertyExtractor()
-        dp_extractor.strip_str = '"'
+        dp_extractor.strip_str_header = '"'
+        if self.__is_strip_quote:
+            dp_extractor.strip_str_value = '"'
         dp_extractor.float_type = float
 
         dict_body = []
@@ -196,7 +199,9 @@ class TableData(object):
         """
 
         dp_extractor = dp.DataPropertyExtractor()
-        dp_extractor.strip_str = '"'
+        dp_extractor.strip_str_header = '"'
+        if self.__is_strip_quote:
+            dp_extractor.strip_str_value = '"'
 
         try:
             # dictionary to list

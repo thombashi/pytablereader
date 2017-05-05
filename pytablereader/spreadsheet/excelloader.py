@@ -112,7 +112,9 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
             self.inc_table_count()
 
-            yield TableData(self._make_table_name(), header_list, record_list)
+            yield TableData(
+                self._make_table_name(), header_list, record_list,
+                is_strip_quote=True)
 
     def _is_empty_sheet(self):
         return any([
