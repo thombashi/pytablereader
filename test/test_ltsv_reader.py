@@ -6,38 +6,39 @@
 
 from __future__ import print_function
 from __future__ import unicode_literals
+
 import collections
 from decimal import Decimal
 import io
 
 from path import Path
-import pytablewriter as ptw
-import pytest
-
-import pytablereader as ptr
-from pytablereader.interface import TableLoader
-from pytablereader import TableData
 from pytablereader import (
     InvalidTableNameError,
     InvalidDataError,
     InvalidHeaderNameError
 )
+from pytablereader import TableData
+from pytablereader.interface import TableLoader
+import pytest
+
+import pytablereader as ptr
+import pytablewriter as ptw
 
 
 Data = collections.namedtuple("Data", "value expected")
 
 test_data_00 = Data(
-    """a.0:1\tb-1:123.1\tc_2:"a"\t"dd":1.0\te.f-g_4:"1"
-a.0:2\tb-1:2.2\tc_2:"bb"\t"dd":2.2\te.f-g_4:"2.2"
-a.0:3\tb-1:3.3\tc_2:"ccc"\t"dd":3.0\te.f-g_4:"cccc"
+    """a.0:1\tb-1:123.1\tc_2:a\t"dd":1.0\te.f-g_4:"1"
+a.0:2\tb-1:2.2\tc_2:bb\t"dd":2.2\te.f-g_4:"2.2"
+a.0:3\tb-1:3.3\tc_2:ccc\t"dd":3.0\te.f-g_4:"cccc"
 """,
     TableData(
         "tmp",
         ["a.0", "b-1", "c_2", "dd", "e.f-g_4"],
         [
-            [1, Decimal("123.1"), "a", 1, 1],
-            [2, Decimal("2.2"), "bb", Decimal("2.2"), Decimal("2.2")],
-            [3, Decimal("3.3"), "ccc", 3, "cccc"],
+            [1, Decimal("123.1"), "a", 1, '"1"'],
+            [2, Decimal("2.2"), "bb", Decimal("2.2"), '"2.2"'],
+            [3, Decimal("3.3"), "ccc", 3, '"cccc"'],
         ])
 )
 

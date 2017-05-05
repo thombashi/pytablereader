@@ -194,7 +194,7 @@ class Test_TableFileLoader_load:
                     ['aa1', 'ab1', 'ac1'],
                     [1.0, 1.1, 'a'],
                     [2.0, 2.2, 'bb'],
-                    [3.0, 3.3, 'cc'],
+                    [3.0, 3.3, 'cc"dd"'],
                 ]),
             ptr.TableData(
                 table_name='testsheet3',
@@ -219,4 +219,6 @@ class Test_TableFileLoader_load:
         assert loader.format_name == "excel"
 
         for tabledata in loader.load():
+            print(ptw.dump_tabledata(tabledata))
+
             assert tabledata in tabledata_list
