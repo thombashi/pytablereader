@@ -9,10 +9,8 @@ from __future__ import unicode_literals
 
 import collections
 from decimal import Decimal
-import io
 
 from path import Path
-from pytablereader import InvalidTableNameError
 from pytablereader import TableData
 from pytablereader.interface import TableLoader
 import pytest
