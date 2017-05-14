@@ -6,9 +6,11 @@
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
+
 import io
 
 import typepy
+
 import pathvalidate as pv
 
 from .._constant import TableNameTemplate as tnt
