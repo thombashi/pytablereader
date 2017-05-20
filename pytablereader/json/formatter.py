@@ -54,9 +54,6 @@ class SingleJsonTableConverter(JsonConverter):
     Concrete class of JSON table data converter.
     """
 
-    def __init__(self, json_buffer):
-        super(SingleJsonTableConverter, self).__init__(json_buffer)
-
     @property
     def _schema(self):
         return {
