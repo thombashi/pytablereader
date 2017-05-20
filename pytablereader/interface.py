@@ -116,7 +116,7 @@ class TableLoader(TableLoaderInterface):
 
         return (tnt.FILENAME, filename)
 
-    def _get_basic_tablename_mapping(self):
+    def _get_basic_tablename_keyvalue_list(self):
         return [
             (tnt.DEFAULT, self._get_default_table_name_template()),
             (tnt.FORMAT_NAME, self.format_name),
@@ -138,7 +138,7 @@ class TableLoader(TableLoaderInterface):
         self._validate_table_name()
 
         return self._replace_table_name_template(
-            self._get_basic_tablename_mapping())
+            self._get_basic_tablename_keyvalue_list())
 
     def _sanitize_table_name(self, table_name):
         if typepy.is_null_string(table_name):

@@ -56,7 +56,7 @@ class SpreadSheetLoader(TableLoader):
         return "spreadsheet"
 
     def _make_table_name(self):
-        mapping = self._get_basic_tablename_mapping()
+        mapping = self._get_basic_tablename_keyvalue_list()
         try:
             mapping.append((tnt.SHEET, self._sheet_name))
         except AttributeError:
