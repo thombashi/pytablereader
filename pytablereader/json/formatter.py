@@ -23,6 +23,14 @@ class JsonConverter(TableFormatter):
     The abstract class of JSON data converter.
     """
 
+    _VALUE_TYPE_SCHEMA = {
+        "anyOf": [
+            {"type": "string"},
+            {"type": "number"},
+            {"type": "null"},
+        ],
+    }
+
     def __init__(self, json_buffer):
         self._buffer = json_buffer
 
@@ -55,13 +63,7 @@ class SingleJsonTableConverter(JsonConverter):
             "type": "array",
             "items": {
                 "type": "object",
-                "additionalProperties": {
-                    "anyOf": [
-                        {"type": "string"},
-                        {"type": "number"},
-                        {"type": "null"},
-                    ],
-                },
+                "additionalProperties": self._VALUE_TYPE_SCHEMA,
             },
         }
 
@@ -104,13 +106,7 @@ class MultipleJsonTableConverter(JsonConverter):
                 "type": "array",
                 "items": {
                     "type": "object",
-                    "additionalProperties": {
-                        "anyOf": [
-                            {"type": "string"},
-                            {"type": "number"},
-                            {"type": "null"},
-                        ],
-                    },
+                    "additionalProperties": self._VALUE_TYPE_SCHEMA,
                 },
             },
         }
