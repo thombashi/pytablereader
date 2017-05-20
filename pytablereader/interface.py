@@ -125,11 +125,11 @@ class TableLoader(TableLoaderInterface):
             self._get_filename_tablename_mapping(),
         ]
 
-    def _replace_table_name_template(self, table_name_mapping):
+    def _replace_table_name_template(self, table_name_kv_list):
         self._validate_table_name()
 
         table_name = self.table_name
-        for teamplate, value in table_name_mapping:
+        for teamplate, value in table_name_kv_list:
             table_name = table_name.replace(teamplate, value)
 
         return self._sanitize_table_name(table_name)
