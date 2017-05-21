@@ -45,20 +45,15 @@ class Test_TableData_as_dataframe(object):
 @pytest.mark.skipif("PANDAS_IMPORT is False")
 class Test_TableData_from_dataframe(object):
 
-    @pytest.mark.parametrize(["dataframe", "table_name"], [
-        [
-            pandas.DataFrame(
-                [
-                    [0, 0.1, "a"],
-                    [1, 1.1, "bb"],
-                    [2, 2.2, "ccc"],
-                ],
-                columns=['id', 'value', 'name']
-            ),
-            "tablename",
-        ],
-    ])
-    def test_normal(self, dataframe, table_name):
+    def test_normal(self):
+        dataframe = pandas.DataFrame(
+            [
+                [0, 0.1, "a"],
+                [1, 1.1, "bb"],
+                [2, 2.2, "ccc"],
+            ],
+            columns=['id', 'value', 'name']
+        )
         expected = TableData(
             table_name="tablename",
             header_list=['id', 'value', 'name'],
@@ -68,4 +63,4 @@ class Test_TableData_from_dataframe(object):
                 [2, Decimal('2.2'), 'ccc'],
             ])
 
-        assert TableData.from_dataframe(dataframe, table_name) == expected
+        assert TableData.from_dataframe(dataframe, "tablename") == expected
