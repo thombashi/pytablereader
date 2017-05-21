@@ -49,7 +49,25 @@ class JsonConverter(TableFormatter):
             raise ValidationError(e)
 
 
-class SingleJsonTableConverter(JsonConverter):
+class SingleJsonTableConverterBase(JsonConverter):
+
+    def _get_tabledata(self, header_list):
+        return TableData(
+            table_name=self._make_table_name(),
+            header_list=header_list,
+            record_list=self._buffer)
+
+    def _make_table_name(self):
+        key = self._loader.get_format_key()
+
+        return self._loader._replace_table_name_template(
+            self._loader._get_basic_tablename_keyvalue_list() + [
+                (tnt.KEY, key),
+            ]
+        )
+
+
+class SingleJsonTableConverter(SingleJsonTableConverterBase):
     """
     Concrete class of JSON table data converter.
     """
@@ -74,21 +92,11 @@ class SingleJsonTableConverter(JsonConverter):
 
         attr_name_set = set()
         for json_record in self._buffer:
-            attr_name_set = attr_name_set.union(list(json_record.keys()))
+            attr_name_set = attr_name_set.union(six.viewkeys(json_record))
 
         self._loader.inc_table_count()
 
-        yield TableData(
-            self._make_table_name(), sorted(attr_name_set), self._buffer)
-
-    def _make_table_name(self):
-        key = self._loader.get_format_key()
-
-        return self._loader._replace_table_name_template(
-            self._loader._get_basic_tablename_keyvalue_list() + [
-                (tnt.KEY, key),
-            ]
-        )
+        yield self._get_tabledata(header_list=sorted(attr_name_set))
 
 
 class MultipleJsonTableConverter(JsonConverter):
