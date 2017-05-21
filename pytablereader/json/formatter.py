@@ -146,17 +146,22 @@ class MultipleJsonTableConverter(JsonConverter):
 class JsonTableFormatter(TableFormatter):
 
     def to_table_data(self):
-        converter = MultipleJsonTableConverter(self._source_data)
-        converter.accept(self._loader)
-        try:
-            for tabledata in converter.to_table_data():
-                yield tabledata
-            return
-        except ValidationError:
-            pass
+        converter_class_list = [
+            MultipleJsonTableConverter,
+            SingleJsonTableConverter,
+        ]
 
-        converter = SingleJsonTableConverter(self._source_data)
-        converter.accept(self._loader)
+        for converter_class in converter_class_list:
+            converter = converter_class(self._source_data)
+            converter.accept(self._loader)
+            try:
+                for tabledata in converter.to_table_data():
+                    yield tabledata
+                return
+            except ValidationError:
+                pass
+            else:
+                break
 
-        for tabledata in converter.to_table_data():
-            yield tabledata
+        raise ValidationError(
+            "inconvertible JSON schema: json={}".format(self._source_data))
