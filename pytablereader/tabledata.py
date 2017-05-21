@@ -227,7 +227,8 @@ class TableData(object):
 
         try:
             return [
-                self.__dp_extractor.to_dataproperty(value).data for value in values
+                self.__dp_extractor.to_dataproperty(value).data
+                for value in values
             ]
         except TypeError:
             raise InvalidDataError(
