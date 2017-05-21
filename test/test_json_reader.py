@@ -77,8 +77,8 @@ test_data_03 = Data(
     }""",
     [
         TableData(
-            u"table_a",
-            [u"attr_a", u"attr_b", u"attr_c"],
+            "table_a",
+            ["attr_a", "attr_b", "attr_c"],
             [
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
@@ -86,8 +86,8 @@ test_data_03 = Data(
             ]
         ),
         TableData(
-            u"table_b",
-            [u"a", u"b"],
+            "table_b",
+            ["a", "b"],
             [
                 {'a': 1, 'b': 4},
                 {'a': 2, },
@@ -111,8 +111,8 @@ test_data_04 = Data(
     }""",
     [
         TableData(
-            u"table_a",
-            [u"attr_a", u"attr_b", u"attr_c"],
+            "table_a",
+            ["attr_a", "attr_b", "attr_c"],
             [
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
@@ -120,8 +120,8 @@ test_data_04 = Data(
             ]
         ),
         TableData(
-            u"table_b",
-            [u"a", u"b"],
+            "table_b",
+            ["a", "b"],
             [
                 {'a': 1, 'b': 4},
                 {'a': 2, },
@@ -148,7 +148,7 @@ test_data_05 = Data(
         ),
     ])
 
-test_data_06 = Data(
+test_data_20 = Data(
     """{
         "attr_a": [1, 2, 3],
         "attr_b": [4, 2.1, 120.9],
@@ -163,6 +163,38 @@ test_data_06 = Data(
                 [2, Decimal('2.1'), 'bb'],
                 [3, Decimal('120.9'), 'ccc']
             ]),
+    ])
+
+test_data_30 = Data(
+    """{
+        "table_a" : {
+            "attr_a": [1, 2, 3],
+            "attr_b": [4, 2.1, 120.9],
+            "attr_c": ["a", "bb", "ccc"]
+        },
+        "table_b" : {
+            "a": [1, 3],
+            "b": [4, 120.9]
+        }
+    }""",
+    [
+        TableData(
+            "table_a",
+            ["attr_a", "attr_b", "attr_c"],
+            [
+                [1, 4, 'a'],
+                [2, Decimal('2.1'), 'bb'],
+                [3, Decimal('120.9'), 'ccc']
+            ]
+        ),
+        TableData(
+            "table_b",
+            ["a", "b"],
+            [
+                [1, 4],
+                [3, Decimal('120.9')],
+            ]
+        ),
     ])
 
 
@@ -244,6 +276,14 @@ class Test_JsonTableFileLoader_load:
             [
                 test_data_04.value, "tmp.json", "%(key)s",
                 test_data_04.expected
+            ],
+            [
+                test_data_20.value, "tmp.json", "%(key)s",
+                test_data_20.expected
+            ],
+            [
+                test_data_30.value, "tmp.json", "%(key)s",
+                test_data_30.expected
             ],
         ])
     def test_normal(
@@ -365,8 +405,12 @@ class Test_JsonTableTextLoader_load:
                 test_data_05.expected
             ],
             [
-                test_data_06.value, "%(key)s",
-                test_data_06.expected
+                test_data_20.value, "%(key)s",
+                test_data_20.expected
+            ],
+            [
+                test_data_30.value, "%(key)s",
+                test_data_30.expected
             ],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):

@@ -130,9 +130,24 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
         )
 
 
-class MultipleJsonTableConverter(JsonConverter):
+class MultipleJsonTableConverterBase(JsonConverter):
+
+    def __init__(self, json_buffer):
+        super(MultipleJsonTableConverterBase, self).__init__(json_buffer)
+
+        self._table_key = None
+
+    def _make_table_name(self):
+        return self._loader._replace_table_name_template(
+            self._loader._get_basic_tablename_keyvalue_list() + [
+                (tnt.KEY, self._table_key),
+            ],
+        )
+
+
+class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
     """
-    Concrete class of JSON table data converter.
+    A concrete class of JSON table data converter.
     """
 
     @property
@@ -148,11 +163,6 @@ class MultipleJsonTableConverter(JsonConverter):
             },
         }
 
-    def __init__(self, json_buffer):
-        super(MultipleJsonTableConverter, self).__init__(json_buffer)
-
-        self.__table_key = None
-
     def to_table_data(self):
         """
         :raises ValueError:
@@ -164,29 +174,69 @@ class MultipleJsonTableConverter(JsonConverter):
         for table_key, json_record_list in six.iteritems(self._buffer):
             attr_name_set = set()
             for json_record in json_record_list:
-                attr_name_set = attr_name_set.union(list(json_record.keys()))
+                attr_name_set = attr_name_set.union(six.viewkeys(json_record))
 
             self._loader.inc_table_count()
-
-            self.__table_key = table_key
+            self._table_key = table_key
 
             yield TableData(
-                self._make_table_name(),
-                sorted(attr_name_set), json_record_list)
+                table_name=self._make_table_name(),
+                header_list=sorted(attr_name_set),
+                record_list=json_record_list)
 
-    def _make_table_name(self):
-        return self._loader._replace_table_name_template(
-            self._loader._get_basic_tablename_keyvalue_list() + [
-                (tnt.KEY, self.__table_key),
-            ],
-        )
+
+class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
+    """
+    A concrete class of JSON table data converter.
+    """
+
+    @property
+    def _schema(self):
+        return {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {"type": "string"},
+                            {"type": "number"},
+                            {"type": "null"},
+                        ],
+                    },
+                },
+            },
+        }
+
+    def to_table_data(self):
+        """
+        :raises ValueError:
+        :raises pytablereader.error.ValidationError:
+        """
+
+        self._validate_source_data()
+
+        for table_key, json_record_list in six.iteritems(self._buffer):
+            header_list = sorted(six.viewkeys(json_record_list))
+
+            self._loader.inc_table_count()
+            self._table_key = table_key
+
+            yield TableData(
+                table_name=self._make_table_name(),
+                header_list=header_list,
+                record_list=zip(
+                    *[json_record_list.get(header) for header in header_list])
+            )
 
 
 class JsonTableFormatter(TableFormatter):
 
     def to_table_data(self):
         converter_class_list = [
-            MultipleJsonTableConverter,
+            MultipleJsonTableConverterA,
+            MultipleJsonTableConverterB,
             SingleJsonTableConverterA,
             SingleJsonTableConverterB,
         ]
