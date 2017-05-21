@@ -57,16 +57,43 @@ class JsonTableFileLoader(JsonTableLoader):
         Extract tabular data as |TableData| instances from a JSON file.
         |load_source_desc_file|
 
-        This method can be loading two types of JSON formats:
-        **(1)** single table data in a file,
+        This method can be loading four types of JSON formats:
+        **(1)** Single table data in a file,
         acceptable JSON Schema is as follows:
 
-        .. code-block:: json
-            :caption: JSON Schema: single table data
+            .. code-block:: json
+                :caption: JSON Schema (1): accept single table
 
-            {
-                "type": "array",
-                "items": {
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "anyOf": [
+                                {"type": "string"},
+                                {"type": "number"},
+                                {"type": "null"},
+                            ],
+                        },
+                    },
+                }
+
+            .. code-block:: json
+                :caption: JSON example for the JSON schema (1)
+
+                [
+                    {"attr_b": 4, "attr_c": "a", "attr_a": 1},
+                    {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
+                    {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
+                ]
+
+        **(2)** Single table data in a file,
+        acceptable JSON Schema is as follows:
+
+            .. code-block:: json
+                :caption: JSON Schema (2): accept single table
+
+                {
                     "type": "object",
                     "additionalProperties": {
                         "anyOf": [
@@ -75,56 +102,93 @@ class JsonTableFileLoader(JsonTableLoader):
                             {"type": "null"},
                         ],
                     },
-                },
-            }
+                }
 
-        .. code-block:: json
-            :caption: JSON example for the JSON schema (1)
+            .. code-block:: json
+                :caption: JSON example for the JSON schema (2)
 
-            [
-                {"attr_b": 4, "attr_c": "a", "attr_a": 1},
-                {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
-                {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
-            ]
+                {
+                    "attr_a": [1, 2, 3],
+                    "attr_b": [4, 2.1, 120.9],
+                    "attr_c": ["a", "bb", "ccc"]
+                }
 
-        **(2)** multiple table data in a file,
+        **(3)** Multiple table data in a file,
         acceptable JSON Schema is as follows:
 
-        .. code-block:: json
-            :caption: JSON Schema: multiple table data
+            .. code-block:: json
+                :caption: JSON Schema (3): accept multiple table
 
-            {
-                "type": "object",
-                "additionalProperties": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "anyOf": [
-                                {"type": "string"},
-                                {"type": "number"},
-                                {"type": "null"}
-                            ]
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "anyOf": [
+                                    {"type": "string"},
+                                    {"type": "number"},
+                                    {"type": "null"}
+                                ]
+                            }
                         }
                     }
                 }
-            }
 
-        .. code-block:: json
-            :caption: JSON example for the JSON schema (2)
+            .. code-block:: json
+                :caption: JSON example for the JSON schema (3)
 
-            {
-                "table_a" : [
-                    {"attr_b": 4, "attr_c": "a", "attr_a": 1},
-                    {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
-                    {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
-                ],
-                "table_b" : [
-                    {"a": 1, "b": 4},
-                    {"a": 2 },
-                    {"a": 3, "b": 120.9}
-                ]
-            }
+                {
+                    "table_a" : [
+                        {"attr_b": 4, "attr_c": "a", "attr_a": 1},
+                        {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
+                        {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
+                    ],
+                    "table_b" : [
+                        {"a": 1, "b": 4},
+                        {"a": 2 },
+                        {"a": 3, "b": 120.9}
+                    ]
+                }
+
+        **(4)** Multiple table data in a file,
+        acceptable JSON Schema is as follows:
+
+            .. code-block:: json
+                :caption: JSON Schema (4): accept multiple table
+
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "anyOf": [
+                                    {"type": "string"},
+                                    {"type": "number"},
+                                    {"type": "null"},
+                                ],
+                            },
+                        },
+                    },
+                }
+
+            .. code-block:: json
+                :caption: JSON example for the JSON schema (4)
+
+                {
+                    "table_a" : {
+                        "attr_a": [1, 2, 3],
+                        "attr_b": [4, 2.1, 120.9],
+                        "attr_c": ["a", "bb", "ccc"]
+                    },
+                    "table_b" : {
+                        "a": [1, 3],
+                        "b": [4, 120.9]
+                    }
+                }
 
         :return:
             Loaded table data iterator.
