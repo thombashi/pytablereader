@@ -51,12 +51,6 @@ class JsonConverter(TableFormatter):
 
 class SingleJsonTableConverterBase(JsonConverter):
 
-    def _get_tabledata(self, header_list):
-        return TableData(
-            table_name=self._make_table_name(),
-            header_list=header_list,
-            record_list=self._buffer)
-
     def _make_table_name(self):
         key = self._loader.get_format_key()
 
@@ -67,9 +61,9 @@ class SingleJsonTableConverterBase(JsonConverter):
         )
 
 
-class SingleJsonTableConverter(SingleJsonTableConverterBase):
+class SingleJsonTableConverterA(SingleJsonTableConverterBase):
     """
-    Concrete class of JSON table data converter.
+    A concrete class of JSON table data formatter.
     """
 
     @property
@@ -96,7 +90,44 @@ class SingleJsonTableConverter(SingleJsonTableConverterBase):
 
         self._loader.inc_table_count()
 
-        yield self._get_tabledata(header_list=sorted(attr_name_set))
+        yield TableData(
+            table_name=self._make_table_name(),
+            header_list=sorted(attr_name_set),
+            record_list=self._buffer)
+
+
+class SingleJsonTableConverterB(SingleJsonTableConverterBase):
+    """
+    A concrete class of JSON table data formatter.
+    """
+
+    @property
+    def _schema(self):
+        return {
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": self._VALUE_TYPE_SCHEMA,
+            },
+        }
+
+    def to_table_data(self):
+        """
+        :raises ValueError:
+        :raises pytablereader.error.ValidationError:
+        """
+
+        self._validate_source_data()
+        self._loader.inc_table_count()
+
+        header_list = sorted(six.viewkeys(self._buffer))
+
+        yield TableData(
+            table_name=self._make_table_name(),
+            header_list=header_list,
+            record_list=zip(
+                *[self._buffer.get(header) for header in header_list])
+        )
 
 
 class MultipleJsonTableConverter(JsonConverter):
@@ -156,7 +187,8 @@ class JsonTableFormatter(TableFormatter):
     def to_table_data(self):
         converter_class_list = [
             MultipleJsonTableConverter,
-            SingleJsonTableConverter,
+            SingleJsonTableConverterA,
+            SingleJsonTableConverterB,
         ]
 
         for converter_class in converter_class_list:

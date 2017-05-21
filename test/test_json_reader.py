@@ -8,6 +8,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import collections
+from decimal import Decimal
 
 from path import Path
 from pytablereader import InvalidTableNameError
@@ -40,8 +41,7 @@ test_data_01 = Data(
             [
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
-                {'attr_a': 3, 'attr_b': 120.9,
-                    'attr_c': 'ccc'},
+                {'attr_a': 3, 'attr_b': 120.9, 'attr_c': 'ccc'},
             ]
         ),
     ])
@@ -82,8 +82,7 @@ test_data_03 = Data(
             [
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
-                {'attr_a': 3, 'attr_b': 120.9,
-                    'attr_c': 'ccc'},
+                {'attr_a': 3, 'attr_b': 120.9, 'attr_c': 'ccc'},
             ]
         ),
         TableData(
@@ -117,8 +116,7 @@ test_data_04 = Data(
             [
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
-                {'attr_a': 3, 'attr_b': 120.9,
-                    'attr_c': 'ccc'},
+                {'attr_a': 3, 'attr_b': 120.9, 'attr_c': 'ccc'},
             ]
         ),
         TableData(
@@ -145,12 +143,27 @@ test_data_05 = Data(
             [
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': '2.1', 'attr_c': 'bb'},
-                {'attr_a': 3, 'attr_b': '120.9',
-                    'attr_c': 'ccc'},
+                {'attr_a': 3, 'attr_b': '120.9', 'attr_c': 'ccc'},
             ]
         ),
-    ]
-)
+    ])
+
+test_data_06 = Data(
+    """{
+        "attr_a": [1, 2, 3],
+        "attr_b": [4, 2.1, 120.9],
+        "attr_c": ["a", "bb", "ccc"]
+}""",
+    [
+        TableData(
+            "json1",
+            ["attr_a", "attr_b", "attr_c"],
+            [
+                [1, 4, 'a'],
+                [2, Decimal('2.1'), 'bb'],
+                [3, Decimal('120.9'), 'ccc']
+            ]),
+    ])
 
 
 class Test_JsonTableFileLoader_make_table_name:
@@ -212,34 +225,24 @@ class Test_JsonTableFileLoader_load:
 
     @pytest.mark.parametrize(
         [
-            "table_text",
-            "filename",
-            "table_name",
+            "table_text", "filename", "table_name",
             "expected_tabletuple_list",
         ],
         [
             [
-                test_data_01.value,
-                "tmp.json",
-                "%(key)s",
+                test_data_01.value, "tmp.json", "%(key)s",
                 test_data_01.expected
             ],
             [
-                test_data_02.value,
-                "tmp.json",
-                "%(key)s",
+                test_data_02.value, "tmp.json", "%(key)s",
                 test_data_02.expected
             ],
             [
-                test_data_03.value,
-                "tmp.json",
-                "%(key)s",
+                test_data_03.value, "tmp.json", "%(key)s",
                 test_data_03.expected
             ],
             [
-                test_data_04.value,
-                "tmp.json",
-                "%(key)s",
+                test_data_04.value, "tmp.json", "%(key)s",
                 test_data_04.expected
             ],
         ])
@@ -265,11 +268,7 @@ class Test_JsonTableFileLoader_load:
         assert load
 
     @pytest.mark.parametrize(
-        [
-            "table_text",
-            "filename",
-            "expected",
-        ],
+        ["table_text", "filename", "expected"],
         [
             [
                 "[]",
@@ -345,30 +344,29 @@ class Test_JsonTableTextLoader_load:
 
     @pytest.mark.parametrize(
         [
-            "table_text",
-            "table_name",
+            "table_text", "table_name",
             "expected_tabletuple_list",
         ],
         [
             [
-                test_data_01.value,
-                "json1",
+                test_data_01.value, "json1",
                 test_data_01.expected,
             ],
             [
-                test_data_02.value,
-                "json1",
+                test_data_02.value, "json1",
                 test_data_02.expected,
             ],
             [
-                test_data_03.value,
-                "%(default)s",
+                test_data_03.value, "%(default)s",
                 test_data_03.expected
             ],
             [
-                test_data_05.value,
-                "%(key)s",
+                test_data_05.value, "%(key)s",
                 test_data_05.expected
+            ],
+            [
+                test_data_06.value, "%(key)s",
+                test_data_06.expected
             ],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):

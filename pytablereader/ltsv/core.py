@@ -27,7 +27,7 @@ from ..error import (
     InvalidDataError
 )
 from ..interface import TableLoader
-from ..json.formatter import SingleJsonTableConverter
+from ..json.formatter import SingleJsonTableConverterA
 
 
 class LtsvTableLoader(TableLoader):
@@ -140,7 +140,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
             self.source, "r", encoding=self.encoding)
 
         for data_matrix in self._to_data_matrix():
-            formatter = SingleJsonTableConverter(data_matrix)
+            formatter = SingleJsonTableConverterA(data_matrix)
             formatter.accept(self)
 
             return formatter.to_table_data()
@@ -197,7 +197,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
         self._ltsv_input_stream = self.source.splitlines()
 
         for data_matrix in self._to_data_matrix():
-            formatter = SingleJsonTableConverter(data_matrix)
+            formatter = SingleJsonTableConverterA(data_matrix)
             formatter.accept(self)
 
             return formatter.to_table_data()
