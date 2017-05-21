@@ -15,7 +15,6 @@ from pytablereader import (
     InvalidDataError,
 )
 import pytest
-import typepy
 
 import pytablewriter as ptw
 

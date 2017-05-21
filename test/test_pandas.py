@@ -8,10 +8,7 @@ from __future__ import unicode_literals
 
 from decimal import Decimal
 
-from pytablereader import (
-    TableData,
-    InvalidDataError,
-)
+from pytablereader import TableData
 import pytest
 import typepy
 
