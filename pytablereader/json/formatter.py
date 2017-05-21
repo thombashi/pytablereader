@@ -198,13 +198,7 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
                 "type": "object",
                 "additionalProperties": {
                     "type": "array",
-                    "items": {
-                        "anyOf": [
-                            {"type": "string"},
-                            {"type": "number"},
-                            {"type": "null"},
-                        ],
-                    },
+                    "items": self._VALUE_TYPE_SCHEMA,
                 },
             },
         }
