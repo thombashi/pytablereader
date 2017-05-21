@@ -6,17 +6,18 @@
 
 from __future__ import print_function
 from __future__ import unicode_literals
+
 import collections
 import io
 
 from path import Path
-import pytablewriter as ptw
+from pytablereader import InvalidTableNameError
+from pytablereader import TableData
+from pytablereader.interface import TableLoader
 import pytest
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
-from pytablereader import TableData
-from pytablereader import InvalidTableNameError
+import pytablewriter as ptw
 
 
 Data = collections.namedtuple("Data", "value expected")

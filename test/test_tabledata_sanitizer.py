@@ -6,12 +6,12 @@
 
 from __future__ import unicode_literals
 
-import pytablewriter as ptw
+from pytablereader import TableData
+from pytablereader._tabledata_sanitizer import SQLiteTableDataSanitizer
 import pytest
 
 import pytablereader as ptr
-from pytablereader import TableData
-from pytablereader._tabledata_sanitizer import SQLiteTableDataSanitizer
+import pytablewriter as ptw
 
 
 class Test_SQLiteTableDataSanitizer:

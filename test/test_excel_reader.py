@@ -6,11 +6,11 @@
 
 from __future__ import unicode_literals
 
+from pytablereader.interface import TableLoader
 import pytest
 import xlsxwriter
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
 
 
 def write_worksheet(worksheet, table):

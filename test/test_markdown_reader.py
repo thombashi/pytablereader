@@ -5,15 +5,16 @@
 """
 
 from __future__ import unicode_literals
+
 import collections
 
 from path import Path
+from pytablereader import TableData
+from pytablereader.interface import TableLoader
+from pytablereader.markdown.formatter import MarkdownTableFormatter
 import pytest
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
-from pytablereader import TableData
-from pytablereader.markdown.formatter import MarkdownTableFormatter
 
 
 Data = collections.namedtuple("Data", "value expected")

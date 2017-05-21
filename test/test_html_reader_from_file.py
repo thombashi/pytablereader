@@ -5,11 +5,13 @@
 """
 
 from __future__ import unicode_literals
+
 import os
 
 import pytest
-import pytablewriter as ptw
+
 import pytablereader as ptr
+import pytablewriter as ptw
 
 
 class Test_HtmlTableTextLoader_load:
