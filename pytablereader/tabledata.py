@@ -188,6 +188,20 @@ class TableData(object):
 
         return dataframe
 
+    @staticmethod
+    def from_dataframe(dataframe, table_name=""):
+        """
+        Initialize TableData instance from a pandas.DataFrame instance.
+
+        :param pandas.DataFrame dataframe:
+        :param str table_name: Table name to create.
+        """
+
+        return TableData(
+            table_name=table_name,
+            header_list=list(dataframe.columns.values),
+            record_list=dataframe.values.tolist())
+
     def __compare_helper(self, lhs, rhs):
         from typepy.type import Nan
 

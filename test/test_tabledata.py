@@ -20,13 +20,6 @@ import typepy
 import pytablewriter as ptw
 
 
-try:
-    import pandas
-    PANDAS_IMPORT = True
-except ImportError:
-    PANDAS_IMPORT = False
-
-
 attr_list_2 = ["attr_a", "attr_b"]
 
 NamedTuple2 = namedtuple("NamedTuple2", " ".join(attr_list_2))
@@ -189,27 +182,6 @@ class Test_TableData_as_dict:
     def test_exception(self, table_name, header_list, record_list, expected):
         with pytest.raises(expected):
             TableData(table_name, header_list, record_list).as_dict()
-
-
-class Test_TableData_as_dataframe:
-
-    @pytest.mark.skipif("PANDAS_IMPORT is False")
-    @pytest.mark.parametrize(
-        ["table_name", "header_list", "record_list"], [
-            ["normal", ["a", "b"], [[10, 11], [20, 21]]],
-            ["normal", None, [[10, 11], [20, 21]]],
-        ]
-    )
-    def test_normal(self, table_name, header_list, record_list):
-        tabledata = TableData(table_name, header_list, record_list)
-        dataframe = pandas.DataFrame(record_list)
-        if typepy.is_not_empty_sequence(header_list):
-            dataframe.columns = header_list
-
-        print("lhs: {}".format(tabledata.as_dataframe()))
-        print("rhs: {}".format(dataframe))
-
-        assert tabledata.as_dataframe().equals(dataframe)
 
 
 class Test_TableData_hash:
