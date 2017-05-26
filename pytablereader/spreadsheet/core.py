@@ -62,7 +62,7 @@ class SpreadSheetLoader(TableLoader):
         except AttributeError:
             mapping.append((tnt.SHEET, ""))
 
-        return self._replace_table_name_template(mapping)
+        return self._expand_table_name_format(mapping)
 
     def _get_default_table_name_template(self):
         return "{:s}".format(tnt.SHEET)

@@ -125,7 +125,7 @@ class TableLoader(TableLoaderInterface):
             self._get_filename_tablename_mapping(),
         ]
 
-    def _replace_table_name_template(self, table_name_kv_list):
+    def _expand_table_name_format(self, table_name_kv_list):
         self._validate_table_name()
 
         table_name = self.table_name
@@ -137,7 +137,7 @@ class TableLoader(TableLoaderInterface):
     def _make_table_name(self):
         self._validate_table_name()
 
-        return self._replace_table_name_template(
+        return self._expand_table_name_format(
             self._get_basic_tablename_keyvalue_list())
 
     def _sanitize_table_name(self, table_name):

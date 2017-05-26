@@ -54,7 +54,7 @@ class SingleJsonTableConverterBase(JsonConverter):
     def _make_table_name(self):
         key = self._loader.get_format_key()
 
-        return self._loader._replace_table_name_template(
+        return self._loader._expand_table_name_format(
             self._loader._get_basic_tablename_keyvalue_list() + [
                 (tnt.KEY, key),
             ]
@@ -138,7 +138,7 @@ class MultipleJsonTableConverterBase(JsonConverter):
         self._table_key = None
 
     def _make_table_name(self):
-        return self._loader._replace_table_name_template(
+        return self._loader._expand_table_name_format(
             self._loader._get_basic_tablename_keyvalue_list() + [
                 (tnt.KEY, self._table_key),
             ],

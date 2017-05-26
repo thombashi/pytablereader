@@ -144,7 +144,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         except AttributeError:
             mapping.append((tnt.SHEET,  ""))
 
-        return self._replace_table_name_template(mapping)
+        return self._expand_table_name_format(mapping)
 
     def __strip_empty_col(self):
         from simplesqlite import connect_sqlite_db_mem
