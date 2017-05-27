@@ -177,7 +177,7 @@ class TableData(object):
         :rtype: pandas.DataFrame
 
         .. note::
-            ``Pandas`` package required to execute this method.
+            ``pandas`` package required to execute this method.
         """
 
         import pandas
