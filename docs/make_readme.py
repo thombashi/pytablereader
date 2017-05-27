@@ -6,6 +6,7 @@
 """
 
 from __future__ import unicode_literals
+
 import sys
 
 from path import Path
@@ -21,10 +22,13 @@ def write_examples(maker):
     maker.write_chapter("Examples")
 
     examples_root = Path("pages").joinpath("examples")
-
     maker.inc_indent_level()
+
     maker.write_chapter("Load a CSV table")
     maker.write_file(examples_root.joinpath("load_csv.txt"))
+
+    maker.write_chapter("Get loaded table data as pandas.DataFrame instance")
+    maker.write_file(examples_root.joinpath("as_dataframe.txt"))
 
     maker.write_chapter("For more information")
     maker.write_line_list([

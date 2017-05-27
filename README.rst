@@ -24,7 +24,7 @@ pytablereader
 Summary
 -------
 
-A python library to load structured table data from files/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/SQLite/TSV.
+A python library to load structured table data from files/strings/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/SQLite/TSV.
 
 Features
 --------
@@ -40,11 +40,13 @@ Features
     - MediaWiki
     - SQLite database file
     - Tab separated values (TSV)
-- Supported data sources to read:
+- Supported data sources are:
     - Files on a local file system
     - Accessible URLs
     - ``str`` instances
-
+- Loaded table data can be used as:
+    - `pandas.DataFrame <http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html>`__ instance
+    - ``dict`` instance
 
 Examples
 ========
@@ -116,6 +118,27 @@ Load a CSV table
              3   120.9  ccc
         ======  ======  ======
 
+
+Get loaded table data as pandas.DataFrame instance
+--------------------------------------------------
+
+
+.. code:: python
+
+    from pytablereader import TableData
+
+    TableData(
+        table_name="sample",
+        header_list=["a", "b"],
+        record_list=[[1, 2], [3.3, 4.4]]
+    ).as_dataframe()
+
+
+.. code::
+
+         a    b
+    0    1    2
+    1  3.3  4.4
 
 For more information
 --------------------
