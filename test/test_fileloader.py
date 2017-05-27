@@ -164,7 +164,7 @@ class Test_TableFileLoader_load:
 
         expeced_list = [
             ptr.TableData(
-                "validdata_json1",
+                "validdata",
                 ["attr_a", "attr_b", "attr_c"],
                 [
                     {'attr_a': 1},

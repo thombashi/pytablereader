@@ -50,6 +50,8 @@ class HtmlTableFormatter(TableFormatter):
             yield tabledata
 
     def _make_table_name(self):
+        from collections import OrderedDict
+
         key = self.table_id
         if typepy.is_null_string(key):
             key = self._loader.get_format_key()
@@ -59,12 +61,13 @@ class HtmlTableFormatter(TableFormatter):
         except AttributeError:
             title = ""
 
-        return self._loader._expand_table_name_format(
-            self._loader._get_basic_tablename_keyvalue_list() + [
-                (tnt.KEY, key),
-                (tnt.TITLE, title),
-            ]
-        )
+        kv_mapping = self._loader._get_basic_tablename_keyvalue_list()
+        kv_mapping.update(OrderedDict([
+            (tnt.KEY, key),
+            (tnt.TITLE, title),
+        ]))
+
+        return self._loader._expand_table_name_format(kv_mapping)
 
     def __parse_tag_id(self, table):
         self.__table_id = table.get("id")

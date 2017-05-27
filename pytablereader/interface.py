@@ -117,19 +117,21 @@ class TableLoader(TableLoaderInterface):
         return (tnt.FILENAME, filename)
 
     def _get_basic_tablename_keyvalue_list(self):
-        return [
+        from collections import OrderedDict
+
+        return OrderedDict([
             (tnt.DEFAULT, self._get_default_table_name_template()),
             (tnt.FORMAT_NAME, self.format_name),
             (tnt.FORMAT_ID, str(self.__get_format_table_count())),
             (tnt.GLOBAL_ID, str(self.__global_table_count)),
             self._get_filename_tablename_mapping(),
-        ]
+        ])
 
-    def _expand_table_name_format(self, table_name_kv_list):
+    def _expand_table_name_format(self, table_name_kv_mapping):
         self._validate_table_name()
 
         table_name = self.table_name
-        for teamplate, value in table_name_kv_list:
+        for teamplate, value in six.iteritems(table_name_kv_mapping):
             table_name = table_name.replace(teamplate, value)
 
         return self._sanitize_table_name(table_name)

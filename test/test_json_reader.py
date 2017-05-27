@@ -28,7 +28,7 @@ test_data_empty = Data(
         TableData("tmp", [], []),
     ])
 
-test_data_01 = Data(
+test_data_single_01 = Data(
     """[
         {"attr_b": 4, "attr_c": "a", "attr_a": 1},
         {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
@@ -46,7 +46,7 @@ test_data_01 = Data(
         ),
     ])
 
-test_data_02 = Data(
+test_data_single_02 = Data(
     """[
         {"attr_a": 1},
         {"attr_b": 2.1, "attr_c": "bb"}
@@ -62,7 +62,7 @@ test_data_02 = Data(
         ),
     ])
 
-test_data_03 = Data(
+test_data_multi_01 = Data(
     """{
         "table_a" : [
             {"attr_b": 4, "attr_c": "a", "attr_a": 1},
@@ -96,7 +96,7 @@ test_data_03 = Data(
         ),
     ])
 
-test_data_04 = Data(
+test_data_multi_02 = Data(
     """{
         "table_a" : [
             {"attr_b": 4, "attr_c": "a", "attr_a": 1},
@@ -130,7 +130,7 @@ test_data_04 = Data(
         ),
     ])
 
-test_data_05 = Data(
+test_data_single_03 = Data(
     """[
     {"attr_b": "4", "attr_c": "a", "attr_a": "1"},
     {"attr_b": "2.1", "attr_c": "bb", "attr_a": "2"},
@@ -148,7 +148,7 @@ test_data_05 = Data(
         ),
     ])
 
-test_data_20 = Data(
+test_data_single_10 = Data(
     """{
         "attr_a": [1, 2, 3],
         "attr_b": [4, 2.1, 120.9],
@@ -165,7 +165,7 @@ test_data_20 = Data(
             ]),
     ])
 
-test_data_30 = Data(
+test_data_multi_10 = Data(
     """{
         "table_a" : {
             "attr_a": [1, 2, 3],
@@ -262,28 +262,28 @@ class Test_JsonTableFileLoader_load:
         ],
         [
             [
-                test_data_01.value, "tmp.json", "%(key)s",
-                test_data_01.expected
+                test_data_single_01.value, "json1.json", "%(key)s",
+                test_data_single_01.expected
             ],
             [
-                test_data_02.value, "tmp.json", "%(key)s",
-                test_data_02.expected
+                test_data_single_02.value, "json1.json", "%(key)s",
+                test_data_single_02.expected
             ],
             [
-                test_data_03.value, "tmp.json", "%(key)s",
-                test_data_03.expected
+                test_data_multi_01.value, "tmp.json", "%(key)s",
+                test_data_multi_01.expected
             ],
             [
-                test_data_04.value, "tmp.json", "%(key)s",
-                test_data_04.expected
+                test_data_multi_02.value, "tmp.json", "%(key)s",
+                test_data_multi_02.expected
             ],
             [
-                test_data_20.value, "tmp.json", "%(key)s",
-                test_data_20.expected
+                test_data_single_10.value, "json1.json", "%(key)s",
+                test_data_single_10.expected
             ],
             [
-                test_data_30.value, "tmp.json", "%(key)s",
-                test_data_30.expected
+                test_data_multi_10.value, "tmp.json", "%(key)s",
+                test_data_multi_10.expected
             ],
         ])
     def test_normal(
@@ -296,7 +296,7 @@ class Test_JsonTableFileLoader_load:
             f.write(table_text)
 
         loader = ptr.JsonTableFileLoader(file_path)
-        loader.table_name = table_name
+        #loader.table_name = table_name
 
         load = False
         for tabledata in loader.load():
@@ -389,28 +389,28 @@ class Test_JsonTableTextLoader_load:
         ],
         [
             [
-                test_data_01.value, "json1",
-                test_data_01.expected,
+                test_data_single_01.value, "json1",
+                test_data_single_01.expected,
             ],
             [
-                test_data_02.value, "json1",
-                test_data_02.expected,
+                test_data_single_02.value, "json1",
+                test_data_single_02.expected,
             ],
             [
-                test_data_03.value, "%(default)s",
-                test_data_03.expected
+                test_data_multi_01.value, "%(default)s",
+                test_data_multi_01.expected
             ],
             [
-                test_data_05.value, "%(key)s",
-                test_data_05.expected
+                test_data_single_03.value, "%(key)s",
+                test_data_single_03.expected
             ],
             [
-                test_data_20.value, "%(key)s",
-                test_data_20.expected
+                test_data_single_10.value, "%(key)s",
+                test_data_single_10.expected
             ],
             [
-                test_data_30.value, "%(key)s",
-                test_data_30.expected
+                test_data_multi_10.value, "%(key)s",
+                test_data_multi_10.expected
             ],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):

@@ -56,13 +56,14 @@ class SpreadSheetLoader(TableLoader):
         return "spreadsheet"
 
     def _make_table_name(self):
-        mapping = self._get_basic_tablename_keyvalue_list()
-        try:
-            mapping.append((tnt.SHEET, self._sheet_name))
-        except AttributeError:
-            mapping.append((tnt.SHEET, ""))
+        kv_mapping = self._get_basic_tablename_keyvalue_list()
 
-        return self._expand_table_name_format(mapping)
+        try:
+            kv_mapping[tnt.SHEET] = self._sheet_name
+        except AttributeError:
+            kv_mapping[tnt.SHEET] = ""
+
+        return self._expand_table_name_format(kv_mapping)
 
     def _get_default_table_name_template(self):
         return "{:s}".format(tnt.SHEET)

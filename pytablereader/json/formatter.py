@@ -12,7 +12,10 @@ import abc
 import jsonschema
 import six
 
-from .._constant import TableNameTemplate as tnt
+from .._constant import (
+    SourceType,
+    TableNameTemplate as tnt,
+)
 from ..error import ValidationError
 from ..formatter import TableFormatter
 from ..tabledata import TableData
@@ -52,13 +55,15 @@ class JsonConverter(TableFormatter):
 class SingleJsonTableConverterBase(JsonConverter):
 
     def _make_table_name(self):
-        key = self._loader.get_format_key()
+        kv_mapping = self._loader._get_basic_tablename_keyvalue_list()
+        kv_mapping[tnt.KEY] = self._loader.get_format_key()
 
-        return self._loader._expand_table_name_format(
-            self._loader._get_basic_tablename_keyvalue_list() + [
-                (tnt.KEY, key),
-            ]
-        )
+        if self._loader.source_type == SourceType.FILE:
+            kv_mapping[tnt.DEFAULT] = tnt.FILENAME
+        elif self._loader.source_type == SourceType.TEXT:
+            kv_mapping[tnt.DEFAULT] = tnt.KEY
+
+        return self._loader._expand_table_name_format(kv_mapping)
 
 
 class SingleJsonTableConverterA(SingleJsonTableConverterBase):
@@ -138,11 +143,11 @@ class MultipleJsonTableConverterBase(JsonConverter):
         self._table_key = None
 
     def _make_table_name(self):
-        return self._loader._expand_table_name_format(
-            self._loader._get_basic_tablename_keyvalue_list() + [
-                (tnt.KEY, self._table_key),
-            ],
-        )
+        kv_mapping = self._loader._get_basic_tablename_keyvalue_list()
+        kv_mapping[tnt.DEFAULT] = tnt.KEY
+        kv_mapping[tnt.KEY] = self._table_key
+
+        return self._loader._expand_table_name_format(kv_mapping)
 
 
 class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):

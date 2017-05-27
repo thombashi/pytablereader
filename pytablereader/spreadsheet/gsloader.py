@@ -137,14 +137,14 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
     def _make_table_name(self):
         self._validate_title()
 
-        mapping = self._get_basic_tablename_keyvalue_list()
-        mapping.append((tnt.TITLE, self.title))
+        kv_mapping = self._get_basic_tablename_keyvalue_list()
+        kv_mapping[tnt.TITLE] = self.title
         try:
-            mapping.append((tnt.SHEET,  self._sheet_name))
+            kv_mapping[tnt.SHEET] = self._sheet_name
         except AttributeError:
-            mapping.append((tnt.SHEET,  ""))
+            kv_mapping[tnt.SHEET] = ""
 
-        return self._expand_table_name_format(mapping)
+        return self._expand_table_name_format(kv_mapping)
 
     def __strip_empty_col(self):
         from simplesqlite import connect_sqlite_db_mem
