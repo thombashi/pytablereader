@@ -56,7 +56,7 @@ class SpreadSheetLoader(TableLoader):
         return "spreadsheet"
 
     def _make_table_name(self):
-        kv_mapping = self._get_basic_tablename_keyvalue_list()
+        kv_mapping = self._get_basic_tablename_keyvalue_mapping()
 
         try:
             kv_mapping[tnt.SHEET] = self._sheet_name

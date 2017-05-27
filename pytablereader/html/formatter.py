@@ -61,7 +61,7 @@ class HtmlTableFormatter(TableFormatter):
         except AttributeError:
             title = ""
 
-        kv_mapping = self._loader._get_basic_tablename_keyvalue_list()
+        kv_mapping = self._loader._get_basic_tablename_keyvalue_mapping()
         kv_mapping.update(OrderedDict([
             (tnt.KEY, key),
             (tnt.TITLE, title),

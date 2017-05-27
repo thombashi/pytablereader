@@ -55,7 +55,7 @@ class JsonConverter(TableFormatter):
 class SingleJsonTableConverterBase(JsonConverter):
 
     def _make_table_name(self):
-        kv_mapping = self._loader._get_basic_tablename_keyvalue_list()
+        kv_mapping = self._loader._get_basic_tablename_keyvalue_mapping()
         kv_mapping[tnt.KEY] = self._loader.get_format_key()
 
         if self._loader.source_type == SourceType.FILE:
@@ -143,7 +143,7 @@ class MultipleJsonTableConverterBase(JsonConverter):
         self._table_key = None
 
     def _make_table_name(self):
-        kv_mapping = self._loader._get_basic_tablename_keyvalue_list()
+        kv_mapping = self._loader._get_basic_tablename_keyvalue_mapping()
         kv_mapping[tnt.DEFAULT] = tnt.KEY
         kv_mapping[tnt.KEY] = self._table_key
 

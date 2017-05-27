@@ -116,7 +116,7 @@ class TableLoader(TableLoaderInterface):
 
         return (tnt.FILENAME, filename)
 
-    def _get_basic_tablename_keyvalue_list(self):
+    def _get_basic_tablename_keyvalue_mapping(self):
         from collections import OrderedDict
 
         return OrderedDict([
@@ -140,7 +140,7 @@ class TableLoader(TableLoaderInterface):
         self._validate_table_name()
 
         return self._expand_table_name_format(
-            self._get_basic_tablename_keyvalue_list())
+            self._get_basic_tablename_keyvalue_mapping())
 
     def _sanitize_table_name(self, table_name):
         if typepy.is_null_string(table_name):

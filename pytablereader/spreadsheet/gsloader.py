@@ -137,7 +137,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
     def _make_table_name(self):
         self._validate_title()
 
-        kv_mapping = self._get_basic_tablename_keyvalue_list()
+        kv_mapping = self._get_basic_tablename_keyvalue_mapping()
         kv_mapping[tnt.TITLE] = self.title
         try:
             kv_mapping[tnt.SHEET] = self._sheet_name
