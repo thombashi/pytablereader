@@ -12,8 +12,10 @@ Features
     - MediaWiki
     - SQLite database file
     - Tab separated values (TSV)
-- Supported data sources to read:
+- Supported data sources are:
     - Files on a local file system
     - Accessible URLs
     - ``str`` instances
-
+- Loaded table data can be used as:
+    - `pandas.DataFrame <http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html>`__ instance
+    - ``dict`` instance
