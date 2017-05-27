@@ -19,6 +19,7 @@ os:
 install:
   - pip install tox
   - pip install coveralls
+  - pip install requests==2.14.2
 
 script: 
   - tox
