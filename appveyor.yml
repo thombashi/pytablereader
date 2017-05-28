@@ -16,7 +16,6 @@ install:
   - ps: (new-object net.webclient).DownloadFile('https://bootstrap.pypa.io/get-pip.py', 'C:/get-pip.py')
   - "%PYTHON%/python.exe C:/get-pip.py"
   - "%PYTHON%/Scripts/pip.exe --version"
-  - "%PYTHON%/Scripts/pip.exe install requests==2.14.2"
   - "%PYTHON%/Scripts/pip.exe install pytest"
 
 test_script:
