@@ -21,6 +21,7 @@ from .._validator import (
     FileValidator,
     TextValidator
 )
+from ..error import ValidationError
 from ..interface import TableLoader
 from .formatter import JsonTableFormatter
 
@@ -218,7 +219,10 @@ class JsonTableFileLoader(JsonTableLoader):
         self._logger.logging_load()
 
         with open(self.source, "r") as fp:
-            json_buffer = json.load(fp)
+            try:
+                json_buffer = json.load(fp)
+            except ValueError as e:
+                raise ValidationError(e)
 
         formatter = JsonTableFormatter(json_buffer)
         formatter.accept(self)
