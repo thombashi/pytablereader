@@ -160,7 +160,7 @@ wrfbox,Windows 6.2.8133,amd64
     ])
 
 
-class Test_CsvTableFileLoader_make_table_name:
+class Test_CsvTableFileLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -211,7 +211,7 @@ class Test_CsvTableFileLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_CsvTableFileLoader_load:
+class Test_CsvTableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -351,7 +351,7 @@ class Test_CsvTableFileLoader_load:
                 pass
 
 
-class Test_CsvTableTextLoader_make_table_name:
+class Test_CsvTableTextLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -378,7 +378,7 @@ class Test_CsvTableTextLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_CsvTableTextLoader_load:
+class Test_CsvTableTextLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

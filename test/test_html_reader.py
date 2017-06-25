@@ -350,7 +350,7 @@ class HtmlTableFormatter_constructor(object):
             HtmlTableFormatter(source)
 
 
-class Test_HtmlTableFormatter_make_table_name:
+class Test_HtmlTableFormatter_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -508,7 +508,7 @@ class Test_HtmlTableFormatter_make_table_name:
             print(formatter._make_table_name())
 
 
-class Test_HtmlTableFileLoader_load:
+class Test_HtmlTableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -617,7 +617,7 @@ class Test_HtmlTableFileLoader_load:
                 pass
 
 
-class Test_HtmlTableTextLoader_load:
+class Test_HtmlTableTextLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

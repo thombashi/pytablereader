@@ -18,7 +18,7 @@ import pytablereader as ptr
 import pytablewriter as ptw
 
 
-class Test_TableFileLoader_get_format_name_list:
+class Test_TableFileLoader_get_format_name_list(object):
 
     def test_normal(self):
         format_name_list = ptr.TableFileLoader.get_format_name_list()
@@ -29,7 +29,7 @@ class Test_TableFileLoader_get_format_name_list:
         ]
 
 
-class Test_TableFileLoader_constructor:
+class Test_TableFileLoader_constructor(object):
 
     @pytest.mark.parametrize(["file_path", "format_name", "expected"], [
         [
@@ -94,7 +94,7 @@ class Test_TableFileLoader_constructor:
             ptr.TableFileLoader(value, format_name)
 
 
-class Test_TableFileLoader_load:
+class Test_TableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

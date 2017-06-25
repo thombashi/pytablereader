@@ -24,7 +24,7 @@ attr_list_2 = ["attr_a", "attr_b"]
 NamedTuple2 = namedtuple("NamedTuple2", " ".join(attr_list_2))
 
 
-class Test_TableData_constructor:
+class Test_TableData_constructor(object):
 
     __MIXED_DATA = [
         [1, 2],
@@ -102,7 +102,7 @@ class Test_TableData_constructor:
             TableData(table_name, header_list, record_list)
 
 
-class Test_TableData_eq:
+class Test_TableData_eq(object):
 
     __DATA_0 = TableData(
         "Sheet1",
@@ -143,7 +143,7 @@ class Test_TableData_eq:
         assert (lhs != rhs) == (not expected)
 
 
-class Test_TableData_as_dict:
+class Test_TableData_as_dict(object):
 
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list", "expected"], [
@@ -183,7 +183,7 @@ class Test_TableData_as_dict:
             TableData(table_name, header_list, record_list).as_dict()
 
 
-class Test_TableData_hash:
+class Test_TableData_hash(object):
 
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list"], [
@@ -199,7 +199,7 @@ class Test_TableData_hash:
         assert tabledata_a0.__hash__() != tabledata_b0.__hash__()
 
 
-class Test_TableData_is_empty_header:
+class Test_TableData_is_empty_header(object):
 
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list", "expected"], [
@@ -213,7 +213,7 @@ class Test_TableData_is_empty_header:
         assert tabledata.is_empty_header() == expected
 
 
-class Test_TableData_is_empty_record:
+class Test_TableData_is_empty_record(object):
 
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list", "expected"], [
@@ -228,7 +228,7 @@ class Test_TableData_is_empty_record:
         assert tabledata.is_empty_record() == expected
 
 
-class Test_TableData_is_empty:
+class Test_TableData_is_empty(object):
 
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list", "expected"], [

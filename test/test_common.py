@@ -14,7 +14,7 @@ from pytablereader._common import (
 import pytest
 
 
-class Test_get_extension:
+class Test_get_extension(object):
 
     @pytest.mark.parametrize(["value", "expected"], [
         ["test.txt", "txt"],
@@ -33,7 +33,7 @@ class Test_get_extension:
             get_extension(value)
 
 
-class Test_make_temp_file_path_from_url:
+class Test_make_temp_file_path_from_url(object):
 
     @pytest.mark.parametrize(["temp_dir_path", "value", "expected"], [
         [

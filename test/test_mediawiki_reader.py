@@ -177,7 +177,7 @@ class MediaWikiTableFormatter_constructor(object):
 
 @pytest.mark.skipif("SKIP_TEST is True")
 @pytest.mark.xfail
-class Test_MediaWikiTableFormatter_make_table_name:
+class Test_MediaWikiTableFormatter_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -331,7 +331,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
 
 @pytest.mark.skipif("SKIP_TEST is True")
 @pytest.mark.xfail
-class Test_MediaWikiTableFileLoader_load:
+class Test_MediaWikiTableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -436,7 +436,7 @@ class Test_MediaWikiTableFileLoader_load:
 
 @pytest.mark.skipif("SKIP_TEST is True")
 @pytest.mark.xfail
-class Test_MediaWikiTableTextLoader_load:
+class Test_MediaWikiTableTextLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

@@ -149,7 +149,7 @@ test_data_05 = Data(
     ])
 
 
-class Test_SqliteFileLoader_load:
+class Test_SqliteFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

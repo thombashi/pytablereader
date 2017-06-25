@@ -83,7 +83,7 @@ def invalid_excel_file_path(tmpdir):
     return str(test_file_path)
 
 
-class Test_ExcelTableFileLoader_make_table_name:
+class Test_ExcelTableFileLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -129,7 +129,7 @@ class Test_ExcelTableFileLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_ExcelTableFileLoader_load:
+class Test_ExcelTableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

@@ -12,7 +12,7 @@ import pytest
 import pytablereader as ptr
 
 
-class Test_TableFileLoaderFactory_create_from_path:
+class Test_TableFileLoaderFactory_create_from_path(object):
 
     @pytest.mark.parametrize(["value", "extension", "expected"], [
         ["valid_ext.csv", "csv", ptr.CsvTableFileLoader],
@@ -56,7 +56,7 @@ class Test_TableFileLoaderFactory_create_from_path:
             loader_factory.create_from_path()
 
 
-class Test_TableFileLoaderFactory_create_from_format_name:
+class Test_TableFileLoaderFactory_create_from_format_name(object):
 
     @pytest.mark.parametrize(["file_path", "format_name", "expected"], [
         ["valid_ext.html", "csv", ptr.CsvTableFileLoader],

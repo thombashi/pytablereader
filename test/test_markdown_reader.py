@@ -127,7 +127,7 @@ class MarkdownTableFormatter_constructor(object):
 
 
 @pytest.mark.xfail
-class Test_MarkdownTableFormatter_make_table_name:
+class Test_MarkdownTableFormatter_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -280,7 +280,7 @@ class Test_MarkdownTableFormatter_make_table_name:
 
 
 @pytest.mark.xfail
-class Test_MarkdownTableFileLoader_load:
+class Test_MarkdownTableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -374,7 +374,7 @@ class Test_MarkdownTableFileLoader_load:
 
 
 @pytest.mark.xfail
-class Test_MarkdownTableTextLoader_load:
+class Test_MarkdownTableTextLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

@@ -14,7 +14,7 @@ import pytablereader as ptr
 import pytablewriter as ptw
 
 
-class Test_SQLiteTableDataSanitizer:
+class Test_SQLiteTableDataSanitizer(object):
 
     @pytest.mark.parametrize(
         [

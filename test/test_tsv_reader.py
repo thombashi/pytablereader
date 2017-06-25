@@ -93,7 +93,7 @@ test_data_03 = Data(
     ])
 
 
-class Test_TsvTableFileLoader_make_table_name:
+class Test_TsvTableFileLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -144,7 +144,7 @@ class Test_TsvTableFileLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_TsvTableFileLoader_load:
+class Test_TsvTableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -266,7 +266,7 @@ class Test_TsvTableFileLoader_load:
                 pass
 
 
-class Test_TsvTableTextLoader_make_table_name:
+class Test_TsvTableTextLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -293,7 +293,7 @@ class Test_TsvTableTextLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_TsvTableTextLoader_load:
+class Test_TsvTableTextLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

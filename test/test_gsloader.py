@@ -8,7 +8,7 @@ from pytablereader import GoogleSheetsTableLoader
 import pytest
 
 
-class Test_GoogleSheetsTableLoader_make_table_name:
+class Test_GoogleSheetsTableLoader_make_table_name(object):
 
     @property
     def monkey_property(self):

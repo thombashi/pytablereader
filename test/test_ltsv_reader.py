@@ -43,7 +43,7 @@ a.0:3\tb-1:3.3\tc_2:ccc\t"dd":3.0\te.f-g_4:"cccc"
 )
 
 
-class Test_LtsvTableFileLoader_make_table_name:
+class Test_LtsvTableFileLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -94,7 +94,7 @@ class Test_LtsvTableFileLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_LtsvTableFileLoader_load:
+class Test_LtsvTableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -179,7 +179,7 @@ class Test_LtsvTableFileLoader_load:
                 pass
 
 
-class Test_LtsvTableTextLoader_make_table_name:
+class Test_LtsvTableTextLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -206,7 +206,7 @@ class Test_LtsvTableTextLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_LtsvTableTextLoader_load:
+class Test_LtsvTableTextLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

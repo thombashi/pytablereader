@@ -17,7 +17,7 @@ import pytablewriter as ptw
 import responses
 
 
-class Test_TableUrlLoader_get_format_name_list:
+class Test_TableUrlLoader_get_format_name_list(object):
 
     def test_normal(self):
         format_name_list = ptr.TableUrlLoader.get_format_name_list()
@@ -28,7 +28,7 @@ class Test_TableUrlLoader_get_format_name_list:
         ]
 
 
-class Test_TableUrlLoader_constructor:
+class Test_TableUrlLoader_constructor(object):
 
     @responses.activate
     @pytest.mark.parametrize(["value", "format_name", "expected"], [
@@ -144,7 +144,7 @@ class Test_TableUrlLoader_constructor:
             ptr.TableUrlLoader(value, format_name)
 
 
-class Test_TableUrlLoader_load:
+class Test_TableUrlLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

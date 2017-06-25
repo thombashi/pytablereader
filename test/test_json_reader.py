@@ -198,7 +198,7 @@ test_data_multi_10 = Data(
     ])
 
 
-class Test_JsonTableFileLoader_make_table_name:
+class Test_JsonTableFileLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -250,7 +250,7 @@ class Test_JsonTableFileLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_JsonTableFileLoader_load:
+class Test_JsonTableFileLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -349,7 +349,7 @@ class Test_JsonTableFileLoader_load:
                 pass
 
 
-class Test_JsonTableTextLoader_make_table_name:
+class Test_JsonTableTextLoader_make_table_name(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()
@@ -377,7 +377,7 @@ class Test_JsonTableTextLoader_make_table_name:
             loader.make_table_name()
 
 
-class Test_JsonTableTextLoader_load:
+class Test_JsonTableTextLoader_load(object):
 
     def setup_method(self, method):
         TableLoader.clear_table_count()

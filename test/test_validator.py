@@ -17,7 +17,7 @@ import pytest
 import pytablereader as ptr
 
 
-class Test_FileValidator_validate:
+class Test_FileValidator_validate(object):
 
     @pytest.mark.parametrize(["value"], [
         ["test"],
@@ -52,7 +52,7 @@ class Test_FileValidator_validate:
             validator.validate()
 
 
-class Test_TextValidator_validate:
+class Test_TextValidator_validate(object):
 
     @pytest.mark.parametrize(["value"], [
         ["test"],
@@ -73,7 +73,7 @@ class Test_TextValidator_validate:
             validator.validate()
 
 
-class Test_UrlValidator_validate:
+class Test_UrlValidator_validate(object):
 
     @pytest.mark.parametrize(["value"], [
         ["http://www.google.com"],

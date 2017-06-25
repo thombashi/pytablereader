@@ -14,7 +14,7 @@ import pytablereader as ptr
 import pytablewriter as ptw
 
 
-class Test_HtmlTableTextLoader_load:
+class Test_HtmlTableTextLoader_load(object):
 
     @pytest.mark.parametrize(["filename"], [
         ["python - Wiktionary.html"],
