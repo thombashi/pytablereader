@@ -93,3 +93,9 @@ class ProxyError(requests.exceptions.ProxyError):
 
         http://docs.python-requests.org/en/master/_modules/requests/exceptions/
     """
+
+
+class PypandocImportError(ImportError):
+    """
+    Exception raised when import error occurred with pypandoc package.
+    """

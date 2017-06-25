@@ -32,6 +32,7 @@ from .error import (
     LoaderNotFoundError,
     HTTPError,
     ProxyError,
+    PypandocImportError,
 )
 from .html.core import (
     HtmlTableFileLoader,
