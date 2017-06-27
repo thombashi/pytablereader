@@ -182,7 +182,6 @@ class TableData(object):
         return {self.table_name: dict_body}
 
     def asdict(self):
-        return self.asdict()
 
         # alias to as_dict method.
         # this method will be deleted in the future.
