@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 
 from decimal import Decimal
 import hashlib
+import warnings
 
 import six
 import typepy
@@ -182,9 +183,11 @@ class TableData(object):
         return {self.table_name: dict_body}
 
     def asdict(self):
+        warnings.warn(
+            "asdict() will be deleted in the future, use as_dict instead.",
+            DeprecationWarning
+        )
 
-        # alias to as_dict method.
-        # this method will be deleted in the future.
         return self.as_dict()
 
     def as_dataframe(self):
