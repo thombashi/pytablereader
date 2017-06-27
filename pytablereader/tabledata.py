@@ -186,6 +186,7 @@ class TableData(object):
 
         # alias to as_dict method.
         # this method will be deleted in the future.
+        return self.as_dict()
 
     def as_dataframe(self):
         """
