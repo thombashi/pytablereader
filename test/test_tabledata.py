@@ -143,6 +143,33 @@ class Test_TableData_eq(object):
         assert (lhs != rhs) == (not expected)
 
 
+class Test_TableData_repr(object):
+
+    @pytest.mark.parametrize(
+        ["table_name", "header_list", "record_list", "expected"], [
+            [
+                "normal", ["a", "b"], [[1, 2], [3, 4]],
+                "table_name=normal, header_list=[a, b], rows=2"
+            ],
+            [
+                "null_header", None, [[1, 2], [3, 4]],
+                "table_name=null_header, header_list=None, rows=2"
+            ],
+            [
+                "null_header", [], [[1, 2], [3, 4]],
+                "table_name=null_header, header_list=[], rows=2"
+            ],
+            [
+                "null_body", ["a", "b"], [],
+                "table_name=null_body, header_list=[a, b], rows=0"
+            ],
+        ])
+    def test_normal(self, table_name, header_list, record_list, expected):
+        tabledata = TableData(table_name, header_list, record_list)
+
+        assert str(tabledata) == expected
+
+
 class Test_TableData_as_dict(object):
 
     @pytest.mark.parametrize(

@@ -75,8 +75,19 @@ class TableData(object):
         self.__record_list = self.__to_record_list(record_list)
 
     def __repr__(self):
-        return "table_name={}, header_list={}, record_list={}".format(
-            self.table_name, self.header_list, self.value_matrix)
+        element_list = [
+            "table_name={}".format(self.table_name),
+        ]
+
+        try:
+            element_list.append("header_list=[{}]".format(
+                ", ".join(self.header_list)))
+        except TypeError:
+            element_list.append("header_list=None")
+
+        element_list.append("rows={}".format(len(self.value_matrix)))
+
+        return ", ".join(element_list)
 
     def __eq__(self, other):
         return all([
