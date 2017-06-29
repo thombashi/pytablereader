@@ -7,6 +7,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+from collections import OrderedDict
 from decimal import Decimal
 import hashlib
 import warnings
@@ -189,7 +190,7 @@ class TableData(object):
             if typepy.is_empty_sequence(dict_record):
                 continue
 
-            dict_body.append(dict(dict_record))
+            dict_body.append(OrderedDict(dict_record))
 
         return {self.table_name: dict_body}
 
