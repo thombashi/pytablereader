@@ -12,6 +12,8 @@ import abc
 import jsonschema
 import six
 
+from six.moves import zip
+
 from .._constant import (
     SourceType,
     TableNameTemplate as tnt,

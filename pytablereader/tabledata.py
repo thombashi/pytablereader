@@ -16,6 +16,7 @@ import six
 import typepy
 
 import dataproperty as dp
+from six.moves import zip
 
 from .error import InvalidDataError
 
