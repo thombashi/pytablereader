@@ -10,6 +10,7 @@ from __future__ import unicode_literals
 from collections import OrderedDict
 from decimal import Decimal
 import hashlib
+import re
 import warnings
 
 import six
@@ -224,6 +225,35 @@ class TableData(object):
 
         return dataframe
 
+    def filter_column(
+            self, pattern_list=None, is_invert_match=False,
+            is_re_match=False):
+        if not pattern_list:
+            return TableData(
+                table_name=self.table_name, header_list=self.header_list,
+                record_list=self.value_matrix)
+
+        match_header_list = []
+        match_column_matrix = []
+
+        for header, column_value_list in zip(
+                self.header_list, zip(*self.value_matrix)):
+            for pattern in pattern_list:
+                is_match = self.__is_match(header, pattern, is_re_match)
+
+                if any([
+                    is_match and is_invert_match,
+                    not is_match and not is_invert_match,
+                ]):
+                    continue
+
+                match_header_list.append(header)
+                match_column_matrix.append(column_value_list)
+
+        return TableData(
+            table_name=self.table_name, header_list=match_header_list,
+            record_list=zip(*match_column_matrix))
+
     @staticmethod
     def from_dataframe(dataframe, table_name=""):
         """
@@ -245,6 +275,12 @@ class TableData(object):
             return True
 
         return lhs == rhs
+
+    def __is_match(self, header, pattern, is_re_match):
+        if is_re_match:
+            return re.search(pattern, header) is not None
+
+        return header == pattern
 
     def __to_record(self, values):
         """

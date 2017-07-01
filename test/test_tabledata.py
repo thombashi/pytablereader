@@ -237,6 +237,7 @@ class Test_TableData_is_empty_header(object):
     )
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
+
         assert tabledata.is_empty_header() == expected
 
 
@@ -252,6 +253,7 @@ class Test_TableData_is_empty_record(object):
     )
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
+
         assert tabledata.is_empty_record() == expected
 
 
@@ -267,4 +269,59 @@ class Test_TableData_is_empty(object):
     )
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
+
         assert tabledata.is_empty() == expected
+
+
+class Test_TableData_filter_column(object):
+    HEADER_LIST = ["abcde", "test"]
+    VALUE_MATRIX = [[1, 2], [3, 4]]
+
+    @pytest.mark.parametrize(
+        [
+            "table_name", "header_list", "record_list", "pattern",
+            "is_invert_match", "is_re_match", "expected",
+        ],
+        [
+            [
+                "empty_pattern", HEADER_LIST, VALUE_MATRIX,
+                None, False, False,
+                TableData("empty_pattern", HEADER_LIST, VALUE_MATRIX)
+            ],
+            [
+                "match_pattern", HEADER_LIST, VALUE_MATRIX,
+                ["abcde"], False, False,
+                TableData("match_pattern", ["abcde"], [[1], [3]])
+            ],
+            [
+                "invert_match_pattern", HEADER_LIST, VALUE_MATRIX,
+                ["abcde"], True, False,
+                TableData("invert_match_pattern", ["test"], [[2], [4]])
+            ],
+            [
+                "not_match_pattern", HEADER_LIST, VALUE_MATRIX,
+                ["abc"], False, False,
+                TableData("not_match_pattern", [], [])
+            ],
+            [
+                "re_match_pattern", HEADER_LIST, VALUE_MATRIX,
+                ["abc*"], False, True,
+                TableData("re_match_pattern", ["abcde"], [[1], [3]])
+            ],
+            [
+                "re_invert_match_pattern", HEADER_LIST, VALUE_MATRIX,
+                ["abc*"], True, True,
+                TableData("re_invert_match_pattern", ["test"], [[2], [4]])
+            ],
+        ]
+    )
+    def test_normal(
+            self, table_name, header_list, record_list, pattern,
+            is_invert_match, is_re_match, expected):
+        tabledata = TableData(table_name, header_list, record_list)
+
+        assert tabledata.filter_column(
+            pattern_list=pattern,
+            is_invert_match=is_invert_match,
+            is_re_match=is_re_match
+        ) == expected
