@@ -54,91 +54,93 @@ Examples
 Load a CSV table
 ----------------
 
+:Sample Code:
+    .. code:: python
 
-.. code:: python
-
-    import pytablereader as ptr
-    import pytablewriter as ptw
-
-
-    # prepare data ---
-    file_path = "sample_data.csv"
-    csv_text = "\n".join([
-        '"attr_a","attr_b","attr_c"',
-        '1,4,"a"',
-        '2,2.1,"bb"',
-        '3,120.9,"ccc"',
-    ])
-
-    with open(file_path, "w") as f:
-        f.write(csv_text)
-
-    # load from a csv file ---
-    loader = ptr.CsvTableFileLoader(file_path)
-    for table_data in loader.load():
-        print("\n".join([
-            "load from file",
-            "==============",
-            "{:s}".format(ptw.dump_tabledata(table_data)),
-        ]))
-
-    # load from a csv text ---
-    loader = ptr.CsvTableTextLoader(csv_text)
-    for table_data in loader.load():
-        print("\n".join([
-            "load from text",
-            "==============",
-            "{:s}".format(ptw.dump_tabledata(table_data)),
-        ]))
+        import pytablereader as ptr
+        import pytablewriter as ptw
 
 
-.. code::
+        # prepare data ---
+        file_path = "sample_data.csv"
+        csv_text = "\n".join([
+            '"attr_a","attr_b","attr_c"',
+            '1,4,"a"',
+            '2,2.1,"bb"',
+            '3,120.9,"ccc"',
+        ])
 
-    load from file
-    ==============
-    .. table:: sample_data
+        with open(file_path, "w") as f:
+            f.write(csv_text)
 
-        ======  ======  ======
-        attr_a  attr_b  attr_c
-        ======  ======  ======
-             1     4.0  a
-             2     2.1  bb
-             3   120.9  ccc
-        ======  ======  ======
+        # load from a csv file ---
+        loader = ptr.CsvTableFileLoader(file_path)
+        for table_data in loader.load():
+            print("\n".join([
+                "load from file",
+                "==============",
+                "{:s}".format(ptw.dump_tabledata(table_data)),
+            ]))
 
-    load from text
-    ==============
-    .. table:: csv2
+        # load from a csv text ---
+        loader = ptr.CsvTableTextLoader(csv_text)
+        for table_data in loader.load():
+            print("\n".join([
+                "load from text",
+                "==============",
+                "{:s}".format(ptw.dump_tabledata(table_data)),
+            ]))
 
-        ======  ======  ======
-        attr_a  attr_b  attr_c
-        ======  ======  ======
-             1     4.0  a
-             2     2.1  bb
-             3   120.9  ccc
-        ======  ======  ======
 
+:Output:
+    .. code::
+
+        load from file
+        ==============
+        .. table:: sample_data
+
+            ======  ======  ======
+            attr_a  attr_b  attr_c
+            ======  ======  ======
+                 1     4.0  a
+                 2     2.1  bb
+                 3   120.9  ccc
+            ======  ======  ======
+
+        load from text
+        ==============
+        .. table:: csv2
+
+            ======  ======  ======
+            attr_a  attr_b  attr_c
+            ======  ======  ======
+                 1     4.0  a
+                 2     2.1  bb
+                 3   120.9  ccc
+            ======  ======  ======
 
 Get loaded table data as pandas.DataFrame instance
 --------------------------------------------------
 
 
-.. code:: python
+:Sample Code:
+    .. code:: python
 
-    from pytablereader import TableData
+        from pytablereader import TableData
 
-    TableData(
-        table_name="sample",
-        header_list=["a", "b"],
-        record_list=[[1, 2], [3.3, 4.4]]
-    ).as_dataframe()
+        TableData(
+            table_name="sample",
+            header_list=["a", "b"],
+            record_list=[[1, 2], [3.3, 4.4]]
+        ).as_dataframe()
 
 
-.. code::
+:Output:
+    .. code::
 
-         a    b
-    0    1    2
-    1  3.3  4.4
+             a    b
+        0    1    2
+        1  3.3  4.4
 
 For more information
 --------------------
