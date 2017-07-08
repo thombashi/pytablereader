@@ -347,9 +347,9 @@ rp_docstring = u"""
 
 .. |format_id_desc| replace::
     A unique number between the same format.
-    
+
 .. |global_id| replace::
-    A unique number between all of the format    
+    A unique number between all of the format.
 """
 
 rp_builtin = u"""
@@ -371,7 +371,7 @@ rp_builtin = u"""
 
 rp_method = u"""
 .. |spreadsheet_load_desc| replace:: 
-    This method will automatically search the header row of the table start from
+    This method automatically search the header row of the table start from
     :py:attr:`.start_row`. 
     The header row requires all of the columns has value (except empty columns).
 
