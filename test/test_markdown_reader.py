@@ -34,7 +34,7 @@ test_data_01 = Data(
 """,
     [
         TableData(
-            table_name=u"markdown1",
+            table_name="markdown1",
             header_list=['a', 'b', 'c'],
             record_list=[
                 [1, '123.1', 'a'],
@@ -54,7 +54,7 @@ test_data_02 = Data(
 """,
     [
         TableData(
-            table_name=u"markdown1",
+            table_name="markdown1",
             header_list=['a', 'b', 'c'],
             record_list=[
                 [1, '123.1', 'a'],
@@ -80,7 +80,7 @@ test_data_04 = Data(
 """,
     [
         TableData(
-            table_name=u"tmp_markdown1",
+            table_name="tmp_markdown1",
             header_list=['a', 'b', 'c'],
             record_list=[
                 [1, '123.1', 'a'],
@@ -89,7 +89,7 @@ test_data_04 = Data(
             ]
         ),
         TableData(
-            table_name=u"tmp_markdown2",
+            table_name="tmp_markdown2",
             header_list=['a', 'b'],
             record_list=[
                 [1, '123.1'],

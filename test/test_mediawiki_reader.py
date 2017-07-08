@@ -48,7 +48,7 @@ test_data_01 = Data(
 """,
     [
         TableData(
-            table_name=u"mediawiki1",
+            table_name="mediawiki1",
             header_list=['a', 'b', 'c'],
             record_list=[
                 ['1', '123.1', 'a'],
@@ -80,7 +80,7 @@ test_data_02 = Data(
 """,
     [
         TableData(
-            table_name=u"tablename",
+            table_name="tablename",
             header_list=['a', 'b', 'c'],
             record_list=[
                 ['1', '123.1', 'a'],
@@ -128,7 +128,7 @@ hogehoge
 """,
     [
         TableData(
-            table_name=u"tmp_tablename",
+            table_name="tmp_tablename",
             header_list=['a', 'b', 'c'],
             record_list=[
                 ['1', '123.1', 'a'],
@@ -137,7 +137,7 @@ hogehoge
             ]
         ),
         TableData(
-            table_name=u"tmp_mediawiki2",
+            table_name="tmp_mediawiki2",
             header_list=['a', 'b'],
             record_list=[
                 ['1', '123.1'],
