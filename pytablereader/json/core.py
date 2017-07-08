@@ -28,7 +28,7 @@ from .formatter import JsonTableFormatter
 
 class JsonTableLoader(TableLoader):
     """
-    The abstract class of JSON table loaders.
+    An abstract class of JSON table loaders.
     """
 
     @property
@@ -196,11 +196,11 @@ class JsonTableFileLoader(JsonTableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     |filename_desc|
-            ``%(key)s``          | This is replaced the different value
-                                 | for each single/multipl JSON tables:
+            ``%(key)s``          | This replaced the different value
+                                 | for each single/multiple JSON tables:
                                  | [single JSON table]
                                  | ``%(format_name)s%(format_id)s``
                                  | [multiple JSON table] Table data key.
@@ -264,11 +264,11 @@ class JsonTableTextLoader(JsonTableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     ``""``
-            ``%(key)s``          | This is replaced the different value
-                                 | for each single/multipl JSON tables:
+            ``%(key)s``          | This replaced the different value
+                                 | for each single/multiple JSON tables:
                                  | [single JSON table]
                                  | ``%(format_name)s%(format_id)s``
                                  | [multiple JSON table] Table data key.

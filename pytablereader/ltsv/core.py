@@ -119,7 +119,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
             |load_table_name_desc|
 
             ===================  ========================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ========================================
             ``%(filename)s``     |filename_desc|
             ``%(format_name)s``  ``"ltsv"``
@@ -177,7 +177,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
             |load_table_name_desc|
 
             ===================  ========================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ========================================
             ``%(filename)s``     ``""``
             ``%(format_name)s``  ``"ltsv"``

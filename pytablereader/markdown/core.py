@@ -60,7 +60,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     |filename_desc|
             ``%(key)s``          ``%(format_name)s%(format_id)s``
@@ -118,7 +118,7 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     ``""``
             ``%(key)s``          ``%(format_name)s%(format_id)s``

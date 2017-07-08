@@ -62,7 +62,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
 
     def _preprocess_table_name(self):
         """
-        Always calld before table name validation.
+        Always called before table name validation.
         You must return preprocessed table name.
         """
 
@@ -90,14 +90,14 @@ class TableDataSanitizer(TableDataSanitizerInterface):
         This method called when :py:meth:`~._validate_table_name` method raise
         :py:class:`~.InvalidTableNameError`.
 
-        :param str header: Table name to sanitize.
+        :param str table_name: Table name to sanitize.
         :return: Sanitized table name.
         :rtype: str
         """
 
     def _preprocess_header(self, col, header):
         """
-        Always calld before a header validation.
+        Always called before a header validation.
         You must return preprocessed header.
         """
 
@@ -129,7 +129,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
         Override this method in subclass if you want to rename invalid
         table header element.
 
-        :param int i: Table header index.
+        :param str header: Header name to sanitize.
         :return: Renamed header name.
         :rtype: str
         """

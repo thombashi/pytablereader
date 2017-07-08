@@ -14,7 +14,7 @@ import six
 @six.add_metaclass(abc.ABCMeta)
 class LoaderAcceptorInterface(object):
     """
-    Interface class of table loader acceptor.
+    An interface class of table loader acceptor.
     """
 
     @abc.abstractmethod
@@ -24,7 +24,7 @@ class LoaderAcceptorInterface(object):
 
 class LoaderAcceptor(LoaderAcceptorInterface):
     """
-    The abstract class of table loader acceptor.
+    An abstract class of table loader acceptor.
     """
 
     def __init__(self):

@@ -27,7 +27,7 @@ from .error import (
 @six.add_metaclass(abc.ABCMeta)
 class ValidatorInterface(object):
     """
-    Interface class for data source validator.
+    An interface class for data source validator.
     """
 
     @abc.abstractproperty
@@ -41,7 +41,7 @@ class ValidatorInterface(object):
 
 class BaseValidator(ValidatorInterface):
     """
-    Abstract base class for data source validator.
+    An abstract base class for data source validator.
     """
 
     @property

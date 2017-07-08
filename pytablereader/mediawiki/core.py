@@ -60,10 +60,10 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     |filename_desc|
-            ``%(key)s``          | This is replaced to :
+            ``%(key)s``          | This replaced to:
                                  | **(1)** ``caption`` mark of the table
                                  | **(2)** ``%(format_name)s%(format_id)s``
                                  | if ``caption`` mark not included
@@ -122,10 +122,10 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     ``""``
-            ``%(key)s``          | This is replaced to :
+            ``%(key)s``          | This replaced to:
                                  | **(1)** ``caption`` mark of the table
                                  | **(2)** ``%(format_name)s%(format_id)s``
                                  | if ``caption`` mark not included

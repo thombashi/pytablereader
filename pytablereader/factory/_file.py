@@ -56,7 +56,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             ==========================  =====================================
 
         :return:
-            Loader that coincide with the file extesnion of the
+            Loader that coincides with the file extension of the
             :py:attr:`.file_extension`.
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
@@ -88,7 +88,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             ===============  ======================================
 
         :param str format_name: Format name string (case insensitive).
-        :return: Loader that coincide with the ``format_name``:
+        :return: Loader that coincides with the ``format_name``:
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.
         """
@@ -111,7 +111,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
 
     def _get_extension_loader_mapping(self):
         """
-        :return: Mappings of format-extension and loader class.
+        :return: Mappings of format extension and loader class.
         :rtype: dict
         """
 
@@ -128,7 +128,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
 
     def _get_format_name_loader_mapping(self):
         """
-        :return: Mappings of format-name and loader class.
+        :return: Mappings of format name and loader class.
         :rtype: dict
         """
 

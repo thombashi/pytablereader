@@ -36,7 +36,7 @@ class CsvTableLoader(TableLoader):
     .. py:attribute:: header_list
 
         Attribute names of the table. Use the first line of
-        the csv file as attribute list if header_list is empty.
+        the CSV file as attribute list if header_list is empty.
 
     .. py:attribute:: delimiter
 
@@ -122,7 +122,6 @@ class CsvTableFileLoader(CsvTableLoader):
         Table name string. Defaults to ``%(filename)s``.
 
     :Examples:
-
         :ref:`example-csv-table-loader`
     """
 
@@ -142,7 +141,7 @@ class CsvTableFileLoader(CsvTableLoader):
             |load_table_name_desc|
 
             ===================  ========================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ========================================
             ``%(filename)s``     |filename_desc|
             ``%(format_name)s``  ``"csv"``
@@ -194,7 +193,6 @@ class CsvTableTextLoader(CsvTableLoader):
         Table name string. Defaults to ``%(format_name)s%(format_id)s``.
 
     :Examples:
-
         :ref:`example-csv-table-loader`
     """
 
@@ -214,7 +212,7 @@ class CsvTableTextLoader(CsvTableLoader):
             |load_table_name_desc|
 
             ===================  ========================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ========================================
             ``%(filename)s``     ``""``
             ``%(format_name)s``  ``"csv"``

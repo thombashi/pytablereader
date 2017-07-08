@@ -29,12 +29,11 @@ class TableUrlLoader(TableLoaderManager):
             - `requests proxies <http://requests-docs-ja.readthedocs.io/en/latest/user/advanced/#proxies>`__
 
     :raises pytablereader.LoaderNotFoundError:
-        If appropriate loader not found to loading the URL.
+        If appropriate loader not found to load the URL.
     :raises pytablereader.HTTPError:
         If loader received an HTTP error when access to the URL.
 
-    :Examples:
-
+    :Example:
         :ref:`example-url-table-loader`
     """
 
@@ -50,13 +49,12 @@ class TableUrlLoader(TableLoaderManager):
 
     def load(self):
         """
-        Load tables from URL as ``format_name`` format..
+        Load tables from URL as ``format_name`` format.
 
         :return: Loaded table data iterator.
         :rtype: |TableData| iterator
 
         .. seealso::
-
             * :py:meth:`pytablereader.factory.TableUrlLoaderFactory.create_from_format_name`
             * :py:meth:`pytablereader.factory.TableUrlLoaderFactory.create_from_path`
         """
@@ -71,8 +69,7 @@ class TableUrlLoader(TableLoaderManager):
             :py:class:`.TableUrlLoader` class constructor.
         :rtype: list
 
-        :Examples:
-
+        :Example:
             .. code:: python
 
                 >>> pytablereader.TableUrlLoaderFactory.get_format_name_list()

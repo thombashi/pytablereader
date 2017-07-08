@@ -59,7 +59,7 @@ class InvalidDataError(ValueError):
 
 class EmptyDataError(InvalidDataError):
     """
-    Exception raised when data is not included valid table data.
+    Exception raised when data do not include valid table data.
     """
 
 

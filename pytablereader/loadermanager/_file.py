@@ -26,7 +26,7 @@ class TableFileLoader(TableLoaderManager):
     :raise pytablereader.InvalidFilePathError:
         If ``file_path`` is a invalid file path.
     :raises pytablereader.LoaderNotFoundError:
-        If appropriate loader not found to loading the file.
+        If appropriate loader not found to load the file.
     """
 
     def __init__(self, file_path, format_name=None):
@@ -48,7 +48,6 @@ class TableFileLoader(TableLoaderManager):
         :rtype: |TableData| iterator
 
         .. seealso::
-
             * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_format_name`
             * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_path`
         """
@@ -63,8 +62,7 @@ class TableFileLoader(TableLoaderManager):
             :py:class:`.TableFileLoader` class constructor.
         :rtype: list
 
-        :Examples:
-
+        :Example:
             .. code:: python
 
                 >>> pytablereader.TableFileLoader.get_format_name_list()

@@ -159,8 +159,7 @@ class TableData(object):
         :return: Table data as a |dict| instance.
         :rtype: dict
 
-        :Examples:
-
+        :Sample Code:
             .. code:: python
 
                 from pytablereader import TableData
@@ -170,7 +169,7 @@ class TableData(object):
                     header_list=["a", "b"],
                     record_list=[[1, 2], [3.3, 4.4]]
                 ).as_dict()
-
+        :Output:
             .. code:: json
 
                 {'sample': [{'a': 1, 'b': 2}, {'a': 3.3, 'b': 4.4}]}
@@ -209,8 +208,7 @@ class TableData(object):
         :return: Table data as a ``pandas.DataFrame`` instance.
         :rtype: pandas.DataFrame
 
-        :Examples:
-
+        :Example:
             :ref:`example-as-dataframe`
 
         .. note::

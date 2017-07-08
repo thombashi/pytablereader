@@ -43,7 +43,7 @@ class SqliteFileLoader(TableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     |filename_desc|
             ``%(key)s``          ``%(format_name)s%(format_id)s``
@@ -53,7 +53,7 @@ class SqliteFileLoader(TableLoader):
             ===================  ==============================================
         :rtype: |TableData| iterator
         :raises pytablereader.error.InvalidDataError:
-            If the Markdown data is invalid or empty.
+            If the SQLite database file data is invalid or empty.
         """
 
         self._validate()

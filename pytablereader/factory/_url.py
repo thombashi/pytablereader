@@ -79,7 +79,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             =========================================  =====================================
 
         :return:
-            Loader that coincide with the file extension of the URL.
+            Loader that coincides with the file extension of the URL.
         :raises pytablereader.InvalidUrlError: If unacceptable URL format.
         :raises pytablereader.LoaderNotFoundError:
             If appropriate file loader not found.

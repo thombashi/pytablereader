@@ -32,7 +32,6 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         - `pyOpenSSL <https://pypi.python.org/pypi/pyOpenSSL>`_
 
     :Examples:
-
         :ref:`example-gs-table-loader`
     """
 
@@ -61,9 +60,9 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
     def load(self):
         """
         Load table data from a Google Spreadsheet.
-        This method will automatically search the header row start from
+        This method automatically search the header row start from
         :py:attr:`.start_row`. The condition of the header row is that
-        all of the columns has value (except empty columns).
+        all of the columns have value (except empty columns).
 
         :return:
             Loaded table data. Return one TableData for each sheet in

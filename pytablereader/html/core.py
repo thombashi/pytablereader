@@ -24,7 +24,7 @@ from .formatter import HtmlTableFormatter
 
 class HtmlTableLoader(TableLoader):
     """
-    The abstract class of HTML table loaders.
+    An abstract class of HTML table loaders.
     """
 
     @property
@@ -69,11 +69,11 @@ class HtmlTableFileLoader(HtmlTableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     |filename_desc|
-            ``%(title)s``        Title tag text of the html.
-            ``%(key)s``          | This is replaced to:
+            ``%(title)s``        ``<title>`` tag value of the HTML.
+            ``%(key)s``          | This replaced to:
                                  | **(1)** ``id`` attribute of the table tag
                                  | **(2)** ``%(format_name)s%(format_id)s``
                                  | if ``id`` attribute not present in the
@@ -88,7 +88,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
         .. note::
 
-            Table tag attributes are ignored with loaded |TableData|.
+            Table tag attributes ignored with loaded |TableData|.
         """
 
         self._validate()
@@ -129,11 +129,11 @@ class HtmlTableTextLoader(HtmlTableLoader):
             |load_table_name_desc|
 
             ===================  ==============================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ==============================================
             ``%(filename)s``     ``""``
-            ``%(title)s``        Title tag text of the html.
-            ``%(key)s``          | This is replaced to :
+            ``%(title)s``        ``<title>`` tag value of the HTML.
+            ``%(key)s``          | This replaced to:
                                  | **(1)** ``id`` attribute of the table tag
                                  | **(2)** ``%(format_name)s%(format_id)s``
                                  | if ``id`` attribute is not included

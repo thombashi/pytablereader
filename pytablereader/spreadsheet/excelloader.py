@@ -59,7 +59,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
     def load(self):
         """
-        Extract tabular data as |TableData| instances from a Excel file.
+        Extract tabular data as |TableData| instances from an Excel file.
         |spreadsheet_load_desc|
 
         :return:
@@ -68,7 +68,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             |load_table_name_desc|
 
             ===================  ====================================
-            format specifier     value after the replacement
+            Format specifier     Value after the replacement
             ===================  ====================================
             ``%(filename)s``     Filename of the workbook
             ``%(sheet)s``        Name of the sheet
