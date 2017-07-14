@@ -29,7 +29,7 @@ class TableUrlLoader(TableLoaderManager):
             - `requests proxies <http://requests-docs-ja.readthedocs.io/en/latest/user/advanced/#proxies>`__
 
     :raises pytablereader.LoaderNotFoundError:
-        If appropriate loader not found to load the URL.
+        |LoaderNotFoundError_desc| loading the URL.
     :raises pytablereader.HTTPError:
         If loader received an HTTP error when access to the URL.
 

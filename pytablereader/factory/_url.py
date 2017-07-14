@@ -82,7 +82,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             Loader that coincides with the file extension of the URL.
         :raises pytablereader.InvalidUrlError: If unacceptable URL format.
         :raises pytablereader.LoaderNotFoundError:
-            If appropriate file loader not found.
+            |LoaderNotFoundError_desc| loading the URL.
         """
 
         url_path = urlparse(self.__url).path
@@ -127,7 +127,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         :param str format_name: Format name string (case insensitive).
         :return: Loader that coincide with the ``format_name``:
         :raises pytablereader.LoaderNotFoundError:
-            If appropriate file loader not found.
+            |LoaderNotFoundError_desc| the format.
         :raises TypeError: If ``format_name`` is not a string.
         """
 

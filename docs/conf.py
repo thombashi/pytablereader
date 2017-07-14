@@ -370,10 +370,8 @@ rp_builtin = u"""
 """
 
 rp_method = u"""
-.. |spreadsheet_load_desc| replace:: 
-    This method automatically search the header row of the table start from
-    :py:attr:`.start_row`. 
-    The header row requires all of the columns has value (except empty columns).
+.. |LoaderNotFoundError_desc| replace::
+    If an appropriate loader not found for 
 
 .. |load_source_desc_file| replace:: 
     :py:attr:`.source` attribute should contain a path to the file to load.
@@ -387,6 +385,12 @@ rp_method = u"""
     Following format specifiers in the
     :py:attr:`~pytablereader.interface.TableLoader.table_name`
     are replaced with specific strings:
+
+.. |spreadsheet_load_desc| replace:: 
+    This method automatically search the header row of the table start from
+    :py:attr:`.start_row`. 
+    The header row requires all of the columns has value (except empty columns).
+
 """
 
 rp_class = u"""

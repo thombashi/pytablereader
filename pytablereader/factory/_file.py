@@ -59,7 +59,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             Loader that coincides with the file extension of the
             :py:attr:`.file_extension`.
         :raises pytablereader.LoaderNotFoundError:
-            If appropriate file loader not found.
+            |LoaderNotFoundError_desc| loading the file.
         """
 
         logger.debug(
@@ -90,7 +90,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         :param str format_name: Format name string (case insensitive).
         :return: Loader that coincides with the ``format_name``:
         :raises pytablereader.LoaderNotFoundError:
-            If appropriate file loader not found.
+            |LoaderNotFoundError_desc| the format.
         """
 
         logger.debug(
