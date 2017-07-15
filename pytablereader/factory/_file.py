@@ -25,7 +25,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
     """
     :param str file_path: Path to the loading file.
     :raises pytablereader.InvalidFilePathError:
-        If the ``file_path`` is a empty path.
+        If the ``file_path`` is an empty path.
     """
 
     @property
@@ -43,16 +43,16 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Supported file extensions are as follows:
 
             ==========================  =====================================
-            Format name                 Loader                               
+            Format name                 Loader
             ==========================  =====================================
-            ``"csv"``                   :py:class:`~.CsvTableFileLoader`     
-            ``"xls"``/``"xlsx"``        :py:class:`~.ExcelTableFileLoader`   
-            ``"htm"``/``"html"``        :py:class:`~.HtmlTableFileLoader`    
-            ``"json"``                  :py:class:`~.JsonTableFileLoader`    
-            ``"ltsv"``                  :py:class:`~.LtsvTableFileLoader`    
+            ``"csv"``                   :py:class:`~.CsvTableFileLoader`
+            ``"xls"``/``"xlsx"``        :py:class:`~.ExcelTableFileLoader`
+            ``"htm"``/``"html"``        :py:class:`~.HtmlTableFileLoader`
+            ``"json"``                  :py:class:`~.JsonTableFileLoader`
+            ``"ltsv"``                  :py:class:`~.LtsvTableFileLoader`
             ``"md"``                    :py:class:`~.MarkdownTableFileLoader`
-            ``"sqlite"``/``"sqlite3"``  :py:class:`~.SqliteFileLoader`       
-            ``"tsv"``                   :py:class:`~.TsvTableFileLoader`     
+            ``"sqlite"``/``"sqlite3"``  :py:class:`~.SqliteFileLoader`
+            ``"tsv"``                   :py:class:`~.TsvTableFileLoader`
             ==========================  =====================================
 
         :return:
@@ -74,17 +74,17 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Supported file formats are as follows:
 
             ===============  ======================================
-            Format name               Loader                       
+            Format name               Loader
             ===============  ======================================
-            ``"csv"``        :py:class:`~.CsvTableFileLoader`      
-            ``"excel"``      :py:class:`~.ExcelTableFileLoader`    
-            ``"html"``       :py:class:`~.HtmlTableFileLoader`     
-            ``"json"``       :py:class:`~.JsonTableFileLoader`     
-            ``"ltsv"``       :py:class:`~.LtsvTableFileLoader`     
-            ``"markdown"``   :py:class:`~.MarkdownTableFileLoader` 
+            ``"csv"``        :py:class:`~.CsvTableFileLoader`
+            ``"excel"``      :py:class:`~.ExcelTableFileLoader`
+            ``"html"``       :py:class:`~.HtmlTableFileLoader`
+            ``"json"``       :py:class:`~.JsonTableFileLoader`
+            ``"ltsv"``       :py:class:`~.LtsvTableFileLoader`
+            ``"markdown"``   :py:class:`~.MarkdownTableFileLoader`
             ``"mediawiki"``  :py:class:`~.MediaWikiTableFileLoader`
-            ``"sqlite"``     :py:class:`~.SqliteFileLoader`        
-            ``"tsv"``        :py:class:`~.TsvTableFileLoader`      
+            ``"sqlite"``     :py:class:`~.SqliteFileLoader`
+            ``"tsv"``        :py:class:`~.TsvTableFileLoader`
             ===============  ======================================
 
         :param str format_name: Format name string (case insensitive).
