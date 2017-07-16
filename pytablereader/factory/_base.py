@@ -48,7 +48,7 @@ class BaseTableLoaderFactory(object):
 
     def get_format_name_list(self):
         """
-        :return: Available format name List.
+        :return: Available format names.
         :rtype: list
         """
 
@@ -56,7 +56,7 @@ class BaseTableLoaderFactory(object):
 
     def get_extension_list(self):
         """
-        :return: Available format-extension list.
+        :return: Available format file extensions.
         :rtype: list
         """
 

@@ -58,7 +58,7 @@ class TableFileLoader(TableLoaderManager):
     def get_format_name_list(cls):
         """
         :return:
-            Available format name List. These names can be used
+            Available format names. These names can use by
             :py:class:`.TableFileLoader` class constructor.
         :rtype: list
 
