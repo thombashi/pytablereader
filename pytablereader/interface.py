@@ -109,8 +109,8 @@ class TableLoader(TableLoaderInterface):
     def _get_filename_tablename_mapping(self):
         filename = ""
         if all([
-            self.source_type == SourceType.FILE,
-            typepy.is_not_null_string(self.source),
+                self.source_type == SourceType.FILE,
+                typepy.is_not_null_string(self.source),
         ]):
             filename = path.Path(self.source).namebase
 

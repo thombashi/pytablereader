@@ -97,7 +97,8 @@ class CsvTableLoader(TableLoader):
         except csv.Error as e:
             raise InvalidDataError(e)
 
-    def __modify_item(self, data):
+    @staticmethod
+    def __modify_item(data):
         try:
             return typepy.type.Integer(data).convert()
         except typepy.TypeConversionError:
@@ -159,10 +160,7 @@ class CsvTableFileLoader(CsvTableLoader):
         self._validate()
         self._logger.logging_load()
 
-        if all([
-            platform.system() == "Windows",
-            six.PY3
-        ]):
+        if all([platform.system() == "Windows", six.PY3]):
             self._csv_reader = csv.reader(
                 io.open(self.source, "r", encoding=self.encoding),
                 delimiter=self.delimiter, quotechar=self.quotechar,

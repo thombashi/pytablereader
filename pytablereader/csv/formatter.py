@@ -21,7 +21,7 @@ class CsvTableFormatter(TableFormatter):
             header_list = self._source_data[0]
 
             if any([
-                typepy.is_null_string(header) for header in header_list
+                    typepy.is_null_string(header) for header in header_list
             ]):
                 raise InvalidDataError(
                     "the first line includes empty string item."

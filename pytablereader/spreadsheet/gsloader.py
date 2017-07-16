@@ -120,8 +120,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         row_idx = 0
         for row_value_list in self.__all_values:
             if all([
-                typepy.is_not_null_string(value)
-                for value in row_value_list
+                    typepy.is_not_null_string(value)
+                    for value in row_value_list
             ]):
                 break
 
@@ -164,8 +164,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
             result = con.select(
                 select=SqlQuery.to_attr_str(header), table_name=tmp_table_name)
             if any([
-                typepy.is_not_null_string(record[0])
-                for record in result.fetchall()
+                    typepy.is_not_null_string(record[0])
+                    for record in result.fetchall()
             ]):
                 break
 

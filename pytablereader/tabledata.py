@@ -198,8 +198,7 @@ class TableData(object):
     def asdict(self):
         warnings.warn(
             "asdict() will be deleted in the future, use as_dict instead.",
-            DeprecationWarning
-        )
+            DeprecationWarning)
 
         return self.as_dict()
 
@@ -240,8 +239,8 @@ class TableData(object):
                 is_match = self.__is_match(header, pattern, is_re_match)
 
                 if any([
-                    is_match and is_invert_match,
-                    not is_match and not is_invert_match,
+                        is_match and is_invert_match,
+                        not is_match and not is_invert_match,
                 ]):
                     continue
 
