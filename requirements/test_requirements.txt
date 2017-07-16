@@ -1,4 +1,4 @@
-pytablewriter>=0.20.0
+pytablewriter>=0.22.0
 pytest-cov
 pytest
 responses
