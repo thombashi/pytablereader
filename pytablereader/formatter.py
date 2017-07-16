@@ -32,7 +32,7 @@ class TableFormatter(LoaderAcceptor, TableFormatterInterface):
 
     def _validate_source_data(self):
         if self._source_data is None or len(self._source_data) == 0:
-            raise InvalidDataError("souce data is empty")
+            raise InvalidDataError("source data is empty")
 
     def __init__(self, source_data):
         self._source_data = source_data
