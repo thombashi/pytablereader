@@ -99,7 +99,8 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
 
         return self._create_from_format_name(format_name)
 
-    def _get_common_loader_mapping(self):
+    @staticmethod
+    def _get_common_loader_mapping():
         return {
             "csv": CsvTableFileLoader,
             "html": HtmlTableFileLoader,

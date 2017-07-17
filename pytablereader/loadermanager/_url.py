@@ -35,6 +35,17 @@ class TableUrlLoader(TableLoaderManager):
 
     :Example:
         :ref:`example-url-table-loader`
+
+    .. py:method:: load
+
+        Load tables from URL as ``format_name`` format.
+
+        :return: Loaded table data iterator.
+        :rtype: |TableData| iterator
+
+        .. seealso::
+            * :py:meth:`pytablereader.factory.TableUrlLoaderFactory.create_from_format_name`
+            * :py:meth:`pytablereader.factory.TableUrlLoaderFactory.create_from_path`
     """
 
     def __init__(self, url, format_name=None, encoding=None, proxies=None):
@@ -46,20 +57,6 @@ class TableUrlLoader(TableLoaderManager):
             loader = loader_factory.create_from_path()
 
         super(TableUrlLoader, self).__init__(loader)
-
-    def load(self):
-        """
-        Load tables from URL as ``format_name`` format.
-
-        :return: Loaded table data iterator.
-        :rtype: |TableData| iterator
-
-        .. seealso::
-            * :py:meth:`pytablereader.factory.TableUrlLoaderFactory.create_from_format_name`
-            * :py:meth:`pytablereader.factory.TableUrlLoaderFactory.create_from_path`
-        """
-
-        return super(TableUrlLoader, self).load()
 
     @classmethod
     def get_format_name_list(cls):

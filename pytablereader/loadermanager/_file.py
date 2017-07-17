@@ -27,6 +27,18 @@ class TableFileLoader(TableLoaderManager):
         If ``file_path`` is an invalid file path.
     :raises pytablereader.LoaderNotFoundError:
         |LoaderNotFoundError_desc| loading the file.
+
+    .. py:method:: load
+
+        Loading table data from a file as ``format_name`` format.
+        Automatically detect file format if ``format_name`` is |None|.
+
+        :return: Loaded table data iterator.
+        :rtype: |TableData| iterator
+
+        .. seealso::
+            * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_format_name`
+            * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_path`
     """
 
     def __init__(self, file_path, format_name=None):
@@ -38,21 +50,6 @@ class TableFileLoader(TableLoaderManager):
             loader = loader_factory.create_from_path()
 
         super(TableFileLoader, self).__init__(loader)
-
-    def load(self):
-        """
-        Loading table data from a file as ``format_name`` format.
-        Automatically detect file format if ``format_name`` is |None|.
-
-        :return: Loaded table data iterator.
-        :rtype: |TableData| iterator
-
-        .. seealso::
-            * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_format_name`
-            * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_path`
-        """
-
-        return super(TableFileLoader, self).load()
 
     @classmethod
     def get_format_name_list(cls):
