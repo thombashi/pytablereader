@@ -33,7 +33,7 @@ class CsvTableFormatter(TableFormatter):
             header_list = self._loader.header_list
             data_matrix = self._source_data
 
-        if len(data_matrix) == 0:
+        if not data_matrix:
             raise InvalidDataError(
                 "data row must be greater or equal than one")
 
