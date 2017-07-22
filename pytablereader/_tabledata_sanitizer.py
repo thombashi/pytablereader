@@ -169,6 +169,33 @@ class AbstractTableDataSanitizer(TableDataSanitizerInterface):
         return new_header_list
 
 
+class TableDataSanitizer(AbstractTableDataSanitizer):
+
+    def _preprocess_table_name(self):
+        return self._tabledata.table_name
+
+    def _validate_table_name(self, table_name):
+        try:
+            typepy.type.String(table_name).validate()
+        except TypeError as e:
+            raise InvalidTableNameError(e)
+
+    def _sanitize_table_name(self, table_name):
+        return typepy.type.String(table_name).force_convert()
+
+    def _preprocess_header(self, col, header):
+        return header
+
+    def _validate_header(self, header):
+        try:
+            typepy.type.String(header).validate()
+        except TypeError as e:
+            raise InvalidHeaderNameError(e)
+
+    def _sanitize_header(self, header):
+        return typepy.type.String(header).force_convert()
+
+
 class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
 
     __RE_PREPROCESS = re.compile("[^a-zA-Z0-9_]+")
