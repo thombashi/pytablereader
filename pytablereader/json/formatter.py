@@ -133,8 +133,7 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
             table_name=self._make_table_name(),
             header_list=header_list,
             record_list=zip(
-                *[self._buffer.get(header) for header in header_list])
-        )
+                *[self._buffer.get(header) for header in header_list]))
 
 
 class MultipleJsonTableConverterBase(JsonConverter):
@@ -228,8 +227,7 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
                 table_name=self._make_table_name(),
                 header_list=header_list,
                 record_list=zip(
-                    *[json_record_list.get(header) for header in header_list])
-            )
+                    *[json_record_list.get(header) for header in header_list]))
 
 
 class JsonTableFormatter(TableFormatter):

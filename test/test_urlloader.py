@@ -103,8 +103,7 @@ class Test_TableUrlLoader_constructor(object):
             value,
             body='''{}''',
             content_type='text/plain; charset=utf-8',
-            status=200
-        )
+            status=200)
 
         loader = ptr.TableUrlLoader(value, format_name)
         expected_loader = expected("")
@@ -137,8 +136,7 @@ class Test_TableUrlLoader_constructor(object):
             responses.GET,
             value,
             body='''404: Not Found''',
-            status=404,
-        )
+            status=404)
 
         with pytest.raises(expected):
             ptr.TableUrlLoader(value, format_name)
@@ -169,8 +167,7 @@ class Test_TableUrlLoader_load(object):
     2,2.1,"bb"
     3,120.9,"ccc"''',
             content_type='text/plain; charset=utf-8',
-            status=200
-        )
+            status=200)
 
         expeced_list = [
             ptr.TableData(
@@ -213,8 +210,7 @@ class Test_TableUrlLoader_load(object):
         {"attr_b": 2.1, "attr_c": "bb"}
     ]''',
             content_type='text/plain; charset=utf-8',
-            status=200
-        )
+            status=200)
 
         expeced_list = [
             ptr.TableData(
@@ -247,8 +243,7 @@ class Test_TableUrlLoader_load(object):
                 url,
                 body=f.read(),
                 content_type='application/octet-stream',
-                status=200
-            )
+                status=200)
 
         expeced_list = [
             ptr.TableData(

@@ -28,8 +28,7 @@ class Test_TableData_as_dataframe(object):
             ["normal", ["a", "b"], [[10, 11], [20, 21]]],
             ["normal", None, [[10, 11], [20, 21]]],
             ["normal", None, None],
-        ]
-    )
+        ])
     def test_normal(self, table_name, header_list, record_list):
         tabledata = TableData(table_name, header_list, record_list)
         dataframe = pandas.DataFrame(record_list)
@@ -52,8 +51,7 @@ class Test_TableData_from_dataframe(object):
                 [1, 1.1, "bb"],
                 [2, 2.2, "ccc"],
             ],
-            columns=['id', 'value', 'name']
-        )
+            columns=['id', 'value', 'name'])
         expected = TableData(
             table_name="tablename",
             header_list=['id', 'value', 'name'],

@@ -46,5 +46,4 @@ class SqliteTableFormatter(TableFormatter):
         return self._loader._expand_table_name_format(
             self._loader._get_basic_tablename_keyvalue_mapping() + [
                 (tnt.KEY, self.__table_name),
-            ],
-        )
+            ])

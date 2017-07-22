@@ -52,8 +52,7 @@ class Test_TableData_constructor(object):
                 "empty_header", [], [[1, 2], [3, 4]],
                 TableData("empty_header", [], [[1, 2], [3, 4]])
             ],
-        ]
-    )
+        ])
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
 
@@ -80,8 +79,7 @@ class Test_TableData_constructor(object):
                     [11, None],
                 ]),
             ],
-        ]
-    )
+        ])
     def test_normal_none_value(
             self, table_name, header_list, record_list, expected):
         tabledata = TableData(
@@ -95,8 +93,7 @@ class Test_TableData_constructor(object):
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list", "expected"], [
             ["tablename", ["a", "b"], [1, 2], InvalidDataError],
-        ]
-    )
+        ])
     def test_exception(self, table_name, header_list, record_list, expected):
         with pytest.raises(expected):
             TableData(table_name, header_list, record_list)
@@ -192,9 +189,7 @@ class Test_TableData_as_dict(object):
                 "empty_records", ["a", "b"], [],
                 """{"empty_records": []}"""
             ],
-
-        ]
-    )
+        ])
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
         assert tabledata.as_dict() == json.loads(expected)
@@ -203,8 +198,7 @@ class Test_TableData_as_dict(object):
         ["table_name", "header_list", "record_list", "expected"], [
             ["none_header", None, [[1, 2], [3, 4]], TypeError],
             ["none_records", ["a", "b"], None, TypeError],
-        ]
-    )
+        ])
     def test_exception(self, table_name, header_list, record_list, expected):
         with pytest.raises(expected):
             TableData(table_name, header_list, record_list).as_dict()
@@ -215,8 +209,7 @@ class Test_TableData_hash(object):
     @pytest.mark.parametrize(
         ["table_name", "header_list", "record_list"], [
             ["tablename", ["a", "b"], []],
-        ]
-    )
+        ])
     def test_normal(self, table_name, header_list, record_list):
         tabledata_a0 = TableData(table_name, header_list, record_list)
         tabledata_a1 = TableData(table_name, header_list, record_list)
@@ -233,8 +226,7 @@ class Test_TableData_is_empty_header(object):
             ["tablename", [], [], True],
             ["tablename", ["a", "b"], [], False],
             ["tablename", [], [1, 2], True],
-        ]
-    )
+        ])
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
 
@@ -249,8 +241,7 @@ class Test_TableData_is_empty_record(object):
             ["tablename", ["a", "b"], [], True],
             ["tablename", [], [1, 2], False],
             ["tablename", ["a", "b"], [[1, 2]], False],
-        ]
-    )
+        ])
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
 
@@ -265,8 +256,7 @@ class Test_TableData_is_empty(object):
             ["tablename", ["a", "b"], [], True],
             ["tablename", [], [1, 2], True],
             ["tablename", ["a", "b"], [[1, 2]], False],
-        ]
-    )
+        ])
     def test_normal(self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
 

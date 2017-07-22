@@ -88,8 +88,7 @@ class Test_SQLiteTableDataSanitizer(object):
                          "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
                     ])
             ],
-        ]
-    )
+        ])
     def test_normal(
             self, table_name, header_list, record_list,
             expected):
@@ -107,8 +106,7 @@ class Test_SQLiteTableDataSanitizer(object):
             ["", ["a", "b"], [], ptr.InvalidTableNameError],
             [None, ["a", "b"], [], ptr.InvalidTableNameError],
             ["dummy", [], [], ptr.EmptyDataError],
-        ]
-    )
+        ])
     def test_exception_invalid_data(
             self, table_name, header_list, record_list, expected):
         tabledata = TableData(table_name, header_list, record_list)
