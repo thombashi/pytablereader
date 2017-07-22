@@ -20,6 +20,7 @@ import dataproperty as dp
 from six.moves import zip
 
 from ._constant import PatternMatch
+from ._logger import logger
 from .error import InvalidDataError
 
 
@@ -226,6 +227,11 @@ class TableData(object):
     def filter_column(
             self, pattern_list=None, is_invert_match=False,
             is_re_match=False, pattern_match=PatternMatch.OR):
+        logger.debug(
+            "filter_column: pattern_list={}, is_invert_match={}, "
+            "is_re_match={}, pattern_match={}".format(
+                pattern_list, is_invert_match, is_re_match, pattern_match))
+
         if not pattern_list:
             return TableData(
                 table_name=self.table_name, header_list=self.header_list,
@@ -255,6 +261,10 @@ class TableData(object):
             if match_method(is_match_list):
                 match_header_list.append(header)
                 match_column_matrix.append(column_value_list)
+
+        logger.debug(
+            "filter_column: table={}, match_header_list={}".format(
+                self.table_name, match_header_list))
 
         return TableData(
             table_name=self.table_name, header_list=match_header_list,
