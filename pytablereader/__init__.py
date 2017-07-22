@@ -13,12 +13,12 @@ from ._logger import (
     set_log_level,
 )
 from ._tabledata_sanitizer import (
+    SQLiteTableDataSanitizer,
     TableDataSanitizer,
-    SQLiteTableDataSanitizer
 )
 from .csv.core import (
     CsvTableFileLoader,
-    CsvTableTextLoader
+    CsvTableTextLoader,
 )
 from .error import (
     ValidationError,
@@ -37,27 +37,27 @@ from .error import (
 )
 from .html.core import (
     HtmlTableFileLoader,
-    HtmlTableTextLoader
+    HtmlTableTextLoader,
 )
 from .json.core import (
     JsonTableFileLoader,
-    JsonTableTextLoader
+    JsonTableTextLoader,
 )
 from .loadermanager import (
     TableFileLoader,
-    TableUrlLoader
+    TableUrlLoader,
 )
 from .ltsv.core import (
     LtsvTableFileLoader,
-    LtsvTableTextLoader
+    LtsvTableTextLoader,
 )
 from .markdown.core import (
     MarkdownTableFileLoader,
-    MarkdownTableTextLoader
+    MarkdownTableTextLoader,
 )
 from .mediawiki.core import (
     MediaWikiTableFileLoader,
-    MediaWikiTableTextLoader
+    MediaWikiTableTextLoader,
 )
 from .spreadsheet.excelloader import ExcelTableFileLoader
 from .spreadsheet.gsloader import GoogleSheetsTableLoader
@@ -65,5 +65,5 @@ from .sqlite.core import SqliteFileLoader
 from .tabledata import TableData
 from .tsv.core import (
     TsvTableFileLoader,
-    TsvTableTextLoader
+    TsvTableTextLoader,
 )
