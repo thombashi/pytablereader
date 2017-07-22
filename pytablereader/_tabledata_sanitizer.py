@@ -70,8 +70,8 @@ class AbstractTableDataSanitizer(TableDataSanitizerInterface):
     @abc.abstractmethod
     def _validate_table_name(self, table_name):
         """
-        Must raise :py:class:`~.InvalidHeaderNameError`
-        when you consider the table name is invalid.
+        Must raise :py:class:`~.InvalidTableNameError`
+        when you consider the table name invalid.
 
         :param str header: Table name to validate.
         :raises pytablereader.InvalidTableNameError:
@@ -106,12 +106,10 @@ class AbstractTableDataSanitizer(TableDataSanitizerInterface):
         """
         No operation.
 
-        This method called for each table header.
-        Override this method in subclass if you want to detect
-        invalid table header element.
-        Raise
-        :py:class:`~.InvalidHeaderNameError`
-        if an element is invalid.
+        This method called for each table header. Override this method
+        in subclass if you want to detect invalid table header element.
+        Raise :py:class:`~.InvalidHeaderNameError` if an invalid
+        header element found.
 
         :param str header: Table header name.
         :raises pytablereader.InvalidHeaderNameError:
