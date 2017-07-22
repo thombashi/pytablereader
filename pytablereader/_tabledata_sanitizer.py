@@ -60,13 +60,12 @@ class AbstractTableDataSanitizer(TableDataSanitizerInterface):
             self._sanitize_header_list(),
             self._tabledata.value_matrix)
 
+    @abc.abstractmethod
     def _preprocess_table_name(self):
         """
         Always called before table name validation.
         You must return preprocessed table name.
         """
-
-        return self._tabledata.table_name
 
     @abc.abstractmethod
     def _validate_table_name(self, table_name):
@@ -95,13 +94,12 @@ class AbstractTableDataSanitizer(TableDataSanitizerInterface):
         :rtype: str
         """
 
+    @abc.abstractmethod
     def _preprocess_header(self, col, header):
         """
         Always called before a header validation.
         You must return preprocessed header.
         """
-
-        return header
 
     @abc.abstractmethod
     def _validate_header(self, header):
