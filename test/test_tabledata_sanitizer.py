@@ -22,24 +22,24 @@ class Test_SQLiteTableDataSanitizer(object):
         ],
         [
             [
-                "normal", ["a", "b"], [[1, 2], [3, 4]],
-                TableData("normal", ["a", "b"], [[1, 2], [3, 4]])
+                "normal", ["a", "b_c"], [[1, 2], [3, 4]],
+                TableData("normal", ["a", "b_c"], [[1, 2], [3, 4]])
             ],
             [
                 "OFFSET", ["abort", "ASC"], [[1, 2], [3, 4]],
                 TableData("OFFSET", ["abort", "ASC"], [[1, 2], [3, 4]])
             ],
             [
-                "all_missing_header", [], [[1, 2], [3, 4]],
+                "missing_all_header", [], [[1, 2], [3, 4]],
                 TableData(
-                    "all_missing_header",
+                    "missing_all_header",
                     ["complement_attr_0", "complement_attr_1"],
                     [[1, 2], [3, 4]])
             ],
             [
-                "part_missing_header", ["", "b", None], [],
+                "missing_part_of_header", ["", "b", None], [],
                 TableData(
-                    "part_missing_header",
+                    "missing_part_of_header",
                     ["complement_attr_0", "b", "complement_attr_2"], [])
             ],
             [

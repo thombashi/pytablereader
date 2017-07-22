@@ -175,7 +175,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
 
 class SQLiteTableDataSanitizer(TableDataSanitizer):
 
-    __RE_PREPROCESS = re.compile("[^a-zA-Z0-9]+")
+    __RE_PREPROCESS = re.compile("[^a-zA-Z0-9_]+")
     __RENAME_TEMPLATE = "rename_{:s}"
     __COMPLEMENT_HEADER_TEMPLATE = "complement_attr_{:d}"
 
