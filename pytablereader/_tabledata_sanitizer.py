@@ -40,7 +40,7 @@ class TableDataSanitizerInterface(object):
         pass
 
 
-class TableDataSanitizer(TableDataSanitizerInterface):
+class AbstractTableDataSanitizer(TableDataSanitizerInterface):
 
     def __init__(self, tabledata):
         self._tabledata = tabledata
@@ -173,7 +173,7 @@ class TableDataSanitizer(TableDataSanitizerInterface):
         return new_header_list
 
 
-class SQLiteTableDataSanitizer(TableDataSanitizer):
+class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
 
     __RE_PREPROCESS = re.compile("[^a-zA-Z0-9_]+")
     __RENAME_TEMPLATE = "rename_{:s}"
