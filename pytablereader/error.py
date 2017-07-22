@@ -23,19 +23,19 @@ class InvalidNameError(Exception):
 
 class InvalidTableNameError(InvalidNameError):
     """
-    Exception raised when invalid table name used.
+    Exception raised when the table name is invalid.
     """
 
 
 class InvalidHeaderNameError(InvalidNameError):
     """
-    Exception raised when table header name is invalid.
+    Exception raised when a table header name is invalid.
     """
 
 
 class InvalidPathError(Exception):
     """
-    Base path error class.
+    Base path exception class.
     """
 
 
@@ -53,13 +53,13 @@ class InvalidUrlError(InvalidPathError):
 
 class InvalidDataError(ValueError):
     """
-    Exception raised when data is invalid to load.
+    Exception raised when data is invalid as tabular data.
     """
 
 
 class EmptyDataError(InvalidDataError):
     """
-    Exception raised when data do not include valid table data.
+    Exception raised when data does not include valid table data.
     """
 
 
@@ -71,7 +71,7 @@ class OpenError(IOError):
 
 class LoaderNotFoundError(Exception):
     """
-    Exception raised when appropriate loader not found.
+    Exception raised when loader not found.
     """
 
 
