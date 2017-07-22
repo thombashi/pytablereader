@@ -58,7 +58,7 @@ class Test_TableData_constructor(object):
         tabledata = TableData(table_name, header_list, record_list)
 
         print("expected: {}".format(ptw.dump_tabledata(expected)))
-        print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+        print("actual: {}".format(ptw.dump_tabledata(tabledata)))
 
         assert tabledata == expected
 
@@ -87,7 +87,7 @@ class Test_TableData_constructor(object):
             table_name, header_list, record_list)
 
         print("expected: {}".format(ptw.dump_tabledata(expected)))
-        print("actusl: {}".format(ptw.dump_tabledata(tabledata)))
+        print("actual: {}".format(ptw.dump_tabledata(tabledata)))
 
         assert tabledata == expected
 
@@ -310,7 +310,7 @@ class Test_TableData_filter_column(object):
             is_invert_match=is_invert_match)
 
         print("expected: {}".format(ptw.dump_tabledata(expected)))
-        print("actusl: {}".format(ptw.dump_tabledata(actual)))
+        print("actual: {}".format(ptw.dump_tabledata(actual)))
 
         assert actual == expected
 
@@ -357,7 +357,7 @@ class Test_TableData_filter_column(object):
             is_re_match=True)
 
         print("expected: {}".format(ptw.dump_tabledata(expected)))
-        print("actusl: {}".format(ptw.dump_tabledata(actual)))
+        print("actual: {}".format(ptw.dump_tabledata(actual)))
 
         assert actual == expected
 
@@ -398,7 +398,7 @@ class Test_TableData_filter_column(object):
             is_re_match=True, pattern_match=PatternMatch.AND)
 
         print("expected: {}".format(ptw.dump_tabledata(expected)))
-        print("actusl: {}".format(ptw.dump_tabledata(actual)))
+        print("actual: {}".format(ptw.dump_tabledata(actual)))
 
         assert actual == expected
 
