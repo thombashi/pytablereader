@@ -270,48 +270,115 @@ class Test_TableData_filter_column(object):
     @pytest.mark.parametrize(
         [
             "table_name", "header_list", "record_list", "pattern",
-            "is_invert_match", "is_re_match", "expected",
+            "is_invert_match",  "expected",
         ],
         [
             [
-                "empty_pattern", HEADER_LIST, VALUE_MATRIX,
-                None, False, False,
-                TableData("empty_pattern", HEADER_LIST, VALUE_MATRIX)
+                "match", HEADER_LIST, VALUE_MATRIX,
+                ["abcde"], False,
+                TableData("match", ["abcde"], [[1], [3]])
             ],
             [
-                "match_pattern", HEADER_LIST, VALUE_MATRIX,
-                ["abcde"], False, False,
-                TableData("match_pattern", ["abcde"], [[1], [3]])
+                "multiple_match", HEADER_LIST, VALUE_MATRIX,
+                ["abcde", "test"], False,
+                TableData(
+                    "multiple_match", ["abcde", "test"], [[1, 2], [3, 4]])
             ],
             [
-                "invert_match_pattern", HEADER_LIST, VALUE_MATRIX,
-                ["abcde"], True, False,
-                TableData("invert_match_pattern", ["test"], [[2], [4]])
+                "invert_match", HEADER_LIST, VALUE_MATRIX,
+                ["abcde"], True,
+                TableData("invert_match", ["test"], [[2], [4]])
             ],
             [
-                "not_match_pattern", HEADER_LIST, VALUE_MATRIX,
-                ["abc"], False, False,
-                TableData("not_match_pattern", [], [])
+                "none", HEADER_LIST, VALUE_MATRIX,
+                None, False,
+                TableData("none", HEADER_LIST, VALUE_MATRIX)
+            ],
+            [
+                "empty", HEADER_LIST, VALUE_MATRIX,
+                [], False,
+                TableData("empty", HEADER_LIST, VALUE_MATRIX)
+            ],
+        ])
+    def test_normal_match(
+            self, table_name, header_list, record_list, pattern,
+            is_invert_match, expected):
+        tabledata = TableData(table_name, header_list, record_list)
+        actual = tabledata.filter_column(
+            pattern_list=pattern,
+            is_invert_match=is_invert_match)
+
+        print("expected: {}".format(ptw.dump_tabledata(expected)))
+        print("actusl: {}".format(ptw.dump_tabledata(actual)))
+
+        assert actual == expected
+
+    @pytest.mark.parametrize(
+        [
+            "table_name", "header_list", "record_list", "pattern",
+            "is_invert_match", "expected",
+        ],
+        [
+            [
+                "multiple_patterns",
+                ["test001_AAA", "AAA_test1234", "foo", "AAA_hoge"],
+                [[1, 2, 3, 4], [11, 12, 13, 14]],
+                ["test[0-9]+", "AAA_[a-z]+"], False,
+                TableData(
+                    "multiple_patterns",
+                    ["test001_AAA", "AAA_test1234", "AAA_hoge"],
+                    [[1, 2, 4], [11, 12, 14]])
             ],
             [
                 "re_match_pattern", HEADER_LIST, VALUE_MATRIX,
-                ["abc*"], False, True,
+                ["abc*"], False,
                 TableData("re_match_pattern", ["abcde"], [[1], [3]])
             ],
             [
                 "re_invert_match_pattern", HEADER_LIST, VALUE_MATRIX,
-                ["abc*"], True, True,
+                ["abc*"], True,
                 TableData("re_invert_match_pattern", ["test"], [[2], [4]])
             ],
-        ]
-    )
-    def test_normal(
+            [
+                "re_invert_unmatch_pattern", HEADER_LIST, VALUE_MATRIX,
+                ["unmatch_pattern"], True,
+                TableData(
+                    "re_invert_unmatch_pattern", HEADER_LIST, VALUE_MATRIX)
+            ],
+        ])
+    def test_normal_re_match(
+            self, table_name, header_list, record_list, pattern,
+            is_invert_match, expected):
+        tabledata = TableData(table_name, header_list, record_list)
+        actual = tabledata.filter_column(
+            pattern_list=pattern,
+            is_invert_match=is_invert_match,
+            is_re_match=True)
+
+        print("expected: {}".format(ptw.dump_tabledata(expected)))
+        print("actusl: {}".format(ptw.dump_tabledata(actual)))
+
+        assert actual == expected
+
+    @pytest.mark.parametrize(
+        [
+            "table_name", "header_list", "record_list", "pattern",
+            "is_invert_match", "is_re_match", "expected",
+        ],
+        [
+            [
+                "unmatch_pattern", HEADER_LIST, VALUE_MATRIX,
+                ["abc"], False, False,
+                TableData("unmatch_pattern", [], [])
+            ],
+        ])
+    def test_normal_unmatch(
             self, table_name, header_list, record_list, pattern,
             is_invert_match, is_re_match, expected):
         tabledata = TableData(table_name, header_list, record_list)
-
-        assert tabledata.filter_column(
+        actual = tabledata.filter_column(
             pattern_list=pattern,
             is_invert_match=is_invert_match,
-            is_re_match=is_re_match
-        ) == expected
+            is_re_match=is_re_match)
+
+        assert actual == expected

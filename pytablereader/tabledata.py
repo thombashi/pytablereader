@@ -235,15 +235,16 @@ class TableData(object):
 
         for header, column_value_list in zip(
                 self.header_list, zip(*self.value_matrix)):
+            is_match_list = []
             for pattern in pattern_list:
                 is_match = self.__is_match(header, pattern, is_re_match)
 
-                if any([
-                        is_match and is_invert_match,
-                        not is_match and not is_invert_match,
-                ]):
-                    continue
+                is_match_list.append(any([
+                    is_match and not is_invert_match,
+                    not is_match and is_invert_match,
+                ]))
 
+            if any(is_match_list):
                 match_header_list.append(header)
                 match_column_matrix.append(column_value_list)
 
