@@ -11,8 +11,9 @@ from decimal import Decimal
 import json
 
 from pytablereader import (
-    TableData,
     InvalidDataError,
+    PatternMatch,
+    TableData,
 )
 import pytest
 
@@ -270,7 +271,7 @@ class Test_TableData_filter_column(object):
     @pytest.mark.parametrize(
         [
             "table_name", "header_list", "record_list", "pattern",
-            "is_invert_match",  "expected",
+            "is_invert_match", "expected",
         ],
         [
             [
@@ -354,6 +355,47 @@ class Test_TableData_filter_column(object):
             pattern_list=pattern,
             is_invert_match=is_invert_match,
             is_re_match=True)
+
+        print("expected: {}".format(ptw.dump_tabledata(expected)))
+        print("actusl: {}".format(ptw.dump_tabledata(actual)))
+
+        assert actual == expected
+
+    @pytest.mark.parametrize(
+        [
+            "table_name", "header_list", "record_list", "pattern",
+            "is_invert_match", "expected",
+        ],
+        [
+            [
+                "match_and",
+                ["test001_AAA", "AAA_test1234", "foo", "AAA_hoge"],
+                [[1, 2, 3, 4], [11, 12, 13, 14]],
+                ["[0-9]+", "AAA"], False,
+                TableData(
+                    "match_and",
+                    ["test001_AAA", "AAA_test1234"],
+                    [[1, 2], [11, 12]])
+            ],
+            [
+                "unmatch_and",
+                ["test001_AAA", "AAA_test1234", "foo", "AAA_hoge"],
+                [[1, 2, 3, 4], [11, 12, 13, 14]],
+                ["1234", "hoge"], True,
+                TableData(
+                    "unmatch_and",
+                    ["test001_AAA", "foo"],
+                    [[1, 3], [11, 13]])
+            ],
+        ])
+    def test_normal_pattern_match(
+            self, table_name, header_list, record_list, pattern,
+            is_invert_match, expected):
+        tabledata = TableData(table_name, header_list, record_list)
+        actual = tabledata.filter_column(
+            pattern_list=pattern,
+            is_invert_match=is_invert_match,
+            is_re_match=True, pattern_match=PatternMatch.AND)
 
         print("expected: {}".format(ptw.dump_tabledata(expected)))
         print("actusl: {}".format(ptw.dump_tabledata(actual)))

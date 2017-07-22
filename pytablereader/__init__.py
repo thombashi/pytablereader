@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import
 
+from ._constant import PatternMatch
 from ._logger import (
     logger,
     set_logger,

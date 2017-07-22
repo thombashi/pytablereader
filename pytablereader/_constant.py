@@ -7,6 +7,8 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+import enum
+
 
 class SourceType(object):
     TEXT = "text"
@@ -24,3 +26,9 @@ class TableNameTemplate(object):
     KEY = __FORMAT.format("key")
     TITLE = __FORMAT.format("title")
     SHEET = __FORMAT.format("sheet")
+
+
+@enum.unique
+class PatternMatch(enum.Enum):
+    OR = 0
+    AND = 1

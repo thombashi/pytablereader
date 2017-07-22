@@ -19,6 +19,7 @@ import typepy
 import dataproperty as dp
 from six.moves import zip
 
+from ._constant import PatternMatch
 from .error import InvalidDataError
 
 
@@ -224,7 +225,7 @@ class TableData(object):
 
     def filter_column(
             self, pattern_list=None, is_invert_match=False,
-            is_re_match=False):
+            is_re_match=False, pattern_match=PatternMatch.OR):
         if not pattern_list:
             return TableData(
                 table_name=self.table_name, header_list=self.header_list,
@@ -232,6 +233,13 @@ class TableData(object):
 
         match_header_list = []
         match_column_matrix = []
+
+        if pattern_match == PatternMatch.OR:
+            match_method = any
+        elif pattern_match == PatternMatch.AND:
+            match_method = all
+        else:
+            raise ValueError("unknown matching: {}".format(pattern_match))
 
         for header, column_value_list in zip(
                 self.header_list, zip(*self.value_matrix)):
@@ -244,7 +252,7 @@ class TableData(object):
                     not is_match and is_invert_match,
                 ]))
 
-            if any(is_match_list):
+            if match_method(is_match_list):
                 match_header_list.append(header)
                 match_column_matrix.append(column_value_list)
 
