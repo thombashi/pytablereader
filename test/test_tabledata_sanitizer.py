@@ -44,11 +44,12 @@ class Test_SQLiteTableDataSanitizer(object):
             ],
             [
                 r"@a!b\c#d$e%f&g'h(i)j_",
-                [r"_a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v"],
-                [[1, 2], [3, 4]],
+                [r"_a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v", "a\nb"],
+                [[1, 2, 3], [11, 12, 13]],
                 TableData(
                     "a_b_c_d_e_f_g_h_i_j",
-                    ["abcdefghij", "klmnopqrstuv"], [[1, 2], [3, 4]])
+                    ["abcdefghij", "klmnopqrstuv", "ab"],
+                    [[1, 2, 3], [11, 12, 13]])
             ],
             [  # SQLite reserved keywords
                 "ALL", ["and", "Index"], [[1, 2], [3, 4]],
