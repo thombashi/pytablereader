@@ -33,14 +33,14 @@ class Test_SQLiteTableDataSanitizer(object):
                 "missing_all_header", [], [[1, 2], [3, 4]],
                 TableData(
                     "missing_all_header",
-                    ["complement_attr_0", "complement_attr_1"],
+                    ["A", "B"],
                     [[1, 2], [3, 4]])
             ],
             [
-                "missing_part_of_header", ["", "b", None], [],
+                "missing_part_of_header", ["", "bb", None], [],
                 TableData(
                     "missing_part_of_header",
-                    ["complement_attr_0", "b", "complement_attr_2"], [])
+                    ["A", "bb", "C"], [])
             ],
             [
                 r"@a!b\c#d$e%f&g'h(i)j_",

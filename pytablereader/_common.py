@@ -25,6 +25,15 @@ def get_extension(file_path):
     return os.path.splitext(file_path)[1].lstrip(".")
 
 
+def convert_idx_to_alphabet(column_idx):
+    if column_idx < 26:
+        return chr(65 + column_idx)
+
+    return (
+        convert_idx_to_alphabet(int(column_idx / 26 - 1)) +
+        convert_idx_to_alphabet(column_idx % 26))
+
+
 def make_temp_file_path_from_url(temp_dir_path, url):
     try:
         url_path = urlparse(url).path

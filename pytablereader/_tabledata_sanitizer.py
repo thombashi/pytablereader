@@ -17,6 +17,7 @@ import typepy
 import pathvalidate as pv
 from six.moves import range
 
+from ._common import convert_idx_to_alphabet
 from .error import (
     InvalidTableNameError,
     InvalidHeaderNameError,
@@ -200,7 +201,6 @@ class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
 
     __RE_PREPROCESS = re.compile("[^a-zA-Z0-9_]+")
     __RENAME_TEMPLATE = "rename_{:s}"
-    __COMPLEMENT_HEADER_TEMPLATE = "complement_attr_{:d}"
 
     def _preprocess_table_name(self):
         try:
@@ -225,7 +225,7 @@ class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
 
     def _preprocess_header(self, col_idx, header):
         if typepy.is_null_string(header):
-            return self.__COMPLEMENT_HEADER_TEMPLATE.format(col_idx)
+            return self.__get_default_header(col_idx)
 
         if dataproperty.is_multibyte_str(header):
             return header
@@ -251,10 +251,13 @@ class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
         if typepy.is_empty_sequence(self._tabledata.header_list):
             try:
                 return [
-                    self.__COMPLEMENT_HEADER_TEMPLATE.format(col)
+                    self.__get_default_header(col)
                     for col in range(len(self._tabledata.value_matrix[0]))
                 ]
             except IndexError:
                 raise EmptyDataError("header list and data body are empty")
 
         return super(SQLiteTableDataSanitizer, self)._sanitize_header_list()
+
+    def __get_default_header(self, col_idx):
+        return convert_idx_to_alphabet(col_idx)
