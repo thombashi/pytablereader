@@ -40,8 +40,7 @@ test_data_01 = Data(
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 [3, '3.3', 'ccc'],
-            ]
-        ),
+            ]),
     ])
 
 test_data_02 = Data(
@@ -60,8 +59,7 @@ test_data_02 = Data(
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 [3, '3.3', 'ccc'],
-            ]
-        ),
+            ]),
     ])
 
 test_data_04 = Data(
@@ -86,8 +84,7 @@ test_data_04 = Data(
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 ['3', '3.3', 'ccc'],
-            ]
-        ),
+            ]),
         TableData(
             table_name="tmp_markdown2",
             header_list=['a', 'b'],
@@ -95,8 +92,7 @@ test_data_04 = Data(
                 [1, '123.1'],
                 [2, '2.2'],
                 ['3', '3.3'],
-            ]
-        ),
+            ]),
     ])
 
 test_empty_data_00 = "# empty table"

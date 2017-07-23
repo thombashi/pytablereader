@@ -129,8 +129,7 @@ class Test_TableData_eq(object):
     __DATA_1 = TableData(
         "tablename",
         ["a", "b", "c", "dd", "e"],
-        []
-    )
+        [])
 
     @pytest.mark.parametrize(["lhs",  "rhs", "expected"], [
         [__DATA_0, __DATA_0, True],

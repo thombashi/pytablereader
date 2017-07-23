@@ -169,8 +169,7 @@ class Test_TableFileLoader_load(object):
                 [
                     {'attr_a': 1},
                     {'attr_b': 2.1, 'attr_c': 'bb'},
-                ]
-            )
+                ]),
         ]
 
         loader = ptr.TableFileLoader(p_file_path, format_name)

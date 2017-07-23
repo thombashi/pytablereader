@@ -66,8 +66,7 @@ test_data_01 = Data(
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 [3, '3.3', 'ccc'],
-            ]
-        ),
+            ]),
     ])
 
 test_data_02 = Data(
@@ -105,8 +104,7 @@ test_data_02 = Data(
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 [3, '3.3', 'ccc'],
-            ]
-        ),
+            ]),
     ])
 
 test_data_03 = Data(
@@ -195,15 +193,13 @@ test_data_04 = Data(
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 [3, '3.3', 'ccc'],
-            ]
-        ),
+            ]),
         TableData(
             table_name="test_data_04_html2",
             header_list=[],
             record_list=[
                 ['link text'],
-            ]
-        ),
+            ]),
         TableData(
             table_name="test_data_04_html3",
             header_list=['a', 'b'],
@@ -211,8 +207,7 @@ test_data_04 = Data(
                 [1, '123.1'],
                 [2, '2.2'],
                 [3, '3.3'],
-            ]
-        ),
+            ]),
     ])
 
 test_data_05 = Data(
@@ -253,8 +248,7 @@ test_data_05 = Data(
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 [3, '3.3', 'ccc'],
-            ]
-        ),
+            ]),
     ])
 
 test_data_06 = Data(
@@ -291,8 +285,7 @@ test_data_06 = Data(
                 ["nominative", "val01", "val02"],
                 ["genitive", "val11", "val12"],
                 ["dative", "val21", "val22"],
-            ]
-        ),
+            ]),
     ])
 
 test_data_07 = Data(
@@ -333,8 +326,7 @@ test_data_07 = Data(
                 ["Deutsch", "English", "Español", "Français"],
                 ["Italiano", "日本語", "한국어", "Português"],
                 ["Pусский", "简体中文", "繁體中文", ""],
-            ]
-        ),
+            ]),
     ])
 
 

@@ -42,8 +42,7 @@ test_data_single_01 = Data(
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
                 {'attr_a': 3, 'attr_b': 120.9, 'attr_c': 'ccc'},
-            ]
-        ),
+            ]),
     ])
 
 test_data_single_02 = Data(
@@ -58,8 +57,7 @@ test_data_single_02 = Data(
             [
                 {'attr_a': 1},
                 {'attr_b': 2.1, 'attr_c': 'bb'},
-            ]
-        ),
+            ]),
     ])
 
 test_data_single_03 = Data(
@@ -76,8 +74,7 @@ test_data_single_03 = Data(
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': '2.1', 'attr_c': 'bb'},
                 {'attr_a': 3, 'attr_b': '120.9', 'attr_c': 'ccc'},
-            ]
-        ),
+            ]),
     ])
 
 test_data_multi_01 = Data(
@@ -101,8 +98,7 @@ test_data_multi_01 = Data(
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
                 {'attr_a': 3, 'attr_b': 120.9, 'attr_c': 'ccc'},
-            ]
-        ),
+            ]),
         TableData(
             "table_b",
             ["a", "b"],
@@ -110,8 +106,7 @@ test_data_multi_01 = Data(
                 {'a': 1, 'b': 4},
                 {'a': 2, },
                 {'a': 3, 'b': 120.9},
-            ]
-        ),
+            ]),
     ])
 
 test_data_multi_02 = Data(
@@ -135,8 +130,7 @@ test_data_multi_02 = Data(
                 {'attr_a': 1, 'attr_b': 4, 'attr_c': 'a'},
                 {'attr_a': 2, 'attr_b': 2.1, 'attr_c': 'bb'},
                 {'attr_a': 3, 'attr_b': 120.9, 'attr_c': 'ccc'},
-            ]
-        ),
+            ]),
         TableData(
             "table_b",
             ["a", "b"],
@@ -144,8 +138,7 @@ test_data_multi_02 = Data(
                 {'a': 1, 'b': 4},
                 {'a': 2, },
                 {'a': 3, 'b': 120.9},
-            ]
-        ),
+            ]),
     ])
 
 test_data_single_10 = Data(
@@ -185,16 +178,14 @@ test_data_multi_10 = Data(
                 [1, 4, 'a'],
                 [2, Decimal('2.1'), 'bb'],
                 [3, Decimal('120.9'), 'ccc']
-            ]
-        ),
+            ]),
         TableData(
             "table_b",
             ["a", "b"],
             [
                 [1, 4],
                 [3, Decimal('120.9')],
-            ]
-        ),
+            ]),
     ])
 
 

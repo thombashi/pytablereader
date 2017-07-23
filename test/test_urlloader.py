@@ -219,8 +219,7 @@ class Test_TableUrlLoader_load(object):
                 [
                     {'attr_a': 1},
                     {'attr_b': 2.1, 'attr_c': 'bb'},
-                ]
-            )
+                ]),
         ]
 
         loader = ptr.TableUrlLoader(url, format_name)
