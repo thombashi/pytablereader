@@ -95,7 +95,7 @@ class AbstractTableDataSanitizer(TableDataSanitizerInterface):
         """
 
     @abc.abstractmethod
-    def _preprocess_header(self, col, header):
+    def _preprocess_header(self, col_idx, header):
         """
         Always called before a header validation.
         You must return preprocessed header.
@@ -152,8 +152,8 @@ class AbstractTableDataSanitizer(TableDataSanitizerInterface):
     def _sanitize_header_list(self):
         new_header_list = []
 
-        for col, header in enumerate(self._tabledata.header_list):
-            header = self._preprocess_header(col, header)
+        for col_idx, header in enumerate(self._tabledata.header_list):
+            header = self._preprocess_header(col_idx, header)
 
             try:
                 self._validate_header(header)
@@ -183,7 +183,7 @@ class TableDataSanitizer(AbstractTableDataSanitizer):
     def _sanitize_table_name(self, table_name):
         return typepy.type.String(table_name).force_convert()
 
-    def _preprocess_header(self, col, header):
+    def _preprocess_header(self, col_idx, header):
         return header
 
     def _validate_header(self, header):
@@ -223,9 +223,9 @@ class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
     def _sanitize_table_name(self, table_name):
         return self.__RENAME_TEMPLATE.format(table_name)
 
-    def _preprocess_header(self, col, header):
+    def _preprocess_header(self, col_idx, header):
         if typepy.is_null_string(header):
-            return self.__COMPLEMENT_HEADER_TEMPLATE.format(col)
+            return self.__COMPLEMENT_HEADER_TEMPLATE.format(col_idx)
 
         if dataproperty.is_multibyte_str(header):
             return header
