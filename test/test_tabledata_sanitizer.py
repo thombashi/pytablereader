@@ -44,7 +44,7 @@ class Test_SQLiteTableDataSanitizer(object):
             ],
             [
                 r"@a!b\c#d$e%f&g'h(i)j_",
-                [r"a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v"],
+                [r"_a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v"],
                 [[1, 2], [3, 4]],
                 TableData(
                     "a_b_c_d_e_f_g_h_i_j",

@@ -231,7 +231,7 @@ class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
             return header
 
         try:
-            return self.__RE_PREPROCESS.sub("", header)
+            return self.__RE_PREPROCESS.sub("", header).strip("_")
         except TypeError:
             raise InvalidHeaderNameError(
                 "header must be a string: value='{}'".format(header))
