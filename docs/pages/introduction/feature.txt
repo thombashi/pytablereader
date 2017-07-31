@@ -1,6 +1,5 @@
 Features
 --------
-
 - Extract structured tabular data from various data format:
     - CSV
     - Microsoft Excel :superscript:`TM` file
