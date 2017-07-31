@@ -58,7 +58,13 @@ def set_log_level(log_level):
         logger.level = log_level
 
     dataproperty.set_log_level(log_level)
-    simplesqlite.set_log_level(log_level)
+
+    try:
+        import simplesqlite
+
+        simplesqlite.set_log_level(log_level)
+    except ImportError:
+        pass
 
 
 @six.add_metaclass(abc.ABCMeta)
