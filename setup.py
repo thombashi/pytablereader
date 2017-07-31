@@ -26,14 +26,11 @@ with open(os.path.join("docs", "pages", "introduction", "summary.txt")) as f:
 with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
     install_requires = [line.strip() for line in f if line.strip()]
 
-if any([
-        sys.version_info.major < 3,
-        sys.version_info.major == 3 and sys.version_info.minor < 4,
-]):
-    install_requires.append("enum34")
-
 with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
-    tests_require = [line.strip() for line in f if line.strip()]
+    tests_requires = [line.strip() for line in f if line.strip()]
+
+with open(os.path.join(REQUIREMENT_DIR, "docs_requirements.txt")) as f:
+    docs_requires = [line.strip() for line in f if line.strip()]
 
 setuptools.setup(
     name="pytablereader",
@@ -50,11 +47,16 @@ setuptools.setup(
         "CSV", "Excel", "HTML", "JSON", "LTSV", "Markdown", "MediaWiki", "TSV",
         "SQLite",
     ],
-    long_description=long_description,
     license="MIT License",
+    long_description=long_description,
     packages=setuptools.find_packages(exclude=["test*"]),
+
     setup_requires=pytest_runner,
-    tests_require=tests_require,
+    tests_require=tests_requires,
+    extras_require={
+        "test": tests_requires,
+        "docs": docs_requires,
+    },
 
     classifiers=[
         "Development Status :: 3 - Alpha",
