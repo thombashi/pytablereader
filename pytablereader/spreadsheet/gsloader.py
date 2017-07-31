@@ -33,6 +33,12 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
 
     :Examples:
         :ref:`example-gs-table-loader`
+
+    .. note::
+
+        Require
+        `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__>=0.13.0
+        to use this class.
     """
 
     @property

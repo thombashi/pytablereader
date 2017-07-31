@@ -10,7 +10,6 @@ path.py>=10.3.1
 pyparsing>=2.2.0
 requests>=2.18.2
 setuptools>=20.2.2
-SimpleSQLite>=0.13.0
 six
 typepy>=0.0.15
 xlrd>=1.0.0

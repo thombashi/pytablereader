@@ -11,7 +11,6 @@ import abc
 
 import dataproperty
 import logbook
-import simplesqlite
 import six
 
 
@@ -29,7 +28,13 @@ def set_logger(is_enable):
         logger.disable()
 
     dataproperty.set_logger(is_enable)
-    simplesqlite.set_logger(is_enable)
+
+    try:
+        import simplesqlite
+
+        simplesqlite.set_logger(is_enable)
+    except ImportError:
+        pass
 
 
 def set_log_level(log_level):

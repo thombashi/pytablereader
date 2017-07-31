@@ -2,5 +2,6 @@ pytablewriter>=0.23.0
 pytest-cov
 pytest
 responses
+SimpleSQLite>=0.13.0
 tox
 XlsxWriter
