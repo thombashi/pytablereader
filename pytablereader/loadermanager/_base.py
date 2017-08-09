@@ -29,6 +29,10 @@ class TableLoaderManager(TableLoaderInterface):
         except AttributeError:
             return None
 
+    @encoding.setter
+    def encoding(self, codec_name):
+        self.__loader.encoding = codec_name
+
     def load(self):
         return self.__loader.load()
 
