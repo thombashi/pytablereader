@@ -48,8 +48,6 @@ class LtsvTableLoader(TableLoader):
     def __init__(self, source):
         super(LtsvTableLoader, self).__init__(source)
 
-        self.encoding = "utf-8"
-
         self._ltsv_input_stream = None
 
     def _to_data_matrix(self):
@@ -103,6 +101,8 @@ class LtsvTableFileLoader(LtsvTableLoader):
 
     def __init__(self, file_path):
         super(LtsvTableFileLoader, self).__init__(file_path)
+
+        self.encoding = "utf-8"
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)

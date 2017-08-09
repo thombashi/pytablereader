@@ -7,6 +7,7 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+import io
 import json
 
 from .._constant import (
@@ -49,6 +50,8 @@ class JsonTableFileLoader(JsonTableLoader):
 
     def __init__(self, file_path=None):
         super(JsonTableFileLoader, self).__init__(file_path)
+
+        self.encoding = "utf-8"
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)
@@ -218,7 +221,7 @@ class JsonTableFileLoader(JsonTableLoader):
         self._validate()
         self._logger.logging_load()
 
-        with open(self.source, "r") as fp:
+        with io.open(self.source, "r", encoding=self.encoding) as fp:
             try:
                 json_buffer = json.load(fp)
             except ValueError as e:

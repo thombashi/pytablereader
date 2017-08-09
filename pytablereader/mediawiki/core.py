@@ -7,6 +7,8 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+import io
+
 from .._constant import (
     SourceType,
     TableNameTemplate as tnt
@@ -47,6 +49,8 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
     def __init__(self, file_path=None):
         super(MediaWikiTableFileLoader, self).__init__(file_path)
 
+        self.encoding = "utf-8"
+
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)
 
@@ -80,7 +84,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
         self._validate()
         self._logger.logging_load()
 
-        with open(self.source, "r") as fp:
+        with io.open(self.source, "r", encoding=self.encoding) as fp:
             formatter = MediaWikiTableFormatter(fp.read())
         formatter.accept(self)
 
