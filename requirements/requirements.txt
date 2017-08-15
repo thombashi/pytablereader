@@ -5,10 +5,10 @@ jsonschema>=2.6.0
 logbook
 markdown2>=2.3.4
 mbstrdecoder
-pathvalidate>=0.16.0
+pathvalidate>=0.16.1
 path.py>=10.3.1
 pyparsing>=2.2.0
-requests>=2.18.3
+requests>=2.18.4
 six
-typepy>=0.0.17
+typepy>=0.0.19
 xlrd>=1.0.0
