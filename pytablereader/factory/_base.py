@@ -29,7 +29,11 @@ class BaseTableLoaderFactory(object):
 
     def __init__(self, source, encoding=Default.ENCODING):
         self._source = source
-        self._encoding = encoding
+
+        if not encoding:
+            self._encoding = Default.ENCODING
+        else:
+            self._encoding = encoding
 
     @abc.abstractmethod
     def create_from_path(self):  # pragma: no cover
