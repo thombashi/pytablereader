@@ -68,7 +68,7 @@ class Test_TableFileLoader_constructor(object):
         with open(test_file_path, "w") as f:
             f.write('''{}''')
 
-        loader = ptr.TableFileLoader(test_file_path, format_name)
+        loader = ptr.TableFileLoader(test_file_path, format_name=format_name)
         expected_loader = expected("")
 
         assert loader.source_type == expected_loader.source_type
@@ -91,7 +91,7 @@ class Test_TableFileLoader_constructor(object):
     ])
     def test_exception(self, value, format_name, expected):
         with pytest.raises(expected):
-            ptr.TableFileLoader(value, format_name)
+            ptr.TableFileLoader(value, format_name=format_name)
 
 
 class Test_TableFileLoader_load(object):
@@ -132,7 +132,7 @@ class Test_TableFileLoader_load(object):
                 ])
         ]
 
-        loader = ptr.TableFileLoader(p_file_path, format_name)
+        loader = ptr.TableFileLoader(p_file_path, format_name=format_name)
 
         assert loader.format_name == "csv"
 
@@ -172,7 +172,7 @@ class Test_TableFileLoader_load(object):
                 ]),
         ]
 
-        loader = ptr.TableFileLoader(p_file_path, format_name)
+        loader = ptr.TableFileLoader(p_file_path, format_name=format_name)
 
         assert loader.format_name == "json"
 
