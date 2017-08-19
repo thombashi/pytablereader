@@ -15,7 +15,10 @@ from mbstrdecoder import MultiByteStrDecoder
 import six
 import typepy
 
-from .._constant import TableNameTemplate as tnt
+from .._constant import (
+    Default,
+    TableNameTemplate as tnt,
+)
 from .._logger import (
     FileSourceLogger,
     TextSourceLogger,
@@ -85,7 +88,7 @@ class CsvTableLoader(TableLoader):
         self.header_list = ()
         self.delimiter = ","
         self.quotechar = '"'
-        self.encoding = "utf-8"
+        self.encoding = Default.ENCODING
 
     def _to_data_matrix(self):
         try:

@@ -11,6 +11,7 @@ import abc
 
 import six
 
+from .._constant import Default
 from ..error import LoaderNotFoundError
 
 
@@ -28,7 +29,7 @@ class BaseTableLoaderFactory(object):
 
     def __init__(self, source):
         self._source = source
-        self._encoding = "utf-8"
+        self._encoding = Default.ENCODING
 
     @abc.abstractmethod
     def create_from_path(self):  # pragma: no cover

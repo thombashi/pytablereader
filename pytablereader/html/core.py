@@ -9,7 +9,10 @@ from __future__ import unicode_literals
 
 import io
 
-from .._constant import TableNameTemplate as tnt
+from .._constant import (
+    Default,
+    TableNameTemplate as tnt,
+)
 from .._logger import (
     FileSourceLogger,
     TextSourceLogger,
@@ -53,7 +56,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
     def __init__(self, file_path=None):
         super(HtmlTableFileLoader, self).__init__(file_path)
 
-        self.encoding = "utf-8"
+        self.encoding = Default.ENCODING
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)

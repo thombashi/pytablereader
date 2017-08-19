@@ -10,6 +10,10 @@ from __future__ import unicode_literals
 import enum
 
 
+class Default(object):
+    ENCODING = "utf-8"
+
+
 class SourceType(object):
     TEXT = "text"
     FILE = "file"

@@ -13,7 +13,10 @@ import typepy
 
 import pathvalidate as pv
 
-from .._constant import TableNameTemplate as tnt
+from .._constant import (
+    Default,
+    TableNameTemplate as tnt,
+)
 from .._logger import (
     FileSourceLogger,
     TextSourceLogger,
@@ -102,7 +105,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
     def __init__(self, file_path):
         super(LtsvTableFileLoader, self).__init__(file_path)
 
-        self.encoding = "utf-8"
+        self.encoding = Default.ENCODING
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)
