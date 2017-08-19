@@ -7,7 +7,7 @@
 from __future__ import absolute_import
 
 import typepy
-
+from .._constant import Default
 from ..factory import TableFileLoaderFactory
 from ._base import TableLoaderManager
 
@@ -41,8 +41,8 @@ class TableFileLoader(TableLoaderManager):
             * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_path`
     """
 
-    def __init__(self, file_path, format_name=None):
-        loader_factory = TableFileLoaderFactory(file_path)
+    def __init__(self, file_path, format_name=None, encoding=Default.ENCODING):
+        loader_factory = TableFileLoaderFactory(file_path, encoding=encoding)
 
         if typepy.is_not_null_string(format_name):
             loader = loader_factory.create_from_format_name(format_name)

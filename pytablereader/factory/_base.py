@@ -27,9 +27,9 @@ class BaseTableLoaderFactory(object):
 
         return self._source
 
-    def __init__(self, source):
+    def __init__(self, source, encoding=Default.ENCODING):
         self._source = source
-        self._encoding = Default.ENCODING
+        self._encoding = encoding
 
     @abc.abstractmethod
     def create_from_path(self):  # pragma: no cover
