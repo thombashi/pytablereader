@@ -26,6 +26,13 @@ class Test_SQLiteTableDataSanitizer(object):
                 TableData("normal", ["a", "b_c"], [[1, 2], [3, 4]])
             ],
             [
+                "underscore_char", ["data", "_data", "data_", "_data_"],
+                [[1, 2, 3, 4], [11, 12, 13, 14]],
+                TableData(
+                    "underscore_char", ["data", "_data", "data_", "_data_"],
+                    [[1, 2, 3, 4], [11, 12, 13, 14]])
+            ],
+            [
                 "OFFSET", ["abort", "ASC"], [[1, 2], [3, 4]],
                 TableData("OFFSET", ["abort", "ASC"], [[1, 2], [3, 4]])
             ],
@@ -40,7 +47,7 @@ class Test_SQLiteTableDataSanitizer(object):
             ],
             [
                 r"@a!b\c#d$e%f&g'h(i)j_",
-                [r"_a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v", "a\nb"],
+                [r"a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v", "a\nb"],
                 [[1, 2, 3], [11, 12, 13]],
                 TableData(
                     "a_b_c_d_e_f_g_h_i_j",
