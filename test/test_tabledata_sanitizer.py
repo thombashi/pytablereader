@@ -32,15 +32,11 @@ class Test_SQLiteTableDataSanitizer(object):
             [
                 "missing_all_header", [], [[1, 2], [3, 4]],
                 TableData(
-                    "missing_all_header",
-                    ["A", "B"],
-                    [[1, 2], [3, 4]])
+                    "missing_all_header", ["A", "B"], [[1, 2], [3, 4]])
             ],
             [
                 "missing_part_of_header", ["", "bb", None], [],
-                TableData(
-                    "missing_part_of_header",
-                    ["A", "bb", "C"], [])
+                TableData("missing_part_of_header", ["A", "bb", "C"], [])
             ],
             [
                 r"@a!b\c#d$e%f&g'h(i)j_",
@@ -54,8 +50,7 @@ class Test_SQLiteTableDataSanitizer(object):
             [  # SQLite reserved keywords
                 "ALL", ["and", "Index"], [[1, 2], [3, 4]],
                 TableData(
-                    "rename_ALL",
-                    ["and", "Index"], [[1, 2], [3, 4]])
+                    "rename_ALL", ["and", "Index"], [[1, 2], [3, 4]])
             ],
             [
                 "0invalid_tn", ["1invalid", "where"], [[1, 2], [3, 4]],
