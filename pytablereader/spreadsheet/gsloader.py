@@ -25,20 +25,14 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
 
     :param str file_path: Path to the Google Sheets credential JSON file.
 
-    Requirements:
-
+    :Dependency Packages:
         - `gspread <https://github.com/burnash/gspread>`_
+        - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`_
         - `oauth2client <https://pypi.python.org/pypi/oauth2client>`_
         - `pyOpenSSL <https://pypi.python.org/pypi/pyOpenSSL>`_
 
     :Examples:
         :ref:`example-gs-table-loader`
-
-    .. note::
-
-        Require
-        `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__>=0.13.0
-        to use this class.
     """
 
     @property
@@ -66,13 +60,17 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
     def load(self):
         """
         Load table data from a Google Spreadsheet.
-        This method automatically search the header row start from
+
+        This method consider :py:attr:`.source` as a path to the
+        credential JSON file to access Google Sheets API.
+
+        The method automatically search the header row start from
         :py:attr:`.start_row`. The condition of the header row is that
         all of the columns have value (except empty columns).
 
         :return:
-            Loaded table data. Return one TableData for each sheet in
-            the workbook. Table name is determined by
+            Loaded table data. Return one |TableData| for each sheet in
+            the workbook. The table name for data will be determined by
             :py:meth:`~.GoogleSheetsTableLoader.make_table_name`.
         :rtype: iterator of |TableData|
         :raises pytablereader.InvalidDataError:
