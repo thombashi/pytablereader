@@ -202,6 +202,13 @@ class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
     __RE_PREPROCESS = re.compile("[^a-zA-Z0-9_]+")
     __RENAME_TEMPLATE = "rename_{:s}"
 
+    def __init__(self, tabledata):
+        super(SQLiteTableDataSanitizer, self).__init__(tabledata)
+
+        self.__upper_header_list = [
+            header.upper() for header in self._tabledata.header_list if header
+        ]
+
     def _preprocess_table_name(self):
         try:
             new_name = self.__RE_PREPROCESS.sub(
@@ -260,4 +267,10 @@ class SQLiteTableDataSanitizer(AbstractTableDataSanitizer):
         return super(SQLiteTableDataSanitizer, self)._sanitize_header_list()
 
     def __get_default_header(self, col_idx):
-        return convert_idx_to_alphabet(col_idx)
+        i = 0
+        while True:
+            header = convert_idx_to_alphabet(col_idx + i)
+            if header not in self.__upper_header_list:
+                return header
+
+            i += 1

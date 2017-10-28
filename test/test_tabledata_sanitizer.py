@@ -46,6 +46,18 @@ class Test_SQLiteTableDataSanitizer(object):
                 TableData("missing_part_of_header", ["A", "bb", "C"], [])
             ],
             [
+                "avoid_duplicate_default_header_0", ["", "a", None], [],
+                TableData(
+                    "avoid_duplicate_default_header_0", ["B", "a", "C"], [])
+            ],
+            [
+                "avoid_duplicate_default_header_1",
+                ["", "A", "B", "c", ""], [],
+                TableData(
+                    "avoid_duplicate_default_header_1",
+                    ["D", "A", "B", "c", "E"], [])
+            ],
+            [
                 r"@a!b\c#d$e%f&g'h(i)j_",
                 [r"a!b\c#d$e%f&g'h(i)j", r"k@l[m]n{o}p;q:r,s.t/u\\v", "a\nb"],
                 [[1, 2, 3], [11, 12, 13]],
