@@ -284,7 +284,8 @@ class TableData(object):
             header_list=list(dataframe.columns.values),
             record_list=dataframe.values.tolist())
 
-    def __compare_helper(self, lhs, rhs):
+    @staticmethod
+    def __compare_helper(lhs, rhs):
         from typepy.type import Nan
 
         if Nan(lhs).is_type() and Nan(rhs).is_type():
@@ -292,7 +293,8 @@ class TableData(object):
 
         return lhs == rhs
 
-    def __is_match(self, header, pattern, is_re_match):
+    @staticmethod
+    def __is_match(header, pattern, is_re_match):
         if is_re_match:
             return re.search(pattern, header) is not None
 
