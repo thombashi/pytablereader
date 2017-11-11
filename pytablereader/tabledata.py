@@ -310,8 +310,9 @@ class TableData(object):
         try:
             # dictionary to list
             return [
-                self.__dp_extractor.to_dataproperty(values.get(header)).data
-                for header in self.header_list
+                dp.data
+                for dp in self.__dp_extractor.to_dataproperty_list([
+                    values.get(header) for header in self.header_list])
             ]
         except AttributeError:
             pass
@@ -320,17 +321,17 @@ class TableData(object):
             # namedtuple to list
             dict_value = values._asdict()
             return [
-                self.__dp_extractor.to_dataproperty(
-                    dict_value.get(header)).data
-                for header in self.header_list
+                dp.data
+                for dp in self.__dp_extractor.to_dataproperty_list([
+                    dict_value.get(header) for header in self.header_list])
             ]
         except AttributeError:
             pass
 
         try:
             return [
-                self.__dp_extractor.to_dataproperty(value).data
-                for value in values
+                dp.data
+                for dp in self.__dp_extractor.to_dataproperty_list(values)
             ]
         except TypeError:
             raise InvalidDataError(
