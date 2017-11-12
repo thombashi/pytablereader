@@ -12,5 +12,5 @@ credentials_file = "sample-xxxxxxxxxxxx.json"
 loader = ptr.GoogleSheetsTableLoader(credentials_file)
 loader.title = "testbook"
 
-for tabledata in loader.load():
-    print(ptw.dump_tabledata(tabledata))
+for table_data in loader.load():
+    print(ptw.dump_tabledata(table_data))
