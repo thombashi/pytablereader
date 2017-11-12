@@ -1,6 +1,5 @@
 pytablereader
-=============
-
+===============
 .. image:: https://badge.fury.io/py/pytablereader.svg
     :target: https://badge.fury.io/py/pytablereader
 
@@ -19,8 +18,7 @@ pytablereader
    :target: https://github.com/thombashi/pytablereader
 
 Summary
--------
-
+---------
 A Python library to load structured table data from files/strings/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/SQLite/TSV.
 
 Features
@@ -45,13 +43,11 @@ Features
     - ``dict`` instance
 
 Examples
-========
-
+==========
 Load a CSV table
-----------------
-
+------------------
 :Sample Code:
-    .. code:: python
+    .. code-block:: python
 
         import pytablereader as ptr
         import pytablewriter as ptw
@@ -89,7 +85,7 @@ Load a CSV table
 
 
 :Output:
-    .. code:: text
+    .. code-block:: none
 
         load from file
         ==============
@@ -116,32 +112,32 @@ Load a CSV table
             ======  ======  ======
 
 Get loaded table data as pandas.DataFrame instance
---------------------------------------------------
-
+----------------------------------------------------
 
 :Sample Code:
-    .. code:: python
+    .. code-block:: python
 
-        from pytablereader import TableData
+        import pytablereader as ptr
 
-        TableData(
-            table_name="sample",
-            header_list=["a", "b"],
-            record_list=[[1, 2], [3.3, 4.4]]
-        ).as_dataframe()
-
+        loader = ptr.CsvTableTextLoader(
+            "\n".join([
+                "a,b",
+                "1,2",
+                "3.3,4.4",
+            ]))
+        for table_data in loader.load():
+            print(table_data.as_dataframe())
 
 :Output:
-    .. code:: python
+    .. code-block:: none
 
              a    b
         0    1    2
         1  3.3  4.4
 
 For more information
---------------------
-
-More examples are available at
+----------------------
+More examples are available at 
 http://pytablereader.rtfd.io/en/latest/pages/examples/index.html
 
 Installation
@@ -154,7 +150,7 @@ Installation
 
 Dependencies
 ============
-Python 2.7+ or 3.3+
+Python 2.7+ or 3.4+
 
 Mandatory Python packages
 ----------------------------------
@@ -169,6 +165,7 @@ Mandatory Python packages
 - `pyparsing <https://pyparsing.wikispaces.com/>`__
 - `requests <http://python-requests.org/>`__
 - `six <https://pypi.python.org/pypi/six/>`__
+- `tabledata <https://github.com/thombashi/tabledata>`__
 - `typepy <https://github.com/thombashi/typepy>`__
 - `xlrd <https://github.com/python-excel/xlrd>`__
 
@@ -195,12 +192,11 @@ Test dependencies
 - `XlsxWriter <http://xlsxwriter.readthedocs.io/>`__
 
 Documentation
-=============
-
+===============
 http://pytablereader.rtfd.io/
 
 Related Project
-===============
-
+=================
 - `pytablewriter <https://github.com/thombashi/pytablewriter>`__
     - Tabular data loaded by ``pytablereader`` can be written another tabular data format with ``pytablewriter``.
+
