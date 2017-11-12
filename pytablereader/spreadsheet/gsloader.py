@@ -8,10 +8,11 @@ from __future__ import absolute_import
 
 import typepy
 
+from tabledata import TableData
+
 from .._constant import TableNameTemplate as tnt
 from .._validator import TextValidator
 from ..error import OpenError
-from ..tabledata import TableData
 from .core import SpreadSheetLoader
 
 

@@ -9,10 +9,11 @@ from __future__ import unicode_literals
 
 import typepy
 
+from tabledata import TableData
+
 from .._constant import TableNameTemplate as tnt
 from ..error import InvalidDataError
 from ..formatter import TableFormatter
-from ..tabledata import TableData
 
 
 class SqliteTableFormatter(TableFormatter):

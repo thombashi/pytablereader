@@ -13,6 +13,7 @@ import jsonschema
 import six
 
 from six.moves import zip
+from tabledata import TableData
 
 from .._constant import (
     SourceType,
@@ -20,7 +21,6 @@ from .._constant import (
 )
 from ..error import ValidationError
 from ..formatter import TableFormatter
-from ..tabledata import TableData
 
 
 class JsonConverter(TableFormatter):
@@ -244,8 +244,8 @@ class JsonTableFormatter(TableFormatter):
             converter = converter_class(self._source_data)
             converter.accept(self._loader)
             try:
-                for tabledata in converter.to_table_data():
-                    yield tabledata
+                for table_data in converter.to_table_data():
+                    yield table_data
                 return
             except ValidationError:
                 pass

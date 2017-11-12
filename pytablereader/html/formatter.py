@@ -12,10 +12,11 @@ import re
 import bs4
 import typepy
 
+from tabledata import TableData
+
 from .._constant import TableNameTemplate as tnt
 from ..error import InvalidDataError
 from ..formatter import TableFormatter
-from ..tabledata import TableData
 
 
 class HtmlTableFormatter(TableFormatter):
@@ -40,14 +41,14 @@ class HtmlTableFormatter(TableFormatter):
     def to_table_data(self):
         for table in self.__soup.find_all("table"):
             try:
-                tabledata = self.__parse_html(table)
+                table_data = self.__parse_html(table)
             except ValueError:
                 continue
 
-            if tabledata.is_empty_record():
+            if table_data.is_empty_record():
                 continue
 
-            yield tabledata
+            yield table_data
 
     def _make_table_name(self):
         from collections import OrderedDict

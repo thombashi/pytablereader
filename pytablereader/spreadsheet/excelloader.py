@@ -10,12 +10,12 @@ from __future__ import unicode_literals
 import xlrd
 
 from six.moves import range
+from tabledata import TableData
 
 from .._logger import FileSourceLogger
 from .._validator import FileValidator
 from ..error import InvalidDataError
 from ..error import OpenError
-from ..tabledata import TableData
 from .core import SpreadSheetLoader
 
 

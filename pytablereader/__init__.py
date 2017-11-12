@@ -6,15 +6,17 @@
 
 from __future__ import absolute_import
 
+from tabledata import (
+    SQLiteTableDataSanitizer,
+    TableData,
+    TableDataSanitizer,
+)
+
 from ._constant import PatternMatch
 from ._logger import (
     logger,
     set_logger,
     set_log_level,
-)
-from ._tabledata_sanitizer import (
-    SQLiteTableDataSanitizer,
-    TableDataSanitizer,
 )
 from .csv.core import (
     CsvTableFileLoader,
@@ -62,7 +64,6 @@ from .mediawiki.core import (
 from .spreadsheet.excelloader import ExcelTableFileLoader
 from .spreadsheet.gsloader import GoogleSheetsTableLoader
 from .sqlite.core import SqliteFileLoader
-from .tabledata import TableData
 from .tsv.core import (
     TsvTableFileLoader,
     TsvTableTextLoader,

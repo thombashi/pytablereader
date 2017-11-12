@@ -9,9 +9,10 @@ from __future__ import unicode_literals
 
 import typepy
 
+from tabledata import TableData
+
 from ..error import InvalidDataError
 from ..formatter import TableFormatter
-from ..tabledata import TableData
 
 
 class CsvTableFormatter(TableFormatter):
