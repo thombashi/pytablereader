@@ -10,6 +10,7 @@ from __future__ import unicode_literals
 from collections import OrderedDict
 from decimal import Decimal
 import hashlib
+import multiprocessing
 import re
 import warnings
 
@@ -68,12 +69,18 @@ class TableData(object):
         return self.value_matrix
 
     def __init__(
-            self, table_name, header_list, record_list, is_strip_quote=False):
+            self, table_name, header_list, record_list, is_strip_quote=False,
+            max_workers=None):
 
         self.__dp_extractor = dp.DataPropertyExtractor()
         self.__dp_extractor.strip_str_header = '"'
         if is_strip_quote:
             self.__dp_extractor.strip_str_value = '"'
+
+        if max_workers:
+            self.max_workers = max_workers
+        else:
+            self.max_workers = multiprocessing.cpu_count()
 
         self.__table_name = table_name
         self.__header_list = header_list
@@ -356,7 +363,7 @@ class TableData(object):
 
         record_mapping = {}
         try:
-            with futures.ProcessPoolExecutor() as executor:
+            with futures.ProcessPoolExecutor(self.max_workers) as executor:
                 future_list = [
                     executor.submit(
                         _to_record_helper, self.__dp_extractor,
