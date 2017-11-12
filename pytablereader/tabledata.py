@@ -339,7 +339,7 @@ class TableData(object):
             raise InvalidDataError(
                 "record must be a list or tuple: actual={}".format(values))
 
-    def __to_record_list(self, record_list):
+    def __to_record_list(self, value_matrix):
         """
         Convert matrix to records
         """
@@ -347,9 +347,68 @@ class TableData(object):
         self.__dp_extractor.float_type = Decimal
 
         if typepy.is_empty_sequence(self.header_list):
-            return record_list
+            return value_matrix
+
+        return self.__to_record_list_mt(value_matrix)
+
+    def __to_record_list_mt(self, value_matrix):
+        from concurrent import futures
+
+        record_mapping = {}
+        try:
+            with futures.ProcessPoolExecutor() as executor:
+                future_list = [
+                    executor.submit(
+                        _to_record_helper, self.__dp_extractor,
+                        self.header_list, value_list, record_idx)
+                    for record_idx, value_list in enumerate(value_matrix)
+                ]
+
+                for future in futures.as_completed(future_list):
+                    record_idx, record = future.result()
+                    record_mapping[record_idx] = record
+        finally:
+            logger.debug("shutdown ProcessPoolExecutor")
+            executor.shutdown()
 
         return [
-            self.__to_record(record)
-            for record in record_list
+            record_mapping[record_idx] for record_idx in sorted(record_mapping)
         ]
+
+
+def _to_record_helper(extractor, header_list, values, record_idx):
+    try:
+        # dictionary to list
+        return (
+            record_idx,
+            [
+                dp.data
+                for dp in extractor.to_dataproperty_list([
+                    values.get(header) for header in header_list])
+            ])
+    except AttributeError:
+        pass
+
+    try:
+        # namedtuple to list
+        dict_value = values._asdict()
+        return (
+            record_idx,
+            [
+                dp.data
+                for dp in extractor.to_dataproperty_list([
+                    dict_value.get(header) for header in header_list])
+            ])
+    except AttributeError:
+        pass
+
+    try:
+        return (
+            record_idx,
+            [
+                dp.data
+                for dp in extractor.to_dataproperty_list(values)
+            ])
+    except TypeError:
+        raise InvalidDataError(
+            "record must be a list or tuple: actual={}".format(values))
