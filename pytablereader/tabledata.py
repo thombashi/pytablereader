@@ -356,7 +356,18 @@ class TableData(object):
         if typepy.is_empty_sequence(self.header_list):
             return value_matrix
 
+        if self.max_workers <= 1:
+            return self.__to_record_list_st(value_matrix)
+
         return self.__to_record_list_mt(value_matrix)
+
+    def __to_record_list_st(self, value_matrix):
+        return [
+            _to_record_helper(
+                self.__dp_extractor, self.header_list, value_list,
+                record_idx)[1]
+            for record_idx, value_list in enumerate(value_matrix)
+        ]
 
     def __to_record_list_mt(self, value_matrix):
         from concurrent import futures
