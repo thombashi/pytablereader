@@ -1,4 +1,3 @@
-
 Welcome to pytablereader's documentation!
 ==========================================
 

@@ -23,6 +23,7 @@ Mandatory Python packages
 - `pyparsing <https://pyparsing.wikispaces.com/>`__
 - `requests <http://python-requests.org/>`__
 - `six <https://pypi.python.org/pypi/six/>`__
+- `tabledata <https://github.com/thombashi/tabledata>`__
 - `typepy <https://github.com/thombashi/typepy>`__
 - `xlrd <https://github.com/python-excel/xlrd>`__
 

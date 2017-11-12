@@ -1,16 +1,18 @@
 
 :Sample Code:
     .. code-block:: python
-        :caption: TableData to pandas.DataFrame
+        :caption: Convert from loaded tabledata.TableData to pandas.DataFrame
 
-        from pytablereader import TableData
-
-        TableData(
-            table_name="sample",
-            header_list=["a", "b"],
-            record_list=[[1, 2], [3.3, 4.4]]
-        ).as_dataframe()
-
+        import pytablereader as ptr
+        
+        loader = ptr.CsvTableTextLoader(
+            "\n".join([
+                "a,b",
+                "1,2",
+                "3.3,4.4",
+            ]))
+        for table_data in loader.load():
+            print(table_data.as_dataframe())
 
 :Output:
     .. code-block:: none
