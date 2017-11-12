@@ -4,4 +4,5 @@ pytest
 responses
 SimpleSQLite>=0.18.0
 tox
+urllib3==1.21.1
 XlsxWriter
