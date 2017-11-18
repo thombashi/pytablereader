@@ -9,7 +9,7 @@ from __future__ import unicode_literals
 import collections
 
 from path import Path
-from pytablereader import TableData
+from tabledata import TableData
 from pytablereader.interface import TableLoader
 from pytablereader.mediawiki.formatter import MediaWikiTableFormatter
 import pytest

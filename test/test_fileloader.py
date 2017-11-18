@@ -12,6 +12,7 @@ from path import Path
 from pytablereader.interface import TableLoader
 import pytest
 import six
+from tabledata import TableData
 
 import pathvalidate as pv
 import pytablereader as ptr
@@ -122,7 +123,7 @@ class Test_TableFileLoader_load(object):
     3,120.9,"ccc"''')
 
         expeced_list = [
-            ptr.TableData(
+            TableData(
                 filename,
                 ["attr_a", "attr_b", "attr_c"],
                 [
@@ -163,7 +164,7 @@ class Test_TableFileLoader_load(object):
     ]''')
 
         expeced_list = [
-            ptr.TableData(
+            TableData(
                 "validdata",
                 ["attr_a", "attr_b", "attr_c"],
                 [
@@ -185,7 +186,7 @@ class Test_TableFileLoader_load(object):
         p_file_path.parent.makedirs_p()
 
         tabledata_list = [
-            ptr.TableData(
+            TableData(
                 table_name='testsheet1',
                 header_list=['a1', 'b1', 'c1'],
                 record_list=[
@@ -194,7 +195,7 @@ class Test_TableFileLoader_load(object):
                     [2.0, 2.2, 'bb'],
                     [3.0, 3.3, 'cc"dd"'],
                 ]),
-            ptr.TableData(
+            TableData(
                 table_name='testsheet3',
                 header_list=['a3', 'b3', 'c3'],
                 record_list=[

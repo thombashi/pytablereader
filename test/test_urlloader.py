@@ -11,10 +11,11 @@ import os.path
 
 from pytablereader.interface import TableLoader
 import pytest
+import responses
+from tabledata import TableData
 
 import pytablereader as ptr
 import pytablewriter as ptw
-import responses
 
 
 class Test_TableUrlLoader_get_format_name_list(object):
@@ -170,7 +171,7 @@ class Test_TableUrlLoader_load(object):
             status=200)
 
         expeced_list = [
-            ptr.TableData(
+            TableData(
                 "csv1",
                 ["attr_a", "attr_b", "attr_c"],
                 [
@@ -213,7 +214,7 @@ class Test_TableUrlLoader_load(object):
             status=200)
 
         expeced_list = [
-            ptr.TableData(
+            TableData(
                 "json1",
                 ["attr_a", "attr_b", "attr_c"],
                 [
@@ -245,7 +246,7 @@ class Test_TableUrlLoader_load(object):
                 status=200)
 
         expeced_list = [
-            ptr.TableData(
+            TableData(
                 table_name='testsheet1',
                 header_list=['a1', 'b1', 'c1'],
                 record_list=[
@@ -254,7 +255,7 @@ class Test_TableUrlLoader_load(object):
                     [2.0, 2.2, 'bb'],
                     [3.0, 3.3, 'cc'],
                 ]),
-            ptr.TableData(
+            TableData(
                 table_name='testsheet3',
                 header_list=['a3', 'b3', 'c3'],
                 record_list=[

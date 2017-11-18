@@ -10,7 +10,7 @@ import collections
 import io
 
 from path import Path
-from pytablereader import TableData
+from tabledata import TableData
 from pytablereader.html.formatter import HtmlTableFormatter
 from pytablereader.interface import TableLoader
 import pytest

@@ -12,7 +12,7 @@ from decimal import Decimal
 
 from path import Path
 from pytablereader import InvalidTableNameError
-from pytablereader import TableData
+from tabledata import TableData
 from pytablereader.interface import TableLoader
 import pytest
 

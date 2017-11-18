@@ -11,10 +11,10 @@ import collections
 from decimal import Decimal
 
 from path import Path
-from pytablereader import TableData
 from pytablereader.interface import TableLoader
 import pytest
 from simplesqlite import SimpleSQLite
+from tabledata import TableData
 
 import pytablereader as ptr
 import pytablewriter as ptw

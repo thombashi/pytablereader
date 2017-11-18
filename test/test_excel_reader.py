@@ -8,6 +8,7 @@ from __future__ import unicode_literals
 
 from pytablereader.interface import TableLoader
 import pytest
+from tabledata import TableData
 import xlsxwriter
 
 import pytablereader as ptr
@@ -145,7 +146,7 @@ class Test_ExcelTableFileLoader_load(object):
                 "%(sheet)s",
                 0,
                 [
-                    ptr.TableData(
+                    TableData(
                         table_name="boolsheet",
                         header_list=["true", "false", "tf", "lost"],
                         record_list=[
@@ -153,7 +154,7 @@ class Test_ExcelTableFileLoader_load(object):
                             [True, False, False, ""],
                             [True, False, False, False],
                         ]),
-                    ptr.TableData(
+                    TableData(
                         table_name="testsheet1",
                         header_list=["a1", "b1", "c1"],
                         record_list=[
@@ -162,7 +163,7 @@ class Test_ExcelTableFileLoader_load(object):
                             [2.0, 2.2, "bb"],
                             [3.0, 3.3, "cc"],
                         ]),
-                    ptr.TableData(
+                    TableData(
                         table_name="testsheet3",
                         header_list=["a3", "b3", "c3"],
                         record_list=[
@@ -177,11 +178,11 @@ class Test_ExcelTableFileLoader_load(object):
                 "%(filename)s_%(sheet)s",
                 2,
                 [
-                    ptr.TableData(
+                    TableData(
                         table_name="tmp_boolsheet",
                         header_list=["TRUE", "FALSE", "False", "False"],
                         record_list=[]),
-                    ptr.TableData(
+                    TableData(
                         table_name="tmp_testsheet1",
                         header_list=["aa1", "ab1", "ac1"],
                         record_list=[
@@ -189,7 +190,7 @@ class Test_ExcelTableFileLoader_load(object):
                             [2.0, 2.2, "bb"],
                             [3.0, 3.3, "cc"],
                         ]),
-                    ptr.TableData(
+                    TableData(
                         table_name="tmp_testsheet3",
                         header_list=["a3", "b3", "c3"],
                         record_list=[

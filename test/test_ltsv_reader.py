@@ -17,7 +17,7 @@ from pytablereader import (
     InvalidDataError,
     InvalidHeaderNameError
 )
-from pytablereader import TableData
+from tabledata import TableData
 from pytablereader.interface import TableLoader
 import pytest
 
