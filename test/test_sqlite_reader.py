@@ -23,123 +23,111 @@ import pytablewriter as ptw
 Data = collections.namedtuple("Data", "value expected")
 
 test_data_00 = Data(
-    TableData(
-        "tmp",
-        ["attr_a", "attr_b", "attr_c"],
-        [
-            [1, 4, "a"],
-            [2, Decimal("2.1"), "bb"],
-            [3, Decimal("120.9"), "ccc"],
-        ]),
+    TableData("tmp",
+              ["attr_a", "attr_b", "attr_c"],
+              [
+                  [1, 4, "a"],
+                  [2, Decimal("2.1"), "bb"],
+                  [3, Decimal("120.9"), "ccc"],
+              ]),
     [
-        TableData(
-            "tmp",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4, "a"],
-                [2, Decimal("2.1"), "bb"],
-                [3, Decimal("120.9"), "ccc"],
-            ]),
+        TableData("tmp",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [1, 4, "a"],
+                      [2, Decimal("2.1"), "bb"],
+                      [3, Decimal("120.9"), "ccc"],
+                  ]),
     ])
 
 test_data_01 = Data(
-    TableData(
-        "foo_bar",
-        ["attr_a", "attr_b", "attr_c"],
-        [
-            ["aaaa", "bbbb", "cccc"],
-            [1, 4, "a"],
-            [2, "2.1", "bb"],
-            [3, "120.9", "ccc"],
-        ]),
+    TableData("foo_bar",
+              ["attr_a", "attr_b", "attr_c"],
+              [
+                  ["aaaa", "bbbb", "cccc"],
+                  [1, 4, "a"],
+                  [2, "2.1", "bb"],
+                  [3, "120.9", "ccc"],
+              ]),
     [
-        TableData(
-            "foo_bar",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                ["aaaa", "bbbb", "cccc"],
-                ["1", "4", "a"],
-                ["2", "2.1", "bb"],
-                ["3", "120.9", "ccc"],
-            ]),
+        TableData("foo_bar",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      ["aaaa", "bbbb", "cccc"],
+                      ["1", "4", "a"],
+                      ["2", "2.1", "bb"],
+                      ["3", "120.9", "ccc"],
+                  ]),
     ])
 
 test_data_02 = Data(
-    TableData(
-        "foo_bar",
-        ["attr_a", "attr_b", "attr_c"],
-        [
-            [3, "120.9",  "ccc"],
-        ]),
+    TableData("foo_bar",
+              ["attr_a", "attr_b", "attr_c"],
+              [
+                  [3, "120.9", "ccc"],
+              ]),
     [
-        TableData(
-            "foo_bar",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [3, "120.9",  "ccc"],
-            ]),
+        TableData("foo_bar",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [3, "120.9", "ccc"],
+                  ]),
     ])
 
 test_data_03 = Data(
-    TableData(
-        "tmp",
-        ["attr_a", "attr_b", "attr_c"],
-        [
-            [1, 4,      "a"],
-            [2, "2.1",    "bb"],
-            [3, "120.9",  "ccc"],
-        ]),
+    TableData("tmp",
+              ["attr_a", "attr_b", "attr_c"],
+              [
+                  [1, 4, "a"],
+                  [2, "2.1", "bb"],
+                  [3, "120.9", "ccc"],
+              ]),
     [
-        TableData(
-            "tmp",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4,      "a"],
-                [2, "2.1",    "bb"],
-                [3, "120.9",  "ccc"],
-            ]),
+        TableData("tmp",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [1, 4, "a"],
+                      [2, "2.1", "bb"],
+                      [3, "120.9", "ccc"],
+                  ]),
     ])
 
 test_data_04 = Data(
-    TableData(
-        "tmp",
-        ["attr_a", "attr_b", "attr_c"],
-        [
-            [1, 4, "a"],
-            [2, "2.1", "bb"],
-            [3, "120.9", "ccc"],
-        ]),
+    TableData("tmp",
+              ["attr_a", "attr_b", "attr_c"],
+              [
+                  [1, 4, "a"],
+                  [2, "2.1", "bb"],
+                  [3, "120.9", "ccc"],
+              ]),
     [
-        TableData(
-            "tmp",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4, "a"],
-                [2, "2.1", "bb"],
-                [3, "120.9", "ccc"],
-            ]),
+        TableData("tmp",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [1, 4, "a"],
+                      [2, "2.1", "bb"],
+                      [3, "120.9", "ccc"],
+                  ]),
     ])
 
 test_data_05 = Data(
-    TableData(
-        "tmp",
-        ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
-        [
-            ["山田", "太郎", "2001/1/1", "100-0002",
-             "東京都千代田区皇居外苑", "03-1234-5678"],
-            ["山田", "次郎", "2001/1/2", "251-0036",
-             "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
-        ]),
+    TableData("tmp",
+              ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
+              [
+                  ["山田", "太郎", "2001/1/1", "100-0002",
+                   "東京都千代田区皇居外苑", "03-1234-5678"],
+                  ["山田", "次郎", "2001/1/2", "251-0036",
+                   "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
+              ]),
     [
-        TableData(
-            "tmp",
-            ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
-            [
-                ["山田", "太郎", "2001/1/1", "100-0002",
-                    "東京都千代田区皇居外苑", "03-1234-5678"],
-                ["山田", "次郎", "2001/1/2", "251-0036",
-                    "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
-            ]),
+        TableData("tmp",
+                  ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
+                  [
+                      ["山田", "太郎", "2001/1/1", "100-0002",
+                       "東京都千代田区皇居外苑", "03-1234-5678"],
+                      ["山田", "次郎", "2001/1/2", "251-0036",
+                       "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
+                  ]),
     ])
 
 
