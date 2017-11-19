@@ -68,6 +68,7 @@ class TableLoader(TableLoaderInterface):
     def __init__(self, source):
         self.table_name = tnt.DEFAULT
         self.source = source
+        self.quoting_flags = None
         self._validator = None
         self._logger = None
 

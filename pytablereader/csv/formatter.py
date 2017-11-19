@@ -40,5 +40,5 @@ class CsvTableFormatter(TableFormatter):
         self._loader.inc_table_count()
 
         yield TableData(
-            self._loader.make_table_name(),
-            header_list, data_matrix)
+            self._loader.make_table_name(), header_list, data_matrix,
+            quoting_flags=self._loader.quoting_flags)

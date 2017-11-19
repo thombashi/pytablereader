@@ -6,9 +6,8 @@
 
 from __future__ import absolute_import
 
-import typepy
-
 from tabledata import TableData
+import typepy
 
 from .._constant import TableNameTemplate as tnt
 from .._validator import TextValidator
@@ -114,7 +113,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
                 self.inc_table_count()
 
                 yield TableData(
-                    self.make_table_name(), header_list, record_list)
+                    self.make_table_name(), header_list, record_list,
+                    quoting_flags=self.quoting_flags)
         except gspread.exceptions.SpreadsheetNotFound:
             raise OpenError("spreadsheet '{}' not found".format(self.title))
 

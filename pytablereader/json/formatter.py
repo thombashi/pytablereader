@@ -11,9 +11,9 @@ import abc
 
 import jsonschema
 import six
+from tabledata import TableData
 
 from six.moves import zip
-from tabledata import TableData
 
 from .._constant import (
     SourceType,
@@ -100,7 +100,8 @@ class SingleJsonTableConverterA(SingleJsonTableConverterBase):
         yield TableData(
             table_name=self._make_table_name(),
             header_list=sorted(attr_name_set),
-            record_list=self._buffer)
+            record_list=self._buffer,
+            quoting_flags=self._loader.quoting_flags)
 
 
 class SingleJsonTableConverterB(SingleJsonTableConverterBase):
@@ -133,7 +134,8 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
             table_name=self._make_table_name(),
             header_list=header_list,
             record_list=zip(
-                *[self._buffer.get(header) for header in header_list]))
+                *[self._buffer.get(header) for header in header_list]),
+            quoting_flags=self._loader.quoting_flags)
 
 
 class MultipleJsonTableConverterBase(JsonConverter):
@@ -188,7 +190,8 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
             yield TableData(
                 table_name=self._make_table_name(),
                 header_list=sorted(attr_name_set),
-                record_list=json_record_list)
+                record_list=json_record_list,
+                quoting_flags=self._loader.quoting_flags)
 
 
 class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
@@ -227,7 +230,8 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
                 table_name=self._make_table_name(),
                 header_list=header_list,
                 record_list=zip(
-                    *[json_record_list.get(header) for header in header_list]))
+                    *[json_record_list.get(header) for header in header_list]),
+                quoting_flags=self._loader.quoting_flags)
 
 
 class JsonTableFormatter(TableFormatter):
