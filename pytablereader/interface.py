@@ -142,7 +142,8 @@ class TableLoader(TableLoaderInterface):
         return self._expand_table_name_format(
             self._get_basic_tablename_keyvalue_mapping())
 
-    def _sanitize_table_name(self, table_name):
+    @staticmethod
+    def _sanitize_table_name(table_name):
         if typepy.is_null_string(table_name):
             raise InvalidTableNameError(
                 "table name is empty after the template replacement")
