@@ -55,8 +55,8 @@ test_data_01 = Data(
             [
                 ["attr_a", "attr_b", "attr_c"],
                 [1, 4, "a"],
-                [2, "2.1",    "bb"],
-                [3, "120.9",  "ccc"],
+                [2, Decimal("2.1"), "bb"],
+                [3, Decimal("120.9"), "ccc"],
             ]),
     ])
 
@@ -88,8 +88,8 @@ test_data_03 = Data(
             ["attr_a", "attr_b", "attr_c"],
             [
                 [1, 4,      "a"],
-                [2, "2.1",    "bb"],
-                [3, "120.9",  "ccc"],
+                [2, Decimal("2.1"), "bb"],
+                [3, Decimal("120.9"), "ccc"],
             ])
     ])
 

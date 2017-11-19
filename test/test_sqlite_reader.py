@@ -47,20 +47,20 @@ test_data_01 = Data(
         "foo_bar",
         ["attr_a", "attr_b", "attr_c"],
         [
-            ["attr_a", "attr_b", "attr_c"],
+            ["aaaa", "bbbb", "cccc"],
             [1, 4, "a"],
-            [2, "2.1",    "bb"],
-            [3, "120.9",  "ccc"],
+            [2, "2.1", "bb"],
+            [3, "120.9", "ccc"],
         ]),
     [
         TableData(
             "foo_bar",
             ["attr_a", "attr_b", "attr_c"],
             [
-                ["attr_a", "attr_b", "attr_c"],
-                [1, 4, "a"],
-                [2, "2.1",    "bb"],
-                [3, "120.9",  "ccc"],
+                ["aaaa", "bbbb", "cccc"],
+                ["1", "4", "a"],
+                ["2", "2.1", "bb"],
+                ["3", "120.9", "ccc"],
             ]),
     ])
 
