@@ -4,12 +4,6 @@ Exceptions
 .. autoexception:: pytablereader.ValidationError
     :show-inheritance:
 
-.. autoexception:: pytablereader.InvalidTableNameError
-    :show-inheritance:
-
-.. autoexception:: pytablereader.InvalidHeaderNameError
-    :show-inheritance:
-
 .. autoexception:: pytablereader.InvalidPathError
     :show-inheritance:
     
@@ -17,12 +11,6 @@ Exceptions
     :show-inheritance:
 
 .. autoexception:: pytablereader.InvalidUrlError
-    :show-inheritance:
-
-.. autoexception:: pytablereader.InvalidDataError
-    :show-inheritance:
-
-.. autoexception:: pytablereader.EmptyDataError
     :show-inheritance:
 
 .. autoexception:: pytablereader.OpenError
