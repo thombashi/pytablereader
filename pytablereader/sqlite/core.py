@@ -23,11 +23,8 @@ class SqliteFileLoader(TableLoader):
 
         Table name string. Defaults to ``%(filename)s_%(key)s``.
 
-    .. note::
-
-        Require
-        `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__>=0.13.0
-        to use this class.
+    :Dependency Packages:
+        - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
     """
 
     @property
