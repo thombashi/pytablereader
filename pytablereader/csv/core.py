@@ -12,6 +12,7 @@ import io
 import platform
 
 from mbstrdecoder import MultiByteStrDecoder
+from pytablereader import InvalidDataError
 import six
 import typepy
 
@@ -27,7 +28,6 @@ from .._validator import (
     FileValidator,
     TextValidator
 )
-from ..error import InvalidDataError
 from ..interface import TableLoader
 from .formatter import CsvTableFormatter
 

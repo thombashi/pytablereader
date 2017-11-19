@@ -8,10 +8,10 @@ from __future__ import absolute_import
 
 import abc
 
+from pytablereader import InvalidDataError
 import six
 
 from ._acceptor import LoaderAcceptor
-from .error import InvalidDataError
 
 
 @six.add_metaclass(abc.ABCMeta)

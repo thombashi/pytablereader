@@ -9,6 +9,10 @@ from __future__ import unicode_literals
 
 import io
 
+from pytablereader import (
+    InvalidHeaderNameError,
+    InvalidDataError
+)
 import typepy
 
 import pathvalidate as pv
@@ -24,10 +28,6 @@ from .._logger import (
 from .._validator import (
     FileValidator,
     TextValidator
-)
-from ..error import (
-    InvalidHeaderNameError,
-    InvalidDataError
 )
 from ..interface import TableLoader
 from ..json.formatter import SingleJsonTableConverterA

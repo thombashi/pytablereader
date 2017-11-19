@@ -7,9 +7,9 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+from pytablereader import InvalidDataError
 import typepy
 
-from ..error import InvalidDataError
 from ..html.formatter import HtmlTableFormatter
 
 

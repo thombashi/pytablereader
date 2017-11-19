@@ -11,6 +11,7 @@ import abc
 import threading
 
 import path
+from pytablereader import InvalidTableNameError
 import six
 import typepy
 
@@ -18,7 +19,6 @@ from ._constant import (
     SourceType,
     TableNameTemplate as tnt
 )
-from .error import InvalidTableNameError
 
 
 @six.add_metaclass(abc.ABCMeta)

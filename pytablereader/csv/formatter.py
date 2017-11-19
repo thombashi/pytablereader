@@ -7,11 +7,10 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+from pytablereader import InvalidDataError
+from tabledata import TableData
 import typepy
 
-from tabledata import TableData
-
-from ..error import InvalidDataError
 from ..formatter import TableFormatter
 
 

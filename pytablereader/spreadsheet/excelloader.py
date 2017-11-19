@@ -7,14 +7,14 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
+from pytablereader import InvalidDataError
+from tabledata import TableData
 import xlrd
 
 from six.moves import range
-from tabledata import TableData
 
 from .._logger import FileSourceLogger
 from .._validator import FileValidator
-from ..error import InvalidDataError
 from ..error import OpenError
 from .core import SpreadSheetLoader
 

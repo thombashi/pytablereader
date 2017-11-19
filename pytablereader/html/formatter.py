@@ -10,12 +10,11 @@ from __future__ import unicode_literals
 import re
 
 import bs4
+from pytablereader import InvalidDataError
+from tabledata import TableData
 import typepy
 
-from tabledata import TableData
-
 from .._constant import TableNameTemplate as tnt
-from ..error import InvalidDataError
 from ..formatter import TableFormatter
 
 

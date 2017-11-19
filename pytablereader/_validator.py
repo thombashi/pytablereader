@@ -10,6 +10,7 @@ from __future__ import unicode_literals
 import abc
 import os.path
 
+from pytablereader import EmptyDataError
 import six
 import typepy
 
@@ -18,7 +19,6 @@ from six.moves.urllib.parse import urlparse
 
 from ._constant import SourceType
 from .error import (
-    EmptyDataError,
     InvalidFilePathError,
     InvalidUrlError
 )
