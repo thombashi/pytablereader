@@ -10,6 +10,11 @@ from tabledata import (
     SQLiteTableDataSanitizer,
     TableData,
     TableDataSanitizer,
+
+    InvalidTableNameError,
+    InvalidHeaderNameError,
+    InvalidDataError,
+    EmptyDataError,
 )
 
 from ._constant import PatternMatch
@@ -24,13 +29,9 @@ from .csv.core import (
 )
 from .error import (
     ValidationError,
-    InvalidTableNameError,
-    InvalidHeaderNameError,
     InvalidPathError,
     InvalidFilePathError,
     InvalidUrlError,
-    InvalidDataError,
-    EmptyDataError,
     OpenError,
     LoaderNotFoundError,
     HTTPError,
