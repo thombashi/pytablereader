@@ -78,7 +78,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-        :raises pytablereader.error.InvalidDataError:
+        :raises pytablereader.InvalidDataError:
             If the MediaWiki data is invalid or empty.
         """
 
@@ -140,7 +140,7 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-        :raises pytablereader.error.InvalidDataError:
+        :raises pytablereader.InvalidDataError:
             If the MediaWiki data is invalid or empty.
         """
 

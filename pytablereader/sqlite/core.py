@@ -55,7 +55,7 @@ class SqliteFileLoader(TableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-        :raises pytablereader.error.InvalidDataError:
+        :raises pytablereader.InvalidDataError:
             If the SQLite database file data is invalid or empty.
         """
 

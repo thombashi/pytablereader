@@ -153,7 +153,7 @@ class CsvTableFileLoader(CsvTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ========================================
         :rtype: |TableData| iterator
-        :raises pytablereader.error.InvalidDataError:
+        :raises pytablereader.InvalidDataError:
             If the CSV data is invalid.
 
         .. seealso::
@@ -221,7 +221,7 @@ class CsvTableTextLoader(CsvTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ========================================
         :rtype: |TableData| iterator
-        :raises pytablereader.error.InvalidDataError:
+        :raises pytablereader.InvalidDataError:
             If the CSV data is invalid.
 
         .. seealso::

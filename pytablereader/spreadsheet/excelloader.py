@@ -77,7 +77,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             ``%(global_id)s``    |global_id|
             ===================  ====================================
         :rtype: |TableData| iterator
-        :raises pytablereader.error.InvalidDataError:
+        :raises pytablereader.InvalidDataError:
             If the header row is not found.
         :raises pytablereader.error.OpenError:
             If failed to open the source file.
