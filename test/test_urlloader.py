@@ -113,11 +113,11 @@ class Test_TableUrlLoader_constructor(object):
 
     @responses.activate
     @pytest.mark.parametrize(["value", "format_name", "expected"], [
-        [None, None, ptr.InvalidUrlError],
-        ["", None, ptr.InvalidUrlError],
-        ["https://github.com/", None, ptr.InvalidUrlError],
-        ["/tmp/test.txt", None, ptr.InvalidUrlError],
-        ["c:\\tmp\test.txt", None, ptr.InvalidUrlError],
+        [None, None, ptr.UrlError],
+        ["", None, ptr.UrlError],
+        ["https://github.com/", None, ptr.UrlError],
+        ["/tmp/test.txt", None, ptr.UrlError],
+        ["c:\\tmp\test.txt", None, ptr.UrlError],
         [
             "https://raw.githubusercontent.com/invalid/test/data/invalidext.txt",
             None, ptr.LoaderNotFoundError

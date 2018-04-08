@@ -17,7 +17,7 @@ from six.moves.urllib.parse import urlparse
 from pytablereader import EmptyDataError
 
 from ._constant import SourceType
-from .error import InvalidFilePathError, InvalidUrlError
+from .error import InvalidFilePathError, UrlError
 
 
 @six.add_metaclass(abc.ABCMeta)
@@ -94,10 +94,10 @@ class UrlValidator(BaseValidator):
 
     def validate(self):
         if typepy.is_null_string(self.source):
-            raise InvalidUrlError("url is empty")
+            raise UrlError("url is empty")
 
         scheme = urlparse(self.source).scheme
         if scheme not in ["http", "https"]:
-            raise InvalidUrlError(
+            raise UrlError(
                 "invalid scheme: expected=http/https, actual={}".format(
                     scheme))

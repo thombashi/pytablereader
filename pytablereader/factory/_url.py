@@ -19,7 +19,7 @@ from .._constant import SourceType
 from .._logger import logger
 from .._validator import UrlValidator
 from ..csv.core import CsvTableTextLoader
-from ..error import HTTPError, InvalidFilePathError, InvalidUrlError, ProxyError
+from ..error import HTTPError, InvalidFilePathError, UrlError, ProxyError
 from ..html.core import HtmlTableTextLoader
 from ..json.core import JsonTableTextLoader
 from ..ltsv.core import LtsvTableTextLoader
@@ -71,7 +71,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         :return:
             Loader that coincides with the file extension of the URL.
-        :raises pytablereader.InvalidUrlError: If unacceptable URL format.
+        :raises pytablereader.UrlError: If unacceptable URL format.
         :raises pytablereader.LoaderNotFoundError:
             |LoaderNotFoundError_desc| loading the URL.
         """
@@ -80,7 +80,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         try:
             url_extension = get_extension(url_path.rstrip("/"))
         except InvalidFilePathError:
-            raise InvalidUrlError("url must include path")
+            raise UrlError("url must include path")
 
         logger.debug(
             "TableUrlLoaderFactory.create_from_path: extension={}".format(

@@ -29,7 +29,7 @@ class InvalidFilePathError(PathError):
     """
 
 
-class InvalidUrlError(PathError):
+class UrlError(PathError):
     """
     Exception raised when invalid URL used.
     """

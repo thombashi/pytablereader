@@ -81,9 +81,9 @@ class Test_UrlValidator_validate(object):
         validator.validate()
 
     @pytest.mark.parametrize(["value", "expected"], [
-        [None, ptr.InvalidUrlError],
-        ["", ptr.InvalidUrlError],
-        ["www.google.com", ptr.InvalidUrlError],
+        [None, ptr.UrlError],
+        ["", ptr.UrlError],
+        ["www.google.com", ptr.UrlError],
     ])
     def test_exception(self, value, expected):
         validator = UrlValidator(value)

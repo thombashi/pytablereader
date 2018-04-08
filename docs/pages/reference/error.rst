@@ -10,7 +10,7 @@ Exceptions
 .. autoexception:: pytablereader.InvalidFilePathError
     :show-inheritance:
 
-.. autoexception:: pytablereader.InvalidUrlError
+.. autoexception:: pytablereader.UrlError
     :show-inheritance:
 
 .. autoexception:: pytablereader.OpenError
