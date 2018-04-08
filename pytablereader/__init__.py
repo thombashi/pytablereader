@@ -10,12 +10,13 @@ from tabledata import (
     EmptyDataError, InvalidDataError, InvalidHeaderNameError, InvalidTableNameError,
     SQLiteTableDataSanitizer, TableData, TableDataSanitizer)
 
+from .__version__ import __author__, __copyright__, __email__, __license__, __version__
 from ._constant import PatternMatch
 from ._logger import logger, set_log_level, set_logger
 from .csv.core import CsvTableFileLoader, CsvTableTextLoader
 from .error import (
-    HTTPError, InvalidFilePathError, PathError, UrlError, LoaderNotFoundError,
-    OpenError, ProxyError, PypandocImportError, ValidationError)
+    HTTPError, InvalidFilePathError, LoaderNotFoundError, OpenError, PathError, ProxyError,
+    PypandocImportError, UrlError, ValidationError)
 from .html.core import HtmlTableFileLoader, HtmlTableTextLoader
 from .json.core import JsonTableFileLoader, JsonTableTextLoader
 from .loadermanager import TableFileLoader, TableUrlLoader
