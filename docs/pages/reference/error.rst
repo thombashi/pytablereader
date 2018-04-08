@@ -4,9 +4,9 @@ Exceptions
 .. autoexception:: pytablereader.ValidationError
     :show-inheritance:
 
-.. autoexception:: pytablereader.InvalidPathError
+.. autoexception:: pytablereader.PathError
     :show-inheritance:
-    
+
 .. autoexception:: pytablereader.InvalidFilePathError
     :show-inheritance:
 

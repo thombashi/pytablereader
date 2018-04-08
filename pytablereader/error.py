@@ -15,19 +15,19 @@ class ValidationError(Exception):
     """
 
 
-class InvalidPathError(Exception):
+class PathError(Exception):
     """
     Base path exception class.
     """
 
 
-class InvalidFilePathError(InvalidPathError):
+class InvalidFilePathError(PathError):
     """
     Exception raised when invalid file path used.
     """
 
 
-class InvalidUrlError(InvalidPathError):
+class InvalidUrlError(PathError):
     """
     Exception raised when invalid URL used.
     """
