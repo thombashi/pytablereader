@@ -4,8 +4,9 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from pytablereader import GoogleSheetsTableLoader
 import pytest
+
+from pytablereader import GoogleSheetsTableLoader
 
 
 class Test_GoogleSheetsTableLoader_make_table_name(object):

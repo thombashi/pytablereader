@@ -4,18 +4,17 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ import print_function, unicode_literals
 
 import os.path
 
-from pytablereader.interface import TableLoader
 import pytest
-import responses
 from tabledata import TableData
 
 import pytablereader as ptr
 import pytablewriter as ptw
+import responses
+from pytablereader.interface import TableLoader
 
 
 class Test_TableUrlLoader_get_format_name_list(object):

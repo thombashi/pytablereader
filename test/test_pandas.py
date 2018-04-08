@@ -8,9 +8,9 @@ from __future__ import unicode_literals
 
 from decimal import Decimal
 
-from tabledata import TableData
 import pytest
 import typepy
+from tabledata import TableData
 
 
 try:

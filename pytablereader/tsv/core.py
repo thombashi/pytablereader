@@ -4,17 +4,10 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, unicode_literals
 
-from .._validator import (
-    FileValidator,
-    TextValidator
-)
-from ..csv.core import (
-    CsvTableFileLoader,
-    CsvTableTextLoader
-)
+from .._validator import FileValidator, TextValidator
+from ..csv.core import CsvTableFileLoader, CsvTableTextLoader
 
 
 class TsvTableFileLoader(CsvTableFileLoader):

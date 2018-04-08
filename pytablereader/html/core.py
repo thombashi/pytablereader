@@ -4,23 +4,14 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, unicode_literals
 
 import io
 
-from .._constant import (
-    Default,
-    TableNameTemplate as tnt,
-)
-from .._logger import (
-    FileSourceLogger,
-    TextSourceLogger,
-)
-from .._validator import (
-    FileValidator,
-    TextValidator
-)
+from .._constant import Default
+from .._constant import TableNameTemplate as tnt
+from .._logger import FileSourceLogger, TextSourceLogger
+from .._validator import FileValidator, TextValidator
 from ..interface import TableLoader
 from .formatter import HtmlTableFormatter
 

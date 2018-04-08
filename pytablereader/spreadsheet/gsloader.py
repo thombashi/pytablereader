@@ -6,8 +6,8 @@
 
 from __future__ import absolute_import
 
-from tabledata import TableData
 import typepy
+from tabledata import TableData
 
 from .._constant import TableNameTemplate as tnt
 from .._validator import TextValidator

@@ -4,20 +4,19 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ import print_function, unicode_literals
 
 import collections
 from decimal import Decimal
 
-from path import Path
-from pytablereader.interface import TableLoader
 import pytest
 from simplesqlite import SimpleSQLite
 from tabledata import TableData
 
 import pytablereader as ptr
 import pytablewriter as ptw
+from path import Path
+from pytablereader.interface import TableLoader
 
 
 Data = collections.namedtuple("Data", "value expected")

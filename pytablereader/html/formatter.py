@@ -4,15 +4,15 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, unicode_literals
 
 import re
 
+import typepy
+from tabledata import TableData
+
 import bs4
 from pytablereader import InvalidDataError
-from tabledata import TableData
-import typepy
 
 from .._constant import TableNameTemplate as tnt
 from ..formatter import TableFormatter

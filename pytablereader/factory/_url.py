@@ -4,31 +4,22 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, unicode_literals
 
 import os
 import tempfile
 
-import requests
 import typepy
-
 from six.moves.urllib.parse import urlparse
 
-from .._common import (
-    get_extension,
-    make_temp_file_path_from_url,
-)
+import requests
+
+from .._common import get_extension, make_temp_file_path_from_url
 from .._constant import SourceType
 from .._logger import logger
 from .._validator import UrlValidator
 from ..csv.core import CsvTableTextLoader
-from ..error import (
-    InvalidFilePathError,
-    InvalidUrlError,
-    HTTPError,
-    ProxyError,
-)
+from ..error import HTTPError, InvalidFilePathError, InvalidUrlError, ProxyError
 from ..html.core import HtmlTableTextLoader
 from ..json.core import JsonTableTextLoader
 from ..ltsv.core import LtsvTableTextLoader

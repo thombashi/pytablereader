@@ -4,19 +4,18 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import print_function
-from __future__ import unicode_literals
-
-from mbstrdecoder import MultiByteStrDecoder
-from path import Path
-from pytablereader.interface import TableLoader
-import pytest
-import six
-from tabledata import TableData
+from __future__ import print_function, unicode_literals
 
 import pathvalidate as pv
+import pytest
+import six
+from mbstrdecoder import MultiByteStrDecoder
+from tabledata import TableData
+
 import pytablereader as ptr
 import pytablewriter as ptw
+from path import Path
+from pytablereader.interface import TableLoader
 
 
 class Test_TableFileLoader_get_format_name_list(object):

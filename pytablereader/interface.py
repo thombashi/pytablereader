@@ -4,21 +4,19 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, unicode_literals
 
 import abc
 import threading
 
-import path
-from pytablereader import InvalidTableNameError
 import six
 import typepy
 
-from ._constant import (
-    SourceType,
-    TableNameTemplate as tnt
-)
+import path
+from pytablereader import InvalidTableNameError
+
+from ._constant import SourceType
+from ._constant import TableNameTemplate as tnt
 
 
 @six.add_metaclass(abc.ABCMeta)
