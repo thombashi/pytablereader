@@ -24,6 +24,8 @@ class PathError(Exception):
 class InvalidFilePathError(PathError):
     """
     Exception raised when invalid file path used.
+
+    TODO: rename the error class
     """
 
 
