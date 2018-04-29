@@ -1,8 +1,8 @@
-pytablewriter>=0.27.2
+pytablewriter>=0.28.0
 pytest-cov
 pytest
 responses
-SimpleSQLite>=0.20.0
+SimpleSQLite>=0.20.2
 tox
 urllib3==1.21.1
 XlsxWriter
