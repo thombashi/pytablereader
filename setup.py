@@ -17,6 +17,10 @@ REQUIREMENT_DIR = "requirements"
 pkg_info = {}
 
 
+def need_pytest():
+    return set(["pytest", "test", "ptr"]).intersection(sys.argv)
+
+
 class ReleaseCommand(setuptools.Command):
     user_options = []
 
@@ -54,8 +58,7 @@ with open(os.path.join(REQUIREMENT_DIR, "docs_requirements.txt")) as f:
     docs_requires = [line.strip() for line in f if line.strip()]
 
 setuptools_require = ["setuptools>=20.2.2"]
-needs_pytest = set(["pytest", "test", "ptr"]).intersection(sys.argv)
-pytest_runner_require = ["pytest-runner"] if needs_pytest else []
+pytest_runner_require = ["pytest-runner"] if need_pytest() else []
 
 setuptools.setup(
     name=MODULE_NAME,
