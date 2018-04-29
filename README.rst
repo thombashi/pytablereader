@@ -1,5 +1,12 @@
-pytablereader
-===============
+**pytablereader**
+
+.. contents:: Table of Contents
+   :depth: 2
+
+Summary
+=========
+A Python library to load structured table data from files/strings/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/SQLite/TSV.
+
 .. image:: https://badge.fury.io/py/pytablereader.svg
     :target: https://badge.fury.io/py/pytablereader
 
@@ -16,10 +23,6 @@ pytablereader
 
 .. image:: https://img.shields.io/github/stars/thombashi/pytablereader.svg?style=social&label=Star
    :target: https://github.com/thombashi/pytablereader
-
-Summary
----------
-A Python library to load structured table data from files/strings/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/SQLite/TSV.
 
 Features
 --------
@@ -85,7 +88,7 @@ Load a CSV table
 
 
 :Output:
-    .. code-block:: none
+    .. code-block::
 
         load from file
         ==============
@@ -129,7 +132,7 @@ Get loaded table data as pandas.DataFrame instance
             print(table_data.as_dataframe())
 
 :Output:
-    .. code-block:: none
+    .. code-block::
 
              a    b
         0    1    2
