@@ -8,13 +8,12 @@ from __future__ import unicode_literals
 
 import collections
 
-import pytest
-from tabledata import TableData
-
 import pytablereader as ptr
+import pytest
 from path import Path
 from pytablereader.interface import TableLoader
 from pytablereader.markdown.formatter import MarkdownTableFormatter
+from tabledata import TableData
 
 
 Data = collections.namedtuple("Data", "value expected")

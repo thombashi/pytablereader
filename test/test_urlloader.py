@@ -8,13 +8,13 @@ from __future__ import print_function, unicode_literals
 
 import os.path
 
-import pytest
-from tabledata import TableData
-
 import pytablereader as ptr
 import pytablewriter as ptw
-import responses
+import pytest
 from pytablereader.interface import TableLoader
+from tabledata import TableData
+
+import responses
 
 
 class Test_TableUrlLoader_get_format_name_list(object):

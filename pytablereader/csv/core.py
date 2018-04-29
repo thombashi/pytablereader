@@ -13,7 +13,6 @@ import platform
 import six
 import typepy
 from mbstrdecoder import MultiByteStrDecoder
-
 from pytablereader import InvalidDataError
 
 from .._constant import Default

@@ -12,9 +12,8 @@ import os.path
 import pathvalidate as pv
 import six
 import typepy
-from six.moves.urllib.parse import urlparse
-
 from pytablereader import EmptyDataError
+from six.moves.urllib.parse import urlparse
 
 from ._constant import SourceType
 from .error import InvalidFilePathError, UrlError

@@ -6,11 +6,10 @@
 
 from __future__ import absolute_import, unicode_literals
 
-from six.moves import range
-from tabledata import TableData
-
 import xlrd
 from pytablereader import InvalidDataError
+from six.moves import range
+from tabledata import TableData
 
 from .._logger import FileSourceLogger
 from .._validator import FileValidator

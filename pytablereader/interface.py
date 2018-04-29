@@ -9,10 +9,9 @@ from __future__ import absolute_import, unicode_literals
 import abc
 import threading
 
+import path
 import six
 import typepy
-
-import path
 from pytablereader import InvalidTableNameError
 
 from ._constant import SourceType

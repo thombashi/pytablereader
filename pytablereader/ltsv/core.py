@@ -10,7 +10,6 @@ import io
 
 import pathvalidate as pv
 import typepy
-
 from pytablereader import InvalidDataError, InvalidHeaderNameError
 
 from .._constant import Default

@@ -7,15 +7,14 @@
 from __future__ import print_function, unicode_literals
 
 import pathvalidate as pv
+import pytablereader as ptr
+import pytablewriter as ptw
 import pytest
 import six
 from mbstrdecoder import MultiByteStrDecoder
-from tabledata import TableData
-
-import pytablereader as ptr
-import pytablewriter as ptw
 from path import Path
 from pytablereader.interface import TableLoader
+from tabledata import TableData
 
 
 class Test_TableFileLoader_get_format_name_list(object):

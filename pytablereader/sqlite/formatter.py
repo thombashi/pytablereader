@@ -7,9 +7,8 @@
 from __future__ import absolute_import, unicode_literals
 
 import typepy
-from tabledata import TableData
-
 from pytablereader import InvalidDataError
+from tabledata import TableData
 
 from .._constant import TableNameTemplate as tnt
 from ..formatter import TableFormatter

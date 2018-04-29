@@ -9,14 +9,13 @@ from __future__ import unicode_literals
 import collections
 import io
 
-import pytest
-from tabledata import TableData
-
 import pytablereader as ptr
 import pytablewriter as ptw
+import pytest
 from path import Path
 from pytablereader.html.formatter import HtmlTableFormatter
 from pytablereader.interface import TableLoader
+from tabledata import TableData
 
 
 Data = collections.namedtuple("Data", "value table_name expected")
