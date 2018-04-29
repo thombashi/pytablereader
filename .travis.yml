@@ -16,8 +16,7 @@ os:
 
 install:
   - pip install setuptools --upgrade
-  - pip install tox
-  - pip install coveralls
+  - pip install tox coveralls
 
 script: 
   - tox
