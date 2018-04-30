@@ -10,6 +10,16 @@ import pytablereader as ptr
 import pytest
 
 
+class Test_TableFileLoaderFactory(object):
+
+    @pytest.mark.parametrize(["value", "expected"], [
+        [None, ValueError],
+    ])
+    def test_exception(self, value, expected):
+        with pytest.raises(expected):
+            ptr.factory.TableFileLoaderFactory(value)
+
+
 class Test_TableFileLoaderFactory_create_from_path(object):
 
     @pytest.mark.parametrize(["value", "extension", "expected"], [
@@ -44,7 +54,6 @@ class Test_TableFileLoaderFactory_create_from_path(object):
         ["hoge", ptr.LoaderNotFoundError],
         ["hoge.txt", ptr.LoaderNotFoundError],
         [".txt", ptr.LoaderNotFoundError],
-        [None, ptr.InvalidFilePathError],
         ["", ptr.InvalidFilePathError],
     ])
     def test_exception(self, value, expected):

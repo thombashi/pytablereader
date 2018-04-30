@@ -113,7 +113,7 @@ class Test_TableUrlLoader_constructor(object):
 
     @responses.activate
     @pytest.mark.parametrize(["value", "format_name", "expected"], [
-        [None, None, ptr.UrlError],
+        [None, None, ValueError],
         ["", None, ptr.UrlError],
         ["https://github.com/", None, ptr.UrlError],
         ["/tmp/test.txt", None, ptr.UrlError],

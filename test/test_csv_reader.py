@@ -161,6 +161,24 @@ test_data_06 = Data(
             ])
     ])
 
+test_data_multibyte = Data(
+    dedent("""\
+        "姓","名","生年月日","郵便番号","住所","電話番号"
+        "山田","太郎","2001/1/1","100-0002","東京都千代田区皇居外苑","03-1234-5678"
+        "山田","次郎","2001/1/2","251-0036","神奈川県藤沢市江の島１丁目","03-9999-9999"
+        """),
+    [
+        TableData(
+            "multibyte",
+            ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
+            [
+                ["山田", "太郎", "2001/1/1", "100-0002",
+                    "東京都千代田区皇居外苑", "03-1234-5678"],
+                ["山田", "次郎", "2001/1/2", "251-0036",
+                    "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
+            ])
+    ])
+
 
 class Test_CsvTableFileLoader_make_table_name(object):
 
@@ -262,6 +280,32 @@ class Test_CsvTableFileLoader_load(object):
         file_path.parent.makedirs_p()
 
         with io.open(file_path, "w", encoding="utf-8") as f:
+            f.write(table_text)
+
+        loader = ptr.CsvTableFileLoader(file_path)
+        loader.header_list = header_list
+
+        for tabledata in loader.load():
+            print("test-id={}".format(test_id))
+            print(ptw.dump_tabledata(tabledata))
+
+            assert tabledata in expected
+
+    @pytest.mark.parametrize(
+        ["test_id", "table_text", "filename", "encoding", "header_list", "expected"],
+        [
+            [
+                7, test_data_multibyte.value,
+                "multibyte.csv", "utf16", [],
+                test_data_multibyte.expected,
+            ],
+        ])
+    def test_normal_2(
+            self, tmpdir, test_id, table_text, filename, encoding, header_list, expected):
+        file_path = Path(str(tmpdir.join(filename)))
+        file_path.parent.makedirs_p()
+
+        with io.open(file_path, "w", encoding=encoding) as f:
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(file_path)

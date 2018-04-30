@@ -74,7 +74,7 @@ class Test_TableFileLoader_constructor(object):
         assert loader.format_name == expected_loader.format_name
 
     @pytest.mark.parametrize(["value", "format_name", "expected"], [
-        [None, None, ptr.InvalidFilePathError],
+        [None, None, ValueError],
         ["", None, ptr.InvalidFilePathError],
         ["https://github.com/", None, ptr.LoaderNotFoundError],
         ["/tmp/test.txt", None, ptr.LoaderNotFoundError],
