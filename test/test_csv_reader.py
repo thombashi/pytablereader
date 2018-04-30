@@ -9,6 +9,7 @@ from __future__ import print_function, unicode_literals
 import collections
 import io
 from decimal import Decimal
+from textwrap import dedent
 
 import pytablereader as ptr
 import pytablewriter as ptw
@@ -92,12 +93,13 @@ test_data_03 = Data(
     ])
 
 test_data_04 = Data(
-    """"attr_a","attr_b","attr_c"
-1,4,"a"
-2,2.1,"bb"
-3,120.9,"ccc"
+    dedent("""\
+        "attr_a","attr_b","attr_c"
+        1,4,"a"
+        2,2.1,"bb"
+        3,120.9,"ccc"
 
-""",
+        """),
     [
         TableData(
             "tmp",
@@ -110,10 +112,11 @@ test_data_04 = Data(
     ])
 
 test_data_05 = Data(
-    """"姓","名","生年月日","郵便番号","住所","電話番号"
-"山田","太郎","2001/1/1","100-0002","東京都千代田区皇居外苑","03-1234-5678"
-"山田","次郎","2001/1/2","251-0036","神奈川県藤沢市江の島１丁目","03-9999-9999"
-""",
+    dedent("""\
+        "姓","名","生年月日","郵便番号","住所","電話番号"
+        "山田","太郎","2001/1/1","100-0002","東京都千代田区皇居外苑","03-1234-5678"
+        "山田","次郎","2001/1/2","251-0036","神奈川県藤沢市江の島１丁目","03-9999-9999"
+        """),
     [
         TableData(
             "tmp",
@@ -127,18 +130,19 @@ test_data_05 = Data(
     ])
 
 test_data_06 = Data(
-    """smokey,Linux 3.0-ARCH,x86
-12345678901,12345 1234567890123,123
-12345678901,1234567890123456789,12345
-11 bytes,19 bytes,5 byt
-test line:,"Some \"\"comma, quote\"\"",foo
-skylight,Linux 3.0-ARCH,x86
-polaris,Linux 3.0-ARCH,amd64
-asgard,Windows 6.1.7600,amd64
-galileo,Windows 6.2.8102,x86
-kepler,Windows 6.2.8123,amd64
-wrfbox,Windows 6.2.8133,amd64
-""",
+    dedent("""\
+        smokey,Linux 3.0-ARCH,x86
+        12345678901,12345 1234567890123,123
+        12345678901,1234567890123456789,12345
+        11 bytes,19 bytes,5 byt
+        test line:,"Some \"\"comma, quote\"\"",foo
+        skylight,Linux 3.0-ARCH,x86
+        polaris,Linux 3.0-ARCH,amd64
+        asgard,Windows 6.1.7600,amd64
+        galileo,Windows 6.2.8102,x86
+        kepler,Windows 6.2.8123,amd64
+        wrfbox,Windows 6.2.8133,amd64
+        """),
     [
         TableData(
             "tmp",
@@ -467,15 +471,16 @@ class Test_CsvTableTextLoader_load(object):
                 pass
 
     def test_exception_invalid_csv(self):
-        table_text = """nan = float("nan")
-inf = float("inf")
-TEST_TABLE_NAME = "test_table"
-TEST_DB_NAME = "test_db"
-NOT_EXIT_FILE_PATH = "/not/existing/file/__path__"
+        table_text = dedent("""\
+            nan = float("nan")
+            inf = float("inf")
+            TEST_TABLE_NAME = "test_table"
+            TEST_DB_NAME = "test_db"
+            NOT_EXIT_FILE_PATH = "/not/existing/file/__path__"
 
-NamedTuple = namedtuple("NamedTuple", "attr_a attr_b")
-NamedTupleEx = namedtuple("NamedTupleEx", "attr_a attr_b attr_c")
-"""
+            NamedTuple = namedtuple("NamedTuple", "attr_a attr_b")
+            NamedTupleEx = namedtuple("NamedTupleEx", "attr_a attr_b attr_c")
+            """)
         loader = ptr.CsvTableTextLoader(table_text)
         loader.table_name = "dummy"
 
