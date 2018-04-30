@@ -70,9 +70,7 @@ class TableLoader(TableLoaderInterface):
         self._logger = None
 
     def get_format_key(self):
-        return "{:s}{:d}".format(
-            self.format_name,
-            self.__get_format_table_count())
+        return "{:s}{:d}".format(self.format_name, self.__get_format_table_count())
 
     def make_table_name(self):
         return self._make_table_name()
@@ -80,8 +78,7 @@ class TableLoader(TableLoaderInterface):
     def inc_table_count(self):
         with self.__table_count_lock:
             self.__global_table_count += 1
-            self.__format_table_count[self.format_name] = (
-                self.__get_format_table_count() + 1)
+            self.__format_table_count[self.format_name] = self.__get_format_table_count() + 1
 
     @abc.abstractmethod
     def _get_default_table_name_template(self):  # pragma: no cover
@@ -137,14 +134,12 @@ class TableLoader(TableLoaderInterface):
     def _make_table_name(self):
         self._validate_table_name()
 
-        return self._expand_table_name_format(
-            self._get_basic_tablename_keyvalue_mapping())
+        return self._expand_table_name_format(self._get_basic_tablename_keyvalue_mapping())
 
     @staticmethod
     def _sanitize_table_name(table_name):
         if typepy.is_null_string(table_name):
-            raise InvalidTableNameError(
-                "table name is empty after the template replacement")
+            raise InvalidTableNameError("table name is empty after the template replacement")
 
         return table_name.strip("_")
 

@@ -61,9 +61,8 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             |LoaderNotFoundError_desc| loading the file.
         """
 
-        logger.debug(
-            "TableFileLoaderFactory.create_from_path: extension={}".format(
-                self.file_extension))
+        logger.debug("TableFileLoaderFactory.create_from_path: extension={}".format(
+            self.file_extension))
 
         return self._create_from_extension(self.file_extension)
 
@@ -92,9 +91,8 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             |LoaderNotFoundError_desc| the format.
         """
 
-        logger.debug(
-            "TableFileLoaderFactory.create_from_format_name: name={}".format(
-                self.file_extension))
+        logger.debug("TableFileLoaderFactory.create_from_format_name: name={}".format(
+            self.file_extension))
 
         return self._create_from_format_name(format_name)
 
