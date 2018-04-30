@@ -8,6 +8,7 @@ from __future__ import absolute_import, unicode_literals
 
 import io
 
+from .._common import get_file_encoding
 from .._constant import Default
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
@@ -47,7 +48,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
     def __init__(self, file_path=None):
         super(HtmlTableFileLoader, self).__init__(file_path)
 
-        self.encoding = Default.ENCODING
+        self.encoding = None
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)
@@ -87,6 +88,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
 
         self._validate()
         self._logger.logging_load()
+        self.encoding = get_file_encoding(self.source, self.encoding)
 
         with io.open(self.source, "r", encoding=self.encoding) as fp:
             formatter = HtmlTableFormatter(fp.read())

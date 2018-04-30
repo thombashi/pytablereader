@@ -6,6 +6,8 @@
 
 from __future__ import absolute_import, unicode_literals
 
+from mbstrdecoder import detect_file_encoding
+
 from .._common import get_extension
 from .._logger import logger
 from ..csv.core import CsvTableFileLoader
@@ -35,6 +37,13 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         """
 
         return get_extension(self.source)
+
+    def __init__(self, source, encoding=None):
+        if not encoding and source:
+            encoding = detect_file_encoding(source)
+            logger.debug("detect encoding: file={}, encoding={}".format(source, encoding))
+
+        super(TableFileLoaderFactory, self).__init__(source, encoding)
 
     def create_from_path(self):
         """

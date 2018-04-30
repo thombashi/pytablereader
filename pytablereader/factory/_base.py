@@ -9,6 +9,7 @@ from __future__ import absolute_import, unicode_literals
 import abc
 
 import six
+from mbstrdecoder import MultiByteStrDecoder
 
 from .._constant import Default
 from ..error import LoaderNotFoundError
@@ -26,13 +27,13 @@ class BaseTableLoaderFactory(object):
 
         return self._source
 
-    def __init__(self, source, encoding=Default.ENCODING):
-        self._source = source
-
+    def __init__(self, source, encoding=None):
         if not encoding:
             self._encoding = Default.ENCODING
         else:
             self._encoding = encoding
+
+        self._source = MultiByteStrDecoder(source, [encoding]).unicode_str
 
     @abc.abstractmethod
     def create_from_path(self):  # pragma: no cover

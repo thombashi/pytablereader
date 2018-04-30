@@ -42,7 +42,7 @@ class TableFileLoader(TableLoaderManager):
             * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_path`
     """
 
-    def __init__(self, file_path, format_name=None, encoding=Default.ENCODING):
+    def __init__(self, file_path, format_name=None, encoding=None):
         loader_factory = TableFileLoaderFactory(file_path, encoding=encoding)
 
         if typepy.is_not_null_string(format_name):

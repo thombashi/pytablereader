@@ -13,7 +13,21 @@ import pathvalidate
 import typepy
 from six.moves.urllib.parse import urlparse
 
+from ._constant import Default
 from .error import InvalidFilePathError
+
+
+def get_file_encoding(file_path, encoding):
+    from mbstrdecoder import detect_file_encoding
+
+    if encoding:
+        return encoding
+
+    encoding = detect_file_encoding(file_path)
+    if not encoding:
+        return Default.ENCODING
+
+    return encoding
 
 
 def get_extension(file_path):

@@ -15,6 +15,7 @@ import typepy
 from mbstrdecoder import MultiByteStrDecoder
 from pytablereader import InvalidDataError
 
+from .._common import get_file_encoding
 from .._constant import Default
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
@@ -79,7 +80,7 @@ class CsvTableLoader(TableLoader):
         self.header_list = ()
         self.delimiter = ","
         self.quotechar = '"'
-        self.encoding = Default.ENCODING
+        self.encoding = None
 
     def _to_data_matrix(self):
         try:
@@ -153,15 +154,21 @@ class CsvTableFileLoader(CsvTableLoader):
 
         self._validate()
         self._logger.logging_load()
+        self.encoding = get_file_encoding(self.source, self.encoding)
 
-        if all([platform.system() == "Windows", six.PY3]):
+        #if all([platform.system() == "Windows", six.PY3]):
+        if six.PY3:
             self._csv_reader = csv.reader(
                 io.open(self.source, "r", encoding=self.encoding),
                 delimiter=self.delimiter, quotechar=self.quotechar,
                 strict=True, skipinitialspace=True)
         else:
+            def utf_8_encoder(unicode_csv_data):
+                for line in unicode_csv_data:
+                    yield line.encode('utf-8')
+
             self._csv_reader = csv.reader(
-                open(self.source, "r"),
+                utf_8_encoder(io.open(self.source, "r", encoding=self.encoding)),
                 delimiter=self.delimiter, quotechar=self.quotechar,
                 strict=True, skipinitialspace=True)
 
