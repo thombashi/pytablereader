@@ -124,10 +124,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
     def _get_start_row_idx(self):
         row_idx = 0
         for row_value_list in self.__all_values:
-            if all([
-                    typepy.is_not_null_string(value)
-                    for value in row_value_list
-            ]):
+            if all([typepy.is_not_null_string(value) for value in row_value_list]):
                 break
 
             row_idx += 1
@@ -157,17 +154,13 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         con = connect_sqlite_memdb()
 
         tmp_table_name = "tmp"
-        header_list = [
-            "a{:d}".format(i)
-            for i in range(len(self.__all_values[0]))
-        ]
+        header_list = ["a{:d}".format(i) for i in range(len(self.__all_values[0]))]
         con.create_table_from_data_matrix(
             table_name=tmp_table_name,
             attr_name_list=header_list,
             data_matrix=self.__all_values)
         for col_idx, header in enumerate(header_list):
-            result = con.select(
-                select=SqlQuery.to_attr_str(header), table_name=tmp_table_name)
+            result = con.select(select=SqlQuery.to_attr_str(header), table_name=tmp_table_name)
             if any([
                     typepy.is_not_null_string(record[0])
                     for record in result.fetchall()

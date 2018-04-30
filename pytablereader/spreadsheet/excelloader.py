@@ -137,22 +137,16 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
     @staticmethod
     def __is_empty_cell_type_list(cell_type_list):
-        return all([
-            cell_type == xlrd.XL_CELL_EMPTY
-            for cell_type in cell_type_list
-        ])
+        return all([cell_type == xlrd.XL_CELL_EMPTY for cell_type in cell_type_list])
 
     def __extract_not_empty_col_idx(self):
         col_idx_list = [
-            col_idx
-            for col_idx in range(self._col_count)
-            if not self.__is_empty_cell_type_list(
-                self._worksheet.col_types(col_idx))
+            col_idx for col_idx in range(self._col_count)
+            if not self.__is_empty_cell_type_list(self._worksheet.col_types(col_idx))
         ]
 
         self._start_col_idx = min(col_idx_list)
         self._end_col_idx = max(col_idx_list)
 
     def __get_row_values(self, row_idx):
-        return self._worksheet.row_values(
-            row_idx, self._start_col_idx, self._end_col_idx + 1)
+        return self._worksheet.row_values(row_idx, self._start_col_idx, self._end_col_idx + 1)
