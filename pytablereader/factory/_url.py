@@ -32,14 +32,15 @@ from ._base import BaseTableLoaderFactory
 
 class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
-    def __init__(self, url, encoding=None, proxies=None):
-        super(TableUrlLoaderFactory, self).__init__(None)
+    @property
+    def __url(self):
+        return self._source
 
-        self.__url = url
+    def __init__(self, url, encoding=None, proxies=None):
+        super(TableUrlLoaderFactory, self).__init__(url, encoding)
+
         self.__proxies = proxies
         self.__temp_dir_path = None
-
-        self._encoding = encoding
 
         UrlValidator(url).validate()
 
