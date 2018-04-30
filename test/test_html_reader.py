@@ -335,8 +335,7 @@ class HtmlTableFormatter_constructor(object):
         ["tablename", None, ptr.InvalidDataError],
         ["tablename", "", ptr.InvalidDataError],
     ])
-    def test_exception(
-            self, monkeypatch, value, source, expected):
+    def test_exception(self, monkeypatch, value, source, expected):
         with pytest.raises(expected):
             HtmlTableFormatter(source)
 
@@ -380,10 +379,8 @@ class Test_HtmlTableFormatter_make_table_name(object):
         [
             ["%(default)s",  "/path/to/data.html", "htmltable"],
         ] + FILE_LOADER_TEST_DATA)
-    def test_normal_HtmlTableFileLoader_valid_tag(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            HtmlTableFormatter, "table_id", self.valid_tag_property)
+    def test_normal_HtmlTableFileLoader_valid_tag(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(HtmlTableFormatter, "table_id", self.valid_tag_property)
 
         loader = ptr.HtmlTableFileLoader(source)
         loader.table_name = value
@@ -402,10 +399,8 @@ class Test_HtmlTableFormatter_make_table_name(object):
             ],
             ["%(default)s",  "/path/to/data.html", "html0"],
         ] + FILE_LOADER_TEST_DATA)
-    def test_normal_HtmlTableFileLoader_null_tag(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            HtmlTableFormatter, "table_id", self.null_tag_property)
+    def test_normal_HtmlTableFileLoader_null_tag(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(HtmlTableFormatter, "table_id", self.null_tag_property)
 
         loader = ptr.HtmlTableFileLoader(source)
         loader.table_name = value
@@ -418,10 +413,8 @@ class Test_HtmlTableFormatter_make_table_name(object):
         [None, "/path/to/data.html", ValueError],
         ["", "/path/to/data.html", ValueError],
     ])
-    def test_HtmlTableFileLoader_exception(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            HtmlTableFormatter, "table_id", self.null_tag_property)
+    def test_HtmlTableFileLoader_exception(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(HtmlTableFormatter, "table_id", self.null_tag_property)
 
         loader = ptr.HtmlTableFileLoader(source)
         loader.table_name = value
@@ -438,10 +431,8 @@ class Test_HtmlTableFormatter_make_table_name(object):
         ["%(filename)s%(format_name)s%(format_id)s", "html0"],
         ["tablename", "tablename"],
     ])
-    def test_normal_HtmlTableTextLoader_valid_tag(
-            self, monkeypatch, value, expected):
-        monkeypatch.setattr(
-            HtmlTableFormatter, "table_id", self.valid_tag_property)
+    def test_normal_HtmlTableTextLoader_valid_tag(self, monkeypatch, value, expected):
+        monkeypatch.setattr(HtmlTableFormatter, "table_id", self.valid_tag_property)
 
         source = """
         <title>validtag</title>
@@ -461,10 +452,8 @@ class Test_HtmlTableFormatter_make_table_name(object):
         ["%(filename)s%(format_name)s%(format_id)s", "html0"],
         ["tablename", "tablename"],
     ])
-    def test_normal_HtmlTableTextLoader_null_tag(
-            self, monkeypatch, value, expected):
-        monkeypatch.setattr(
-            HtmlTableFormatter, "table_id", self.null_tag_property)
+    def test_normal_HtmlTableTextLoader_null_tag(self, monkeypatch, value, expected):
+        monkeypatch.setattr(HtmlTableFormatter, "table_id", self.null_tag_property)
 
         source = """
         <title>nulltag</title>
@@ -485,10 +474,8 @@ class Test_HtmlTableFormatter_make_table_name(object):
             ptr.InvalidTableNameError
         ],
     ])
-    def test_exception_HtmlTableTextLoader(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            HtmlTableFormatter, "table_id", self.valid_tag_property)
+    def test_exception_HtmlTableTextLoader(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(HtmlTableFormatter, "table_id", self.valid_tag_property)
 
         loader = ptr.HtmlTableTextLoader(source)
         loader.table_name = value
@@ -505,13 +492,7 @@ class Test_HtmlTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "test_id",
-            "table_text",
-            "filename",
-            "table_name",
-            "expected_tabledata_list",
-        ],
+        ["test_id", "table_text", "filename", "table_name", "expected_tabledata_list"],
         [
             [
                 1, test_data_01.value, "tmp1.html",
@@ -569,21 +550,14 @@ class Test_HtmlTableFileLoader_load(object):
 
             assert tabledata == expected
 
-    @pytest.mark.parametrize(
+    @pytest.mark.parametrize(["table_text", "filename", "expected"], [
         [
-            "table_text",
-            "filename",
-            "expected",
+            "",
+            "tmp.html",
+            ptr.InvalidDataError,
         ],
-        [
-            [
-                "",
-                "tmp.html",
-                ptr.InvalidDataError,
-            ],
-        ])
-    def test_exception_invalid_data(
-            self, tmpdir, table_text, filename, expected):
+    ])
+    def test_exception_invalid_data(self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
 
         with open(str(p_file_path), "w") as f:
@@ -599,8 +573,7 @@ class Test_HtmlTableFileLoader_load(object):
         ["", ptr.InvalidFilePathError],
         [None, ptr.InvalidFilePathError],
     ])
-    def test_exception_null_filename(
-            self, tmpdir, filename, expected):
+    def test_exception_null_filename(self, tmpdir, filename, expected):
         loader = ptr.HtmlTableFileLoader(filename)
 
         with pytest.raises(expected):
@@ -614,11 +587,7 @@ class Test_HtmlTableTextLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "table_text",
-            "table_name",
-            "expected_tabletuple_list",
-        ],
+        ["table_text", "table_name", "expected_tabletuple_list"],
         [
             [
                 test_data_01.value,

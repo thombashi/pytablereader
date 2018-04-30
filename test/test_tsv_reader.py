@@ -149,42 +149,30 @@ class Test_TsvTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "test_id",
-            "table_text",
-            "filename",
-            "header_list",
-            "expected",
-        ],
+        ["test_id", "table_text", "filename", "header_list", "expected"],
         [
             [
                 0, test_data_00.value,
-                "tmp.tsv",
-                [],
+                "tmp.tsv", [],
                 test_data_00.expected,
             ],
             [
                 1, test_data_01.value,
-                "hoge/foo_bar.tsv",
-                ["attr_a", "attr_b", "attr_c"],
+                "hoge/foo_bar.tsv", ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
             ],
             [
                 2, test_data_02.value,
-                "hoge/foo_bar.tsv",
-                ["attr_a", "attr_b", "attr_c"],
+                "hoge/foo_bar.tsv", ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
             ],
             [
                 3, test_data_03.value,
-                "tmp.tsv",
-                [],
+                "tmp.tsv", [],
                 test_data_03.expected,
             ],
         ])
-    def test_normal(
-            self, tmpdir,
-            test_id, table_text, filename, header_list, expected):
+    def test_normal(self, tmpdir, test_id, table_text, filename, header_list, expected):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
@@ -201,37 +189,28 @@ class Test_TsvTableFileLoader_load(object):
             assert tabledata in expected
 
     @pytest.mark.parametrize(
-        [
-            "table_text",
-            "filename",
-            "header_list",
-            "expected",
-        ],
+        ["table_text", "filename", "header_list", "expected"],
         [
             [
                 "",
-                "hoge.tsv",
-                [],
+                "hoge.tsv", [],
                 ptr.InvalidDataError,
             ],
             [
                 "\n".join([
                     '"attr_a"\t"attr_b"\t"attr_c"',
                 ]),
-                "hoge.tsv",
-                [],
+                "hoge.tsv", [],
                 ptr.InvalidDataError,
             ],
             [
                 "\n".join([
                 ]),
-                "hoge.tsv",
-                ["attr_a", "attr_b", "attr_c"],
+                "hoge.tsv", ["attr_a", "attr_b", "attr_c"],
                 ptr.InvalidDataError,
             ],
         ])
-    def test_exception(
-            self, tmpdir, table_text, filename, header_list, expected):
+    def test_exception(self, tmpdir, table_text, filename, header_list, expected):
         p_tsv = tmpdir.join(filename)
 
         with io.open(str(p_tsv), "w", encoding="utf8") as f:
@@ -245,18 +224,12 @@ class Test_TsvTableFileLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(
-        [
-            "filename",
-            "header_list",
-            "expected",
-        ],
+        ["filename", "header_list", "expected"],
         [
             ["", [], ptr.InvalidFilePathError],
             [None, [], ptr.InvalidFilePathError],
         ])
-    def test_null(
-            self, tmpdir, filename, header_list, expected):
-
+    def test_null(self, tmpdir, filename, header_list, expected):
         loader = ptr.TsvTableFileLoader(filename)
         loader.header_list = header_list
 
@@ -298,35 +271,26 @@ class Test_TsvTableTextLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "table_text",
-            "table_name",
-            "header_list",
-            "expected",
-        ],
+        ["table_text", "table_name", "header_list", "expected"],
         [
             [
                 test_data_00.value,
-                "tmp",
-                [],
+                "tmp", [],
                 test_data_00.expected,
             ],
             [
                 test_data_01.value,
-                "foo_bar",
-                ["attr_a", "attr_b", "attr_c"],
+                "foo_bar", ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
             ],
             [
                 test_data_02.value,
-                "foo_bar",
-                ["attr_a", "attr_b", "attr_c"],
+                "foo_bar", ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
             ],
             [
                 test_data_03.value,
-                "tmp",
-                [],
+                "tmp", [],
                 test_data_03.expected,
             ],
         ])
@@ -343,32 +307,24 @@ class Test_TsvTableTextLoader_load(object):
             assert tabledata in expected
 
     @pytest.mark.parametrize(
-        [
-            "table_text",
-            "table_name",
-            "header_list",
-            "expected",
-        ],
+        ["table_text", "table_name", "header_list", "expected"],
         [
             [
                 "",
-                "hoge",
-                [],
+                "hoge", [],
                 ValueError,
             ],
             [
                 "\n".join([
                     '"attr_a"\t"attr_b"\t"attr_c"',
                 ]),
-                "hoge",
-                [],
+                "hoge", [],
                 ptr.InvalidDataError,
             ],
             [
                 "\n".join([
                 ]),
-                "hoge",
-                ["attr_a", "attr_b", "attr_c"],
+                "hoge", ["attr_a", "attr_b", "attr_c"],
                 ValueError,
             ],
         ])
@@ -383,11 +339,7 @@ class Test_TsvTableTextLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(
-        [
-            "table_name",
-            "header_list",
-            "expected",
-        ],
+        ["table_name", "header_list", "expected"],
         [
             ["", [], ValueError],
             [None, [], ValueError],

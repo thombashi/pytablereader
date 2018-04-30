@@ -278,23 +278,20 @@ class Test_CsvTableFileLoader_load(object):
         [
             [
                 "",
-                "hoge.csv",
-                [],
+                "hoge.csv", [],
                 ptr.InvalidDataError,
             ],
             [
                 "\n".join([
                     '"attr_a","attr_b","attr_c"',
                 ]),
-                "hoge.csv",
-                [],
+                "hoge.csv", [],
                 ptr.InvalidDataError,
             ],
             [
                 "\n".join([
                 ]),
-                "hoge.csv",
-                ["attr_a", "attr_b", "attr_c"],
+                "hoge.csv", ["attr_a", "attr_b", "attr_c"],
                 ptr.InvalidDataError,
             ],
         ])

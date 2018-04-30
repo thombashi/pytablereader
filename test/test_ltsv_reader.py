@@ -93,20 +93,13 @@ class Test_LtsvTableFileLoader_load(object):
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
-    @pytest.mark.parametrize(
+    @pytest.mark.parametrize(["test_id", "table_text", "filename", "expected"], [
         [
-            "test_id",
-            "table_text",
-            "filename",
-            "expected",
+            0, test_data_00.value,
+            "tmp.ltsv",
+            test_data_00.expected,
         ],
-        [
-            [
-                0, test_data_00.value,
-                "tmp.ltsv",
-                test_data_00.expected,
-            ],
-        ])
+    ])
     def test_normal(
             self, tmpdir, test_id, table_text, filename, expected):
         file_path = Path(str(tmpdir.join(filename)))
@@ -152,16 +145,10 @@ class Test_LtsvTableFileLoader_load(object):
             for _tabletuple in loader.load():
                 pass
 
-    @pytest.mark.parametrize(
-        [
-            "filename",
-            "header_list",
-            "expected",
-        ],
-        [
-            ["", [], ptr.InvalidFilePathError],
-            [None, [], ptr.InvalidFilePathError],
-        ])
+    @pytest.mark.parametrize(["filename", "header_list", "expected"], [
+        ["", [], ptr.InvalidFilePathError],
+        [None, [], ptr.InvalidFilePathError],
+    ])
     def test_null(
             self, tmpdir, filename, header_list, expected):
 
