@@ -219,13 +219,7 @@ class Test_CsvTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "test_id",
-            "table_text",
-            "filename",
-            "header_list",
-            "expected",
-        ],
+        ["test_id", "table_text", "filename", "header_list", "expected"],
         [
             [
                 0, test_data_00.value,
@@ -289,12 +283,7 @@ class Test_CsvTableFileLoader_load(object):
             assert tabledata in expected
 
     @pytest.mark.parametrize(
-        [
-            "table_text",
-            "filename",
-            "header_list",
-            "expected",
-        ],
+        ["table_text", "filename", "header_list", "expected"],
         [
             [
                 "",
@@ -333,11 +322,7 @@ class Test_CsvTableFileLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(
-        [
-            "filename",
-            "header_list",
-            "expected",
-        ],
+        ["filename", "header_list", "expected"],
         [
             ["", [], ptr.InvalidFilePathError],
             [None, [], ptr.InvalidFilePathError],
@@ -386,12 +371,7 @@ class Test_CsvTableTextLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "table_text",
-            "table_name",
-            "header_list",
-            "expected",
-        ],
+        ["table_text", "table_name", "header_list", "expected"],
         [
             [
                 test_data_00.value,
@@ -431,12 +411,7 @@ class Test_CsvTableTextLoader_load(object):
             assert tabledata in expected
 
     @pytest.mark.parametrize(
-        [
-            "table_text",
-            "table_name",
-            "header_list",
-            "expected",
-        ],
+        ["table_text", "table_name", "header_list", "expected"],
         [
             [
                 "",
@@ -489,11 +464,7 @@ class Test_CsvTableTextLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(
-        [
-            "table_name",
-            "header_list",
-            "expected",
-        ],
+        ["table_name", "header_list", "expected"],
         [
             ["", [], ValueError],
             [None, [], ValueError],
