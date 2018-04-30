@@ -223,50 +223,41 @@ class Test_CsvTableFileLoader_load(object):
         [
             [
                 0, test_data_00.value,
-                "tmp.csv",
-                [],
+                "tmp.csv", [],
                 test_data_00.expected,
             ],
             [
                 1, test_data_01.value,
-                "hoge/foo_bar.csv",
-                ["attr_a", "attr_b", "attr_c"],
+                "hoge/foo_bar.csv", ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
             ],
             [
                 2, test_data_02.value,
-                "hoge/foo_bar.csv",
-                ["attr_a", "attr_b", "attr_c"],
+                "hoge/foo_bar.csv", ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
             ],
             [
                 3, test_data_03.value,
-                "tmp.csv",
-                [],
+                "tmp.csv", [],
                 test_data_03.expected,
             ],
             [
                 4, test_data_04.value,
-                "tmp.csv",
-                [],
+                "tmp.csv", [],
                 test_data_04.expected,
             ],
             [
                 5, test_data_05.value,
-                "tmp.csv",
-                [],
+                "tmp.csv", [],
                 test_data_05.expected,
             ],
             [
                 6, test_data_06.value,
-                "tmp.csv",
-                [],
+                "tmp.csv", [],
                 test_data_06.expected,
             ],
         ])
-    def test_normal(
-            self, tmpdir,
-            test_id, table_text, filename, header_list, expected):
+    def test_normal(self, tmpdir, test_id, table_text, filename, header_list, expected):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
@@ -375,26 +366,22 @@ class Test_CsvTableTextLoader_load(object):
         [
             [
                 test_data_00.value,
-                "tmp",
-                [],
+                "tmp", [],
                 test_data_00.expected,
             ],
             [
                 test_data_01.value,
-                "foo_bar",
-                ["attr_a", "attr_b", "attr_c"],
+                "foo_bar", ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
             ],
             [
                 test_data_02.value,
-                "foo_bar",
-                ["attr_a", "attr_b", "attr_c"],
+                "foo_bar", ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
             ],
             [
                 test_data_03.value,
-                "tmp",
-                [],
+                "tmp", [],
                 test_data_03.expected,
             ],
         ])
@@ -415,23 +402,20 @@ class Test_CsvTableTextLoader_load(object):
         [
             [
                 "",
-                "hoge",
-                [],
+                "hoge", [],
                 ValueError,
             ],
             [
                 "\n".join([
                     '"attr_a","attr_b","attr_c"',
                 ]),
-                "hoge",
-                [],
+                "hoge", [],
                 ptr.InvalidDataError,
             ],
             [
                 "\n".join([
                 ]),
-                "hoge",
-                ["attr_a", "attr_b", "attr_c"],
+                "hoge", ["attr_a", "attr_b", "attr_c"],
                 ValueError,
             ],
         ])
