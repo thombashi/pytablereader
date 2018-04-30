@@ -81,12 +81,9 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         except InvalidFilePathError:
             raise UrlError("url must include path")
 
-        logger.debug(
-            "TableUrlLoaderFactory.create_from_path: extension={}".format(
-                url_extension))
+        logger.debug("TableUrlLoaderFactory.create_from_path: extension={}".format(url_extension))
 
-        loader_class = self._get_loader_class(
-            self._get_extension_loader_mapping(), url_extension)
+        loader_class = self._get_loader_class(self._get_extension_loader_mapping(), url_extension)
 
         try:
             self._fetch_source(loader_class)
@@ -121,9 +118,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         :raises TypeError: If ``format_name`` is not a string.
         """
 
-        logger.debug(
-            "TableUrlLoaderFactory.create_from_format_name: name={}".format(
-                format_name))
+        logger.debug("TableUrlLoaderFactory.create_from_format_name: name={}".format(format_name))
 
         loader_class = self._get_loader_class(
             self._get_format_name_loader_mapping(), format_name)
@@ -139,8 +134,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         loader_source_type = loader_class("").source_type
 
         if loader_source_type not in [SourceType.TEXT, SourceType.FILE]:
-            raise ValueError(
-                "unknown loader source: type={}".format(loader_source_type))
+            raise ValueError("unknown loader source: type={}".format(loader_source_type))
 
         r = requests.get(self.__url, proxies=self.__proxies)
 
