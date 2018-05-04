@@ -86,7 +86,7 @@ class CsvTableLoader(TableLoader):
                 [self.__modify_item(data) for data in row]
                 for row in self._csv_reader if typepy.is_not_empty_sequence(row)
             ]
-        except csv.Error as e:
+        except (csv.Error, UnicodeDecodeError) as e:
             raise InvalidDataError(e)
 
     @staticmethod
