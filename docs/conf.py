@@ -6,6 +6,8 @@ import sys
 import pkg_resources
 import sphinx_rtd_theme
 
+from pytablereader import __author__, __copyright__, __version__
+
 
 sys.path.insert(0, os.path.abspath('..'))
 
@@ -45,15 +47,15 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'pytablereader'
-copyright = u'2016, Tsuyoshi Hombashi'
-author = u'Tsuyoshi Hombashi'
+copyright = __copyright__.lstrip("Copyright ")
+author = __author__
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = pkg_resources.get_distribution(project).version
+version = __version__
 # The full version, including alpha/beta/rc tags.
 release = version
 
