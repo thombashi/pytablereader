@@ -84,8 +84,7 @@ class CsvTableLoader(TableLoader):
         try:
             return [
                 [self.__modify_item(data) for data in row]
-                for row in self._csv_reader
-                if typepy.is_not_empty_sequence(row)
+                for row in self._csv_reader if typepy.is_not_empty_sequence(row)
             ]
         except csv.Error as e:
             raise InvalidDataError(e)

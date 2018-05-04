@@ -19,9 +19,7 @@ class CsvTableFormatter(TableFormatter):
         if typepy.is_empty_sequence(self._loader.header_list):
             header_list = self._source_data[0]
 
-            if any([
-                    typepy.is_null_string(header) for header in header_list
-            ]):
+            if any([typepy.is_null_string(header) for header in header_list]):
                 raise InvalidDataError(
                     "the first line includes empty string item."
                     "all of the items should contain header name."
@@ -33,8 +31,7 @@ class CsvTableFormatter(TableFormatter):
             data_matrix = self._source_data
 
         if not data_matrix:
-            raise InvalidDataError(
-                "data row must be greater or equal than one")
+            raise InvalidDataError("data row must be greater or equal than one")
 
         self._loader.inc_table_count()
 
