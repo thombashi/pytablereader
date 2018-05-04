@@ -8,7 +8,6 @@ from __future__ import absolute_import
 
 import typepy
 
-from .._constant import Default
 from ..factory import TableFileLoaderFactory
 from ._base import TableLoaderManager
 

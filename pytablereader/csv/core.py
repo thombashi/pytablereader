@@ -8,7 +8,6 @@ from __future__ import absolute_import, unicode_literals
 
 import csv
 import io
-import platform
 
 import six
 import typepy
@@ -16,7 +15,6 @@ from mbstrdecoder import MultiByteStrDecoder
 from pytablereader import InvalidDataError
 
 from .._common import get_file_encoding
-from .._constant import Default
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
 from .._validator import FileValidator, TextValidator

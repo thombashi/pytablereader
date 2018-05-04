@@ -9,7 +9,6 @@ from __future__ import absolute_import, unicode_literals
 import io
 
 from .._common import get_file_encoding
-from .._constant import Default
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
 from .._validator import FileValidator, TextValidator
