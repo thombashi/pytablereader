@@ -156,7 +156,6 @@ class CsvTableFileLoader(CsvTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        #if all([platform.system() == "Windows", six.PY3]):
         if six.PY3:
             self._csv_reader = csv.reader(
                 io.open(self.source, "r", encoding=self.encoding),
