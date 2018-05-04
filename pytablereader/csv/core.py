@@ -93,12 +93,12 @@ class CsvTableLoader(TableLoader):
     @staticmethod
     def __modify_item(data):
         try:
-            return typepy.type.Integer(data).convert()
+            return typepy.Integer(data).convert()
         except typepy.TypeConversionError:
             pass
 
         try:
-            return typepy.type.RealNumber(data).convert()
+            return typepy.RealNumber(data).convert()
         except typepy.TypeConversionError:
             pass
 
