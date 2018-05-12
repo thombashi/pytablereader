@@ -44,7 +44,6 @@ test_data_single_01 = Data(
                 {'attr_a': 3, 'attr_b': 120.9, 'attr_c': 'ccc'},
             ]),
     ])
-
 test_data_single_02 = Data(
     dedent("""\
         [
@@ -60,7 +59,6 @@ test_data_single_02 = Data(
                 {'attr_b': 2.1, 'attr_c': 'bb'},
             ]),
     ])
-
 test_data_single_03 = Data(
     dedent("""\
         [
@@ -78,7 +76,6 @@ test_data_single_03 = Data(
                 {'attr_a': 3, 'attr_b': '120.9', 'attr_c': 'ccc'},
             ]),
     ])
-
 test_data_multi_01 = Data(
     dedent("""\
         {
@@ -111,7 +108,6 @@ test_data_multi_01 = Data(
                 {'a': 3, 'b': 120.9},
             ]),
     ])
-
 test_data_multi_02 = Data(
     dedent("""\
         {
