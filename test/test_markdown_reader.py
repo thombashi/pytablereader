@@ -115,8 +115,7 @@ class MarkdownTableFormatter_constructor(object):
         ["tablename", None, ptr.InvalidDataError],
         ["tablename", "", ptr.InvalidDataError],
     ])
-    def test_exception(
-            self, monkeypatch, value, source, expected):
+    def test_exception(self, monkeypatch, value, source, expected):
         with pytest.raises(expected):
             MarkdownTableFormatter(source)
 
@@ -156,15 +155,11 @@ class Test_MarkdownTableFormatter_make_table_name(object):
         ],
     ]
 
-    @pytest.mark.parametrize(
-        ["value", "source", "expected"],
-        [
-            ["%(default)s",  "/path/to/data.md", "data_markdowntable"],
-        ] + FILE_LOADER_TEST_DATA)
-    def test_normal_MarkdownTableFileLoader_valid_tag(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            MarkdownTableFormatter, "table_id", self.valid_tag_property)
+    @pytest.mark.parametrize(["value", "source", "expected"], [
+        ["%(default)s",  "/path/to/data.md", "data_markdowntable"],
+    ] + FILE_LOADER_TEST_DATA)
+    def test_normal_MarkdownTableFileLoader_valid_tag(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(MarkdownTableFormatter, "table_id", self.valid_tag_property)
 
         loader = ptr.MarkdownTableFileLoader(source)
         loader.table_name = value
@@ -173,20 +168,16 @@ class Test_MarkdownTableFormatter_make_table_name(object):
 
         assert formatter._make_table_name() == expected
 
-    @pytest.mark.parametrize(
-        ["value", "source", "expected"],
+    @pytest.mark.parametrize(["value", "source", "expected"], [
+        ["%(default)s",  "/path/to/data.md", "data_markdown0"],
         [
-            ["%(default)s",  "/path/to/data.md", "data_markdown0"],
-            [
-                "%(%(filename)s)",
-                "/path/to/data.md",
-                "%(data)"
-            ],
-        ] + FILE_LOADER_TEST_DATA)
-    def test_normal_MarkdownTableFileLoader_null_tag(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            MarkdownTableFormatter, "table_id", self.null_tag_property)
+            "%(%(filename)s)",
+            "/path/to/data.md",
+            "%(data)"
+        ],
+    ] + FILE_LOADER_TEST_DATA)
+    def test_normal_MarkdownTableFileLoader_null_tag(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(MarkdownTableFormatter, "table_id", self.null_tag_property)
 
         loader = ptr.MarkdownTableFileLoader(source)
         loader.table_name = value
@@ -199,10 +190,8 @@ class Test_MarkdownTableFormatter_make_table_name(object):
         [None, "/path/to/data.md", ValueError],
         ["", "/path/to/data.md", ValueError],
     ])
-    def test_MarkdownTableFileLoader_exception(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            MarkdownTableFormatter, "table_id", self.null_tag_property)
+    def test_MarkdownTableFileLoader_exception(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(MarkdownTableFormatter, "table_id", self.null_tag_property)
 
         loader = ptr.MarkdownTableFileLoader(source)
         loader.table_name = value
@@ -219,10 +208,8 @@ class Test_MarkdownTableFormatter_make_table_name(object):
         ["%(filename)s%(format_name)s%(format_id)s", "markdown0"],
         ["tablename", "tablename"],
     ])
-    def test_normal_MarkdownTableTextLoader_valid_tag(
-            self, monkeypatch, value, expected):
-        monkeypatch.setattr(
-            MarkdownTableFormatter, "table_id", self.valid_tag_property)
+    def test_normal_MarkdownTableTextLoader_valid_tag(self, monkeypatch, value, expected):
+        monkeypatch.setattr(MarkdownTableFormatter, "table_id", self.valid_tag_property)
 
         source = "<table></table>"
         loader = ptr.MarkdownTableTextLoader(source)
@@ -239,10 +226,8 @@ class Test_MarkdownTableFormatter_make_table_name(object):
         ["%(filename)s%(format_name)s%(format_id)s", "markdown0"],
         ["tablename", "tablename"],
     ])
-    def test_normal_MarkdownTableTextLoader_null_tag(
-            self, monkeypatch, value, expected):
-        monkeypatch.setattr(
-            MarkdownTableFormatter, "table_id", self.null_tag_property)
+    def test_normal_MarkdownTableTextLoader_null_tag(self, monkeypatch, value, expected):
+        monkeypatch.setattr(MarkdownTableFormatter, "table_id", self.null_tag_property)
 
         source = "<table></table>"
         loader = ptr.MarkdownTableTextLoader(source)
@@ -260,10 +245,8 @@ class Test_MarkdownTableFormatter_make_table_name(object):
             ptr.InvalidTableNameError
         ],
     ])
-    def test_exception_MarkdownTableTextLoader(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            MarkdownTableFormatter, "table_id", self.valid_tag_property)
+    def test_exception_MarkdownTableTextLoader(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(MarkdownTableFormatter, "table_id", self.valid_tag_property)
 
         loader = ptr.MarkdownTableTextLoader(source)
         loader.table_name = value
@@ -281,13 +264,7 @@ class Test_MarkdownTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "test_id",
-            "table_text",
-            "filename",
-            "table_name",
-            "expected_tabledata_list",
-        ],
+        ["test_id", "table_text", "filename", "table_name", "expected_tabledata_list"],
         [
             [
                 1,
@@ -312,8 +289,7 @@ class Test_MarkdownTableFileLoader_load(object):
             ],
         ])
     def test_normal(
-            self, tmpdir, test_id, table_text, filename,
-            table_name, expected_tabledata_list):
+            self, tmpdir, test_id, table_text, filename, table_name, expected_tabledata_list):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
@@ -334,15 +310,10 @@ class Test_MarkdownTableFileLoader_load(object):
 
         assert load
 
-    @pytest.mark.parametrize(
-        [
-            "table_text",
-            "filename",
-        ],
-        [
-            [test_empty_data_00, "tmp.md"],
-            [test_empty_data_01, "tmp.md"],
-        ])
+    @pytest.mark.parametrize( ["table_text", "filename"], [
+        [test_empty_data_00, "tmp.md"],
+        [test_empty_data_01, "tmp.md"],
+    ])
     def test_normal_empty_data(
             self, tmpdir, table_text, filename):
         p_file_path = tmpdir.join(filename)
@@ -375,12 +346,7 @@ class Test_MarkdownTableTextLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "test_id",
-            "table_text",
-            "table_name",
-            "expected_tabletuple_list",
-        ],
+        ["test_id", "table_text", "table_name", "expected_tabletuple_list"],
         [
             [
                 1,
@@ -414,10 +380,7 @@ class Test_MarkdownTableTextLoader_load(object):
         assert load
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        [
-            "",
-            ptr.InvalidDataError,
-        ],
+        ["", ptr.InvalidDataError],
     ])
     def test_exception_invalid_data(self, table_text, expected):
         loader = ptr.MarkdownTableTextLoader(table_text)

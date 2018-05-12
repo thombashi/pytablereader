@@ -275,9 +275,7 @@ class Test_JsonTableFileLoader_load(object):
                 test_data_multi_10.expected
             ],
         ])
-    def test_normal(
-            self, tmpdir, table_text, filename,
-            table_name, expected_tabletuple_list):
+    def test_normal(self, tmpdir, table_text, filename, table_name, expected_tabletuple_list):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
@@ -312,8 +310,7 @@ class Test_JsonTableFileLoader_load(object):
                 ptr.ValidationError,
             ],
         ])
-    def test_exception(
-            self, tmpdir, table_text, filename, expected):
+    def test_exception(self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
 
         with open(str(p_file_path), "w") as f:
@@ -329,8 +326,7 @@ class Test_JsonTableFileLoader_load(object):
         ["", ptr.InvalidFilePathError],
         [None, ptr.InvalidFilePathError],
     ])
-    def test_null(
-            self, tmpdir, filename, expected):
+    def test_null(self, tmpdir, filename, expected):
         loader = ptr.JsonTableFileLoader(filename)
 
         with pytest.raises(expected):
@@ -372,35 +368,14 @@ class Test_JsonTableTextLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
+        ["table_text", "table_name", "expected_tabletuple_list"],
         [
-            "table_text", "table_name",
-            "expected_tabletuple_list",
-        ],
-        [
-            [
-                test_data_single_01.value, "json1",
-                test_data_single_01.expected,
-            ],
-            [
-                test_data_single_02.value, "json1",
-                test_data_single_02.expected,
-            ],
-            [
-                test_data_multi_01.value, "%(default)s",
-                test_data_multi_01.expected
-            ],
-            [
-                test_data_single_03.value, "%(key)s",
-                test_data_single_03.expected
-            ],
-            [
-                test_data_single_10.value, "%(key)s",
-                test_data_single_10.expected
-            ],
-            [
-                test_data_multi_10.value, "%(key)s",
-                test_data_multi_10.expected
-            ],
+            [test_data_single_01.value, "json1", test_data_single_01.expected],
+            [test_data_single_02.value, "json1", test_data_single_02.expected],
+            [test_data_multi_01.value, "%(default)s", test_data_multi_01.expected],
+            [test_data_single_03.value, "%(key)s", test_data_single_03.expected],
+            [test_data_single_10.value, "%(key)s", test_data_single_10.expected],
+            [test_data_multi_10.value, "%(key)s", test_data_multi_10.expected],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):
         ptr.JsonTableFileLoader.clear_table_count()
