@@ -28,6 +28,7 @@ class JsonConverter(TableFormatter):
         "anyOf": [
             {"type": "string"},
             {"type": "number"},
+            {"type": "boolean"},
             {"type": "null"},
         ],
     }

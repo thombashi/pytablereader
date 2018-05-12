@@ -76,6 +76,19 @@ test_data_single_03 = Data(
                 {'attr_a': 3, 'attr_b': '120.9', 'attr_c': 'ccc'},
             ]),
     ])
+test_data_single_04 = Data(
+    dedent("""\
+        [
+            {"attr_b": true, "attr_c": "false"}
+        ]"""),
+    [
+        TableData(
+            "json1",
+            ["attr_b", "attr_c"],
+            [
+                {'attr_b': True, 'attr_c': False},
+            ]),
+    ])
 test_data_single_10 = Data(
     dedent("""\
         {
@@ -437,6 +450,7 @@ class Test_JsonTableTextLoader_load(object):
             [test_data_single_02.value, "json1", test_data_single_02.expected],
             [test_data_multi_01.value, "%(default)s", test_data_multi_01.expected],
             [test_data_single_03.value, "%(key)s", test_data_single_03.expected],
+            [test_data_single_04.value, "%(key)s", test_data_single_04.expected],
             [test_data_single_10.value, "%(key)s", test_data_single_10.expected],
             [test_data_single_20.value, "%(key)s", test_data_single_20.expected],
             [test_data_multi_10.value, "%(key)s", test_data_multi_10.expected],
