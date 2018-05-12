@@ -40,8 +40,8 @@ class JsonTableFileLoader(JsonTableLoader):
         Table name string. Defaults to ``%(filename)s_%(key)s``.
     """
 
-    def __init__(self, file_path=None):
-        super(JsonTableFileLoader, self).__init__(file_path)
+    def __init__(self, file_path=None, quoting_flags=None):
+        super(JsonTableFileLoader, self).__init__(file_path, quoting_flags)
 
         self.encoding = None
 
@@ -244,8 +244,8 @@ class JsonTableTextLoader(JsonTableLoader):
     def source_type(self):
         return SourceType.TEXT
 
-    def __init__(self, text):
-        super(JsonTableTextLoader, self).__init__(text)
+    def __init__(self, text, quoting_flags=None):
+        super(JsonTableTextLoader, self).__init__(text, quoting_flags)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

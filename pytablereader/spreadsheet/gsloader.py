@@ -47,8 +47,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
     def _col_count(self):
         return self._worksheet.col_count
 
-    def __init__(self, file_path=None):
-        super(GoogleSheetsTableLoader, self).__init__(file_path)
+    def __init__(self, file_path=None, quoting_flags=None):
+        super(GoogleSheetsTableLoader, self).__init__(file_path, quoting_flags)
 
         self.title = None
         self.start_row = 0

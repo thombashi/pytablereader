@@ -66,10 +66,10 @@ class TableLoader(TableLoaderInterface):
     def quoting_flags(self):
         return self.__quoting_flags
 
-    def __init__(self, source):
+    def __init__(self, source, quoting_flags):
         self.table_name = tnt.DEFAULT
         self.source = source
-        self.__quoting_flags = None
+        self.__quoting_flags = quoting_flags
         self._validator = None
         self._logger = None
 

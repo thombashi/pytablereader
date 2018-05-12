@@ -22,8 +22,8 @@ class SpreadSheetLoader(TableLoader):
         The first row to search header row.
     """
 
-    def __init__(self, source):
-        super(SpreadSheetLoader, self).__init__(source)
+    def __init__(self, source, quoting_flags):
+        super(SpreadSheetLoader, self).__init__(source, quoting_flags)
 
         self.start_row = 0
         self._worksheet = None

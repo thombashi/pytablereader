@@ -30,8 +30,8 @@ class SqliteFileLoader(TableLoader):
     def format_name(self):
         return "sqlite"
 
-    def __init__(self, file_path=None):
-        super(SqliteFileLoader, self).__init__(file_path)
+    def __init__(self, file_path=None, quoting_flags=None):
+        super(SqliteFileLoader, self).__init__(file_path, quoting_flags)
 
         self._validator = FileValidator(file_path)
 

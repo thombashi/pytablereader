@@ -49,8 +49,8 @@ class ExcelTableFileLoader(SpreadSheetLoader):
     def _col_count(self):
         return self._worksheet.ncols
 
-    def __init__(self, file_path=None):
-        super(ExcelTableFileLoader, self).__init__(file_path)
+    def __init__(self, file_path=None, quoting_flags=None):
+        super(ExcelTableFileLoader, self).__init__(file_path, quoting_flags)
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)

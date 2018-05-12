@@ -70,8 +70,8 @@ class CsvTableLoader(TableLoader):
     def quotechar(self, value):
         self.__quotechar = value
 
-    def __init__(self, source):
-        super(CsvTableLoader, self).__init__(source)
+    def __init__(self, source, quoting_flags):
+        super(CsvTableLoader, self).__init__(source, quoting_flags)
 
         self._csv_reader = None
 
@@ -118,8 +118,8 @@ class CsvTableFileLoader(CsvTableLoader):
         :ref:`example-csv-table-loader`
     """
 
-    def __init__(self, file_path):
-        super(CsvTableFileLoader, self).__init__(file_path)
+    def __init__(self, file_path, quoting_flags=None):
+        super(CsvTableFileLoader, self).__init__(file_path, quoting_flags)
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)
@@ -191,8 +191,8 @@ class CsvTableTextLoader(CsvTableLoader):
         :ref:`example-csv-table-loader`
     """
 
-    def __init__(self, text):
-        super(CsvTableTextLoader, self).__init__(text)
+    def __init__(self, text, quoting_flags=None):
+        super(CsvTableTextLoader, self).__init__(text, quoting_flags)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

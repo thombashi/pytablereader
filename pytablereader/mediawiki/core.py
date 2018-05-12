@@ -38,8 +38,8 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
         Table name string. Defaults to ``%(filename)s_%(key)s``.
     """
 
-    def __init__(self, file_path=None):
-        super(MediaWikiTableFileLoader, self).__init__(file_path)
+    def __init__(self, file_path=None, quoting_flags=None):
+        super(MediaWikiTableFileLoader, self).__init__(file_path, quoting_flags)
 
         self.encoding = None
 
@@ -102,8 +102,8 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
     def source_type(self):
         return SourceType.TEXT
 
-    def __init__(self, text):
-        super(MediaWikiTableTextLoader, self).__init__(text)
+    def __init__(self, text, quoting_flags=None):
+        super(MediaWikiTableTextLoader, self).__init__(text, quoting_flags)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)
