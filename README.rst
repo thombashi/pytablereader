@@ -192,7 +192,6 @@ Test dependencies
 - `responses <https://github.com/getsentry/responses>`__
 - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
 - `tox <https://testrun.org/tox/latest/>`__
-- `XlsxWriter <http://xlsxwriter.readthedocs.io/>`__
 
 Documentation
 ===============
