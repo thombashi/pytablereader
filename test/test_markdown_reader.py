@@ -7,6 +7,7 @@
 from __future__ import unicode_literals
 
 import collections
+from textwrap import dedent
 
 import pytablereader as ptr
 import pytest
@@ -25,12 +26,13 @@ test_data_empty = Data(
     ])
 
 test_data_01 = Data(
-    """ a |  b  | c 
---:|----:|---
-  1|123.1|a  
-  2|  2.2|bb 
-  3|  3.3|ccc
-""",
+    dedent("""\
+        | a |  b  | c |
+        |--:|----:|---|
+        |  1|123.1|a  |
+        |  2|  2.2|bb |
+        |  3|  3.3|ccc|
+        """),
     [
         TableData(
             table_name="markdown1",
@@ -43,13 +45,14 @@ test_data_01 = Data(
     ])
 
 test_data_02 = Data(
-    """# tablename
- a |  b  | c 
---:|----:|---
-  1|123.1|a  
-  2|  2.2|bb 
-  3|  3.3|ccc
-""",
+    dedent("""\
+        # tablename
+        | a |  b  | c |
+        |--:|----:|---|
+        |  1|123.1|a  |
+        |  2|  2.2|bb |
+        |  3|  3.3|ccc|
+        """),
     [
         TableData(
             table_name="markdown1",
@@ -62,19 +65,20 @@ test_data_02 = Data(
     ])
 
 test_data_04 = Data(
-    """# tablename
- a |  b  | c 
---:|----:|---
-  1|123.1|a  
-  2|  2.2|bb 
-  3|  3.3|ccc
-# tmp_markdown2
- a |  b  
---:|----:
-  1|123.1
-  2|  2.2
-  3|  3.3
-""",
+    dedent("""\
+        # tablename
+        | a |  b  | c |
+        |--:|----:|---|
+        |  1|123.1|a  |
+        |  2|  2.2|bb |
+        |  3|  3.3|ccc|
+        # tmp_markdown2|
+        | a |  b  |
+        |--:|----:|
+        |  1|123.1|
+        |  2|  2.2|
+        |  3|  3.3|
+        """),
     [
         TableData(
             table_name="tmp_markdown1",
@@ -96,16 +100,16 @@ test_data_04 = Data(
 
 test_empty_data_00 = "# empty table"
 
-test_empty_data_01 = """
-<html>
-  <head>
-    header
-  </head>
-  <body>
-    hogehoge
-  </body>
-</html>
-"""
+test_empty_data_01 = dedent("""\
+    <html>
+    <head>
+        header
+    </head>
+    <body>
+        hogehoge
+    </body>
+    </html>
+    """)
 
 
 @pytest.mark.xfail

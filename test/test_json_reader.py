@@ -8,6 +8,7 @@ from __future__ import print_function, unicode_literals
 
 import collections
 from decimal import Decimal
+from textwrap import dedent
 
 import pytablereader as ptr
 import pytablewriter as ptw
@@ -27,11 +28,12 @@ test_data_empty = Data(
     ])
 
 test_data_single_01 = Data(
-    """[
-        {"attr_b": 4, "attr_c": "a", "attr_a": 1},
-        {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
-        {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
-    ]""",
+    dedent("""\
+        [
+            {"attr_b": 4, "attr_c": "a", "attr_a": 1},
+            {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
+            {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
+        ]"""),
     [
         TableData(
             "json1",
@@ -44,10 +46,11 @@ test_data_single_01 = Data(
     ])
 
 test_data_single_02 = Data(
-    """[
-        {"attr_a": 1},
-        {"attr_b": 2.1, "attr_c": "bb"}
-    ]""",
+    dedent("""\
+        [
+            {"attr_a": 1},
+            {"attr_b": 2.1, "attr_c": "bb"}
+        ]"""),
     [
         TableData(
             "json1",
@@ -59,11 +62,12 @@ test_data_single_02 = Data(
     ])
 
 test_data_single_03 = Data(
-    """[
-    {"attr_b": "4", "attr_c": "a", "attr_a": "1"},
-    {"attr_b": "2.1", "attr_c": "bb", "attr_a": "2"},
-    {"attr_b": "120.9", "attr_c": "ccc", "attr_a": "3"}
-]""",
+    dedent("""\
+        [
+            {"attr_b": "4", "attr_c": "a", "attr_a": "1"},
+            {"attr_b": "2.1", "attr_c": "bb", "attr_a": "2"},
+            {"attr_b": "120.9", "attr_c": "ccc", "attr_a": "3"}
+        ]"""),
     [
         TableData(
             "json1",
@@ -76,18 +80,19 @@ test_data_single_03 = Data(
     ])
 
 test_data_multi_01 = Data(
-    """{
-        "table_a" : [
-            {"attr_b": 4, "attr_c": "a", "attr_a": 1},
-            {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
-            {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
-        ],
-        "table_b" : [
-            {"a": 1, "b": 4},
-            {"a": 2 },
-            {"a": 3, "b": 120.9}
-        ]
-    }""",
+    dedent("""\
+        {
+            "table_a" : [
+                {"attr_b": 4, "attr_c": "a", "attr_a": 1},
+                {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
+                {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
+            ],
+            "table_b" : [
+                {"a": 1, "b": 4},
+                {"a": 2 },
+                {"a": 3, "b": 120.9}
+            ]
+        }"""),
     [
         TableData(
             "table_a",
@@ -108,18 +113,19 @@ test_data_multi_01 = Data(
     ])
 
 test_data_multi_02 = Data(
-    """{
-        "table_a" : [
-            {"attr_b": 4, "attr_c": "a", "attr_a": 1},
-            {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
-            {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
-        ],
-        "table_b" : [
-            {"a": 1, "b": 4},
-            {"a": 2 },
-            {"a": 3, "b": 120.9}
-        ]
-    }""",
+    dedent("""\
+        {
+            "table_a" : [
+                {"attr_b": 4, "attr_c": "a", "attr_a": 1},
+                {"attr_b": 2.1, "attr_c": "bb", "attr_a": 2},
+                {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
+            ],
+            "table_b" : [
+                {"a": 1, "b": 4},
+                {"a": 2 },
+                {"a": 3, "b": 120.9}
+            ]
+        }"""),
     [
         TableData(
             "table_a",
@@ -140,11 +146,12 @@ test_data_multi_02 = Data(
     ])
 
 test_data_single_10 = Data(
-    """{
-        "attr_a": [1, 2, 3],
-        "attr_b": [4, 2.1, 120.9],
-        "attr_c": ["a", "bb", "ccc"]
-}""",
+    dedent("""\
+        {
+            "attr_a": [1, 2, 3],
+            "attr_b": [4, 2.1, 120.9],
+            "attr_c": ["a", "bb", "ccc"]
+        }"""),
     [
         TableData(
             "json1",
@@ -157,17 +164,18 @@ test_data_single_10 = Data(
     ])
 
 test_data_multi_10 = Data(
-    """{
-        "table_a" : {
-            "attr_a": [1, 2, 3],
-            "attr_b": [4, 2.1, 120.9],
-            "attr_c": ["a", "bb", "ccc"]
-        },
-        "table_b" : {
-            "a": [1, 3],
-            "b": [4, 120.9]
-        }
-    }""",
+    dedent("""\
+        {
+            "table_a" : {
+                "attr_a": [1, 2, 3],
+                "attr_b": [4, 2.1, 120.9],
+                "attr_c": ["a", "bb", "ccc"]
+            },
+            "table_b" : {
+                "a": [1, 3],
+                "b": [4, 120.9]
+            }
+        }"""),
     [
         TableData(
             "table_a",
@@ -245,10 +253,7 @@ class Test_JsonTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "table_text", "filename", "table_name",
-            "expected_tabletuple_list",
-        ],
+        ["table_text", "filename", "table_name", "expected_tabletuple_list"],
         [
             [
                 test_data_single_01.value, "json1.json", "%(key)s",
