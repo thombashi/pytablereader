@@ -14,7 +14,7 @@ from .._common import get_file_encoding
 from .._constant import SourceType
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
-from .._validator import FileValidator, TextValidator
+from .._validator import FileValidator, NullValidator, TextValidator
 from ..error import ValidationError
 from ..interface import TableLoader
 from .formatter import JsonTableFormatter
@@ -485,6 +485,51 @@ class JsonTableTextLoader(JsonTableLoader):
         json_buffer = json.loads(self.source, object_pairs_hook=OrderedDict)
 
         formatter = JsonTableFormatter(json_buffer)
+        formatter.accept(self)
+
+        return formatter.to_table_data()
+
+    def _get_default_table_name_template(self):
+        return "{:s}".format(tnt.KEY)
+
+
+class JsonTableDictLoader(JsonTableLoader):
+    """
+    A text loader class to extract tabular data from dict.
+
+    :param str data: dict to load.
+
+    .. py:attribute:: table_name
+
+        Table name string. Defaults to ``%(key)s``.
+    """
+
+    @property
+    def source_type(self):
+        return SourceType.OBJECT
+
+    def __init__(self, data, quoting_flags=None):
+        super(JsonTableDictLoader, self).__init__(data, quoting_flags)
+
+        self._validator = NullValidator(data)
+        self._logger = TextSourceLogger(self)
+
+    def load(self):
+        """
+        Extract tabular data as |TableData| instances from a dict object.
+        |load_source_desc_text|
+
+        :rtype: |TableData| iterator
+
+        .. seealso::
+
+            :py:meth:`.JsonTableFileLoader.load()`
+        """
+
+        self._validate()
+        self._logger.logging_load()
+
+        formatter = JsonTableFormatter(self.source)
         formatter.accept(self)
 
         return formatter.to_table_data()

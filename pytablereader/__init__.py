@@ -18,7 +18,7 @@ from .error import (
     HTTPError, InvalidFilePathError, LoaderNotFoundError, OpenError, PathError, ProxyError,
     PypandocImportError, UrlError, ValidationError)
 from .html.core import HtmlTableFileLoader, HtmlTableTextLoader
-from .json.core import JsonTableFileLoader, JsonTableTextLoader
+from .json.core import JsonTableDictLoader, JsonTableFileLoader, JsonTableTextLoader
 from .loadermanager import TableFileLoader, TableUrlLoader
 from .ltsv.core import LtsvTableFileLoader, LtsvTableTextLoader
 from .markdown.core import MarkdownTableFileLoader, MarkdownTableTextLoader
