@@ -8,6 +8,7 @@ from __future__ import absolute_import, unicode_literals
 
 import io
 import json
+from collections import OrderedDict
 
 from .._common import get_file_encoding
 from .._constant import SourceType
@@ -216,7 +217,7 @@ class JsonTableFileLoader(JsonTableLoader):
 
         with io.open(self.source, "r", encoding=self.encoding) as fp:
             try:
-                json_buffer = json.load(fp)
+                json_buffer = json.load(fp, object_pairs_hook=OrderedDict)
             except ValueError as e:
                 raise ValidationError(e)
 
@@ -282,7 +283,7 @@ class JsonTableTextLoader(JsonTableLoader):
         self._validate()
         self._logger.logging_load()
 
-        json_buffer = json.loads(self.source)
+        json_buffer = json.loads(self.source, object_pairs_hook=OrderedDict)
 
         formatter = JsonTableFormatter(json_buffer)
         formatter.accept(self)
