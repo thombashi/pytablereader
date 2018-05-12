@@ -69,10 +69,11 @@ class JsonTableFileLoader(JsonTableLoader):
                             "anyOf": [
                                 {"type": "string"},
                                 {"type": "number"},
-                                {"type": "null"},
-                            ],
-                        },
-                    },
+                                {"type": "boolean"},
+                                {"type": "null"}
+                            ]
+                        }
+                    }
                 }
 
             .. code-block:: json
@@ -107,12 +108,15 @@ class JsonTableFileLoader(JsonTableLoader):
                     "type": "object",
                     "additionalProperties": {
                         "type": "array",
-                        "items": "anyOf": [
-                            {"type": "string"},
-                            {"type": "number"},
-                            {"type": "null"},
-                        ],
-                    },
+                        "items": {
+                            "anyOf": [
+                                {"type": "string"},
+                                {"type": "number"},
+                                {"type": "boolean"},
+                                {"type": "null"}
+                            ]
+                        }
+                    }
                 }
 
             .. code-block:: json
@@ -150,9 +154,10 @@ class JsonTableFileLoader(JsonTableLoader):
                         "anyOf": [
                             {"type": "string"},
                             {"type": "number"},
-                            {"type": "null"},
-                        ],
-                    },
+                            {"type": "boolean"},
+                            {"type": "null"}
+                        ]
+                    }
                 }
 
             .. code-block:: json
@@ -205,6 +210,7 @@ class JsonTableFileLoader(JsonTableLoader):
                                 "anyOf": [
                                     {"type": "string"},
                                     {"type": "number"},
+                                    {"type": "boolean"},
                                     {"type": "null"}
                                 ]
                             }
@@ -269,11 +275,12 @@ class JsonTableFileLoader(JsonTableLoader):
                                 "anyOf": [
                                     {"type": "string"},
                                     {"type": "number"},
-                                    {"type": "null"},
-                                ],
-                            },
-                        },
-                    },
+                                    {"type": "boolean"},
+                                    {"type": "null"}
+                                ]
+                            }
+                        }
+                    }
                 }
 
             .. code-block:: json
@@ -328,10 +335,11 @@ class JsonTableFileLoader(JsonTableLoader):
                             "anyOf": [
                                 {"type": "string"},
                                 {"type": "number"},
-                                {"type": "null"},
-                            ],
-                        },
-                    },
+                                {"type": "boolean"},
+                                {"type": "null"}
+                            ]
+                        }
+                    }
                 }
 
             .. code-block:: json
