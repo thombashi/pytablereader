@@ -47,6 +47,16 @@ class BaseValidator(ValidatorInterface):
         self.__source = source
 
 
+class NullValidator(BaseValidator):
+
+    @property
+    def source_type(self):
+        return "null"
+
+    def validate(self):
+        pass
+
+
 class FileValidator(BaseValidator):
     """
     Validator class for file data source.
