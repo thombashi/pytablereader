@@ -17,6 +17,7 @@ class SourceType(object):
     TEXT = "text"
     FILE = "file"
     URL = "url"
+    OBJECT = "object"
 
 
 class TableNameTemplate(object):
