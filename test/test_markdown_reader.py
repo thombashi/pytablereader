@@ -10,6 +10,7 @@ import collections
 from textwrap import dedent
 
 import pytablereader as ptr
+import pytablewriter as ptw
 import pytest
 from path import Path
 from pytablereader.interface import TableLoader
@@ -298,15 +299,14 @@ class Test_MarkdownTableFileLoader_load(object):
         load = False
         for tabledata, expected in zip(loader.load(), expected_tabledata_list):
             print("--- test {} ---".format(test_id))
-            print("[tabledata]\n{}".format(tabledata))
-            print("[expected]\n{}".format(expected))
-            print("")
+            print("\n[tabledata]\n{}".format(ptw.dump_tabledata(tabledata)))
+            print("\n[expected]\n{}".format(ptw.dump_tabledata(expected)))
             assert tabledata == expected
             load = True
 
         assert load
 
-    @pytest.mark.parametrize( ["table_text", "filename"], [
+    @pytest.mark.parametrize(["table_text", "filename"], [
         [test_empty_data_00, "tmp.md"],
         [test_empty_data_01, "tmp.md"],
     ])
