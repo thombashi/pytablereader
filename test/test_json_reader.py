@@ -76,6 +76,48 @@ test_data_single_03 = Data(
                 {'attr_a': 3, 'attr_b': '120.9', 'attr_c': 'ccc'},
             ]),
     ])
+test_data_single_10 = Data(
+    dedent("""\
+        {
+            "attr_a": [1, 2, 3],
+            "attr_b": [4, 2.1, 120.9],
+            "attr_c": ["a", "bb", "ccc"]
+        }"""),
+    [
+        TableData(
+            "json1",
+            ["attr_a", "attr_b", "attr_c"],
+            [
+                [1, 4, 'a'],
+                [2, Decimal('2.1'), 'bb'],
+                [3, Decimal('120.9'), 'ccc']
+            ]),
+    ])
+test_data_single_20 = Data(
+    dedent("""\
+        {
+            "num_ratings": 27,
+            "support_threads": 1,
+            "downloaded": 925716,
+            "last_updated":"2017-12-01 6:22am GMT",
+            "added":"2010-01-20",
+            "num": 1.1,
+            "hoge": null
+        }"""),
+    [
+        TableData(
+            "json1",
+            ["key", "value"],
+            [
+                ('num_ratings', 27),
+                ('support_threads', 1),
+                ('downloaded', 925716),
+                ('last_updated', '2017-12-01 6:22am GMT'),
+                ('added', '2010-01-20'),
+                ('num', 1.1),
+                ('hoge', None),
+            ]),
+    ])
 test_data_multi_01 = Data(
     dedent("""\
         {
@@ -140,25 +182,6 @@ test_data_multi_02 = Data(
                 {'a': 3, 'b': 120.9},
             ]),
     ])
-
-test_data_single_10 = Data(
-    dedent("""\
-        {
-            "attr_a": [1, 2, 3],
-            "attr_b": [4, 2.1, 120.9],
-            "attr_c": ["a", "bb", "ccc"]
-        }"""),
-    [
-        TableData(
-            "json1",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4, 'a'],
-                [2, Decimal('2.1'), 'bb'],
-                [3, Decimal('120.9'), 'ccc']
-            ]),
-    ])
-
 test_data_multi_10 = Data(
     dedent("""\
         {
@@ -187,6 +210,44 @@ test_data_multi_10 = Data(
             [
                 [1, 4],
                 [3, Decimal('120.9')],
+            ]),
+    ])
+test_data_multi_20 = Data(
+    dedent("""\
+        {
+            "table_a": {
+                "num_ratings": 27,
+                "support_threads": 1,
+                "downloaded": 925716,
+                "last_updated":"2017-12-01 6:22am GMT",
+                "added":"2010-01-20",
+                "num": 1.1,
+                "hoge": null
+            },
+            "table_b": {
+                "a": 4,
+                "b": 120.9
+            }
+        }"""),
+    [
+        TableData(
+            "table_a",
+            ["key", "value"],
+            [
+                ('num_ratings', 27),
+                ('support_threads', 1),
+                ('downloaded', 925716),
+                ('last_updated', '2017-12-01 6:22am GMT'),
+                ('added', '2010-01-20'),
+                ('num', 1.1),
+                ('hoge', None),
+            ]),
+        TableData(
+            "table_b",
+            ["key", "value"],
+            [
+                ('a', 4),
+                ('b', 120.9),
             ]),
     ])
 
@@ -254,26 +315,27 @@ class Test_JsonTableFileLoader_load(object):
             [
                 test_data_single_01.value, "json1.json", "%(key)s",
                 test_data_single_01.expected
-            ],
-            [
+            ], [
                 test_data_single_02.value, "json1.json", "%(key)s",
                 test_data_single_02.expected
-            ],
-            [
-                test_data_multi_01.value, "tmp.json", "%(key)s",
-                test_data_multi_01.expected
-            ],
-            [
-                test_data_multi_02.value, "tmp.json", "%(key)s",
-                test_data_multi_02.expected
-            ],
-            [
+            ], [
                 test_data_single_10.value, "json1.json", "%(key)s",
                 test_data_single_10.expected
-            ],
-            [
+            ], [
+                test_data_single_20.value, "json1.json", "%(key)s",
+                test_data_single_20.expected
+            ], [
+                test_data_multi_01.value, "tmp.json", "%(key)s",
+                test_data_multi_01.expected
+            ], [
+                test_data_multi_02.value, "tmp.json", "%(key)s",
+                test_data_multi_02.expected
+            ], [
                 test_data_multi_10.value, "tmp.json", "%(key)s",
                 test_data_multi_10.expected
+            ], [
+                test_data_multi_20.value, "tmp.json", "%(key)s",
+                test_data_multi_20.expected
             ],
         ])
     def test_normal(self, tmpdir, table_text, filename, table_name, expected_tabletuple_list):
@@ -376,7 +438,9 @@ class Test_JsonTableTextLoader_load(object):
             [test_data_multi_01.value, "%(default)s", test_data_multi_01.expected],
             [test_data_single_03.value, "%(key)s", test_data_single_03.expected],
             [test_data_single_10.value, "%(key)s", test_data_single_10.expected],
+            [test_data_single_20.value, "%(key)s", test_data_single_20.expected],
             [test_data_multi_10.value, "%(key)s", test_data_multi_10.expected],
+            [test_data_multi_20.value, "%(key)s", test_data_multi_20.expected],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):
         ptr.JsonTableFileLoader.clear_table_count()
