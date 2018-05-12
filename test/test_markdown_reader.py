@@ -43,7 +43,6 @@ test_data_01 = Data(
                 [3, '3.3', 'ccc'],
             ]),
     ])
-
 test_data_02 = Data(
     dedent("""\
         # tablename
@@ -63,7 +62,6 @@ test_data_02 = Data(
                 [3, '3.3', 'ccc'],
             ]),
     ])
-
 test_data_04 = Data(
     dedent("""\
         # tablename
@@ -99,7 +97,6 @@ test_data_04 = Data(
     ])
 
 test_empty_data_00 = "# empty table"
-
 test_empty_data_01 = dedent("""\
     <html>
     <head>
@@ -273,15 +270,13 @@ class Test_MarkdownTableFileLoader_load(object):
                 "tmp.md",
                 "%(key)s",
                 test_data_01.expected
-            ],
-            [
+            ], [
                 2,
                 test_data_02.value,
                 "tmp.md",
                 "%(key)s",
                 test_data_02.expected,
-            ],
-            [
+            ], [
                 4,
                 test_data_04.value,
                 "tmp.md",
@@ -315,8 +310,7 @@ class Test_MarkdownTableFileLoader_load(object):
         [test_empty_data_00, "tmp.md"],
         [test_empty_data_01, "tmp.md"],
     ])
-    def test_normal_empty_data(
-            self, tmpdir, table_text, filename):
+    def test_normal_empty_data(self, tmpdir, table_text, filename):
         p_file_path = tmpdir.join(filename)
 
         with open(str(p_file_path), "w") as f:
@@ -331,8 +325,7 @@ class Test_MarkdownTableFileLoader_load(object):
         ["", ptr.InvalidFilePathError],
         [None, ptr.InvalidFilePathError],
     ])
-    def test_exception(
-            self, tmpdir, filename, expected):
+    def test_exception(self, tmpdir, filename, expected):
         loader = ptr.MarkdownTableFileLoader(filename)
 
         with pytest.raises(expected):
