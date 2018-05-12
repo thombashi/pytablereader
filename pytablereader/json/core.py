@@ -58,7 +58,7 @@ class JsonTableFileLoader(JsonTableLoader):
         acceptable JSON Schema is as follows:
 
             .. code-block:: json
-                :caption: JSON Schema (1): accept single table
+                :caption: Acceptable JSON Schema (1): single table
 
                 {
                     "type": "array",
@@ -75,7 +75,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: JSON example for the JSON schema (1)
+                :caption: Valid JSON example for the JSON schema (1)
 
                 [
                     {"attr_b": 4, "attr_c": "a", "attr_a": 1},
@@ -87,7 +87,7 @@ class JsonTableFileLoader(JsonTableLoader):
         acceptable JSON Schema is as follows:
 
             .. code-block:: json
-                :caption: JSON Schema (2): accept single table
+                :caption: Acceptable JSON Schema (2): single table
 
                 {
                     "type": "object",
@@ -101,7 +101,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: JSON example for the JSON schema (2)
+                :caption: Valid JSON example for the JSON schema (2)
 
                 {
                     "attr_a": [1, 2, 3],
@@ -113,7 +113,7 @@ class JsonTableFileLoader(JsonTableLoader):
         acceptable JSON Schema is as follows:
 
             .. code-block:: json
-                :caption: JSON Schema (3): accept multiple table
+                :caption: Acceptable JSON Schema (3): multiple tables
 
                 {
                     "type": "object",
@@ -133,7 +133,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: JSON example for the JSON schema (3)
+                :caption: Valid JSON example for the JSON schema (3)
 
                 {
                     "table_a" : [
@@ -152,7 +152,7 @@ class JsonTableFileLoader(JsonTableLoader):
         acceptable JSON Schema is as follows:
 
             .. code-block:: json
-                :caption: JSON Schema (4): accept multiple table
+                :caption: Acceptable JSON Schema (4): multiple tables
 
                 {
                     "type": "object",
@@ -172,7 +172,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: JSON example for the JSON schema (4)
+                :caption: Valid JSON example for the JSON schema (4)
 
                 {
                     "table_a" : {
