@@ -112,7 +112,6 @@ test_empty_data_01 = dedent("""\
     """)
 
 
-@pytest.mark.xfail
 class MarkdownTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
@@ -124,7 +123,6 @@ class MarkdownTableFormatter_constructor(object):
             MarkdownTableFormatter(source)
 
 
-@pytest.mark.xfail
 class Test_MarkdownTableFormatter_make_table_name(object):
 
     def setup_method(self, method):
@@ -261,7 +259,6 @@ class Test_MarkdownTableFormatter_make_table_name(object):
             print(formatter._make_table_name())
 
 
-@pytest.mark.xfail
 class Test_MarkdownTableFileLoader_load(object):
 
     def setup_method(self, method):
@@ -343,7 +340,6 @@ class Test_MarkdownTableFileLoader_load(object):
                 pass
 
 
-@pytest.mark.xfail
 class Test_MarkdownTableTextLoader_load(object):
 
     def setup_method(self, method):
