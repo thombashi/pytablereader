@@ -280,8 +280,6 @@ class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
         self._validate_source_data()
 
         for table_key, json_record_list in six.iteritems(self._buffer):
-            header_list = sorted(six.viewkeys(json_record_list))
-
             self._loader.inc_table_count()
             self._table_key = table_key
 
