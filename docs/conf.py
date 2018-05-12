@@ -3,10 +3,8 @@
 import os
 import sys
 
-import pkg_resources
 import sphinx_rtd_theme
-
-from pytablereader import __author__, __copyright__, __version__
+from pytablereader import __author__, __copyright__, __name__, __version__
 
 
 sys.path.insert(0, os.path.abspath('..'))
@@ -46,7 +44,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'pytablereader'
+project = __name__
 copyright = __copyright__.lstrip("Copyright ")
 author = __author__
 
