@@ -55,8 +55,8 @@ class JsonTableFileLoader(JsonTableLoader):
         |load_source_desc_file|
 
         This method can be loading four types of JSON formats:
-        **(1)** Single table data in a file,
-        acceptable JSON Schema is as follows:
+
+        **(1)** Single table data in a file:
 
             .. code-block:: json
                 :caption: Acceptable JSON Schema (1): single table
@@ -84,8 +84,21 @@ class JsonTableFileLoader(JsonTableLoader):
                     {"attr_b": 120.9, "attr_c": "ccc", "attr_a": 3}
                 ]
 
-        **(2)** Single table data in a file,
-        acceptable JSON Schema is as follows:
+            The example data will be loaded as the following tabular data:
+
+                .. table::
+
+                    +------+------+------+
+                    |attr_a|attr_b|attr_c|
+                    +======+======+======+
+                    |     1|   4.0|a     |
+                    +------+------+------+
+                    |     2|   2.1|bb    |
+                    +------+------+------+
+                    |     3| 120.9|ccc   |
+                    +------+------+------+
+
+        **(2)** Single table data in a file:
 
             .. code-block:: json
                 :caption: Acceptable JSON Schema (2): single table
@@ -93,7 +106,8 @@ class JsonTableFileLoader(JsonTableLoader):
                 {
                     "type": "object",
                     "additionalProperties": {
-                        "anyOf": [
+                        "type": "array",
+                        "items": "anyOf": [
                             {"type": "string"},
                             {"type": "number"},
                             {"type": "null"},
@@ -110,11 +124,76 @@ class JsonTableFileLoader(JsonTableLoader):
                     "attr_c": ["a", "bb", "ccc"]
                 }
 
-        **(3)** Multiple table data in a file,
-        acceptable JSON Schema is as follows:
+            The example data will be loaded as the following tabular data:
+
+                .. table::
+
+                    +------+------+------+
+                    |attr_a|attr_b|attr_c|
+                    +======+======+======+
+                    |     1|   4.0|a     |
+                    +------+------+------+
+                    |     2|   2.1|bb    |
+                    +------+------+------+
+                    |     3| 120.9|ccc   |
+                    +------+------+------+
+
+        **(3)** Single table data in a file:
 
             .. code-block:: json
-                :caption: Acceptable JSON Schema (3): multiple tables
+
+                :caption: Acceptable JSON Schema (3): single table
+
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "anyOf": [
+                            {"type": "string"},
+                            {"type": "number"},
+                            {"type": "null"},
+                        ],
+                    },
+                }
+
+            .. code-block:: json
+                :caption: Valid JSON example for the JSON schema (3)
+
+                {
+                    "num_ratings": 27,
+                    "support_threads": 1,
+                    "downloaded": 925716,
+                    "last_updated":"2017-12-01 6:22am GMT",
+                    "added":"2010-01-20",
+                    "num": 1.1,
+                    "hoge": null
+                }
+
+            The example data will be loaded as the following tabular data:
+
+                .. table::
+
+                    +---------------+---------------------+
+                    |      key      |        value        |
+                    +===============+=====================+
+                    |num_ratings    |                   27|
+                    +---------------+---------------------+
+                    |support_threads|                    1|
+                    +---------------+---------------------+
+                    |downloaded     |               925716|
+                    +---------------+---------------------+
+                    |last_updated   |2017-12-01 6:22am GMT|
+                    +---------------+---------------------+
+                    |added          |2010-01-20           |
+                    +---------------+---------------------+
+                    |num            |                  1.1|
+                    +---------------+---------------------+
+                    |hoge           |None                 |
+                    +---------------+---------------------+
+
+        **(4)** Multiple table data in a file:
+
+            .. code-block:: json
+                :caption: Acceptable JSON Schema (4): multiple tables
 
                 {
                     "type": "object",
@@ -134,7 +213,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: Valid JSON example for the JSON schema (3)
+                :caption: Valid JSON example for the JSON schema (4)
 
                 {
                     "table_a" : [
@@ -149,11 +228,36 @@ class JsonTableFileLoader(JsonTableLoader):
                     ]
                 }
 
-        **(4)** Multiple table data in a file,
-        acceptable JSON Schema is as follows:
+            The example data will be loaded as the following tabular data:
+
+                .. table:: table_a
+
+                    +------+------+------+
+                    |attr_a|attr_b|attr_c|
+                    +======+======+======+
+                    |     1|   4.0|a     |
+                    +------+------+------+
+                    |     2|   2.1|bb    |
+                    +------+------+------+
+                    |     3| 120.9|ccc   |
+                    +------+------+------+
+
+                .. table:: table_b
+
+                    +-+-----+
+                    |a|  b  |
+                    +=+=====+
+                    |1|  4.0|
+                    +-+-----+
+                    |2| None|
+                    +-+-----+
+                    |3|120.9|
+                    +-+-----+
+
+        **(5)** Multiple table data in a file:
 
             .. code-block:: json
-                :caption: Acceptable JSON Schema (4): multiple tables
+                :caption: Acceptable JSON Schema (5): multiple tables
 
                 {
                     "type": "object",
@@ -173,7 +277,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: Valid JSON example for the JSON schema (4)
+                :caption: Valid JSON example for the JSON schema (5)
 
                 {
                     "table_a" : {
@@ -186,6 +290,101 @@ class JsonTableFileLoader(JsonTableLoader):
                         "b": [4, 120.9]
                     }
                 }
+
+            The example data will be loaded as the following tabular data:
+
+                .. table:: table_a
+
+                    +------+------+------+
+                    |attr_a|attr_b|attr_c|
+                    +======+======+======+
+                    |     1|   4.0|a     |
+                    +------+------+------+
+                    |     2|   2.1|bb    |
+                    +------+------+------+
+                    |     3| 120.9|ccc   |
+                    +------+------+------+
+
+                .. table:: table_b
+
+                    +-+-----+
+                    |a|  b  |
+                    +=+=====+
+                    |1|  4.0|
+                    +-+-----+
+                    |3|120.9|
+                    +-+-----+
+
+        **(6)** Multiple table data in a file:
+
+            .. code-block:: json
+                :caption: Acceptable JSON Schema (6): multiple tables
+
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "anyOf": [
+                                {"type": "string"},
+                                {"type": "number"},
+                                {"type": "null"},
+                            ],
+                        },
+                    },
+                }
+
+            .. code-block:: json
+                :caption: Valid JSON example for the JSON schema (6)
+
+                {
+                    "table_a": {
+                        "num_ratings": 27,
+                        "support_threads": 1,
+                        "downloaded": 925716,
+                        "last_updated":"2017-12-01 6:22am GMT",
+                        "added":"2010-01-20",
+                        "num": 1.1,
+                        "hoge": null
+                    },
+                    "table_b": {
+                        "a": 4,
+                        "b": 120.9
+                    }
+                }
+
+            The example data will be loaded as the following tabular data:
+
+                .. table:: table_a
+
+                    +---------------+---------------------+
+                    |      key      |        value        |
+                    +===============+=====================+
+                    |num_ratings    |                   27|
+                    +---------------+---------------------+
+                    |support_threads|                    1|
+                    +---------------+---------------------+
+                    |downloaded     |               925716|
+                    +---------------+---------------------+
+                    |last_updated   |2017-12-01 6:22am GMT|
+                    +---------------+---------------------+
+                    |added          |2010-01-20           |
+                    +---------------+---------------------+
+                    |num            |                  1.1|
+                    +---------------+---------------------+
+                    |hoge           |None                 |
+                    +---------------+---------------------+
+
+
+                .. table:: table_b
+
+                    +---+-----+
+                    |key|value|
+                    +===+=====+
+                    |a  |  4.0|
+                    +---+-----+
+                    |b  |120.9|
+                    +---+-----+
 
         :return:
             Loaded table data iterator.
