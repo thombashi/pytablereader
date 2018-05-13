@@ -112,4 +112,7 @@ class BaseTableLoaderFactory(object):
     def _post_create(self, loader, **kwargs):
         loader.encoding = self._encoding
 
+        if loader.format_name == "csv" and kwargs.get("format_name") == "ssv":
+            loader.delimiter = " "
+
         return loader

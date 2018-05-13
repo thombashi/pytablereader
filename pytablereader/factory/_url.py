@@ -17,7 +17,7 @@ from .._common import get_extension, make_temp_file_path_from_url
 from .._constant import SourceType
 from .._logger import logger
 from .._validator import UrlValidator
-from ..csv.core import CsvTableTextLoader
+from ..csv.core import CsvTableFileLoader, CsvTableTextLoader
 from ..error import HTTPError, InvalidFilePathError, ProxyError, UrlError
 from ..html.core import HtmlTableTextLoader
 from ..json.core import JsonTableTextLoader
@@ -204,6 +204,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             "excel": ExcelTableFileLoader,
             "markdown": MarkdownTableTextLoader,
             "mediawiki": MediaWikiTableTextLoader,
+            "ssv": CsvTableFileLoader,
         })
 
         return loader_table

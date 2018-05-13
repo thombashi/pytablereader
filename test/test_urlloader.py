@@ -24,7 +24,8 @@ class Test_TableUrlLoader_get_format_name_list(object):
         format_name_list = ptr.TableUrlLoader.get_format_name_list()
 
         assert format_name_list == [
-            'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'tsv',
+            'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'ssv',
+            'tsv',
         ]
 
 

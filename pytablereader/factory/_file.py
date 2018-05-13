@@ -144,6 +144,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             "excel": ExcelTableFileLoader,
             "markdown": MarkdownTableFileLoader,
             "mediawiki": MediaWikiTableFileLoader,
+            "ssv": CsvTableFileLoader,
         })
 
         return loader_table

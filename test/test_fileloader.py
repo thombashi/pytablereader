@@ -26,7 +26,7 @@ class Test_TableFileLoader_get_format_name_list(object):
 
         assert format_name_list == [
             'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki',
-            'sqlite', 'tsv',
+            'sqlite', 'ssv', 'tsv',
         ]
 
 
@@ -50,6 +50,7 @@ class Test_TableFileLoader_constructor(object):
 
         ["/tmp/validext.txt", "csv", ptr.CsvTableFileLoader],
         ["/tmp/テスト.txt".encode("utf_8"), "csv", ptr.CsvTableFileLoader],
+        ["/tmp/validext.txt", "ssv", ptr.CsvTableFileLoader],
         ["/tmp/validext.txt", "html", ptr.HtmlTableFileLoader],
         ["/tmp/validext.txt", "json", ptr.JsonTableFileLoader],
         ["/tmp/invalidext.txt", "markdown", ptr.MarkdownTableFileLoader],
@@ -118,8 +119,46 @@ class Test_TableFileLoader_load(object):
                     [3, "120.9",  "ccc"],
                 ])
         ]
-
         loader = ptr.TableFileLoader(p_file_path, format_name=format_name)
+
+        assert loader.format_name == "csv"
+
+        for tabledata, expected in zip(loader.load(), expeced_list):
+            print(ptw.dump_tabledata(expected))
+            print(ptw.dump_tabledata(tabledata))
+
+            assert tabledata == expected
+
+    def test_normal_ssv(self,  tmpdir):
+        p_file_path = Path(six.text_type(tmpdir.join("testdata.txt")))
+        p_file_path.parent.makedirs_p()
+
+        with open(p_file_path, "w") as f:
+            f.write(dedent('''\
+                USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+                root         1  0.0  0.4  77664  8784 ?        Ss   May11   0:02 /sbin/init
+                root         2  0.0  0.0      0     0 ?        S    May11   0:00 [kthreadd]
+                root         4  0.0  0.0      0     0 ?        I<   May11   0:00 [kworker/0:0H]
+                root         6  0.0  0.0      0     0 ?        I<   May11   0:00 [mm_percpu_wq]
+                root         7  0.0  0.0      0     0 ?        S    May11   0:01 [ksoftirqd/0]
+                '''))
+
+        expeced_list = [
+            TableData(
+                "testdata",
+                [
+                    "USER", "PID", "%CPU", "%MEM", "VSZ", "RSS", "TTY", "STAT", "START", "TIME",
+                    "COMMAND"
+                ],
+                [
+                    ["root", 1, 0, 0.4, 77664, 8784, "?", "Ss", "May11", "0:02", "/sbin/init"],
+                    ["root", 2, 0, 0, 0, 0, "?", "S", "May11", "0:00", "[kthreadd]"],
+                    ["root", 4, 0, 0, 0, 0, "?", "I<", "May11", "0:00", "[kworker/0:0H]"],
+                    ["root", 6, 0, 0, 0, 0, "?", "I<", "May11", "0:00", "[mm_percpu_wq]"],
+                    ["root", 7, 0, 0, 0, 0, "?", "S", "May11", "0:01", "[ksoftirqd/0]"],
+                ])
+        ]
+        loader = ptr.TableFileLoader(p_file_path, format_name="ssv")
 
         assert loader.format_name == "csv"
 
@@ -153,7 +192,6 @@ class Test_TableFileLoader_load(object):
                     {'attr_b': 2.1, 'attr_c': 'bb'},
                 ]),
         ]
-
         loader = ptr.TableFileLoader(p_file_path, format_name=format_name)
 
         assert loader.format_name == "json"
