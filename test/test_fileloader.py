@@ -6,6 +6,8 @@
 
 from __future__ import print_function, unicode_literals
 
+from textwrap import dedent
+
 import pathvalidate as pv
 import pytablereader as ptr
 import pytablewriter as ptw
@@ -99,10 +101,12 @@ class Test_TableFileLoader_load(object):
         p_file_path.parent.makedirs_p()
 
         with open(p_file_path, "w") as f:
-            f.write('''"attr_a","attr_b","attr_c"
-    1,4,"a"
-    2,2.1,"bb"
-    3,120.9,"ccc"''')
+            f.write(dedent('''\
+                "attr_a","attr_b","attr_c"
+                1,4,"a"
+                2,2.1,"bb"
+                3,120.9,"ccc"
+                '''))
 
         expeced_list = [
             TableData(
@@ -134,10 +138,11 @@ class Test_TableFileLoader_load(object):
         p_file_path.parent.makedirs_p()
 
         with open(p_file_path, "w") as f:
-            f.write('''[
-        {"attr_a": 1},
-        {"attr_b": 2.1, "attr_c": "bb"}
-    ]''')
+            f.write(dedent('''\
+                [
+                    {"attr_a": 1},
+                    {"attr_b": 2.1, "attr_c": "bb"}
+                ]'''))
 
         expeced_list = [
             TableData(
