@@ -133,13 +133,8 @@ class Test_TableUrlLoader_load(object):
 
     @responses.activate
     @pytest.mark.parametrize(["url", "format_name"], [
-        [
-            'https://raw.githubusercontent.com/valid/test/data/validdata.csv',
-            None,
-        ], [
-            'https://raw.githubusercontent.com/valid/test/data/validdata.txt',
-            "csv",
-        ],
+        ['https://raw.githubusercontent.com/valid/test/data/validdata.csv', None],
+        ['https://raw.githubusercontent.com/valid/test/data/validdata.txt', "csv"],
     ])
     def test_normal_csv(self, url, format_name):
         responses.add(
@@ -175,13 +170,8 @@ class Test_TableUrlLoader_load(object):
 
     @responses.activate
     @pytest.mark.parametrize(["url", "format_name"], [
-        [
-            'https://raw.githubusercontent.com/valid/test/data/validdata.json',
-            None,
-        ], [
-            'https://raw.githubusercontent.com/valid/test/data/validdata.txt',
-            "json",
-        ],
+        ['https://raw.githubusercontent.com/valid/test/data/validdata.json', None],
+        ['https://raw.githubusercontent.com/valid/test/data/validdata.txt', "json"],
     ])
     def test_normal_json(self, url, format_name):
         responses.add(
@@ -214,7 +204,6 @@ class Test_TableUrlLoader_load(object):
     @responses.activate
     def test_normal_excel(self):
         url = 'https://github.com/thombashi/valid/test/data/validdata.xlsx'
-
         data_path = os.path.join(os.path.dirname(__file__), "data/validdata.xlsx")
 
         with open(data_path, "rb") as f:
