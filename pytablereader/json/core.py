@@ -6,9 +6,12 @@
 
 from __future__ import absolute_import, unicode_literals
 
+import abc
 import io
 import json
 from collections import OrderedDict
+
+import six
 
 from .._common import get_file_encoding
 from .._constant import SourceType
@@ -20,6 +23,7 @@ from ..interface import TableLoader
 from .formatter import JsonTableFormatter
 
 
+@six.add_metaclass(abc.ABCMeta)
 class JsonTableLoader(TableLoader):
     """
     An abstract class of JSON table loaders.
@@ -28,6 +32,10 @@ class JsonTableLoader(TableLoader):
     @property
     def format_name(self):
         return "json"
+
+    @abc.abstractmethod
+    def load_dict(self):  # pragma: no cover
+        pass
 
 
 class JsonTableFileLoader(JsonTableLoader):
@@ -418,20 +426,21 @@ class JsonTableFileLoader(JsonTableLoader):
             If the data is not acceptable JSON format.
         """
 
+        formatter = JsonTableFormatter(self.load_dict())
+        formatter.accept(self)
+
+        return formatter.to_table_data()
+
+    def load_dict(self):
         self._validate()
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
         with io.open(self.source, "r", encoding=self.encoding) as fp:
             try:
-                json_buffer = json.load(fp, object_pairs_hook=OrderedDict)
+                return json.load(fp, object_pairs_hook=OrderedDict)
             except ValueError as e:
                 raise ValidationError(e)
-
-        formatter = JsonTableFormatter(json_buffer)
-        formatter.accept(self)
-
-        return formatter.to_table_data()
 
     def _get_default_table_name_template(self):
         return "{:s}_{:s}".format(tnt.FILENAME, tnt.KEY)
@@ -487,15 +496,16 @@ class JsonTableTextLoader(JsonTableLoader):
             :py:meth:`.JsonTableFileLoader.load()`
         """
 
-        self._validate()
-        self._logger.logging_load()
-
-        json_buffer = json.loads(self.source, object_pairs_hook=OrderedDict)
-
-        formatter = JsonTableFormatter(json_buffer)
+        formatter = JsonTableFormatter(self.load_dict())
         formatter.accept(self)
 
         return formatter.to_table_data()
+
+    def load_dict(self):
+        self._validate()
+        self._logger.logging_load()
+
+        return json.loads(self.source, object_pairs_hook=OrderedDict)
 
     def _get_default_table_name_template(self):
         return "{:s}".format(tnt.KEY)
@@ -541,6 +551,9 @@ class JsonTableDictLoader(JsonTableLoader):
         formatter.accept(self)
 
         return formatter.to_table_data()
+
+    def load_dict(self):
+        return self.source
 
     def _get_default_table_name_template(self):
         return "{:s}".format(tnt.KEY)
