@@ -74,13 +74,8 @@ class Test_TableUrlLoader_constructor(object):
         ["https://github.com/validext.txt", "csv", ptr.CsvTableTextLoader],
         ["https://github.com/validext.txt", "html", ptr.HtmlTableTextLoader],
         ["https://github.com/validext.txt", "json", ptr.JsonTableTextLoader],
-        [
-            "https://github.com/invalidext.txt",
-            "markdown", ptr.MarkdownTableTextLoader
-        ], [
-            "https://github.com/invalidext.txt",
-            "mediawiki", ptr.MediaWikiTableTextLoader
-        ],
+        ["https://github.com/invalidext.txt", "markdown", ptr.MarkdownTableTextLoader],
+        ["https://github.com/invalidext.txt", "mediawiki", ptr.MediaWikiTableTextLoader],
         ["https://github.com/validext.txt", "tsv", ptr.TsvTableTextLoader],
     ])
     def test_normal(self, value, format_name, expected):
@@ -146,7 +141,6 @@ class Test_TableUrlLoader_load(object):
     3,120.9,"ccc"''',
             content_type='text/plain; charset=utf-8',
             status=200)
-
         expeced_list = [
             TableData(
                 "csv1",
@@ -157,7 +151,6 @@ class Test_TableUrlLoader_load(object):
                     [3, "120.9",  "ccc"],
                 ])
         ]
-
         loader = ptr.TableUrlLoader(url, format_name)
 
         assert loader.format_name == "csv"
@@ -183,7 +176,6 @@ class Test_TableUrlLoader_load(object):
     ]''',
             content_type='text/plain; charset=utf-8',
             status=200)
-
         expeced_list = [
             TableData(
                 "json1",
@@ -193,7 +185,6 @@ class Test_TableUrlLoader_load(object):
                     {'attr_b': 2.1, 'attr_c': 'bb'},
                 ]),
         ]
-
         loader = ptr.TableUrlLoader(url, format_name)
 
         assert loader.format_name == "json"
@@ -234,7 +225,6 @@ class Test_TableUrlLoader_load(object):
                     [6.0, 3.3, ''],
                 ]),
         ]
-
         loader = ptr.TableUrlLoader(url)
 
         assert loader.format_name == "excel"
