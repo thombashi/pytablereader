@@ -7,6 +7,7 @@
 from __future__ import print_function, unicode_literals
 
 import os.path
+from textwrap import dedent
 
 import pytablereader as ptr
 import pytablewriter as ptw
@@ -135,10 +136,12 @@ class Test_TableUrlLoader_load(object):
         responses.add(
             responses.GET,
             url,
-            body='''"attr_a","attr_b","attr_c"
-    1,4,"a"
-    2,2.1,"bb"
-    3,120.9,"ccc"''',
+            body=dedent('''\
+                "attr_a","attr_b","attr_c"
+                1,4,"a"
+                2,2.1,"bb"
+                3,120.9,"ccc"
+                '''),
             content_type='text/plain; charset=utf-8',
             status=200)
         expeced_list = [
@@ -170,10 +173,11 @@ class Test_TableUrlLoader_load(object):
         responses.add(
             responses.GET,
             url,
-            body='''[
-        {"attr_a": 1},
-        {"attr_b": 2.1, "attr_c": "bb"}
-    ]''',
+            body=dedent('''\
+                [
+                    {"attr_a": 1},
+                    {"attr_b": 2.1, "attr_c": "bb"}
+                ]'''),
             content_type='text/plain; charset=utf-8',
             status=200)
         expeced_list = [
