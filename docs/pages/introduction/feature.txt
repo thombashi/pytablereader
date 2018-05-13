@@ -9,6 +9,7 @@ Features
     - `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
     - Markdown
     - MediaWiki
+    - Space separated values (SSV)
     - SQLite database file
     - Tab separated values (TSV)
 - Supported data sources are:
