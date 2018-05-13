@@ -50,14 +50,8 @@ class Test_TableFileLoader_constructor(object):
         ["/tmp/テスト.txt".encode("utf_8"), "csv", ptr.CsvTableFileLoader],
         ["/tmp/validext.txt", "html", ptr.HtmlTableFileLoader],
         ["/tmp/validext.txt", "json", ptr.JsonTableFileLoader],
-        [
-            "/tmp/invalidext.txt",
-            "markdown", ptr.MarkdownTableFileLoader
-        ],
-        [
-            "/tmp/invalidext.txt",
-            "mediawiki", ptr.MediaWikiTableFileLoader
-        ],
+        ["/tmp/invalidext.txt", "markdown", ptr.MarkdownTableFileLoader],
+        ["/tmp/invalidext.txt", "mediawiki", ptr.MediaWikiTableFileLoader],
     ])
     def test_normal(self, tmpdir, file_path, format_name, expected):
         test_file_path = Path(six.text_type(tmpdir.join(
@@ -79,10 +73,7 @@ class Test_TableFileLoader_constructor(object):
         ["https://github.com/", None, ptr.LoaderNotFoundError],
         ["/tmp/test.txt", None, ptr.LoaderNotFoundError],
         ["c:\\tmp\test.txt", None, ptr.LoaderNotFoundError],
-        [
-            "/tmp/valid/test/data/validext.csv/",
-            None, ptr.LoaderNotFoundError
-        ],
+        ["/tmp/valid/test/data/validext.csv/", None, ptr.LoaderNotFoundError],
         [
             "/tmp/invalid/test/data/invalidext.txt",
             "invalidformat", ptr.LoaderNotFoundError
@@ -99,19 +90,12 @@ class Test_TableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(["file_path", "format_name"], [
-        [
-            '/tmp/valid/test/data/validdata.csv',
-            None,
-        ],
-        [
-            '/tmp/valid/test/data/validdata.txt',
-            "csv",
-        ],
+        ['/tmp/valid/test/data/validdata.csv', None],
+        ['/tmp/valid/test/data/validdata.txt', "csv"],
     ])
     def test_normal_csv(self,  tmpdir, file_path, format_name):
         filename = pv.replace_symbol(file_path, "")
-        p_file_path = Path(
-            six.text_type(tmpdir.join(filename + Path(file_path).ext)))
+        p_file_path = Path(six.text_type(tmpdir.join(filename + Path(file_path).ext)))
         p_file_path.parent.makedirs_p()
 
         with open(p_file_path, "w") as f:
@@ -142,14 +126,8 @@ class Test_TableFileLoader_load(object):
             assert tabledata == expected
 
     @pytest.mark.parametrize(["file_path", "format_name"], [
-        [
-            '/tmp/valid/test/data/validdata.json',
-            None,
-        ],
-        [
-            '/tmp/valid/test/data/validdata.txt',
-            "json",
-        ],
+        ['/tmp/valid/test/data/validdata.json', None],
+        ['/tmp/valid/test/data/validdata.txt', "json"],
     ])
     def test_normal_json(self, tmpdir, file_path, format_name):
         p_file_path = Path(str(tmpdir.join(file_path)))
