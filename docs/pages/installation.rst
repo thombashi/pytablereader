@@ -20,7 +20,6 @@ Mandatory Python packages
 - `mbstrdecoder <https://github.com/thombashi/mbstrdecoder>`__
 - `pathvalidate <https://github.com/thombashi/pathvalidate>`__
 - `path.py <https://github.com/jaraco/path.py>`__
-- `pyparsing <https://pyparsing.wikispaces.com/>`__
 - `requests <http://python-requests.org/>`__
 - `six <https://pypi.python.org/pypi/six/>`__
 - `tabledata <https://github.com/thombashi/tabledata>`__
