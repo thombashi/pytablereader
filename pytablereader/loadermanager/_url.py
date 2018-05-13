@@ -20,7 +20,7 @@ class TableUrlLoader(TableLoaderManager):
     :param str format_name: Data format name to load.
         Supported formats are:
         ``"csv"``, ``"excel"``, ``"html"``, ``"json"``, ``"ltsv"``,
-        ``"markdown"``, ``"mediawiki"``, ``"sqlite"``, ``"tsv"``.
+        ``"markdown"``, ``"mediawiki"``, ``"sqlite"``, ``"ssv"``, ``"tsv"``.
         If the value is |None|, automatically detect file format from
         the ``url``.
     :param dict proxies: http/https proxy information.
@@ -70,7 +70,7 @@ class TableUrlLoader(TableLoaderManager):
             .. code:: python
 
                 >>> pytablereader.TableUrlLoaderFactory.get_format_name_list()
-                ['csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'tsv']
+                ['csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'ssv', 'tsv']
         """
 
         return TableUrlLoaderFactory("http://dummy.com/").get_format_name_list()
