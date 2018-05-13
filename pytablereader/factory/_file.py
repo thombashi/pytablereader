@@ -51,7 +51,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Supported file extensions are as follows:
 
             ==========================  =====================================
-            Format name                 Loader
+            Extension                   Loader
             ==========================  =====================================
             ``"csv"``                   :py:class:`~.CsvTableFileLoader`
             ``"xls"``/``"xlsx"``        :py:class:`~.ExcelTableFileLoader`
@@ -91,6 +91,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             ``"markdown"``   :py:class:`~.MarkdownTableFileLoader`
             ``"mediawiki"``  :py:class:`~.MediaWikiTableFileLoader`
             ``"sqlite"``     :py:class:`~.SqliteFileLoader`
+            ``"ssv"``        :py:class:`~.CsvTableFileLoader`
             ``"tsv"``        :py:class:`~.TsvTableFileLoader`
             ===============  ======================================
 
