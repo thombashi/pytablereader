@@ -37,8 +37,7 @@ class Test_make_temp_file_path_from_url(object):
             "/tmp",
             "https://raw.githubusercontent.com/valid/test/data/validext.csv",
             "/tmp/validext.csv"
-        ],
-        [
+        ], [
             "/tmp",
             "https://raw.githubusercontent.com/valid/test/data/validext/",
             "/tmp/validext"

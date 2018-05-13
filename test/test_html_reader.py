@@ -498,41 +498,34 @@ class Test_HtmlTableFileLoader_load(object):
                 1, test_data_01.value, "tmp1.html",
                 test_data_01.table_name,
                 test_data_01.expected
-            ],
-            [
+            ], [
                 2, test_data_02.value, "tmp2.html",
                 test_data_02.table_name,
                 test_data_02.expected,
-            ],
-            [
+            ], [
                 3, test_data_03.value, "tmp3.html",
                 test_data_03.table_name,
                 test_data_03.expected,
-            ],
-            [
+            ], [
                 4, test_data_04.value, "tmp4.html",
                 test_data_04.table_name,
                 test_data_04.expected,
-            ],
-            [
+            ], [
                 5, test_data_05.value, "tmp5.html",
                 test_data_05.table_name,
                 test_data_05.expected,
-            ],
-            [
+            ], [
                 6, test_data_06.value, "tmp6.html",
                 test_data_06.table_name,
                 test_data_06.expected,
-            ],
-            [
+            ], [
                 7, test_data_07.value, "tmp7.html",
                 test_data_07.table_name,
                 test_data_07.expected,
             ],
         ])
     def test_normal(
-            self, tmpdir, test_id, table_text, filename,
-            table_name, expected_tabledata_list):
+            self, tmpdir, test_id, table_text, filename, table_name, expected_tabledata_list):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
@@ -551,11 +544,7 @@ class Test_HtmlTableFileLoader_load(object):
             assert tabledata == expected
 
     @pytest.mark.parametrize(["table_text", "filename", "expected"], [
-        [
-            "",
-            "tmp.html",
-            ptr.InvalidDataError,
-        ],
+        ["", "tmp.html", ptr.InvalidDataError],
     ])
     def test_exception_invalid_data(self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
@@ -589,21 +578,9 @@ class Test_HtmlTableTextLoader_load(object):
     @pytest.mark.parametrize(
         ["table_text", "table_name", "expected_tabletuple_list"],
         [
-            [
-                test_data_01.value,
-                test_data_01.table_name,
-                test_data_01.expected,
-            ],
-            [
-                test_data_02.value,
-                test_data_02.table_name,
-                test_data_02.expected,
-            ],
-            [
-                test_data_03.value,
-                test_data_03.table_name,
-                test_data_03.expected,
-            ],
+            [test_data_01.value, test_data_01.table_name, test_data_01.expected],
+            [test_data_02.value, test_data_02.table_name, test_data_02.expected],
+            [test_data_03.value, test_data_03.table_name, test_data_03.expected],
         ])
     def test_normal(self, table_text, table_name, expected_tabletuple_list):
         loader = ptr.HtmlTableTextLoader(table_text)

@@ -343,14 +343,12 @@ class Test_MarkdownTableTextLoader_load(object):
         ["test_id", "table_text", "table_name", "expected_tabletuple_list"],
         [
             [
-                1,
-                test_data_01.value,
+                1, test_data_01.value,
                 "%(default)s",
                 test_data_01.expected,
             ],
             [
-                2,
-                test_data_02.value,
+                2, test_data_02.value,
                 "%(default)s",
                 test_data_02.expected,
             ],

@@ -313,23 +313,20 @@ class Test_TsvTableTextLoader_load(object):
                 "",
                 "hoge", [],
                 ValueError,
-            ],
-            [
+            ], [
                 "\n".join([
                     '"attr_a"\t"attr_b"\t"attr_c"',
                 ]),
                 "hoge", [],
                 ptr.InvalidDataError,
-            ],
-            [
+            ], [
                 "\n".join([
                 ]),
                 "hoge", ["attr_a", "attr_b", "attr_c"],
                 ValueError,
             ],
         ])
-    def test_exception_insufficient_data(
-            self, table_text, table_name, header_list, expected):
+    def test_exception_insufficient_data(self, table_text, table_name, header_list, expected):
         loader = ptr.TsvTableTextLoader(table_text)
         loader.table_name = table_name
         loader.header_list = header_list

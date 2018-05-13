@@ -23,8 +23,7 @@ class Test_TableUrlLoader_get_format_name_list(object):
         format_name_list = ptr.TableUrlLoader.get_format_name_list()
 
         assert format_name_list == [
-            'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki',
-            'sqlite', 'tsv',
+            'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'tsv',
         ]
 
 
@@ -35,52 +34,40 @@ class Test_TableUrlLoader_constructor(object):
         [
             "https://raw.githubusercontent.com/valid/test/data/validext.csv",
             None, ptr.CsvTableTextLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.csv/",
             None, ptr.CsvTableTextLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.xlsx",
             None, ptr.ExcelTableFileLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.html",
             None, ptr.HtmlTableTextLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.htm/",
             None, ptr.HtmlTableTextLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.asp",
             None, ptr.HtmlTableTextLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.aspx/",
             None, ptr.HtmlTableTextLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.json",
             None, ptr.JsonTableTextLoader
-        ],
-        [
+        ], [
             "https://github.com/validext.ltsv",
             None, ptr.LtsvTableTextLoader
-        ],
-        [
+        ], [
             "https://github.com/validext.md",
             None, ptr.MarkdownTableTextLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.sqlite",
             None, ptr.SqliteFileLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.sqlite3",
             None, ptr.SqliteFileLoader
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.tsv",
             None, ptr.TsvTableTextLoader
         ],
@@ -90,8 +77,7 @@ class Test_TableUrlLoader_constructor(object):
         [
             "https://github.com/invalidext.txt",
             "markdown", ptr.MarkdownTableTextLoader
-        ],
-        [
+        ], [
             "https://github.com/invalidext.txt",
             "mediawiki", ptr.MediaWikiTableTextLoader
         ],
@@ -121,12 +107,10 @@ class Test_TableUrlLoader_constructor(object):
         [
             "https://raw.githubusercontent.com/invalid/test/data/invalidext.txt",
             None, ptr.LoaderNotFoundError
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/invalid/test/data/notexist.json",
             None, ptr.HTTPError
-        ],
-        [
+        ], [
             "https://raw.githubusercontent.com/invalid/test/data/invalidext.txt",
             "invalidformat", ptr.LoaderNotFoundError
         ],
@@ -152,8 +136,7 @@ class Test_TableUrlLoader_load(object):
         [
             'https://raw.githubusercontent.com/valid/test/data/validdata.csv',
             None,
-        ],
-        [
+        ], [
             'https://raw.githubusercontent.com/valid/test/data/validdata.txt',
             "csv",
         ],
@@ -195,8 +178,7 @@ class Test_TableUrlLoader_load(object):
         [
             'https://raw.githubusercontent.com/valid/test/data/validdata.json',
             None,
-        ],
-        [
+        ], [
             'https://raw.githubusercontent.com/valid/test/data/validdata.txt',
             "json",
         ],
@@ -233,8 +215,7 @@ class Test_TableUrlLoader_load(object):
     def test_normal_excel(self):
         url = 'https://github.com/thombashi/valid/test/data/validdata.xlsx'
 
-        data_path = os.path.join(
-            os.path.dirname(__file__), "data/validdata.xlsx")
+        data_path = os.path.join(os.path.dirname(__file__), "data/validdata.xlsx")
 
         with open(data_path, "rb") as f:
             responses.add(

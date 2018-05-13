@@ -249,10 +249,8 @@ class Test_MediaWikiTableFormatter_make_table_name(object):
         [None, "/path/to/data.mediawiki", ValueError],
         ["", "/path/to/data.mediawiki", ValueError],
     ])
-    def test_MediaWikiTableFileLoader_exception(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            MediaWikiTableFormatter, "table_id", self.null_tag_property)
+    def test_MediaWikiTableFileLoader_exception(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(MediaWikiTableFormatter, "table_id", self.null_tag_property)
 
         loader = ptr.MediaWikiTableFileLoader(source)
         loader.table_name = value
@@ -269,10 +267,8 @@ class Test_MediaWikiTableFormatter_make_table_name(object):
         ["%(filename)s%(format_name)s%(format_id)s", "mediawiki0"],
         ["tablename", "tablename"],
     ])
-    def test_normal_MediaWikiTableTextLoader_valid_tag(
-            self, monkeypatch, value, expected):
-        monkeypatch.setattr(
-            MediaWikiTableFormatter, "table_id", self.valid_tag_property)
+    def test_normal_MediaWikiTableTextLoader_valid_tag(self, monkeypatch, value, expected):
+        monkeypatch.setattr(MediaWikiTableFormatter, "table_id", self.valid_tag_property)
 
         source = "<table></table>"
         loader = ptr.MediaWikiTableTextLoader(source)
@@ -289,10 +285,8 @@ class Test_MediaWikiTableFormatter_make_table_name(object):
         ["%(filename)s%(format_name)s%(format_id)s", "mediawiki0"],
         ["tablename", "tablename"],
     ])
-    def test_normal_MediaWikiTableTextLoader_null_tag(
-            self, monkeypatch, value, expected):
-        monkeypatch.setattr(
-            MediaWikiTableFormatter, "table_id", self.null_tag_property)
+    def test_normal_MediaWikiTableTextLoader_null_tag(self, monkeypatch, value, expected):
+        monkeypatch.setattr(MediaWikiTableFormatter, "table_id", self.null_tag_property)
 
         source = "<table></table>"
         loader = ptr.MediaWikiTableTextLoader(source)
@@ -310,10 +304,8 @@ class Test_MediaWikiTableFormatter_make_table_name(object):
             ptr.InvalidTableNameError
         ],
     ])
-    def test_exception_MediaWikiTableTextLoader(
-            self, monkeypatch, value, source, expected):
-        monkeypatch.setattr(
-            MediaWikiTableFormatter, "table_id", self.valid_tag_property)
+    def test_exception_MediaWikiTableTextLoader(self, monkeypatch, value, source, expected):
+        monkeypatch.setattr(MediaWikiTableFormatter, "table_id", self.valid_tag_property)
 
         loader = ptr.MediaWikiTableTextLoader(source)
         loader.table_name = value
@@ -332,13 +324,7 @@ class Test_MediaWikiTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "test_id",
-            "table_text",
-            "filename",
-            "table_name",
-            "expected_tabledata_list",
-        ],
+        ["test_id", "table_text", "filename", "table_name", "expected_tabledata_list"],
         [
             [
                 1,
@@ -387,25 +373,12 @@ class Test_MediaWikiTableFileLoader_load(object):
         assert load
 
     @pytest.mark.parametrize(
+        ["table_text", "filename", "expected"],
         [
-            "table_text",
-            "filename",
-            "expected",
-        ],
-        [
-            [
-                test_empty_data_00,
-                "tmp.mediawiki",
-                ptr.InvalidDataError,
-            ],
-            [
-                test_empty_data_01,
-                "tmp.mediawiki",
-                ptr.InvalidDataError,
-            ],
+            [test_empty_data_00, "tmp.mediawiki", ptr.InvalidDataError],
+            [test_empty_data_01, "tmp.mediawiki", ptr.InvalidDataError],
         ])
-    def test_normal_empty_data(
-            self, tmpdir, table_text, filename, expected):
+    def test_normal_empty_data(self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
 
         with open(str(p_file_path), "w") as f:
@@ -420,8 +393,7 @@ class Test_MediaWikiTableFileLoader_load(object):
         ["", ptr.InvalidFilePathError],
         [None, ptr.InvalidFilePathError],
     ])
-    def test_exception_null(
-            self, tmpdir, filename, expected):
+    def test_exception_null(self, tmpdir, filename, expected):
         loader = ptr.MediaWikiTableFileLoader(filename)
 
         with pytest.raises(expected):
@@ -437,12 +409,7 @@ class Test_MediaWikiTableTextLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "test_id",
-            "table_text",
-            "table_name",
-            "expected_tabletuple_list",
-        ],
+        ["test_id", "table_text", "table_name", "expected_tabletuple_list"],
         [
             [
                 1,

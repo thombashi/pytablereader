@@ -110,8 +110,7 @@ class Test_ExcelTableFileLoader_make_table_name(object):
         loader = ptr.ExcelTableFileLoader(source)
         loader.table_name = value
 
-        monkeypatch.setattr(
-            ptr.ExcelTableFileLoader, "_sheet_name", self.monkey_property)
+        monkeypatch.setattr(ptr.ExcelTableFileLoader, "_sheet_name", self.monkey_property)
 
         assert loader.make_table_name() == expected
 
@@ -135,11 +134,7 @@ class Test_ExcelTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        [
-            "table_name",
-            "start_row",
-            "expected_tabledata",
-        ],
+        ["table_name", "start_row", "expected_tabledata"],
         [
             [
                 "%(sheet)s",
@@ -172,8 +167,7 @@ class Test_ExcelTableFileLoader_load(object):
                             [6.0, 3.3, ""],
                         ]),
                 ]
-            ],
-            [
+            ], [
                 "%(filename)s_%(sheet)s",
                 2,
                 [
@@ -212,20 +206,11 @@ class Test_ExcelTableFileLoader_load(object):
             assert tabledata == expected
 
     @pytest.mark.parametrize(
+        ["table_name", "start_row", "expected"],
         [
-            "table_name",
-            "start_row",
-            "expected",
-        ],
-        [
-            [
-                "%(sheet)s",
-                0,
-                ptr.InvalidDataError,
-            ],
+            ["%(sheet)s", 0, ptr.InvalidDataError],
         ])
-    def test_abnormal(
-            self, invalid_excel_file_path, table_name, start_row, expected):
+    def test_abnormal(self, invalid_excel_file_path, table_name, start_row, expected):
         loader = ptr.ExcelTableFileLoader(invalid_excel_file_path)
         loader.table_name = table_name
         loader.start_row = start_row
@@ -234,10 +219,7 @@ class Test_ExcelTableFileLoader_load(object):
             assert tabletuple == []
 
     @pytest.mark.parametrize(
-        [
-            "source",
-            "expected",
-        ],
+        ["source", "expected"],
         [
             ["", ptr.InvalidFilePathError],
             [None, ptr.InvalidFilePathError],
@@ -250,16 +232,12 @@ class Test_ExcelTableFileLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(
-        [
-            "table_name",
-            "expected",
-        ],
+        ["table_name", "expected"],
         [
             ["", ValueError],
             [None, ValueError],
         ])
-    def test_null_table_name(
-            self, valid_excel_file_path, table_name, expected):
+    def test_null_table_name(self, valid_excel_file_path, table_name, expected):
         loader = ptr.ExcelTableFileLoader(valid_excel_file_path)
         loader.table_name = table_name
 
