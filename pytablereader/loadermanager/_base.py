@@ -15,6 +15,10 @@ class TableLoaderManager(TableLoaderInterface):
         self.__loader = loader
 
     @property
+    def loader(self):
+        return self.__loader
+
+    @property
     def format_name(self):
         return self.__loader.format_name
 
