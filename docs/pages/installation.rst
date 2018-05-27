@@ -32,10 +32,11 @@ Optional Python packages
     - required when loading MediaWiki file
 - `pandas <http://pandas.pydata.org/>`__
     - required to get table data as a pandas data frame
+- `lxml <http://lxml.de/installation.html>`__
 
 Optional packages (other than Python packages)
 ------------------------------------------------
-- `lxml <http://lxml.de/installation.html>`__ (faster HTML convert if installed)
+- ``libxml2`` (faster HTML conversion)
 - `pandoc <http://pandoc.org/>`__ (required when loading MediaWiki file)
 
 Test dependencies
