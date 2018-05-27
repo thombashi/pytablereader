@@ -86,8 +86,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         self._validate_title()
 
         scope = ['https://spreadsheets.google.com/feeds']
-        credentials = ServiceAccountCredentials.from_json_keyfile_name(
-            self.source, scope)
+        credentials = ServiceAccountCredentials.from_json_keyfile_name(self.source, scope)
 
         gc = gspread.authorize(credentials)
         try:
