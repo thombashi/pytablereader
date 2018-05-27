@@ -148,7 +148,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
 
     def __strip_empty_col(self):
         from simplesqlite import connect_sqlite_memdb
-        from simplesqlite.sqlquery import SqlQuery
+        from simplesqlite.query import Attr, AttrList
 
         con = connect_sqlite_memdb()
 
@@ -159,18 +159,13 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
             attr_name_list=header_list,
             data_matrix=self.__all_values)
         for col_idx, header in enumerate(header_list):
-            result = con.select(select=SqlQuery.to_attr_str(header), table_name=tmp_table_name)
-            if any([
-                    typepy.is_not_null_string(record[0])
-                    for record in result.fetchall()
-            ]):
+            result = con.select(select=Attr(header), table_name=tmp_table_name)
+            if any([typepy.is_not_null_string(record[0]) for record in result.fetchall()]):
                 break
 
         strip_header_list = header_list[col_idx:]
         if typepy.is_empty_sequence(strip_header_list):
             raise ValueError()
 
-        result = con.select(
-            select=",".join(SqlQuery.to_attr_str_list(strip_header_list)),
-            table_name=tmp_table_name)
+        result = con.select(select=AttrList(strip_header_list), table_name=tmp_table_name)
         self.__all_values = result.fetchall()

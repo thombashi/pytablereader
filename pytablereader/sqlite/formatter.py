@@ -26,7 +26,7 @@ class SqliteTableFormatter(TableFormatter):
 
     def to_table_data(self):
         from simplesqlite import SimpleSQLite
-        from simplesqlite.sqlquery import SqlQuery
+        from simplesqlite.query import AttrList
 
         con = SimpleSQLite(self._source_data, "r")
 
@@ -35,8 +35,7 @@ class SqliteTableFormatter(TableFormatter):
 
             attr_name_list = con.get_attr_name_list(table)
             data_matrix = con.select(
-                select=",".join(SqlQuery.to_attr_str_list(attr_name_list)),
-                table_name=table)
+                select=AttrList(attr_name_list), table_name=table)
 
             yield TableData(
                 table, attr_name_list, data_matrix,
