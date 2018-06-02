@@ -94,6 +94,18 @@ class BaseLogger(LoggerInterface):
         pass
 
 
+class NullLogger(BaseLogger):
+
+    def logging_load(self):
+        pass
+
+    def logging_table(self, table_data):
+        pass
+
+    def _get_load_message(self):
+        return ""
+
+
 class FileSourceLogger(BaseLogger):
 
     def _get_load_message(self):
