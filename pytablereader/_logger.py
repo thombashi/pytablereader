@@ -88,8 +88,7 @@ class FileSourceLogger(BaseLogger):
 
     def logging_load(self):
         message = "loading {:s}: format={:s}, path={}".format(
-            self._loader.source_type, self._loader.format_name,
-            self._loader.source)
+            self._loader.source_type, self._loader.format_name, self._loader.source)
 
         try:
             message += ", encoding={}".format(self._loader.encoding)
