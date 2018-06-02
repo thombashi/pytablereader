@@ -12,10 +12,9 @@ from textwrap import dedent
 import pytablereader as ptr
 import pytablewriter as ptw
 import pytest
+import responses
 from pytablereader.interface import TableLoader
 from tabledata import TableData
-
-import responses
 
 
 class Test_TableUrlLoader_get_format_name_list(object):
