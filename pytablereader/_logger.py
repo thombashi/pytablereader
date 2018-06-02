@@ -100,9 +100,9 @@ class FileSourceLogger(BaseLogger):
 
 class TextSourceLogger(BaseLogger):
 
-    def logging_load(self):
-        message = "loading {:s} {:s}".format(
-            self._loader.format_name, self._loader.source_type)
+    def _get_load_message(self):
+        message = "loading {:s}: format={:s}".format(
+            self._loader.source_type, self._loader.format_name)
 
         try:
             message += ", len={}".format(len(self._loader.source))
