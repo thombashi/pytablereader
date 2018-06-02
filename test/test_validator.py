@@ -58,8 +58,8 @@ class Test_TextValidator_validate(object):
         validator.validate()
 
     @pytest.mark.parametrize(["value", "expected"], [
-        [None, ptr.EmptyDataError],
-        ["", ptr.EmptyDataError],
+        [None, ptr.DataError],
+        ["", ptr.DataError],
     ])
     def test_exception(self, value, expected):
         validator = TextValidator(value)

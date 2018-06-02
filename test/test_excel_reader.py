@@ -208,7 +208,7 @@ class Test_ExcelTableFileLoader_load(object):
     @pytest.mark.parametrize(
         ["table_name", "start_row", "expected"],
         [
-            ["%(sheet)s", 0, ptr.InvalidDataError],
+            ["%(sheet)s", 0, ptr.DataError],
         ])
     def test_abnormal(self, invalid_excel_file_path, table_name, start_row, expected):
         loader = ptr.ExcelTableFileLoader(invalid_excel_file_path)

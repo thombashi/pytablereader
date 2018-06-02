@@ -10,7 +10,7 @@ import io
 
 import pathvalidate as pv
 import typepy
-from pytablereader import InvalidDataError, InvalidHeaderNameError
+from pytablereader import DataError, InvalidHeaderNameError
 
 from .._common import get_file_encoding
 from .._constant import TableNameTemplate as tnt
@@ -54,7 +54,7 @@ class LtsvTableLoader(TableLoader):
                 try:
                     label, value = ltsv_item.split(":")
                 except ValueError:
-                    raise InvalidDataError(
+                    raise DataError(
                         "invalid lstv item found: line={}, col={}, item='{}'".format(
                             row_idx, col_idx, ltsv_item))
 
@@ -119,7 +119,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
         :rtype: |TableData| iterator
         :raises pytablereader.InvalidHeaderNameError:
             If an invalid label name is included in the LTSV file.
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the LTSV data is invalid.
         """
 
@@ -178,7 +178,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
         :rtype: |TableData| iterator
         :raises pytablereader.InvalidHeaderNameError:
             If an invalid label name is included in the LTSV file.
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the LTSV data is invalid.
         """
 

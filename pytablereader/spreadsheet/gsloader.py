@@ -73,7 +73,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
             the workbook. The table name for data will be determined by
             :py:meth:`~.GoogleSheetsTableLoader.make_table_name`.
         :rtype: iterator of |TableData|
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the header row is not found.
         :raises pytablereader.OpenError:
             If the spread sheet not found.

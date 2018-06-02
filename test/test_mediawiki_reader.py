@@ -161,8 +161,8 @@ test_empty_data_01 = """
 class MediaWikiTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
-        ["tablename", None, ptr.InvalidDataError],
-        ["tablename", "", ptr.InvalidDataError],
+        ["tablename", None, ptr.DataError],
+        ["tablename", "", ptr.DataError],
     ])
     def test_exception(
             self, monkeypatch, value, source, expected):
@@ -375,8 +375,8 @@ class Test_MediaWikiTableFileLoader_load(object):
     @pytest.mark.parametrize(
         ["table_text", "filename", "expected"],
         [
-            [test_empty_data_00, "tmp.mediawiki", ptr.InvalidDataError],
-            [test_empty_data_01, "tmp.mediawiki", ptr.InvalidDataError],
+            [test_empty_data_00, "tmp.mediawiki", ptr.DataError],
+            [test_empty_data_01, "tmp.mediawiki", ptr.DataError],
         ])
     def test_normal_empty_data(self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
@@ -455,8 +455,8 @@ class Test_MediaWikiTableTextLoader_load(object):
             raise ValueError("should not reach this line")
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", ptr.EmptyDataError],
-        [None, ptr.EmptyDataError],
+        ["", ptr.DataError],
+        [None, ptr.DataError],
     ])
     def test_null(self, table_text, expected):
         loader = ptr.MediaWikiTableTextLoader(table_text)

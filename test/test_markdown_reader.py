@@ -114,8 +114,8 @@ test_empty_data_01 = dedent("""\
 class MarkdownTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
-        ["tablename", None, ptr.InvalidDataError],
-        ["tablename", "", ptr.InvalidDataError],
+        ["tablename", None, ptr.DataError],
+        ["tablename", "", ptr.DataError],
     ])
     def test_exception(self, monkeypatch, value, source, expected):
         with pytest.raises(expected):
@@ -372,7 +372,7 @@ class Test_MarkdownTableTextLoader_load(object):
         assert load
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", ptr.InvalidDataError],
+        ["", ptr.DataError],
     ])
     def test_exception_invalid_data(self, table_text, expected):
         loader = ptr.MarkdownTableTextLoader(table_text)
@@ -383,8 +383,8 @@ class Test_MarkdownTableTextLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", ptr.EmptyDataError],
-        [None, ptr.EmptyDataError],
+        ["", ptr.DataError],
+        [None, ptr.DataError],
     ])
     def test_exception_null(self, table_text, expected):
         loader = ptr.MarkdownTableTextLoader(table_text)

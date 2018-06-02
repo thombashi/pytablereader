@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import abc
 
 import six
-from pytablereader import InvalidDataError
+from pytablereader import DataError
 
 from ._acceptor import LoaderAcceptor
 
@@ -32,7 +32,7 @@ class TableFormatter(LoaderAcceptor, TableFormatterInterface):
 
     def _validate_source_data(self):
         if not self._source_data:
-            raise InvalidDataError("source data is empty")
+            raise DataError("source data is empty")
 
     def __init__(self, source_data):
         self._source_data = source_data

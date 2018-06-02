@@ -323,20 +323,20 @@ class Test_CsvTableFileLoader_load(object):
             [
                 "",
                 "hoge.csv", [],
-                ptr.InvalidDataError,
+                ptr.DataError,
             ],
             [
                 "\n".join([
                     '"attr_a","attr_b","attr_c"',
                 ]),
                 "hoge.csv", [],
-                ptr.InvalidDataError,
+                ptr.DataError,
             ],
             [
                 "\n".join([
                 ]),
                 "hoge.csv", ["attr_a", "attr_b", "attr_c"],
-                ptr.InvalidDataError,
+                ptr.DataError,
             ],
         ])
     def test_exception(
@@ -451,7 +451,7 @@ class Test_CsvTableTextLoader_load(object):
                     '"attr_a","attr_b","attr_c"',
                 ]),
                 "hoge", [],
-                ptr.InvalidDataError,
+                ptr.DataError,
             ],
             [
                 "\n".join([
@@ -484,7 +484,7 @@ class Test_CsvTableTextLoader_load(object):
         loader = ptr.CsvTableTextLoader(table_text)
         loader.table_name = "dummy"
 
-        with pytest.raises(ptr.InvalidDataError):
+        with pytest.raises(ptr.DataError):
             for _tabletuple in loader.load():
                 pass
 

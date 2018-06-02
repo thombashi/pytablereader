@@ -65,7 +65,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the Markdown data is invalid or empty.
         """
 
@@ -124,7 +124,7 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the Markdown data is invalid or empty.
         """
 

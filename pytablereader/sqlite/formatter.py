@@ -7,7 +7,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import typepy
-from pytablereader import InvalidDataError
+from pytablereader import DataError
 from tabledata import TableData
 
 from .._constant import TableNameTemplate as tnt
@@ -22,7 +22,7 @@ class SqliteTableFormatter(TableFormatter):
         self.__table_name = None
 
         if typepy.is_null_string(source_data):
-            raise InvalidDataError
+            raise DataError
 
     def to_table_data(self):
         from simplesqlite import SimpleSQLite

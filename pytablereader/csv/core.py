@@ -12,7 +12,7 @@ import io
 import six
 import typepy
 from mbstrdecoder import MultiByteStrDecoder
-from pytablereader import InvalidDataError
+from pytablereader import DataError
 
 from .._common import get_file_encoding
 from .._constant import TableNameTemplate as tnt
@@ -87,7 +87,7 @@ class CsvTableLoader(TableLoader):
                 for row in self._csv_reader if typepy.is_not_empty_sequence(row)
             ]
         except (csv.Error, UnicodeDecodeError) as e:
-            raise InvalidDataError(e)
+            raise DataError(e)
 
     @staticmethod
     def __modify_item(data):
@@ -142,7 +142,7 @@ class CsvTableFileLoader(CsvTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ========================================
         :rtype: |TableData| iterator
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the CSV data is invalid.
 
         .. seealso::
@@ -215,7 +215,7 @@ class CsvTableTextLoader(CsvTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ========================================
         :rtype: |TableData| iterator
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the CSV data is invalid.
 
         .. seealso::

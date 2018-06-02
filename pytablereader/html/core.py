@@ -77,7 +77,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the HTML data is invalid or empty.
 
         .. note::
@@ -138,7 +138,7 @@ class HtmlTableTextLoader(HtmlTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the HTML data is invalid or empty.
         """
 

@@ -420,7 +420,7 @@ class JsonTableFileLoader(JsonTableLoader):
             ``%(global_id)s``    |global_id|
             ===================  ==============================================
         :rtype: |TableData| iterator
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the data is invalid JSON.
         :raises pytablereader.error.ValidationError:
             If the data is not acceptable JSON format.

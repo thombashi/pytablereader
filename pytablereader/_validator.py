@@ -12,7 +12,7 @@ import os.path
 import pathvalidate as pv
 import six
 import typepy
-from pytablereader import EmptyDataError
+from pytablereader import DataError
 from six.moves.urllib.parse import urlparse
 
 from ._constant import SourceType
@@ -89,7 +89,7 @@ class TextValidator(BaseValidator):
 
     def validate(self):
         if typepy.is_null_string(self.source):
-            raise EmptyDataError("data source is empty")
+            raise DataError("data source is empty")
 
 
 class UrlValidator(BaseValidator):

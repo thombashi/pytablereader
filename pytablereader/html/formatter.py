@@ -10,7 +10,7 @@ import re
 
 import bs4
 import typepy
-from pytablereader import InvalidDataError
+from pytablereader import DataError
 from tabledata import TableData
 
 from .._constant import TableNameTemplate as tnt
@@ -35,7 +35,7 @@ class HtmlTableFormatter(TableFormatter):
         self.__table_id = None
 
         if typepy.is_null_string(source_data):
-            raise InvalidDataError
+            raise DataError
 
         try:
             self.__soup = bs4.BeautifulSoup(self._source_data, "lxml")

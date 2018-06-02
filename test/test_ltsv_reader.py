@@ -14,7 +14,7 @@ import pytablereader as ptr
 import pytablewriter as ptw
 import pytest
 from path import Path
-from pytablereader import InvalidDataError, InvalidHeaderNameError, InvalidTableNameError
+from pytablereader import DataError, InvalidHeaderNameError, InvalidTableNameError
 from pytablereader.interface import TableLoader
 from tabledata import TableData
 
@@ -123,14 +123,14 @@ class Test_LtsvTableFileLoader_load(object):
                 '"attr_a"\t"attr_b"\t"attr_c"',
             ]),
             "hoge.ltsv",
-            ptr.InvalidDataError,
+            ptr.DataError,
         ],
         [
             "\n".join([
                 '"a":1"\t"attr_b"\t"attr_c"',
             ]),
             "hoge.ltsv",
-            ptr.InvalidDataError,
+            ptr.DataError,
         ],
     ])
     def test_exception(self, tmpdir, table_text, filename, expected):
@@ -218,7 +218,7 @@ class Test_LtsvTableTextLoader_load(object):
         [
             "",
             "dummy",
-            InvalidDataError,
+            DataError,
         ],
         [
             'a!:1\tb:2',

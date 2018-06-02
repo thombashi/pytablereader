@@ -7,7 +7,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import xlrd
-from pytablereader import InvalidDataError
+from pytablereader import DataError
 from six.moves import range
 from tabledata import TableData
 
@@ -75,7 +75,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             ``%(global_id)s``    |global_id|
             ===================  ====================================
         :rtype: |TableData| iterator
-        :raises pytablereader.InvalidDataError:
+        :raises pytablereader.DataError:
             If the header row is not found.
         :raises pytablereader.error.OpenError:
             If failed to open the source file.
@@ -99,7 +99,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
             try:
                 start_row_idx = self._get_start_row_idx()
-            except InvalidDataError:
+            except DataError:
                 continue
 
             header_list = self.__get_row_values(start_row_idx)
@@ -126,7 +126,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             if self.__is_header_row(row_idx):
                 break
         else:
-            raise InvalidDataError("header row not found")
+            raise DataError("header row not found")
 
         return row_idx
 

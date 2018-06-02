@@ -332,8 +332,8 @@ test_data_07 = Data(
 class HtmlTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
-        ["tablename", None, ptr.InvalidDataError],
-        ["tablename", "", ptr.InvalidDataError],
+        ["tablename", None, ptr.DataError],
+        ["tablename", "", ptr.DataError],
     ])
     def test_exception(self, monkeypatch, value, source, expected):
         with pytest.raises(expected):
@@ -544,7 +544,7 @@ class Test_HtmlTableFileLoader_load(object):
             assert tabledata == expected
 
     @pytest.mark.parametrize(["table_text", "filename", "expected"], [
-        ["", "tmp.html", ptr.InvalidDataError],
+        ["", "tmp.html", ptr.DataError],
     ])
     def test_exception_invalid_data(self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
@@ -592,8 +592,8 @@ class Test_HtmlTableTextLoader_load(object):
             assert tabledata in expected_tabletuple_list
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", ptr.InvalidDataError],
-        [None, ptr.InvalidDataError],
+        ["", ptr.DataError],
+        [None, ptr.DataError],
     ])
     def test_exception_null(self, table_text, expected):
         loader = ptr.HtmlTableTextLoader(table_text)

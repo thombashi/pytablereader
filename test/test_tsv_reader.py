@@ -194,20 +194,20 @@ class Test_TsvTableFileLoader_load(object):
             [
                 "",
                 "hoge.tsv", [],
-                ptr.InvalidDataError,
+                ptr.DataError,
             ],
             [
                 "\n".join([
                     '"attr_a"\t"attr_b"\t"attr_c"',
                 ]),
                 "hoge.tsv", [],
-                ptr.InvalidDataError,
+                ptr.DataError,
             ],
             [
                 "\n".join([
                 ]),
                 "hoge.tsv", ["attr_a", "attr_b", "attr_c"],
-                ptr.InvalidDataError,
+                ptr.DataError,
             ],
         ])
     def test_exception(self, tmpdir, table_text, filename, header_list, expected):
@@ -318,7 +318,7 @@ class Test_TsvTableTextLoader_load(object):
                     '"attr_a"\t"attr_b"\t"attr_c"',
                 ]),
                 "hoge", [],
-                ptr.InvalidDataError,
+                ptr.DataError,
             ], [
                 "\n".join([
                 ]),

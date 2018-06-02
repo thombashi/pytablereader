@@ -376,7 +376,7 @@ class Test_JsonTableFileLoader_load(object):
             [
                 "[]",
                 "tmp.json",
-                ptr.InvalidDataError,
+                ptr.DataError,
             ],
             [
                 """[
@@ -473,7 +473,7 @@ class Test_JsonTableTextLoader_load(object):
     @pytest.mark.parametrize(["table_text", "expected"], [
         [
             "[]",
-            ptr.InvalidDataError,
+            ptr.DataError,
         ],
         [
             """[
@@ -491,8 +491,8 @@ class Test_JsonTableTextLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(["table_text", "expected"], [
-        ["", ptr.InvalidDataError],
-        [None, ptr.InvalidDataError],
+        ["", ptr.DataError],
+        [None, ptr.DataError],
     ])
     def test_null(self, table_text, expected):
         loader = ptr.JsonTableTextLoader(table_text)
