@@ -83,10 +83,17 @@ class BaseLogger(LoggerInterface):
     def __init__(self, loader):
         self._loader = loader
 
+    def logging_load(self):
+        logger.debug(self._get_load_message())
+
+    @abc.abstractmethod
+    def _get_load_message(self):
+        pass
+
 
 class FileSourceLogger(BaseLogger):
 
-    def logging_load(self):
+    def _get_load_message(self):
         message = "loading {:s}: format={:s}, path={}".format(
             self._loader.source_type, self._loader.format_name, self._loader.source)
 
@@ -95,7 +102,7 @@ class FileSourceLogger(BaseLogger):
         except AttributeError:
             pass
 
-        logger.debug(message)
+        return message
 
 
 class TextSourceLogger(BaseLogger):
@@ -114,4 +121,4 @@ class TextSourceLogger(BaseLogger):
         except AttributeError:
             pass
 
-        logger.debug(message)
+        return message
