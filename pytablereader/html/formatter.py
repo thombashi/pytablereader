@@ -14,6 +14,7 @@ from pytablereader import InvalidDataError
 from tabledata import TableData
 
 from .._constant import TableNameTemplate as tnt
+from .._logger import NullLogger
 from ..formatter import TableFormatter
 
 
@@ -23,8 +24,13 @@ class HtmlTableFormatter(TableFormatter):
     def table_id(self):
         return self.__table_id
 
-    def __init__(self, source_data):
+    def __init__(self, source_data, logger=None):
         super(HtmlTableFormatter, self).__init__(source_data)
+
+        if logger:
+            self.__logger = logger
+        else:
+            self.__logger = NullLogger(None)
 
         self.__table_id = None
 
@@ -45,6 +51,8 @@ class HtmlTableFormatter(TableFormatter):
 
             if table_data.is_empty_record():
                 continue
+
+            self.__logger.logging_table(table_data)
 
             yield table_data
 

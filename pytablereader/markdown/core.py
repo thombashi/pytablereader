@@ -74,7 +74,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
         self.encoding = get_file_encoding(self.source, self.encoding)
 
         with io.open(self.source, "r", encoding=self.encoding) as fp:
-            formatter = MarkdownTableFormatter(fp.read())
+            formatter = MarkdownTableFormatter(fp.read(), self._logger)
         formatter.accept(self)
 
         return formatter.to_table_data()
@@ -131,7 +131,7 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
         self._validate()
         self._logger.logging_load()
 
-        formatter = MarkdownTableFormatter(self.source)
+        formatter = MarkdownTableFormatter(self.source, self._logger)
         formatter.accept(self)
 
         return formatter.to_table_data()
