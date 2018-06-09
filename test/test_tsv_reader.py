@@ -29,16 +29,14 @@ test_data_00 = Data(
         '3\t120.9\t"ccc"',
     ]),
     [
-        TableData(
-            "tmp",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4, "a"],
-                [2, Decimal("2.1"), "bb"],
-                [3, Decimal("120.9"), "ccc"],
-            ])
+        TableData("tmp",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [1, 4, "a"],
+                      [2, Decimal("2.1"), "bb"],
+                      [3, Decimal("120.9"), "ccc"],
+                  ])
     ])
-
 test_data_01 = Data(
     "\n".join([
         '"attr_a"\t"attr_b"\t"attr_c"',
@@ -47,30 +45,26 @@ test_data_01 = Data(
         '3\t120.9\t"ccc"',
     ]),
     [
-        TableData(
-            "foo_bar",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                ["attr_a", "attr_b", "attr_c"],
-                [1, 4, "a"],
-                [2, Decimal("2.1"), "bb"],
-                [3, Decimal("120.9"), "ccc"],
-            ]),
+        TableData("foo_bar",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      ["attr_a", "attr_b", "attr_c"],
+                      [1, 4, "a"],
+                      [2, Decimal("2.1"), "bb"],
+                      [3, Decimal("120.9"), "ccc"],
+                  ]),
     ])
-
 test_data_02 = Data(
     "\n".join([
         '3\t120.9\t"ccc"',
     ]),
     [
-        TableData(
-            "foo_bar",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [3, "120.9",  "ccc"],
-            ]),
+        TableData("foo_bar",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [3, "120.9",  "ccc"],
+                  ]),
     ])
-
 test_data_03 = Data(
     "\n".join([
         '"attr_a"\t"attr_b"\t"attr_c"',
@@ -81,14 +75,13 @@ test_data_03 = Data(
         "",
     ]),
     [
-        TableData(
-            "tmp",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4, "a"],
-                [2, Decimal("2.1"), "bb"],
-                [3, Decimal("120.9"), "ccc"],
-            ])
+        TableData("tmp",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [1, 4, "a"],
+                      [2, Decimal("2.1"), "bb"],
+                      [3, Decimal("120.9"), "ccc"],
+                  ])
     ])
 
 
