@@ -210,29 +210,12 @@ class Test_LtsvTableTextLoader_load(object):
             assert tabledata == expected
 
     @pytest.mark.parametrize(["table_text", "table_name", "expected"], [
-        [
-            '"":"invalid"\ta:1',
-            "dummy",
-            InvalidHeaderNameError,
-        ],
-        [
-            "",
-            "dummy",
-            DataError,
-        ],
-        [
-            'a!:1\tb:2',
-            "dummy",
-            InvalidHeaderNameError,
-        ],
-        [
-            'a:1\tb$c:2',
-            "dummy",
-            InvalidHeaderNameError,
-        ],
+        ['"":"invalid"\ta:1', "dummy", InvalidHeaderNameError],
+        ["", "dummy", DataError],
+        ['a!:1\tb:2', "dummy", InvalidHeaderNameError],
+        ['a:1\tb$c:2', "dummy", InvalidHeaderNameError],
     ])
-    def test_exception_insufficient_data(
-            self, table_text, table_name, expected):
+    def test_exception_insufficient_data(self, table_text, table_name, expected):
         loader = ptr.LtsvTableTextLoader(table_text)
         loader.table_name = table_name
 
