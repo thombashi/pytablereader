@@ -30,16 +30,14 @@ test_data_00 = Data(
         '3,120.9,"ccc"',
     ]),
     [
-        TableData(
-            "tmp",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4, "a"],
-                [2, Decimal("2.1"), "bb"],
-                [3, Decimal("120.9"), "ccc"],
-            ])
+        TableData("tmp",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [1, 4, "a"],
+                      [2, Decimal("2.1"), "bb"],
+                      [3, Decimal("120.9"), "ccc"],
+                  ])
     ])
-
 test_data_01 = Data(
     "\n".join([
         '"attr_a","attr_b","attr_c"',
@@ -48,30 +46,26 @@ test_data_01 = Data(
         '3,120.9, "ccc"',
     ]),
     [
-        TableData(
-            "foo_bar",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                ["attr_a", "attr_b", "attr_c"],
-                [1, 4, "a"],
-                [2, Decimal("2.1"), "bb"],
-                [3, Decimal("120.9"), "ccc"],
-            ]),
+        TableData("foo_bar",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      ["attr_a", "attr_b", "attr_c"],
+                      [1, 4, "a"],
+                      [2, Decimal("2.1"), "bb"],
+                      [3, Decimal("120.9"), "ccc"],
+                  ]),
     ])
-
 test_data_02 = Data(
     "\n".join([
         '3,120.9,"ccc"',
     ]),
     [
-        TableData(
-            "foo_bar",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [3, "120.9",  "ccc"],
-            ]),
+        TableData("foo_bar",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [3, "120.9",  "ccc"],
+                  ]),
     ])
-
 test_data_03 = Data(
     "\n".join([
         '"attr_a","attr_b","attr_c"',
@@ -82,16 +76,14 @@ test_data_03 = Data(
         "",
     ]),
     [
-        TableData(
-            "tmp",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4,      "a"],
-                [2, Decimal("2.1"), "bb"],
-                [3, Decimal("120.9"), "ccc"],
-            ])
+        TableData("tmp",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [1, 4,      "a"],
+                      [2, Decimal("2.1"), "bb"],
+                      [3, Decimal("120.9"), "ccc"],
+                  ])
     ])
-
 test_data_04 = Data(
     dedent("""\
         "attr_a","attr_b","attr_c"
@@ -101,16 +93,14 @@ test_data_04 = Data(
 
         """),
     [
-        TableData(
-            "tmp",
-            ["attr_a", "attr_b", "attr_c"],
-            [
-                [1, 4, "a"],
-                [2, "2.1", "bb"],
-                [3, "120.9", "ccc"],
-            ])
+        TableData("tmp",
+                  ["attr_a", "attr_b", "attr_c"],
+                  [
+                      [1, 4, "a"],
+                      [2, "2.1", "bb"],
+                      [3, "120.9", "ccc"],
+                  ])
     ])
-
 test_data_05 = Data(
     dedent("""\
         "姓","名","生年月日","郵便番号","住所","電話番号"
@@ -118,15 +108,14 @@ test_data_05 = Data(
         "山田","次郎","2001/1/2","251-0036","神奈川県藤沢市江の島１丁目","03-9999-9999"
         """),
     [
-        TableData(
-            "tmp",
-            ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
-            [
-                ["山田", "太郎", "2001/1/1", "100-0002",
-                    "東京都千代田区皇居外苑", "03-1234-5678"],
-                ["山田", "次郎", "2001/1/2", "251-0036",
-                    "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
-            ])
+        TableData("tmp",
+                  ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
+                  [
+                      ["山田", "太郎", "2001/1/1", "100-0002",
+                       "東京都千代田区皇居外苑", "03-1234-5678"],
+                      ["山田", "次郎", "2001/1/2", "251-0036",
+                       "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
+                  ])
     ])
 
 test_data_06 = Data(
@@ -144,23 +133,21 @@ test_data_06 = Data(
         wrfbox,Windows 6.2.8133,amd64
         """),
     [
-        TableData(
-            "tmp",
-            ["smokey", "Linux 3.0-ARCH", "x86"],
-            [
-                [12345678901, "12345 1234567890123", 123],
-                [12345678901, 1234567890123456789, 12345],
-                ["11 bytes", "19 bytes", "5 byt"],
-                ["test line:", 'Some "comma, quote"', "foo"],
-                ["skylight", "Linux 3.0-ARCH", "x86"],
-                ["polaris", "Linux 3.0-ARCH", "amd64"],
-                ["asgard", "Windows 6.1.7600", "amd64"],
-                ["galileo", "Windows 6.2.8102", "x86"],
-                ["kepler", "Windows 6.2.8123", "amd64"],
-                ["wrfbox", "Windows 6.2.8133", "amd64"],
-            ])
+        TableData("tmp",
+                  ["smokey", "Linux 3.0-ARCH", "x86"],
+                  [
+                      [12345678901, "12345 1234567890123", 123],
+                      [12345678901, 1234567890123456789, 12345],
+                      ["11 bytes", "19 bytes", "5 byt"],
+                      ["test line:", 'Some "comma, quote"', "foo"],
+                      ["skylight", "Linux 3.0-ARCH", "x86"],
+                      ["polaris", "Linux 3.0-ARCH", "amd64"],
+                      ["asgard", "Windows 6.1.7600", "amd64"],
+                      ["galileo", "Windows 6.2.8102", "x86"],
+                      ["kepler", "Windows 6.2.8123", "amd64"],
+                      ["wrfbox", "Windows 6.2.8133", "amd64"],
+                  ])
     ])
-
 test_data_multibyte = Data(
     dedent("""\
         "姓","名","生年月日","郵便番号","住所","電話番号"
@@ -168,15 +155,14 @@ test_data_multibyte = Data(
         "山田","次郎","2001/1/2","251-0036","神奈川県藤沢市江の島１丁目","03-9999-9999"
         """),
     [
-        TableData(
-            "multibyte",
-            ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
-            [
-                ["山田", "太郎", "2001/1/1", "100-0002",
-                    "東京都千代田区皇居外苑", "03-1234-5678"],
-                ["山田", "次郎", "2001/1/2", "251-0036",
-                    "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
-            ])
+        TableData("multibyte",
+                  ["姓", "名", "生年月日", "郵便番号", "住所", "電話番号"],
+                  [
+                      ["山田", "太郎", "2001/1/1", "100-0002",
+                       "東京都千代田区皇居外苑", "03-1234-5678"],
+                      ["山田", "次郎", "2001/1/2", "251-0036",
+                       "神奈川県藤沢市江の島１丁目", "03-9999-9999"],
+                  ])
     ])
 
 
