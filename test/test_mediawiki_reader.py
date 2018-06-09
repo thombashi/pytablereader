@@ -158,8 +158,7 @@ class MediaWikiTableFormatter_constructor(object):
         ["tablename", None, ptr.DataError],
         ["tablename", "", ptr.DataError],
     ])
-    def test_exception(
-            self, monkeypatch, value, source, expected):
+    def test_exception(self, monkeypatch, value, source, expected):
         with pytest.raises(expected):
             MediaWikiTableFormatter(source)
 
@@ -187,13 +186,11 @@ class Test_MediaWikiTableFormatter_make_table_name(object):
             "prefix_%(filename)s_suffix",
             "/path/to/data.mediawiki",
             "prefix_data_suffix"
-        ],
-        [
+        ], [
             "%(filename)s%(filename)s",
             "/path/to/data.mediawiki",
             "datadata"
-        ],
-        [
+        ], [
             "%(format_name)s%(format_id)s_%(filename)s",
             "/path/to/data.mediawiki",
             "mediawiki0_data"
@@ -321,30 +318,24 @@ class Test_MediaWikiTableFileLoader_load(object):
         ["test_id", "table_text", "filename", "table_name", "expected_tabledata_list"],
         [
             [
-                1,
-                test_data_01.value,
+                1, test_data_01.value,
                 "tmp.mediawiki",
                 "%(key)s",
                 test_data_01.expected
-            ],
-            [
-                2,
-                test_data_02.value,
+            ], [
+                2, test_data_02.value,
                 "tmp.mediawiki",
                 "%(key)s",
                 test_data_02.expected,
-            ],
-            [
-                4,
-                test_data_04.value,
+            ], [
+                4, test_data_04.value,
                 "tmp.mediawiki",
                 "%(default)s",
                 test_data_04.expected,
             ],
         ])
     def test_normal(
-            self, tmpdir, test_id, table_text, filename,
-            table_name, expected_tabledata_list):
+            self, tmpdir, test_id, table_text, filename, table_name, expected_tabledata_list):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
