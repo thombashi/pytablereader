@@ -7,6 +7,7 @@
 from __future__ import unicode_literals
 
 import collections
+from textwrap import dedent
 
 import pytablereader as ptr
 import pytest
@@ -24,136 +25,129 @@ test_data_empty = Data(
     [
         TableData("tmp", [], []),
     ])
-
 test_data_01 = Data(
-    """hogehoge
-{| class="wikitable"
-! a
-! b
-! c
-|-
-| style="text-align:right"| 1
-| style="text-align:right"| 123.1
-| a
-|-
-| style="text-align:right"| 2
-| style="text-align:right"| 2.2
-| bb
-|-
-| style="text-align:right"| 3
-| style="text-align:right"| 3.3
-| ccc
-|}
-""",
+    dedent("""\
+        hogehoge
+        {| class="wikitable"
+        ! a
+        ! b
+        ! c
+        |-
+        | style="text-align:right"| 1
+        | style="text-align:right"| 123.1
+        | a
+        |-
+        | style="text-align:right"| 2
+        | style="text-align:right"| 2.2
+        | bb
+        |-
+        | style="text-align:right"| 3
+        | style="text-align:right"| 3.3
+        | ccc
+        |}
+        """),
     [
-        TableData(
-            table_name="mediawiki1",
-            header_list=['a', 'b', 'c'],
-            record_list=[
-                ['1', '123.1', 'a'],
-                ['2', '2.2', 'bb'],
-                ['3', '3.3', 'ccc'],
-            ]),
+        TableData(table_name="mediawiki1",
+                  header_list=['a', 'b', 'c'],
+                  record_list=[
+                      ['1', '123.1', 'a'],
+                      ['2', '2.2', 'bb'],
+                      ['3', '3.3', 'ccc'],
+                  ]),
     ])
-
 test_data_02 = Data(
-    """{| class="wikitable"
-|+tablename
-! a
-! b
-! c
-|-
-| style="text-align:right"| 1
-| style="text-align:right"| 123.1
-| a
-|-
-| style="text-align:right"| 2
-| style="text-align:right"| 2.2
-| bb
-|-
-| style="text-align:right"| 3
-| style="text-align:right"| 3.3
-| ccc
-|}
-""",
+    dedent("""\
+        {| class="wikitable"
+        |+tablename
+        ! a
+        ! b
+        ! c
+        |-
+        | style="text-align:right"| 1
+        | style="text-align:right"| 123.1
+        | a
+        |-
+        | style="text-align:right"| 2
+        | style="text-align:right"| 2.2
+        | bb
+        |-
+        | style="text-align:right"| 3
+        | style="text-align:right"| 3.3
+        | ccc
+        |}
+        """),
     [
-        TableData(
-            table_name="tablename",
-            header_list=['a', 'b', 'c'],
-            record_list=[
-                ['1', '123.1', 'a'],
-                ['2', '2.2', 'bb'],
-                ['3', '3.3', 'ccc'],
-            ]),
+        TableData(table_name="tablename",
+                  header_list=['a', 'b', 'c'],
+                  record_list=[
+                      ['1', '123.1', 'a'],
+                      ['2', '2.2', 'bb'],
+                      ['3', '3.3', 'ccc'],
+                  ]),
     ])
-
-
 test_data_04 = Data(
-    """foobar
-{| class="wikitable"
-|+tablename
-! a
-! b
-! c
-|-
-| style="text-align:right"| 1
-| style="text-align:right"| 123.1
-| a
-|-
-| style="text-align:right"| 2
-| style="text-align:right"| 2.2
-| bb
-|-
-| style="text-align:right"| 3
-| style="text-align:right"| 3.3
-| ccc
-|}
-{| class="wikitable"
-! a
-! b
-|-
-| style="text-align:right"| 1
-| style="text-align:right"| 123.1
-|-
-| style="text-align:right"| 2
-| style="text-align:right"| 2.2
-|-
-| style="text-align:right"| 3
-| style="text-align:right"| 3.3
-|}
-hogehoge
-""",
+    dedent("""\
+        foobar
+        {| class="wikitable"
+        |+tablename
+        ! a
+        ! b
+        ! c
+        |-
+        | style="text-align:right"| 1
+        | style="text-align:right"| 123.1
+        | a
+        |-
+        | style="text-align:right"| 2
+        | style="text-align:right"| 2.2
+        | bb
+        |-
+        | style="text-align:right"| 3
+        | style="text-align:right"| 3.3
+        | ccc
+        |}
+        {| class="wikitable"
+        ! a
+        ! b
+        |-
+        | style="text-align:right"| 1
+        | style="text-align:right"| 123.1
+        |-
+        | style="text-align:right"| 2
+        | style="text-align:right"| 2.2
+        |-
+        | style="text-align:right"| 3
+        | style="text-align:right"| 3.3
+        |}
+        hogehoge
+        """),
     [
-        TableData(
-            table_name="tmp_tablename",
-            header_list=['a', 'b', 'c'],
-            record_list=[
-                ['1', '123.1', 'a'],
-                ['2', '2.2', 'bb'],
-                ['3', '3.3', 'ccc'],
-            ]),
-        TableData(
-            table_name="tmp_mediawiki2",
-            header_list=['a', 'b'],
-            record_list=[
-                ['1', '123.1'],
-                ['2', '2.2'],
-                ['3', '3.3'],
-            ]),
+        TableData(table_name="tmp_tablename",
+                  header_list=['a', 'b', 'c'],
+                  record_list=[
+                      ['1', '123.1', 'a'],
+                      ['2', '2.2', 'bb'],
+                      ['3', '3.3', 'ccc'],
+                  ]),
+        TableData(table_name="tmp_mediawiki2",
+                  header_list=['a', 'b'],
+                  record_list=[
+                      ['1', '123.1'],
+                      ['2', '2.2'],
+                      ['3', '3.3'],
+                  ]),
     ])
-
 test_empty_data_00 = "= empty table ="
-
-test_empty_data_01 = """
-<html>
-  <head>
-    header
-  </head>
-  <body>
-    hogehoge
-  </body>
-</html>
-"""
+test_empty_data_01 = dedent("""\
+    <html>
+    <head>
+        header
+    </head>
+    <body>
+        hogehoge
+    </body>
+    </html>
+    """)
 
 
 @pytest.mark.skipif("SKIP_TEST is True")
