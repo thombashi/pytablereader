@@ -229,33 +229,27 @@ class Test_CsvTableFileLoader_load(object):
                 0, test_data_00.value,
                 "tmp.csv", [],
                 test_data_00.expected,
-            ],
-            [
+            ], [
                 1, test_data_01.value,
                 "hoge/foo_bar.csv", ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
-            ],
-            [
+            ], [
                 2, test_data_02.value,
                 "hoge/foo_bar.csv", ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
-            ],
-            [
+            ], [
                 3, test_data_03.value,
                 "tmp.csv", [],
                 test_data_03.expected,
-            ],
-            [
+            ], [
                 4, test_data_04.value,
                 "tmp.csv", [],
                 test_data_04.expected,
-            ],
-            [
+            ], [
                 5, test_data_05.value,
                 "tmp.csv", [],
                 test_data_05.expected,
-            ],
-            [
+            ], [
                 6, test_data_06.value,
                 "tmp.csv", [],
                 test_data_06.expected,
@@ -310,23 +304,20 @@ class Test_CsvTableFileLoader_load(object):
                 "",
                 "hoge.csv", [],
                 ptr.DataError,
-            ],
-            [
+            ], [
                 "\n".join([
                     '"attr_a","attr_b","attr_c"',
                 ]),
                 "hoge.csv", [],
                 ptr.DataError,
-            ],
-            [
+            ], [
                 "\n".join([
                 ]),
                 "hoge.csv", ["attr_a", "attr_b", "attr_c"],
                 ptr.DataError,
             ],
         ])
-    def test_exception(
-            self, tmpdir, table_text, filename, header_list, expected):
+    def test_exception(self, tmpdir, table_text, filename, header_list, expected):
         p_csv = tmpdir.join(filename)
 
         with io.open(str(p_csv), "w", encoding="utf8") as f:
@@ -345,8 +336,7 @@ class Test_CsvTableFileLoader_load(object):
             ["", [], ptr.InvalidFilePathError],
             [None, [], ptr.InvalidFilePathError],
         ])
-    def test_null(
-            self, tmpdir, filename, header_list, expected):
+    def test_null(self, tmpdir, filename, header_list, expected):
 
         loader = ptr.CsvTableFileLoader(filename)
         loader.header_list = header_list
@@ -395,18 +385,15 @@ class Test_CsvTableTextLoader_load(object):
                 test_data_00.value,
                 "tmp", [],
                 test_data_00.expected,
-            ],
-            [
+            ], [
                 test_data_01.value,
                 "foo_bar", ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
-            ],
-            [
+            ], [
                 test_data_02.value,
                 "foo_bar", ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
-            ],
-            [
+            ], [
                 test_data_03.value,
                 "tmp", [],
                 test_data_03.expected,
@@ -431,23 +418,20 @@ class Test_CsvTableTextLoader_load(object):
                 "",
                 "hoge", [],
                 ValueError,
-            ],
-            [
+            ], [
                 "\n".join([
                     '"attr_a","attr_b","attr_c"',
                 ]),
                 "hoge", [],
                 ptr.DataError,
-            ],
-            [
+            ], [
                 "\n".join([
                 ]),
                 "hoge", ["attr_a", "attr_b", "attr_c"],
                 ValueError,
             ],
         ])
-    def test_exception_insufficient_data(
-            self, table_text, table_name, header_list, expected):
+    def test_exception_insufficient_data(self, table_text, table_name, header_list, expected):
         loader = ptr.CsvTableTextLoader(table_text)
         loader.table_name = table_name
         loader.header_list = header_list

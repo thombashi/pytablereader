@@ -148,18 +148,15 @@ class Test_TsvTableFileLoader_load(object):
                 0, test_data_00.value,
                 "tmp.tsv", [],
                 test_data_00.expected,
-            ],
-            [
+            ], [
                 1, test_data_01.value,
                 "hoge/foo_bar.tsv", ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
-            ],
-            [
+            ], [
                 2, test_data_02.value,
                 "hoge/foo_bar.tsv", ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
-            ],
-            [
+            ], [
                 3, test_data_03.value,
                 "tmp.tsv", [],
                 test_data_03.expected,
@@ -188,15 +185,13 @@ class Test_TsvTableFileLoader_load(object):
                 "",
                 "hoge.tsv", [],
                 ptr.DataError,
-            ],
-            [
+            ], [
                 "\n".join([
                     '"attr_a"\t"attr_b"\t"attr_c"',
                 ]),
                 "hoge.tsv", [],
                 ptr.DataError,
-            ],
-            [
+            ], [
                 "\n".join([
                 ]),
                 "hoge.tsv", ["attr_a", "attr_b", "attr_c"],
@@ -270,18 +265,15 @@ class Test_TsvTableTextLoader_load(object):
                 test_data_00.value,
                 "tmp", [],
                 test_data_00.expected,
-            ],
-            [
+            ], [
                 test_data_01.value,
                 "foo_bar", ["attr_a", "attr_b", "attr_c"],
                 test_data_01.expected,
-            ],
-            [
+            ], [
                 test_data_02.value,
                 "foo_bar", ["attr_a", "attr_b", "attr_c"],
                 test_data_02.expected,
-            ],
-            [
+            ], [
                 test_data_03.value,
                 "tmp", [],
                 test_data_03.expected,

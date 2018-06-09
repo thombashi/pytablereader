@@ -377,8 +377,7 @@ class Test_JsonTableFileLoader_load(object):
                 "[]",
                 "tmp.json",
                 ptr.DataError,
-            ],
-            [
+            ], [
                 """[
                     {"attr_b": 4, "attr_c": "a", "attr_a": {"aaa": 1}}
                 ]""",
@@ -474,8 +473,7 @@ class Test_JsonTableTextLoader_load(object):
         [
             "[]",
             ptr.DataError,
-        ],
-        [
+        ], [
             """[
                 {"attr_b": 4, "attr_c": "a", "attr_a": {"aaa": 1}}
             ]""",

@@ -100,8 +100,7 @@ class Test_LtsvTableFileLoader_load(object):
             test_data_00.expected,
         ],
     ])
-    def test_normal(
-            self, tmpdir, test_id, table_text, filename, expected):
+    def test_normal(self, tmpdir, test_id, table_text, filename, expected):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
@@ -149,9 +148,7 @@ class Test_LtsvTableFileLoader_load(object):
         ["", [], ptr.InvalidFilePathError],
         [None, [], ptr.InvalidFilePathError],
     ])
-    def test_null(
-            self, tmpdir, filename, header_list, expected):
-
+    def test_null(self, tmpdir, filename, header_list, expected):
         loader = ptr.LtsvTableFileLoader(filename)
         loader.header_list = header_list
 
