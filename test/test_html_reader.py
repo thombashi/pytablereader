@@ -525,13 +525,11 @@ class Test_HtmlTableFileLoader_load(object):
         loader = ptr.HtmlTableFileLoader(file_path)
         loader.table_name = table_name
 
-        for tabledata, expected in zip(loader.load(), expected_tabledata_list):
+        for table_data in loader.load():
             print("--- test {} ---".format(test_id))
-            print("[expected]\n{}".format(ptw.dump_tabledata(expected)))
-            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
-            print("")
+            print("[actual]\n{}\n".format(ptw.dump_tabledata(table_data)))
 
-            assert tabledata.equals(expected)
+            assert table_data.in_tabledata_list(expected_tabledata_list)
 
     @pytest.mark.parametrize(["table_text", "filename", "expected"], [
         ["", "tmp.html", ptr.DataError],
@@ -576,10 +574,10 @@ class Test_HtmlTableTextLoader_load(object):
         loader = ptr.HtmlTableTextLoader(table_text)
         loader.table_name = table_name
 
-        for tabledata in loader.load():
-            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
+        for table_data in loader.load():
+            print("[actual]\n{}".format(ptw.dump_tabledata(table_data)))
 
-            assert tabledata.in_tabledata_list(expected_tabletuple_list)
+            assert table_data.in_tabledata_list(expected_tabletuple_list)
 
     @pytest.mark.parametrize(["table_text", "expected"], [
         ["", ptr.DataError],

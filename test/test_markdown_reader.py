@@ -298,11 +298,10 @@ class Test_MarkdownTableFileLoader_load(object):
         loader.table_name = table_name
 
         load = False
-        for tabledata, expected in zip(loader.load(), expected_tabledata_list):
+        for table_data in loader.load():
             print("--- test {} ---".format(test_id))
-            print("\n[tabledata]\n{}".format(ptw.dump_tabledata(tabledata)))
-            print("\n[expected]\n{}".format(ptw.dump_tabledata(expected)))
-            assert tabledata.equals(expected)
+            print("\n[actual]\n{}".format(ptw.dump_tabledata(table_data)))
+            assert table_data.in_tabledata_list(expected_tabledata_list)
             load = True
 
         assert load
@@ -358,14 +357,14 @@ class Test_MarkdownTableTextLoader_load(object):
         loader.table_name = table_name
 
         load = False
-        for tabledata in loader.load():
+        for table_data in loader.load():
             print("--- id: {} ---".format(test_id))
-            print("[tabledata]\n{}".format(tabledata))
+            print("[actual]\n{}".format(table_data))
             print("[expected]")
             for expected in expected_tabletuple_list:
                 print("    {}".format(expected))
             print("")
-            assert tabledata.in_tabledata_list(expected_tabletuple_list)
+            assert table_data.in_tabledata_list(expected_tabletuple_list)
 
             load = True
 

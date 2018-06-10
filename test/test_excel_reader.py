@@ -134,7 +134,7 @@ class Test_ExcelTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        ["table_name", "start_row", "expected_tabledata"],
+        ["table_name", "start_row", "expected_list"],
         [
             [
                 "%(sheet)s",
@@ -195,15 +195,13 @@ class Test_ExcelTableFileLoader_load(object):
                 ]
             ],
         ])
-    def test_normal(
-            self, valid_excel_file_path,
-            table_name, start_row, expected_tabledata):
+    def test_normal(self, valid_excel_file_path, table_name, start_row, expected_list):
         loader = ptr.ExcelTableFileLoader(valid_excel_file_path)
         loader.table_name = table_name
         loader.start_row = start_row
 
-        for tabledata, expected in zip(loader.load(), expected_tabledata):
-            assert tabledata.equals(expected)
+        for table_data in loader.load():
+            assert table_data.in_tabledata_list(expected_list)
 
     @pytest.mark.parametrize(
         ["table_name", "start_row", "expected"],

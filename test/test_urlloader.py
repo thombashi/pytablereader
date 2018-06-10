@@ -158,11 +158,8 @@ class Test_TableUrlLoader_load(object):
 
         assert loader.format_name == "csv"
 
-        for tabledata, expected in zip(loader.load(), expeced_list):
-            print("[expected]\n{}".format(ptw.dump_tabledata(expected)))
-            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
-
-            assert tabledata.equals(expected)
+        for table_data in loader.load():
+            assert table_data.in_tabledata_list(expeced_list)
 
     @responses.activate
     @pytest.mark.parametrize(["url", "format_name"], [
@@ -193,8 +190,8 @@ class Test_TableUrlLoader_load(object):
 
         assert loader.format_name == "json"
 
-        for tabledata, expected in zip(loader.load(), expeced_list):
-            assert tabledata == expected
+        for table_data in loader.load():
+            assert table_data.in_tabledata_list(expeced_list)
 
     @responses.activate
     def test_normal_excel(self):
@@ -233,5 +230,5 @@ class Test_TableUrlLoader_load(object):
 
         assert loader.format_name == "excel"
 
-        for tabledata, expected in zip(loader.load(), expeced_list):
-            assert tabledata == expected
+        for table_data in loader.load():
+            assert table_data.in_tabledata_list(expeced_list)

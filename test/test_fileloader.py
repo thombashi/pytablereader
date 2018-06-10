@@ -196,8 +196,8 @@ class Test_TableFileLoader_load(object):
 
         assert loader.format_name == "json"
 
-        for tabledata, expected in zip(loader.load(), expeced_list):
-            assert tabledata == expected
+        for table_data, expected in zip(loader.load(), expeced_list):
+            assert table_data.equals(expected)
 
     def test_normal_excel(self, tmpdir):
         file_path = '/tmp/valid/test/data/validdata.xlsx'
