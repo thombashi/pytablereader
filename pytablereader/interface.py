@@ -12,6 +12,7 @@ import threading
 import path
 import six
 import typepy
+from dataproperty import DataPropertyExtractor
 from pytablereader import InvalidTableNameError
 
 from ._constant import SourceType
@@ -66,12 +67,19 @@ class TableLoader(TableLoaderInterface):
     def quoting_flags(self):
         return self.__quoting_flags
 
+    @property
+    def dp_extractor(self):
+        return self.__dp_extractor
+
     def __init__(self, source, quoting_flags):
         self.table_name = tnt.DEFAULT
         self.source = source
         self.__quoting_flags = quoting_flags
         self._validator = None
         self._logger = None
+
+        self.__dp_extractor = DataPropertyExtractor()
+        self.__dp_extractor.quoting_flags = self.quoting_flags
 
     def get_format_key(self):
         return "{:s}{:d}".format(self.format_name, self.__get_format_table_count())
