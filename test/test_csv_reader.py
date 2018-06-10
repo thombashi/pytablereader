@@ -269,7 +269,7 @@ class Test_CsvTableFileLoader_load(object):
             print("test-id={}".format(test_id))
             print(ptw.dump_tabledata(tabledata))
 
-            assert tabledata in expected
+            assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "encoding", "header_list", "expected"],
@@ -409,7 +409,7 @@ class Test_CsvTableTextLoader_load(object):
             for e in expected:
                 print(ptw.dump_tabledata(e))
 
-            assert tabledata in expected
+            assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "header_list", "expected"],

@@ -97,8 +97,8 @@ class SingleJsonTableConverterA(SingleJsonTableConverterBase):
         yield TableData(
             table_name=self._make_table_name(),
             header_list=sorted(attr_name_set),
-            record_list=self._buffer,
-            quoting_flags=self._loader.quoting_flags)
+            row_list=self._buffer,
+            dp_extractor=self._loader.dp_extractor)
 
 
 class SingleJsonTableConverterB(SingleJsonTableConverterBase):
@@ -130,8 +130,8 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
         yield TableData(
             table_name=self._make_table_name(),
             header_list=header_list,
-            record_list=zip(*[self._buffer.get(header) for header in header_list]),
-            quoting_flags=self._loader.quoting_flags)
+            row_list=zip(*[self._buffer.get(header) for header in header_list]),
+            dp_extractor=self._loader.dp_extractor)
 
 
 class SingleJsonTableConverterC(SingleJsonTableConverterBase):
@@ -158,8 +158,8 @@ class SingleJsonTableConverterC(SingleJsonTableConverterBase):
         yield TableData(
             table_name=self._make_table_name(),
             header_list=["key", "value"],
-            record_list=[record for record in self._buffer.items()],
-            quoting_flags=self._loader.quoting_flags)
+            row_list=[record for record in self._buffer.items()],
+            dp_extractor=self._loader.dp_extractor)
 
 
 class MultipleJsonTableConverterBase(JsonConverter):
@@ -214,8 +214,8 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
             yield TableData(
                 table_name=self._make_table_name(),
                 header_list=sorted(attr_name_set),
-                record_list=json_record_list,
-                quoting_flags=self._loader.quoting_flags)
+                row_list=json_record_list,
+                dp_extractor=self._loader.dp_extractor)
 
 
 class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
@@ -253,8 +253,8 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
             yield TableData(
                 table_name=self._make_table_name(),
                 header_list=header_list,
-                record_list=zip(*[json_record_list.get(header) for header in header_list]),
-                quoting_flags=self._loader.quoting_flags)
+                row_list=zip(*[json_record_list.get(header) for header in header_list]),
+                dp_extractor=self._loader.dp_extractor)
 
 
 class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
@@ -287,8 +287,8 @@ class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
             yield TableData(
                 table_name=self._make_table_name(),
                 header_list=["key", "value"],
-                record_list=[record for record in json_record_list.items()],
-                quoting_flags=self._loader.quoting_flags)
+                row_list=[record for record in json_record_list.items()],
+                dp_extractor=self._loader.dp_extractor)
 
 
 class JsonTableFormatter(TableFormatter):

@@ -365,7 +365,7 @@ class Test_JsonTableFileLoader_load(object):
         for tabledata in loader.load():
             print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
 
-            assert tabledata in expected_tabletuple_list
+            assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True
 
         assert load
@@ -464,7 +464,7 @@ class Test_JsonTableTextLoader_load(object):
         for tabledata in loader.load():
             print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
 
-            assert tabledata in expected_tabletuple_list
+            assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True
 
         assert load

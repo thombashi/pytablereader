@@ -127,7 +127,7 @@ class Test_TableFileLoader_load(object):
             print(ptw.dump_tabledata(expected))
             print(ptw.dump_tabledata(tabledata))
 
-            assert tabledata == expected
+            assert tabledata.equals(expected)
 
     def test_normal_ssv(self,  tmpdir):
         p_file_path = Path(six.text_type(tmpdir.join("testdata.txt")))
@@ -166,7 +166,7 @@ class Test_TableFileLoader_load(object):
             print(ptw.dump_tabledata(expected))
             print(ptw.dump_tabledata(tabledata))
 
-            assert tabledata == expected
+            assert tabledata.equals(expected)
 
     @pytest.mark.parametrize(["file_path", "format_name"], [
         ['/tmp/valid/test/data/validdata.json', None],
@@ -208,7 +208,7 @@ class Test_TableFileLoader_load(object):
             TableData(
                 table_name='testsheet1',
                 header_list=['a1', 'b1', 'c1'],
-                record_list=[
+                row_list=[
                     ['aa1', 'ab1', 'ac1'],
                     [1.0, 1.1, 'a'],
                     [2.0, 2.2, 'bb'],
@@ -217,7 +217,7 @@ class Test_TableFileLoader_load(object):
             TableData(
                 table_name='testsheet3',
                 header_list=['a3', 'b3', 'c3'],
-                record_list=[
+                row_list=[
                     ['aa3', 'ab3', 'ac3'],
                     [4.0, 1.1, 'a'],
                     [5.0, '', 'bb'],

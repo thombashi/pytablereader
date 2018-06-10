@@ -114,7 +114,7 @@ class Test_LtsvTableFileLoader_load(object):
             print("[expected]\n{}".format(ptw.dump_tabledata(expected)))
             print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
 
-            assert tabledata == expected
+            assert tabledata.equals(expected)
 
     @pytest.mark.parametrize(["table_text", "filename", "expected"], [
         [
@@ -204,7 +204,7 @@ class Test_LtsvTableTextLoader_load(object):
             print("[expected]: {}".format(ptw.dump_tabledata(expected)))
             print("[actual]: {}".format(ptw.dump_tabledata(tabledata)))
 
-            assert tabledata == expected
+            assert tabledata.equals(expected)
 
     @pytest.mark.parametrize(["table_text", "table_name", "expected"], [
         ['"":"invalid"\ta:1', "dummy", InvalidHeaderNameError],

@@ -38,7 +38,7 @@ class SqliteTableFormatter(TableFormatter):
 
             yield TableData(
                 table, attr_name_list, data_matrix,
-                quoting_flags=self._loader.quoting_flags)
+                dp_extractor=self._loader.dp_extractor)
 
     def _make_table_name(self):
         return self._loader._expand_table_name_format(

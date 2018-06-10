@@ -179,7 +179,7 @@ class Test_SqliteFileLoader_load(object):
             print("test-id={}".format(test_id))
             print(ptw.dump_tabledata(tabledata))
 
-            assert tabledata in expected
+            assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
         ["filename", "header_list", "expected"],

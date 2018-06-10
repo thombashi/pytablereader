@@ -60,7 +60,7 @@ test_data_01 = Data(
     expected=[
         TableData(table_name="title_html1",
                   header_list=['a', 'b', 'c'],
-                  record_list=[
+                  row_list=[
                       [1, '123.1', 'a'],
                       [2, '2.2', 'bb'],
                       [3, '3.3', 'ccc'],
@@ -97,7 +97,7 @@ test_data_02 = Data(
     expected=[
         TableData(table_name="tablename",
                   header_list=['a', 'b', 'c'],
-                  record_list=[
+                  row_list=[
                       [1, '123.1', 'a'],
                       [2, '2.2', 'bb'],
                       [3, '3.3', 'ccc'],
@@ -184,19 +184,19 @@ test_data_04 = Data(
     expected=[
         TableData(table_name="test_data_04_tablename",
                   header_list=['a', 'b', 'c'],
-                  record_list=[
+                  row_list=[
                       [1, '123.1', 'a'],
                       [2, '2.2', 'bb'],
                       [3, '3.3', 'ccc'],
                   ]),
         TableData(table_name="test_data_04_html2",
                   header_list=[],
-                  record_list=[
+                  row_list=[
                       ['link text'],
                   ]),
         TableData(table_name="test_data_04_html3",
                   header_list=['a', 'b'],
-                  record_list=[
+                  row_list=[
                       [1, '123.1'],
                       [2, '2.2'],
                       [3, '3.3'],
@@ -236,7 +236,7 @@ test_data_05 = Data(
     expected=[
         TableData(table_name="captiontest",
                   header_list=['a', 'b', 'c'],
-                  record_list=[
+                  row_list=[
                       [1, '123.1', 'a'],
                       [2, '2.2', 'bb'],
                       [3, '3.3', 'ccc'],
@@ -272,7 +272,7 @@ test_data_06 = Data(
     expected=[
         TableData(table_name="test_data_06_html1",
                   header_list=["Case", "Singular", "Plural"],
-                  record_list=[
+                  row_list=[
                       ["nominative", "val01", "val02"],
                       ["genitive", "val11", "val12"],
                       ["dative", "val21", "val22"],
@@ -311,7 +311,7 @@ test_data_07 = Data(
     expected=[
         TableData(table_name="html1",
                   header_list=[],
-                  record_list=[
+                  row_list=[
                       ["Deutsch", "English", "Español", "Français"],
                       ["Italiano", "日本語", "한국어", "Português"],
                       ["Pусский", "简体中文", "繁體中文", ""],
@@ -531,7 +531,7 @@ class Test_HtmlTableFileLoader_load(object):
             print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
             print("")
 
-            assert tabledata == expected
+            assert tabledata.equals(expected)
 
     @pytest.mark.parametrize(["table_text", "filename", "expected"], [
         ["", "tmp.html", ptr.DataError],
@@ -579,7 +579,7 @@ class Test_HtmlTableTextLoader_load(object):
         for tabledata in loader.load():
             print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
 
-            assert tabledata in expected_tabletuple_list
+            assert tabledata.in_tabledata_list(expected_tabletuple_list)
 
     @pytest.mark.parametrize(["table_text", "expected"], [
         ["", ptr.DataError],

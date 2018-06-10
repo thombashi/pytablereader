@@ -49,7 +49,7 @@ class HtmlTableFormatter(TableFormatter):
             except ValueError:
                 continue
 
-            if table_data.is_empty_record():
+            if table_data.is_empty_rows():
                 continue
 
             self.__logger.logging_table(table_data)
@@ -119,4 +119,4 @@ class HtmlTableFormatter(TableFormatter):
 
         return TableData(
             self._make_table_name(), header_list, data_matrix,
-            quoting_flags=self._loader.quoting_flags)
+            dp_extractor=self._loader.dp_extractor)

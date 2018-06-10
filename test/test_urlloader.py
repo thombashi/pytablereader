@@ -162,7 +162,7 @@ class Test_TableUrlLoader_load(object):
             print("[expected]\n{}".format(ptw.dump_tabledata(expected)))
             print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
 
-            assert tabledata == expected
+            assert tabledata.equals(expected)
 
     @responses.activate
     @pytest.mark.parametrize(["url", "format_name"], [
@@ -213,7 +213,7 @@ class Test_TableUrlLoader_load(object):
             TableData(
                 table_name='testsheet1',
                 header_list=['a1', 'b1', 'c1'],
-                record_list=[
+                row_list=[
                     ['aa1', 'ab1', 'ac1'],
                     [1.0, 1.1, 'a'],
                     [2.0, 2.2, 'bb'],
@@ -222,7 +222,7 @@ class Test_TableUrlLoader_load(object):
             TableData(
                 table_name='testsheet3',
                 header_list=['a3', 'b3', 'c3'],
-                record_list=[
+                row_list=[
                     ['aa3', 'ab3', 'ac3'],
                     [4.0, 1.1, 'a'],
                     [5.0, '', 'bb'],

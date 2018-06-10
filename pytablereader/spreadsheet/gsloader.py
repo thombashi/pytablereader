@@ -105,15 +105,15 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
                 value_matrix = self.__all_values[self._get_start_row_idx():]
                 try:
                     header_list = value_matrix[0]
-                    record_list = value_matrix[1:]
+                    row_list = value_matrix[1:]
                 except IndexError:
                     continue
 
                 self.inc_table_count()
 
                 yield TableData(
-                    self.make_table_name(), header_list, record_list,
-                    quoting_flags=self.quoting_flags)
+                    self.make_table_name(), header_list, row_list,
+                    dp_extractor=self._loader.dp_extractor)
         except gspread.exceptions.SpreadsheetNotFound:
             raise OpenError("spreadsheet '{}' not found".format(self.title))
 

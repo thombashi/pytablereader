@@ -143,7 +143,7 @@ class Test_ExcelTableFileLoader_load(object):
                     TableData(
                         table_name="boolsheet",
                         header_list=["true", "false", "tf", "lost"],
-                        record_list=[
+                        row_list=[
                             [True, False, True, True],
                             [True, False, False, ""],
                             [True, False, False, False],
@@ -151,7 +151,7 @@ class Test_ExcelTableFileLoader_load(object):
                     TableData(
                         table_name="testsheet1",
                         header_list=["a1", "b1", "c1"],
-                        record_list=[
+                        row_list=[
                             ["aa1", "ab1", "ac1"],
                             [1.0, 1.1, "a"],
                             [2.0, 2.2, "bb"],
@@ -160,7 +160,7 @@ class Test_ExcelTableFileLoader_load(object):
                     TableData(
                         table_name="testsheet3",
                         header_list=["a3", "b3", "c3"],
-                        record_list=[
+                        row_list=[
                             ["aa3", "ab3", "ac3"],
                             [4.0, 1.1, "a"],
                             [5.0, "", "bb"],
@@ -174,11 +174,11 @@ class Test_ExcelTableFileLoader_load(object):
                     TableData(
                         table_name="tmp_boolsheet",
                         header_list=["TRUE", "FALSE", "False", "False"],
-                        record_list=[]),
+                        row_list=[]),
                     TableData(
                         table_name="tmp_testsheet1",
                         header_list=["aa1", "ab1", "ac1"],
-                        record_list=[
+                        row_list=[
                             [1.0, 1.1, "a"],
                             [2.0, 2.2, "bb"],
                             [3.0, 3.3, "cc"],
@@ -186,7 +186,7 @@ class Test_ExcelTableFileLoader_load(object):
                     TableData(
                         table_name="tmp_testsheet3",
                         header_list=["a3", "b3", "c3"],
-                        record_list=[
+                        row_list=[
                             ["aa3", "ab3", "ac3"],
                             [4.0, 1.1, "a"],
                             [5.0, "", "bb"],
@@ -203,7 +203,7 @@ class Test_ExcelTableFileLoader_load(object):
         loader.start_row = start_row
 
         for tabledata, expected in zip(loader.load(), expected_tabledata):
-            assert tabledata == expected
+            assert tabledata.equals(expected)
 
     @pytest.mark.parametrize(
         ["table_name", "start_row", "expected"],

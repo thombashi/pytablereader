@@ -176,7 +176,7 @@ class Test_TsvTableFileLoader_load(object):
             print("test-id={}".format(test_id))
             print(ptw.dump_tabledata(tabledata))
 
-            assert tabledata in expected
+            assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
         ["table_text", "filename", "header_list", "expected"],
@@ -289,7 +289,7 @@ class Test_TsvTableTextLoader_load(object):
             for e in expected:
                 print(ptw.dump_tabledata(e))
 
-            assert tabledata in expected
+            assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "header_list", "expected"],

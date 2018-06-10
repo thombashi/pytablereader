@@ -38,7 +38,7 @@ test_data_01 = Data(
         TableData(
             table_name="markdown1",
             header_list=['a', 'b', 'c'],
-            record_list=[
+            row_list=[
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 [3, '3.3', 'ccc'],
@@ -57,7 +57,7 @@ test_data_02 = Data(
         TableData(
             table_name="markdown1",
             header_list=['a', 'b', 'c'],
-            record_list=[
+            row_list=[
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 [3, '3.3', 'ccc'],
@@ -83,7 +83,7 @@ test_data_04 = Data(
         TableData(
             table_name="tmp_markdown1",
             header_list=['a', 'b', 'c'],
-            record_list=[
+            row_list=[
                 [1, '123.1', 'a'],
                 [2, '2.2', 'bb'],
                 ['3', '3.3', 'ccc'],
@@ -91,7 +91,7 @@ test_data_04 = Data(
         TableData(
             table_name="tmp_markdown2",
             header_list=['a', 'b'],
-            record_list=[
+            row_list=[
                 [1, '123.1'],
                 [2, '2.2'],
                 ['3', '3.3'],
@@ -302,7 +302,7 @@ class Test_MarkdownTableFileLoader_load(object):
             print("--- test {} ---".format(test_id))
             print("\n[tabledata]\n{}".format(ptw.dump_tabledata(tabledata)))
             print("\n[expected]\n{}".format(ptw.dump_tabledata(expected)))
-            assert tabledata == expected
+            assert tabledata.equals(expected)
             load = True
 
         assert load
@@ -365,7 +365,7 @@ class Test_MarkdownTableTextLoader_load(object):
             for expected in expected_tabletuple_list:
                 print("    {}".format(expected))
             print("")
-            assert tabledata in expected_tabletuple_list
+            assert tabledata.in_tabledata_list(expected_tabletuple_list)
 
             load = True
 

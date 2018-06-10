@@ -24,14 +24,14 @@ except ImportError:
 class Test_TableData_as_dataframe(object):
 
     @pytest.mark.parametrize(
-        ["table_name", "header_list", "record_list"], [
+        ["table_name", "header_list", "row_list"], [
             ["normal", ["a", "b"], [[10, 11], [20, 21]]],
             ["normal", None, [[10, 11], [20, 21]]],
             ["normal", None, None],
         ])
-    def test_normal(self, table_name, header_list, record_list):
-        tabledata = TableData(table_name, header_list, record_list)
-        dataframe = pandas.DataFrame(record_list)
+    def test_normal(self, table_name, header_list, row_list):
+        tabledata = TableData(table_name, header_list, row_list)
+        dataframe = pandas.DataFrame(row_list)
         if typepy.is_not_empty_sequence(header_list):
             dataframe.columns = header_list
 
@@ -55,10 +55,10 @@ class Test_TableData_from_dataframe(object):
         expected = TableData(
             table_name="tablename",
             header_list=['id', 'value', 'name'],
-            record_list=[
+            row_list=[
                 [0, Decimal('0.1'), 'a'],
                 [1, Decimal('1.1'), 'bb'],
                 [2, Decimal('2.2'), 'ccc'],
             ])
 
-        assert TableData.from_dataframe(dataframe, "tablename") == expected
+        assert TableData.from_dataframe(dataframe, "tablename").equals(expected)
