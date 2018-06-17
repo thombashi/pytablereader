@@ -116,7 +116,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
 
                 yield TableData(
                     self.make_table_name(), header_list, row_list,
-                    dp_extractor=self._loader.dp_extractor)
+                    dp_extractor=self.dp_extractor)
         except gspread.exceptions.SpreadsheetNotFound:
             raise OpenError("spreadsheet '{}' not found".format(self.title))
 
