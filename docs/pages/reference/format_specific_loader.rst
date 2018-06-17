@@ -29,7 +29,7 @@ CSV Text Loader
     :exclude-members: source_type,get_format_key,make_table_name
     :show-inheritance:
 
-    
+
 HTML Loader Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -55,6 +55,16 @@ Json File Loader
 Json Text Loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. autoclass:: pytablereader.JsonTableTextLoader
+    :inherited-members:
+
+Line-delimited Json File Loader
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. autoclass:: pytablereader.JsonLinesTableFileLoader
+    :inherited-members:
+
+Line-delimited Json Text Loader
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. autoclass:: pytablereader.JsonLinesTableTextLoader
     :inherited-members:
 
 
