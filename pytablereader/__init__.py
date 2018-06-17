@@ -14,8 +14,8 @@ from ._constant import PatternMatch
 from ._logger import logger, set_log_level, set_logger
 from .csv.core import CsvTableFileLoader, CsvTableTextLoader
 from .error import (
-    HTTPError, InvalidFilePathError, LoaderNotFoundError, OpenError, PathError, ProxyError,
-    PypandocImportError, UrlError, ValidationError)
+    APIError, HTTPError, InvalidFilePathError, LoaderNotFoundError, OpenError, PathError,
+    ProxyError, PypandocImportError, UrlError, ValidationError)
 from .html.core import HtmlTableFileLoader, HtmlTableTextLoader
 from .json.core import JsonTableDictLoader, JsonTableFileLoader, JsonTableTextLoader
 from .loadermanager import TableFileLoader, TableUrlLoader

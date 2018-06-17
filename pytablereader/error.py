@@ -41,6 +41,12 @@ class OpenError(IOError):
     """
 
 
+class APIError(Exception):
+    """
+    Exception raised when failed to execute API requests.
+    """
+
+
 class LoaderNotFoundError(Exception):
     """
     Exception raised when loader not found.
