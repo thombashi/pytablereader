@@ -25,8 +25,8 @@ class Test_TableFileLoader_get_format_name_list(object):
         format_name_list = ptr.TableFileLoader.get_format_name_list()
 
         assert format_name_list == [
-            'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki',
-            'sqlite', 'ssv', 'tsv',
+            'csv', 'excel', 'html', 'json', 'json_lines', 'jsonl', 'ldjson', 'ltsv',
+            'markdown', 'mediawiki', 'ndjson', 'sqlite', 'ssv', 'tsv',
         ]
 
 
@@ -44,8 +44,11 @@ class Test_TableFileLoader_constructor(object):
         ["/tmp/validext.xlsx", None, ptr.ExcelTableFileLoader],
         ["/tmp/validext.html", None, ptr.HtmlTableFileLoader],
         ["/tmp/validext.json", None, ptr.JsonTableFileLoader],
+        ["/tmp/validext.jsonl", None, ptr.JsonLinesTableFileLoader],
+        ["/tmp/validext.ldjson", None, ptr.JsonLinesTableFileLoader],
         ["/tmp/validext.ltsv", None, ptr.LtsvTableFileLoader],
         ["/tmp/validext.md", None, ptr.MarkdownTableFileLoader],
+        ["/tmp/validext.ndjson", None, ptr.JsonLinesTableFileLoader],
         ["/tmp/validext.tsv", None, ptr.TsvTableFileLoader],
 
         ["/tmp/validext.txt", "csv", ptr.CsvTableFileLoader],
@@ -53,8 +56,12 @@ class Test_TableFileLoader_constructor(object):
         ["/tmp/validext.txt", "ssv", ptr.CsvTableFileLoader],
         ["/tmp/validext.txt", "html", ptr.HtmlTableFileLoader],
         ["/tmp/validext.txt", "json", ptr.JsonTableFileLoader],
+        ["/tmp/validext.txt", "jsonl", ptr.JsonLinesTableFileLoader],
+        ["/tmp/validext.txt", "json_lines", ptr.JsonLinesTableFileLoader],
+        ["/tmp/validext.txt", "ldjson", ptr.JsonLinesTableFileLoader],
         ["/tmp/invalidext.txt", "markdown", ptr.MarkdownTableFileLoader],
         ["/tmp/invalidext.txt", "mediawiki", ptr.MediaWikiTableFileLoader],
+        ["/tmp/validext.txt", "ndjson", ptr.JsonLinesTableFileLoader],
     ])
     def test_normal(self, tmpdir, file_path, format_name, expected):
         test_file_path = Path(six.text_type(tmpdir.join(

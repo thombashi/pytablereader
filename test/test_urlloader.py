@@ -23,8 +23,8 @@ class Test_TableUrlLoader_get_format_name_list(object):
         format_name_list = ptr.TableUrlLoader.get_format_name_list()
 
         assert format_name_list == [
-            'csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'ssv',
-            'tsv',
+            'csv', 'excel', 'html', 'json', 'json_lines', 'jsonl', 'ldjson', 'ltsv',
+            'markdown', 'mediawiki', 'ndjson', 'sqlite', 'ssv', 'tsv',
         ]
 
 
@@ -57,11 +57,20 @@ class Test_TableUrlLoader_constructor(object):
             "https://raw.githubusercontent.com/valid/test/data/validext.json",
             None, ptr.JsonTableTextLoader
         ], [
+            "https://raw.githubusercontent.com/valid/test/data/validext.jsonl",
+            None, ptr.JsonLinesTableTextLoader
+        ], [
+            "https://raw.githubusercontent.com/valid/test/data/validext.ldjson",
+            None, ptr.JsonLinesTableTextLoader
+        ], [
             "https://github.com/validext.ltsv",
             None, ptr.LtsvTableTextLoader
         ], [
             "https://github.com/validext.md",
             None, ptr.MarkdownTableTextLoader
+        ], [
+            "https://raw.githubusercontent.com/valid/test/data/validext.ndjson",
+            None, ptr.JsonLinesTableTextLoader
         ], [
             "https://raw.githubusercontent.com/valid/test/data/validext.sqlite",
             None, ptr.SqliteFileLoader
@@ -75,8 +84,12 @@ class Test_TableUrlLoader_constructor(object):
         ["https://github.com/validext.txt", "csv", ptr.CsvTableTextLoader],
         ["https://github.com/validext.txt", "html", ptr.HtmlTableTextLoader],
         ["https://github.com/validext.txt", "json", ptr.JsonTableTextLoader],
+        ["https://github.com/validext.txt", "jsonl", ptr.JsonLinesTableTextLoader],
+        ["https://github.com/validext.txt", "json_lines", ptr.JsonLinesTableTextLoader],
+        ["https://github.com/validext.txt", "ldjson", ptr.JsonLinesTableTextLoader],
         ["https://github.com/invalidext.txt", "markdown", ptr.MarkdownTableTextLoader],
         ["https://github.com/invalidext.txt", "mediawiki", ptr.MediaWikiTableTextLoader],
+        ["https://github.com/validext.txt", "ndjson", ptr.JsonLinesTableTextLoader],
         ["https://github.com/validext.txt", "tsv", ptr.TsvTableTextLoader],
     ])
     def test_normal(self, value, format_name, expected):
@@ -179,18 +192,26 @@ class Test_TableUrlLoader_load(object):
             status=200)
         expeced_list = [
             TableData(
-                "json1",
+                "url_loader",
                 ["attr_a", "attr_b", "attr_c"],
                 [
                     {'attr_a': 1},
                     {'attr_b': 2.1, 'attr_c': 'bb'},
                 ]),
         ]
-        loader = ptr.TableUrlLoader(url, format_name)
 
+        loader = ptr.TableUrlLoader(url, format_name)
         assert loader.format_name == "json"
 
+        loader.table_name = "url_loader"
+
         for table_data in loader.load():
+            print("{} {}".format(table_data, ptw.dump_tabledata(table_data)))
+            print(table_data.row_list)
+            print("[expected]")
+            for expeced in expeced_list:
+                print(ptw.dump_tabledata(expeced))
+
             assert table_data.in_tabledata_list(expeced_list)
 
     @responses.activate

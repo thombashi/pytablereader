@@ -26,7 +26,6 @@ test_data_empty = Data(
     [
         TableData("tmp", [], []),
     ])
-
 test_data_single_01 = Data(
     dedent("""\
         [

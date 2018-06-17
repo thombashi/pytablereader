@@ -13,6 +13,7 @@ from .._logger import logger
 from ..csv.core import CsvTableFileLoader
 from ..html.core import HtmlTableFileLoader
 from ..json.core import JsonTableFileLoader
+from ..jsonlines.core import JsonLinesTableFileLoader
 from ..ltsv.core import LtsvTableFileLoader
 from ..markdown.core import MarkdownTableFileLoader
 from ..mediawiki.core import MediaWikiTableFileLoader
@@ -50,18 +51,21 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from the file extension to loading file.
         Supported file extensions are as follows:
 
-            ==========================  =====================================
+            ==========================  =======================================
             Extension                   Loader
-            ==========================  =====================================
+            ==========================  =======================================
             ``"csv"``                   :py:class:`~.CsvTableFileLoader`
             ``"xls"``/``"xlsx"``        :py:class:`~.ExcelTableFileLoader`
             ``"htm"``/``"html"``        :py:class:`~.HtmlTableFileLoader`
             ``"json"``                  :py:class:`~.JsonTableFileLoader`
+            ``"jsonl"``                 :py:class:`~.JsonLinesTableFileLoader`
+            ``"ldjson"``                :py:class:`~.JsonLinesTableFileLoader`
             ``"ltsv"``                  :py:class:`~.LtsvTableFileLoader`
             ``"md"``                    :py:class:`~.MarkdownTableFileLoader`
+            ``"ndjson"``                :py:class:`~.JsonLinesTableFileLoader`
             ``"sqlite"``/``"sqlite3"``  :py:class:`~.SqliteFileLoader`
             ``"tsv"``                   :py:class:`~.TsvTableFileLoader`
-            ==========================  =====================================
+            ==========================  =======================================
 
         :return:
             Loader that coincides with the file extension of the
@@ -80,20 +84,24 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         Create a file loader from a format name.
         Supported file formats are as follows:
 
-            ===============  ======================================
+            ================  ======================================
             Format name               Loader
-            ===============  ======================================
-            ``"csv"``        :py:class:`~.CsvTableFileLoader`
-            ``"excel"``      :py:class:`~.ExcelTableFileLoader`
-            ``"html"``       :py:class:`~.HtmlTableFileLoader`
-            ``"json"``       :py:class:`~.JsonTableFileLoader`
-            ``"ltsv"``       :py:class:`~.LtsvTableFileLoader`
-            ``"markdown"``   :py:class:`~.MarkdownTableFileLoader`
-            ``"mediawiki"``  :py:class:`~.MediaWikiTableFileLoader`
-            ``"sqlite"``     :py:class:`~.SqliteFileLoader`
-            ``"ssv"``        :py:class:`~.CsvTableFileLoader`
-            ``"tsv"``        :py:class:`~.TsvTableFileLoader`
-            ===============  ======================================
+            ================  ======================================
+            ``"csv"``         :py:class:`~.CsvTableFileLoader`
+            ``"excel"``       :py:class:`~.ExcelTableFileLoader`
+            ``"html"``        :py:class:`~.HtmlTableFileLoader`
+            ``"json"``        :py:class:`~.JsonTableFileLoader`
+            ``"json"``        :py:class:`~.JsonTableFileLoader`
+            ``"json_lines"``  :py:class:`~.JsonTableFileLoader`
+            ``"jsonl"``       :py:class:`~.JsonLinesTableFileLoader`
+            ``"ltsv"``        :py:class:`~.LtsvTableFileLoader`
+            ``"markdown"``    :py:class:`~.MarkdownTableFileLoader`
+            ``"mediawiki"``   :py:class:`~.MediaWikiTableFileLoader`
+            ``"ndjson"``      :py:class:`~.JsonLinesTableFileLoader`
+            ``"sqlite"``      :py:class:`~.SqliteFileLoader`
+            ``"ssv"``         :py:class:`~.CsvTableFileLoader`
+            ``"tsv"``         :py:class:`~.TsvTableFileLoader`
+            ================  ======================================
 
         :param str format_name: Format name string (case insensitive).
         :return: Loader that coincides with the ``format_name``:
@@ -112,7 +120,10 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             "csv": CsvTableFileLoader,
             "html": HtmlTableFileLoader,
             "json": JsonTableFileLoader,
+            "jsonl": JsonLinesTableFileLoader,
+            "ldjson": JsonLinesTableFileLoader,
             "ltsv": LtsvTableFileLoader,
+            "ndjson": JsonLinesTableFileLoader,
             "sqlite": SqliteFileLoader,
             "tsv": TsvTableFileLoader,
         }
@@ -143,6 +154,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         loader_table = self._get_common_loader_mapping()
         loader_table.update({
             "excel": ExcelTableFileLoader,
+            "json_lines": JsonLinesTableFileLoader,
             "markdown": MarkdownTableFileLoader,
             "mediawiki": MediaWikiTableFileLoader,
             "ssv": CsvTableFileLoader,

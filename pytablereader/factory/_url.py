@@ -21,6 +21,7 @@ from ..csv.core import CsvTableFileLoader, CsvTableTextLoader
 from ..error import HTTPError, InvalidFilePathError, ProxyError, UrlError
 from ..html.core import HtmlTableTextLoader
 from ..json.core import JsonTableTextLoader
+from ..jsonlines.core import JsonLinesTableTextLoader
 from ..ltsv.core import LtsvTableTextLoader
 from ..markdown.core import MarkdownTableTextLoader
 from ..mediawiki.core import MediaWikiTableTextLoader
@@ -63,6 +64,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             ``"xls"``/``"xlsx"``                       :py:class:`~.ExcelTableFileLoader`
             ``"htm"``/``"html"``/``"asp"``/``"aspx"``  :py:class:`~.HtmlTableTextLoader`
             ``"json"``                                 :py:class:`~.JsonTableTextLoader`
+            ``"jsonl"``/``"ldjson"``/``"ndjson"``      :py:class:`~.JsonLinesTableTextLoader`
             ``"ltsv"``                                 :py:class:`~.LtsvTableTextLoader`
             ``"md"``                                   :py:class:`~.MarkdownTableTextLoader`
             ``"sqlite"``/``"sqlite3"``                 :py:class:`~.SqliteFileLoader`
@@ -105,9 +107,13 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             ``"excel"``                 :py:class:`~.ExcelTableFileLoader`
             ``"html"``                  :py:class:`~.HtmlTableTextLoader`
             ``"json"``                  :py:class:`~.JsonTableTextLoader`
+            ``"json_lines"``            :py:class:`~.JsonLinesTableTextLoader`
+            ``"jsonl"``                 :py:class:`~.JsonLinesTableTextLoader`
+            ``"ldjson"``                :py:class:`~.JsonLinesTableTextLoader`
             ``"ltsv"``                  :py:class:`~.LtsvTableTextLoader`
             ``"markdown"``              :py:class:`~.MarkdownTableTextLoader`
             ``"mediawiki"``             :py:class:`~.MediaWikiTableTextLoader`
+            ``"ndjson"``                :py:class:`~.JsonLinesTableTextLoader`
             ``"sqlite"``                :py:class:`~.SqliteFileLoader`
             ``"ssv"``                   :py:class:`~.CsvTableFileLoader`
             ``"tsv"``                   :py:class:`~.TsvTableTextLoader`
@@ -170,7 +176,10 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             "csv": CsvTableTextLoader,
             "html": HtmlTableTextLoader,
             "json": JsonTableTextLoader,
+            "jsonl": JsonLinesTableTextLoader,
+            "ldjson": JsonLinesTableTextLoader,
             "ltsv": LtsvTableTextLoader,
+            "ndjson": JsonLinesTableTextLoader,
             "sqlite": SqliteFileLoader,
             "tsv": TsvTableTextLoader,
         }
@@ -203,6 +212,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         loader_table = self._get_common_loader_mapping()
         loader_table.update({
             "excel": ExcelTableFileLoader,
+            "json_lines": JsonLinesTableTextLoader,
             "markdown": MarkdownTableTextLoader,
             "mediawiki": MediaWikiTableTextLoader,
             "ssv": CsvTableFileLoader,
