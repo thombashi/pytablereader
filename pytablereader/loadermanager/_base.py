@@ -27,6 +27,14 @@ class TableLoaderManager(TableLoaderInterface):
         return self.__loader.source_type
 
     @property
+    def table_name(self):
+        return self.__loader.table_name
+
+    @table_name.setter
+    def table_name(self, value):
+        self.__loader.table_name = value
+
+    @property
     def encoding(self):
         try:
             return self.__loader.encoding
