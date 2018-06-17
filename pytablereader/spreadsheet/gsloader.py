@@ -11,7 +11,7 @@ from tabledata import TableData
 
 from .._constant import TableNameTemplate as tnt
 from .._validator import TextValidator
-from ..error import OpenError
+from ..error import APIError, OpenError
 from .core import SpreadSheetLoader
 
 
@@ -119,6 +119,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
                     dp_extractor=self.dp_extractor)
         except gspread.exceptions.SpreadsheetNotFound:
             raise OpenError("spreadsheet '{}' not found".format(self.title))
+        except gspread.exceptions.APIError as e:
+            raise APIError(e)
 
     def _is_empty_sheet(self):
         return len(self.__all_values) <= 1
