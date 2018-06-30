@@ -5,12 +5,15 @@
 
 Summary
 =========
-A Python library to load structured table data from files/strings/URL with various data format: CSV/Excel/Google-Sheets/HTML/JSON/LTSV/Markdown/SQLite/TSV.
+A Python library to load structured table data from files/strings/URL with various data format: CSV / Excel / Google-Sheets / HTML / JSON / LDJSON / LTSV / Markdown / SQLite / TSV.
 
 .. image:: https://badge.fury.io/py/pytablereader.svg
     :target: https://badge.fury.io/py/pytablereader
 
-.. image:: https://img.shields.io/travis/thombashi/pytablereader/master.svg?label=Linux
+.. image:: https://img.shields.io/pypi/pyversions/pytablereader.svg
+   :target: https://pypi.python.org/pypi/pytablereader
+
+.. image:: https://img.shields.io/travis/thombashi/pytablereader/master.svg?label=Linux/macOS
     :target: https://travis-ci.org/thombashi/pytablereader
     :alt: Linux CI test status
 
