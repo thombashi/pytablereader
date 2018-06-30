@@ -1,7 +1,10 @@
 .. image:: https://badge.fury.io/py/pytablereader.svg
     :target: https://badge.fury.io/py/pytablereader
 
-.. image:: https://img.shields.io/travis/thombashi/pytablereader/master.svg?label=Linux
+.. image:: https://img.shields.io/pypi/pyversions/pytablereader.svg
+   :target: https://pypi.python.org/pypi/pytablereader
+
+.. image:: https://img.shields.io/travis/thombashi/pytablereader/master.svg?label=Linux/macOS
     :target: https://travis-ci.org/thombashi/pytablereader
     :alt: Linux CI test status
 
