@@ -30,10 +30,10 @@ class SqliteTableFormatter(TableFormatter):
 
         con = SimpleSQLite(self._source_data, "r")
 
-        for table in con.get_table_name_list():
+        for table in con.fetch_table_name_list():
             self.__table_name = table
 
-            attr_name_list = con.get_attr_name_list(table)
+            attr_name_list = con.fetch_attr_name_list(table)
             data_matrix = con.select(select=AttrList(attr_name_list), table_name=table).fetchall()
 
             yield TableData(
