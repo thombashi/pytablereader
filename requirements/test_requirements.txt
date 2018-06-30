@@ -1,8 +1,8 @@
 pypandoc
-pytablewriter>=0.29.0
+pytablewriter>=0.30.0
 pytest-cov
 pytest
 responses
-SimpleSQLite>=0.22.0
+SimpleSQLite>=0.24.0
 tox
 urllib3==1.21.1
