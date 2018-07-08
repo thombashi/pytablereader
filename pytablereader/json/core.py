@@ -8,9 +8,9 @@ from __future__ import absolute_import, unicode_literals
 
 import abc
 import io
-import json
 from collections import OrderedDict
 
+import simplejson as json
 import six
 
 from .._common import get_file_encoding

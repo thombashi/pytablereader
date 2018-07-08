@@ -8,6 +8,7 @@ mbstrdecoder>=0.4.0
 pathvalidate>=0.17.3
 path.py>=10.3.1
 requests>=2.18.4
+simplejson>=3.16.0
 six
 tabledata>=0.0.18
 typepy>=0.1.1

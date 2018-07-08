@@ -8,9 +8,9 @@ from __future__ import absolute_import, unicode_literals
 
 import abc
 import io
-import json
 from collections import OrderedDict
 
+import simplejson as json
 import six
 
 from .._common import get_file_encoding
@@ -21,12 +21,6 @@ from .._validator import FileValidator, TextValidator
 from ..error import ValidationError
 from ..interface import TableLoader
 from .formatter import JsonLinesTableFormatter
-
-try:
-    from json.decoder import JSONDecodeError
-except ImportError:
-    # Python 2 does not define JSONDecodeError
-    JSONDecodeError = ValueError
 
 
 @six.add_metaclass(abc.ABCMeta)
