@@ -6,13 +6,7 @@
 
 from __future__ import absolute_import
 
-from tabledata import (
-    DataError,
-    EmptyDataError,
-    InvalidDataError,
-    InvalidHeaderNameError,
-    InvalidTableNameError,
-)
+from tabledata import DataError, InvalidHeaderNameError, InvalidTableNameError
 
 from .__version__ import __author__, __copyright__, __email__, __license__, __version__
 from ._constant import PatternMatch
