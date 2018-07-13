@@ -10,6 +10,6 @@ path.py>=10.6
 requests>=2.18.4
 simplejson>=3.16.0
 six
-tabledata>=0.0.21
+tabledata>=0.0.22
 typepy>=0.1.1
 xlrd>=1.1.0
