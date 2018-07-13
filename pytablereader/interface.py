@@ -119,7 +119,7 @@ class TableLoader(TableLoaderInterface):
                 self.source_type == SourceType.FILE,
                 typepy.is_not_null_string(self.source),
         ]):
-            filename = path.Path(self.source).namebase
+            filename = path.Path(self.source).stem
 
         return (tnt.FILENAME, filename)
 
