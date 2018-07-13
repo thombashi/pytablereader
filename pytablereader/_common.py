@@ -48,8 +48,7 @@ def make_temp_file_path_from_url(temp_dir_path, url):
 
     temp_name = os.path.basename(url_path.rstrip("/"))
     if typepy.is_null_string(temp_name):
-        temp_name = pathvalidate.replace_symbol(
-            temp_name, replacement_text="_")
+        temp_name = pathvalidate.replace_symbol(temp_name, replacement_text="_")
 
     if typepy.is_null_string(temp_name):
         raise InvalidFilePathError("invalid URL: {}".format(url))

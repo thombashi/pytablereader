@@ -12,45 +12,47 @@ from pytablereader._common import get_extension, make_temp_file_path_from_url
 
 
 class Test_get_extension(object):
-
-    @pytest.mark.parametrize(["value", "expected"], [
-        ["test.txt", "txt"],
-        [".csv", ""],
-        ["html", ""],
-    ])
+    @pytest.mark.parametrize(
+        ["value", "expected"], [["test.txt", "txt"], [".csv", ""], ["html", ""]]
+    )
     def test_normal(self, value, expected):
         assert get_extension(value) == expected
 
-    @pytest.mark.parametrize(["value", "expected"], [
-        ["", InvalidFilePathError],
-        [None, InvalidFilePathError],
-    ])
+    @pytest.mark.parametrize(
+        ["value", "expected"], [["", InvalidFilePathError], [None, InvalidFilePathError]]
+    )
     def test_null_table_name(self, value, expected):
         with pytest.raises(expected):
             get_extension(value)
 
 
 class Test_make_temp_file_path_from_url(object):
-
-    @pytest.mark.parametrize(["temp_dir_path", "value", "expected"], [
+    @pytest.mark.parametrize(
+        ["temp_dir_path", "value", "expected"],
         [
-            "/tmp",
-            "https://raw.githubusercontent.com/valid/test/data/validext.csv",
-            "/tmp/validext.csv"
-        ], [
-            "/tmp",
-            "https://raw.githubusercontent.com/valid/test/data/validext/",
-            "/tmp/validext"
+            [
+                "/tmp",
+                "https://raw.githubusercontent.com/valid/test/data/validext.csv",
+                "/tmp/validext.csv",
+            ],
+            [
+                "/tmp",
+                "https://raw.githubusercontent.com/valid/test/data/validext/",
+                "/tmp/validext",
+            ],
         ],
-    ])
+    )
     def test_normal(self, temp_dir_path, value, expected):
         assert make_temp_file_path_from_url(temp_dir_path, value) == expected
 
-    @pytest.mark.parametrize(["temp_dir_path", "value", "expected"], [
-        [None, "tmp", InvalidFilePathError],
-        ["tmp", "", InvalidFilePathError],
-        ["tmp", None, InvalidFilePathError],
-    ])
+    @pytest.mark.parametrize(
+        ["temp_dir_path", "value", "expected"],
+        [
+            [None, "tmp", InvalidFilePathError],
+            ["tmp", "", InvalidFilePathError],
+            ["tmp", None, InvalidFilePathError],
+        ],
+    )
     def test_null_table_name(self, temp_dir_path, value, expected):
         with pytest.raises(expected):
             make_temp_file_path_from_url(temp_dir_path, value)

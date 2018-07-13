@@ -111,14 +111,17 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             self.inc_table_count()
 
             yield TableData(
-                self._make_table_name(), header_list, row_list, dp_extractor=self.dp_extractor)
+                self._make_table_name(), header_list, row_list, dp_extractor=self.dp_extractor
+            )
 
     def _is_empty_sheet(self):
-        return any([
-            self._col_count == 0,
-            self._row_count <= 1,
-            # nrows == 1 means exists header row only
-        ])
+        return any(
+            [
+                self._col_count == 0,
+                self._row_count <= 1,
+                # nrows == 1 means exists header row only
+            ]
+        )
 
     def _get_start_row_idx(self):
         for row_idx in range(self.start_row, self._row_count):
@@ -131,7 +134,8 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
     def __is_header_row(self, row_idx):
         cell_type_list = self._worksheet.row_types(
-            row_idx, self._start_col_idx, self._end_col_idx + 1)
+            row_idx, self._start_col_idx, self._end_col_idx + 1
+        )
         return xlrd.XL_CELL_EMPTY not in cell_type_list
 
     @staticmethod
@@ -140,7 +144,8 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
     def __extract_not_empty_col_idx(self):
         col_idx_list = [
-            col_idx for col_idx in range(self._col_count)
+            col_idx
+            for col_idx in range(self._col_count)
             if not self.__is_empty_cell_type_list(self._worksheet.col_types(col_idx))
         ]
 

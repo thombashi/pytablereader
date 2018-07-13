@@ -25,12 +25,7 @@ class JsonConverter(TableFormatter):
     """
 
     _VALUE_TYPE_SCHEMA = {
-        "anyOf": [
-            {"type": "string"},
-            {"type": "number"},
-            {"type": "boolean"},
-            {"type": "null"},
-        ],
+        "anyOf": [{"type": "string"}, {"type": "number"}, {"type": "boolean"}, {"type": "null"}]
     }
 
     def __init__(self, json_buffer):
@@ -52,7 +47,6 @@ class JsonConverter(TableFormatter):
 
 
 class SingleJsonTableConverterBase(JsonConverter):
-
     def _make_table_name(self):
         kv_mapping = self._loader._get_basic_tablename_keyvalue_mapping()
         kv_mapping[tnt.KEY] = self._loader.get_format_key()
@@ -74,10 +68,7 @@ class SingleJsonTableConverterA(SingleJsonTableConverterBase):
     def _schema(self):
         return {
             "type": "array",
-            "items": {
-                "type": "object",
-                "additionalProperties": self._VALUE_TYPE_SCHEMA,
-            },
+            "items": {"type": "object", "additionalProperties": self._VALUE_TYPE_SCHEMA},
         }
 
     def to_table_data(self):
@@ -98,7 +89,8 @@ class SingleJsonTableConverterA(SingleJsonTableConverterBase):
             table_name=self._make_table_name(),
             header_list=sorted(attr_name_set),
             row_list=self._buffer,
-            dp_extractor=self._loader.dp_extractor)
+            dp_extractor=self._loader.dp_extractor,
+        )
 
 
 class SingleJsonTableConverterB(SingleJsonTableConverterBase):
@@ -110,10 +102,7 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
     def _schema(self):
         return {
             "type": "object",
-            "additionalProperties": {
-                "type": "array",
-                "items": self._VALUE_TYPE_SCHEMA,
-            },
+            "additionalProperties": {"type": "array", "items": self._VALUE_TYPE_SCHEMA},
         }
 
     def to_table_data(self):
@@ -131,7 +120,8 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
             table_name=self._make_table_name(),
             header_list=header_list,
             row_list=zip(*[self._buffer.get(header) for header in header_list]),
-            dp_extractor=self._loader.dp_extractor)
+            dp_extractor=self._loader.dp_extractor,
+        )
 
 
 class SingleJsonTableConverterC(SingleJsonTableConverterBase):
@@ -141,10 +131,7 @@ class SingleJsonTableConverterC(SingleJsonTableConverterBase):
 
     @property
     def _schema(self):
-        return {
-            "type": "object",
-            "additionalProperties": self._VALUE_TYPE_SCHEMA,
-        }
+        return {"type": "object", "additionalProperties": self._VALUE_TYPE_SCHEMA}
 
     def to_table_data(self):
         """
@@ -159,11 +146,11 @@ class SingleJsonTableConverterC(SingleJsonTableConverterBase):
             table_name=self._make_table_name(),
             header_list=["key", "value"],
             row_list=[record for record in self._buffer.items()],
-            dp_extractor=self._loader.dp_extractor)
+            dp_extractor=self._loader.dp_extractor,
+        )
 
 
 class MultipleJsonTableConverterBase(JsonConverter):
-
     def __init__(self, json_buffer):
         super(MultipleJsonTableConverterBase, self).__init__(json_buffer)
 
@@ -188,10 +175,7 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
             "type": "object",
             "additionalProperties": {
                 "type": "array",
-                "items": {
-                    "type": "object",
-                    "additionalProperties": self._VALUE_TYPE_SCHEMA,
-                },
+                "items": {"type": "object", "additionalProperties": self._VALUE_TYPE_SCHEMA},
             },
         }
 
@@ -215,7 +199,8 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
                 table_name=self._make_table_name(),
                 header_list=sorted(attr_name_set),
                 row_list=json_record_list,
-                dp_extractor=self._loader.dp_extractor)
+                dp_extractor=self._loader.dp_extractor,
+            )
 
 
 class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
@@ -229,10 +214,7 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
             "type": "object",
             "additionalProperties": {
                 "type": "object",
-                "additionalProperties": {
-                    "type": "array",
-                    "items": self._VALUE_TYPE_SCHEMA,
-                },
+                "additionalProperties": {"type": "array", "items": self._VALUE_TYPE_SCHEMA},
             },
         }
 
@@ -254,7 +236,8 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
                 table_name=self._make_table_name(),
                 header_list=header_list,
                 row_list=zip(*[json_record_list.get(header) for header in header_list]),
-                dp_extractor=self._loader.dp_extractor)
+                dp_extractor=self._loader.dp_extractor,
+            )
 
 
 class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
@@ -288,11 +271,11 @@ class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
                 table_name=self._make_table_name(),
                 header_list=["key", "value"],
                 row_list=[record for record in json_record_list.items()],
-                dp_extractor=self._loader.dp_extractor)
+                dp_extractor=self._loader.dp_extractor,
+            )
 
 
 class JsonTableFormatter(TableFormatter):
-
     def to_table_data(self):
         converter_class_list = [
             MultipleJsonTableConverterA,

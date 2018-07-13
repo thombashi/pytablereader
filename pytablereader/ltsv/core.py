@@ -56,7 +56,9 @@ class LtsvTableLoader(TableLoader):
                 except ValueError:
                     raise DataError(
                         "invalid lstv item found: line={}, col={}, item='{}'".format(
-                            row_idx, col_idx, ltsv_item))
+                            row_idx, col_idx, ltsv_item
+                        )
+                    )
 
                 label = label.strip('"')
 
@@ -65,8 +67,8 @@ class LtsvTableLoader(TableLoader):
                 except (pv.NullNameError, pv.InvalidCharError):
                     raise InvalidHeaderNameError(
                         "invalid label found (acceptable chars are [0-9A-Za-z_.-]): "
-                        "line={}, col={}, label='{}'".format(
-                            row_idx, col_idx, label))
+                        "line={}, col={}, label='{}'".format(row_idx, col_idx, label)
+                    )
 
                 ltsv_record[label] = value
 
@@ -127,8 +129,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        self._ltsv_input_stream = io.open(
-            self.source, "r", encoding=self.encoding)
+        self._ltsv_input_stream = io.open(self.source, "r", encoding=self.encoding)
 
         for data_matrix in self._to_data_matrix():
             formatter = SingleJsonTableConverterA(data_matrix)

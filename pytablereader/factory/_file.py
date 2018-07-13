@@ -74,8 +74,9 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             |LoaderNotFoundError_desc| loading the file.
         """
 
-        logger.debug("TableFileLoaderFactory.create_from_path: extension={}".format(
-            self.file_extension))
+        logger.debug(
+            "TableFileLoaderFactory.create_from_path: extension={}".format(self.file_extension)
+        )
 
         return self._create_from_extension(self.file_extension)
 
@@ -109,8 +110,9 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             |LoaderNotFoundError_desc| the format.
         """
 
-        logger.debug("TableFileLoaderFactory.create_from_format_name: name={}".format(
-            self.file_extension))
+        logger.debug(
+            "TableFileLoaderFactory.create_from_format_name: name={}".format(self.file_extension)
+        )
 
         return self._create_from_format_name(format_name)
 
@@ -135,13 +137,15 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         """
 
         loader_table = self._get_common_loader_mapping()
-        loader_table.update({
-            "htm": HtmlTableFileLoader,
-            "md": MarkdownTableFileLoader,
-            "sqlite3": SqliteFileLoader,
-            "xlsx": ExcelTableFileLoader,
-            "xls": ExcelTableFileLoader,
-        })
+        loader_table.update(
+            {
+                "htm": HtmlTableFileLoader,
+                "md": MarkdownTableFileLoader,
+                "sqlite3": SqliteFileLoader,
+                "xlsx": ExcelTableFileLoader,
+                "xls": ExcelTableFileLoader,
+            }
+        )
 
         return loader_table
 
@@ -152,12 +156,14 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
         """
 
         loader_table = self._get_common_loader_mapping()
-        loader_table.update({
-            "excel": ExcelTableFileLoader,
-            "json_lines": JsonLinesTableFileLoader,
-            "markdown": MarkdownTableFileLoader,
-            "mediawiki": MediaWikiTableFileLoader,
-            "ssv": CsvTableFileLoader,
-        })
+        loader_table.update(
+            {
+                "excel": ExcelTableFileLoader,
+                "json_lines": JsonLinesTableFileLoader,
+                "markdown": MarkdownTableFileLoader,
+                "mediawiki": MediaWikiTableFileLoader,
+                "ssv": CsvTableFileLoader,
+            }
+        )
 
         return loader_table

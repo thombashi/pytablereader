@@ -19,7 +19,6 @@ from ..formatter import TableFormatter
 
 
 class HtmlTableFormatter(TableFormatter):
-
     @property
     def table_id(self):
         return self.__table_id
@@ -69,10 +68,7 @@ class HtmlTableFormatter(TableFormatter):
             title = ""
 
         kv_mapping = self._loader._get_basic_tablename_keyvalue_mapping()
-        kv_mapping.update(OrderedDict([
-            (tnt.KEY, key),
-            (tnt.TITLE, title),
-        ]))
+        kv_mapping.update(OrderedDict([(tnt.KEY, key), (tnt.TITLE, title)]))
 
         return self._loader._expand_table_name_format(kv_mapping)
 
@@ -107,10 +103,7 @@ class HtmlTableFormatter(TableFormatter):
                 header_list = [row.text.strip() for row in th_list]
                 continue
 
-            data_matrix.append([
-                value.get_text().strip()
-                for value in row.find_all(re_table_val)
-            ])
+            data_matrix.append([value.get_text().strip() for value in row.find_all(re_table_val)])
 
         if typepy.is_empty_sequence(data_matrix):
             raise ValueError("data matrix is empty")
@@ -118,5 +111,8 @@ class HtmlTableFormatter(TableFormatter):
         self._loader.inc_table_count()
 
         return TableData(
-            self._make_table_name(), header_list, data_matrix,
-            dp_extractor=self._loader.dp_extractor)
+            self._make_table_name(),
+            header_list,
+            data_matrix,
+            dp_extractor=self._loader.dp_extractor,
+        )

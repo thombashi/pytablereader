@@ -84,7 +84,8 @@ class CsvTableLoader(TableLoader):
         try:
             return [
                 [self.__modify_item(data) for data in row]
-                for row in self._csv_reader if typepy.is_not_empty_sequence(row)
+                for row in self._csv_reader
+                if typepy.is_not_empty_sequence(row)
             ]
         except (csv.Error, UnicodeDecodeError) as e:
             raise DataError(e)
@@ -156,17 +157,24 @@ class CsvTableFileLoader(CsvTableLoader):
         if six.PY3:
             self._csv_reader = csv.reader(
                 io.open(self.source, "r", encoding=self.encoding),
-                delimiter=self.delimiter, quotechar=self.quotechar,
-                strict=True, skipinitialspace=True)
+                delimiter=self.delimiter,
+                quotechar=self.quotechar,
+                strict=True,
+                skipinitialspace=True,
+            )
         else:
+
             def utf_8_encoder(unicode_csv_data):
                 for line in unicode_csv_data:
-                    yield line.encode('utf-8')
+                    yield line.encode("utf-8")
 
             self._csv_reader = csv.reader(
                 utf_8_encoder(io.open(self.source, "r", encoding=self.encoding)),
-                delimiter=self.delimiter, quotechar=self.quotechar,
-                strict=True, skipinitialspace=True)
+                delimiter=self.delimiter,
+                quotechar=self.quotechar,
+                strict=True,
+                skipinitialspace=True,
+            )
 
         formatter = CsvTableFormatter(self._to_data_matrix())
         formatter.accept(self)
@@ -227,8 +235,11 @@ class CsvTableTextLoader(CsvTableLoader):
 
         self._csv_reader = csv.reader(
             six.StringIO(self.source.strip()),
-            delimiter=self.delimiter, quotechar=self.quotechar,
-            strict=True, skipinitialspace=True)
+            delimiter=self.delimiter,
+            quotechar=self.quotechar,
+            strict=True,
+            skipinitialspace=True,
+        )
         formatter = CsvTableFormatter(self._to_data_matrix())
         formatter.accept(self)
 

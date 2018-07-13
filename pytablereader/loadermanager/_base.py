@@ -10,7 +10,6 @@ from ..interface import TableLoaderInterface
 
 
 class TableLoaderManager(TableLoaderInterface):
-
     def __init__(self, loader):
         self.__loader = loader
 

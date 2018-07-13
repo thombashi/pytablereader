@@ -85,10 +85,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         self._validate_table_name()
         self._validate_title()
 
-        scope = [
-            'https://spreadsheets.google.com/feeds',
-            'https://www.googleapis.com/auth/drive'
-        ]
+        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
         credentials = ServiceAccountCredentials.from_json_keyfile_name(self.source, scope)
 
         gc = gspread.authorize(credentials)
@@ -105,7 +102,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
                 except ValueError:
                     continue
 
-                value_matrix = self.__all_values[self._get_start_row_idx():]
+                value_matrix = self.__all_values[self._get_start_row_idx() :]
                 try:
                     header_list = value_matrix[0]
                     row_list = value_matrix[1:]
@@ -115,8 +112,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
                 self.inc_table_count()
 
                 yield TableData(
-                    self.make_table_name(), header_list, row_list,
-                    dp_extractor=self.dp_extractor)
+                    self.make_table_name(), header_list, row_list, dp_extractor=self.dp_extractor
+                )
         except gspread.exceptions.SpreadsheetNotFound:
             raise OpenError("spreadsheet '{}' not found".format(self.title))
         except gspread.exceptions.APIError as e:
@@ -160,9 +157,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         tmp_table_name = "tmp"
         header_list = ["a{:d}".format(i) for i in range(len(self.__all_values[0]))]
         con.create_table_from_data_matrix(
-            table_name=tmp_table_name,
-            attr_name_list=header_list,
-            data_matrix=self.__all_values)
+            table_name=tmp_table_name, attr_name_list=header_list, data_matrix=self.__all_values
+        )
         for col_idx, header in enumerate(header_list):
             result = con.select(select=Attr(header), table_name=tmp_table_name)
             if any([typepy.is_not_null_string(record[0]) for record in result.fetchall()]):

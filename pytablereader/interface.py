@@ -115,10 +115,7 @@ class TableLoader(TableLoaderInterface):
 
     def _get_filename_tablename_mapping(self):
         filename = ""
-        if all([
-                self.source_type == SourceType.FILE,
-                typepy.is_not_null_string(self.source),
-        ]):
+        if all([self.source_type == SourceType.FILE, typepy.is_not_null_string(self.source)]):
             filename = path.Path(self.source).stem
 
         return (tnt.FILENAME, filename)
@@ -126,13 +123,15 @@ class TableLoader(TableLoaderInterface):
     def _get_basic_tablename_keyvalue_mapping(self):
         from collections import OrderedDict
 
-        return OrderedDict([
-            (tnt.DEFAULT, self._get_default_table_name_template()),
-            (tnt.FORMAT_NAME, self.format_name),
-            (tnt.FORMAT_ID, str(self.__get_format_table_count())),
-            (tnt.GLOBAL_ID, str(self.__global_table_count)),
-            self._get_filename_tablename_mapping(),
-        ])
+        return OrderedDict(
+            [
+                (tnt.DEFAULT, self._get_default_table_name_template()),
+                (tnt.FORMAT_NAME, self.format_name),
+                (tnt.FORMAT_ID, str(self.__get_format_table_count())),
+                (tnt.GLOBAL_ID, str(self.__global_table_count)),
+                self._get_filename_tablename_mapping(),
+            ]
+        )
 
     def _expand_table_name_format(self, table_name_kv_mapping):
         self._validate_table_name()

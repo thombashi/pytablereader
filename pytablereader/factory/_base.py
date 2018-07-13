@@ -17,7 +17,6 @@ from ..error import LoaderNotFoundError
 
 @six.add_metaclass(abc.ABCMeta)
 class BaseTableLoaderFactory(object):
-
     @property
     def source(self):
         """
@@ -76,38 +75,54 @@ class BaseTableLoaderFactory(object):
         try:
             return loader_mapping[format_name]
         except KeyError:
-            raise LoaderNotFoundError(", ".join([
-                "loader not found: format='{}'".format(format_name),
-                "source='{}'".format(self.source),
-            ]))
+            raise LoaderNotFoundError(
+                ", ".join(
+                    [
+                        "loader not found: format='{}'".format(format_name),
+                        "source='{}'".format(self.source),
+                    ]
+                )
+            )
 
     def _create_from_extension(self, extension):
         try:
-            loader = self._get_loader_class(
-                self._get_extension_loader_mapping(), extension)(self.source)
+            loader = self._get_loader_class(self._get_extension_loader_mapping(), extension)(
+                self.source
+            )
 
             return self._post_create(loader, extension=extension)
         except LoaderNotFoundError as e:
-            raise LoaderNotFoundError("\n".join([
-                "{:s} (unknown extension).".format(e.args[0]),
-                "",
-                "acceptable extensions are: {}.".format(
-                    ", ".join(self.get_extension_list())),
-                "actual: '{}'".format(extension)
-            ]))
+            raise LoaderNotFoundError(
+                "\n".join(
+                    [
+                        "{:s} (unknown extension).".format(e.args[0]),
+                        "",
+                        "acceptable extensions are: {}.".format(
+                            ", ".join(self.get_extension_list())
+                        ),
+                        "actual: '{}'".format(extension),
+                    ]
+                )
+            )
 
     def _create_from_format_name(self, format_name):
         try:
-            loader = self._get_loader_class(
-                self._get_format_name_loader_mapping(), format_name)(self.source)
+            loader = self._get_loader_class(self._get_format_name_loader_mapping(), format_name)(
+                self.source
+            )
 
             return self._post_create(loader, format_name=format_name)
         except LoaderNotFoundError as e:
-            raise LoaderNotFoundError("\n".join([
-                "{:s} (unknown format name).".format(e.args[0]),
-                "acceptable format names are: {}.".format(
-                    ", ".join(self.get_format_name_list())),
-            ]))
+            raise LoaderNotFoundError(
+                "\n".join(
+                    [
+                        "{:s} (unknown format name).".format(e.args[0]),
+                        "acceptable format names are: {}.".format(
+                            ", ".join(self.get_format_name_list())
+                        ),
+                    ]
+                )
+            )
 
     def _post_create(self, loader, **kwargs):
         loader.encoding = self._encoding

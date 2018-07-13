@@ -32,7 +32,6 @@ from ._base import BaseTableLoaderFactory
 
 
 class TableUrlLoaderFactory(BaseTableLoaderFactory):
-
     @property
     def __url(self):
         return self._source
@@ -128,8 +127,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         logger.debug("TableUrlLoaderFactory.create_from_format_name: name={}".format(format_name))
 
-        loader_class = self._get_loader_class(
-            self._get_format_name_loader_mapping(), format_name)
+        loader_class = self._get_loader_class(self._get_format_name_loader_mapping(), format_name)
 
         try:
             self._fetch_source(loader_class)
@@ -154,20 +152,25 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         if typepy.is_null_string(self._encoding):
             self._encoding = r.encoding
 
-        logger.debug("\n".join([
-            "_fetch_source: ",
-            "  source-type={}".format(loader_source_type),
-            "  content-type={}".format(r.headers["Content-Type"]),
-            "  encoding={}".format(self._encoding),
-            "  status-code={}".format(r.status_code),
-        ]))
+        logger.debug(
+            "\n".join(
+                [
+                    "_fetch_source: ",
+                    "  source-type={}".format(loader_source_type),
+                    "  content-type={}".format(r.headers["Content-Type"]),
+                    "  encoding={}".format(self._encoding),
+                    "  status-code={}".format(r.status_code),
+                ]
+            )
+        )
 
         if loader_source_type == SourceType.TEXT:
             self._source = r.text
         elif loader_source_type == SourceType.FILE:
             self.__temp_dir_path = tempfile.mkdtemp()
             self._source = "{:s}.xlsx".format(
-                make_temp_file_path_from_url(self.__temp_dir_path, self.__url))
+                make_temp_file_path_from_url(self.__temp_dir_path, self.__url)
+            )
             with open(self._source, "wb") as f:
                 f.write(r.content)
 
@@ -191,15 +194,17 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         """
 
         loader_table = self._get_common_loader_mapping()
-        loader_table.update({
-            "asp": HtmlTableTextLoader,
-            "aspx": HtmlTableTextLoader,
-            "htm": HtmlTableTextLoader,
-            "md": MarkdownTableTextLoader,
-            "sqlite3": SqliteFileLoader,
-            "xls": ExcelTableFileLoader,
-            "xlsx": ExcelTableFileLoader,
-        })
+        loader_table.update(
+            {
+                "asp": HtmlTableTextLoader,
+                "aspx": HtmlTableTextLoader,
+                "htm": HtmlTableTextLoader,
+                "md": MarkdownTableTextLoader,
+                "sqlite3": SqliteFileLoader,
+                "xls": ExcelTableFileLoader,
+                "xlsx": ExcelTableFileLoader,
+            }
+        )
 
         return loader_table
 
@@ -210,12 +215,14 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         """
 
         loader_table = self._get_common_loader_mapping()
-        loader_table.update({
-            "excel": ExcelTableFileLoader,
-            "json_lines": JsonLinesTableTextLoader,
-            "markdown": MarkdownTableTextLoader,
-            "mediawiki": MediaWikiTableTextLoader,
-            "ssv": CsvTableFileLoader,
-        })
+        loader_table.update(
+            {
+                "excel": ExcelTableFileLoader,
+                "json_lines": JsonLinesTableTextLoader,
+                "markdown": MarkdownTableTextLoader,
+                "mediawiki": MediaWikiTableTextLoader,
+                "ssv": CsvTableFileLoader,
+            }
+        )
 
         return loader_table

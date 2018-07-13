@@ -33,53 +33,43 @@ a.0:3\tb-1:3.3\tc_2:ccc\t"dd":3.0\te.f-g_4:"cccc"
             [1, Decimal("123.1"), "a", 1, '"1"'],
             [2, Decimal("2.2"), "bb", Decimal("2.2"), '"2.2"'],
             [3, Decimal("3.3"), "ccc", 3, '"cccc"'],
-        ])
+        ],
+    ),
 )
 
 
 class Test_LtsvTableFileLoader_make_table_name(object):
-
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
-    @pytest.mark.parametrize(["value", "source", "expected"], [
-        ["%(default)s", "/path/to/data.ltsv", "data"],
-        ["%(filename)s", "/path/to/data.ltsv", "data"],
-        ["prefix_%(filename)s", "/path/to/data.ltsv", "prefix_data"],
-        ["%(filename)s_suffix", "/path/to/data.ltsv", "data_suffix"],
+    @pytest.mark.parametrize(
+        ["value", "source", "expected"],
         [
-            "prefix_%(filename)s_suffix",
-            "/path/to/data.ltsv",
-            "prefix_data_suffix"
+            ["%(default)s", "/path/to/data.ltsv", "data"],
+            ["%(filename)s", "/path/to/data.ltsv", "data"],
+            ["prefix_%(filename)s", "/path/to/data.ltsv", "prefix_data"],
+            ["%(filename)s_suffix", "/path/to/data.ltsv", "data_suffix"],
+            ["prefix_%(filename)s_suffix", "/path/to/data.ltsv", "prefix_data_suffix"],
+            ["%(filename)s%(filename)s", "/path/to/data.ltsv", "datadata"],
+            ["%(format_name)s%(format_id)s_%(filename)s", "/path/to/data.ltsv", "ltsv0_data"],
+            ["%(%(filename)s)", "/path/to/data.ltsv", "%(data)"],
         ],
-        [
-            "%(filename)s%(filename)s",
-            "/path/to/data.ltsv",
-            "datadata"
-        ],
-        [
-            "%(format_name)s%(format_id)s_%(filename)s",
-            "/path/to/data.ltsv",
-            "ltsv0_data",
-        ],
-        [
-            "%(%(filename)s)",
-            "/path/to/data.ltsv",
-            "%(data)"
-        ],
-    ])
+    )
     def test_normal(self, value, source, expected):
         loader = ptr.LtsvTableFileLoader(source)
         loader.table_name = value
 
         assert loader.make_table_name() == expected
 
-    @pytest.mark.parametrize(["value", "source", "expected"], [
-        [None, "/path/to/data.ltsv", ValueError],
-        ["", "/path/to/data.ltsv", ValueError],
-        ["%(filename)s", None, InvalidTableNameError],
-        ["%(filename)s", "", InvalidTableNameError],
-    ])
+    @pytest.mark.parametrize(
+        ["value", "source", "expected"],
+        [
+            [None, "/path/to/data.ltsv", ValueError],
+            ["", "/path/to/data.ltsv", ValueError],
+            ["%(filename)s", None, InvalidTableNameError],
+            ["%(filename)s", "", InvalidTableNameError],
+        ],
+    )
     def test_exception(self, value, source, expected):
         loader = ptr.LtsvTableFileLoader(source)
         loader.table_name = value
@@ -89,17 +79,13 @@ class Test_LtsvTableFileLoader_make_table_name(object):
 
 
 class Test_LtsvTableFileLoader_load(object):
-
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
-    @pytest.mark.parametrize(["test_id", "table_text", "filename", "expected"], [
-        [
-            0, test_data_00.value,
-            "tmp.ltsv",
-            test_data_00.expected,
-        ],
-    ])
+    @pytest.mark.parametrize(
+        ["test_id", "table_text", "filename", "expected"],
+        [[0, test_data_00.value, "tmp.ltsv", test_data_00.expected]],
+    )
     def test_normal(self, tmpdir, test_id, table_text, filename, expected):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
@@ -116,22 +102,13 @@ class Test_LtsvTableFileLoader_load(object):
 
             assert tabledata.equals(expected)
 
-    @pytest.mark.parametrize(["table_text", "filename", "expected"], [
+    @pytest.mark.parametrize(
+        ["table_text", "filename", "expected"],
         [
-            "\n".join([
-                '"attr_a"\t"attr_b"\t"attr_c"',
-            ]),
-            "hoge.ltsv",
-            ptr.DataError,
+            ["\n".join(['"attr_a"\t"attr_b"\t"attr_c"']), "hoge.ltsv", ptr.DataError],
+            ["\n".join(['"a":1"\t"attr_b"\t"attr_c"']), "hoge.ltsv", ptr.DataError],
         ],
-        [
-            "\n".join([
-                '"a":1"\t"attr_b"\t"attr_c"',
-            ]),
-            "hoge.ltsv",
-            ptr.DataError,
-        ],
-    ])
+    )
     def test_exception(self, tmpdir, table_text, filename, expected):
         p_ltsv = tmpdir.join(filename)
 
@@ -144,10 +121,10 @@ class Test_LtsvTableFileLoader_load(object):
             for _tabletuple in loader.load():
                 pass
 
-    @pytest.mark.parametrize(["filename", "header_list", "expected"], [
-        ["", [], ptr.InvalidFilePathError],
-        [None, [], ptr.InvalidFilePathError],
-    ])
+    @pytest.mark.parametrize(
+        ["filename", "header_list", "expected"],
+        [["", [], ptr.InvalidFilePathError], [None, [], ptr.InvalidFilePathError]],
+    )
     def test_null(self, tmpdir, filename, header_list, expected):
         loader = ptr.LtsvTableFileLoader(filename)
         loader.header_list = header_list
@@ -158,24 +135,23 @@ class Test_LtsvTableFileLoader_load(object):
 
 
 class Test_LtsvTableTextLoader_make_table_name(object):
-
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
-    @pytest.mark.parametrize(["value", "expected"], [
-        ["%(format_name)s%(format_id)s", "ltsv0"],
-        ["tablename", "tablename"],
-    ])
+    @pytest.mark.parametrize(
+        ["value", "expected"],
+        [["%(format_name)s%(format_id)s", "ltsv0"], ["tablename", "tablename"]],
+    )
     def test_normal(self, value, expected):
         loader = ptr.LtsvTableTextLoader("dummy")
         loader.table_name = value
 
         assert loader.make_table_name() == expected
 
-    @pytest.mark.parametrize(["value", "source", "expected"], [
-        [None, "tablename", ValueError],
-        ["", "tablename", ValueError],
-    ])
+    @pytest.mark.parametrize(
+        ["value", "source", "expected"],
+        [[None, "tablename", ValueError], ["", "tablename", ValueError]],
+    )
     def test_exception(self, value, source, expected):
         loader = ptr.LtsvTableFileLoader(source)
         loader.table_name = value
@@ -185,17 +161,13 @@ class Test_LtsvTableTextLoader_make_table_name(object):
 
 
 class Test_LtsvTableTextLoader_load(object):
-
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
-    @pytest.mark.parametrize(["table_text", "table_name", "expected"], [
-        [
-            test_data_00.value,
-            "tmp",
-            test_data_00.expected,
-        ],
-    ])
+    @pytest.mark.parametrize(
+        ["table_text", "table_name", "expected"],
+        [[test_data_00.value, "tmp", test_data_00.expected]],
+    )
     def test_normal(self, table_text, table_name, expected):
         loader = ptr.LtsvTableTextLoader(table_text)
         loader.table_name = table_name
@@ -206,12 +178,15 @@ class Test_LtsvTableTextLoader_load(object):
 
             assert tabledata.equals(expected)
 
-    @pytest.mark.parametrize(["table_text", "table_name", "expected"], [
-        ['"":"invalid"\ta:1', "dummy", InvalidHeaderNameError],
-        ["", "dummy", DataError],
-        ['a!:1\tb:2', "dummy", InvalidHeaderNameError],
-        ['a:1\tb$c:2', "dummy", InvalidHeaderNameError],
-    ])
+    @pytest.mark.parametrize(
+        ["table_text", "table_name", "expected"],
+        [
+            ['"":"invalid"\ta:1', "dummy", InvalidHeaderNameError],
+            ["", "dummy", DataError],
+            ["a!:1\tb:2", "dummy", InvalidHeaderNameError],
+            ["a:1\tb$c:2", "dummy", InvalidHeaderNameError],
+        ],
+    )
     def test_exception_insufficient_data(self, table_text, table_name, expected):
         loader = ptr.LtsvTableTextLoader(table_text)
         loader.table_name = table_name
@@ -221,10 +196,7 @@ class Test_LtsvTableTextLoader_load(object):
                 print(_tabledata)
                 pass
 
-    @pytest.mark.parametrize(["table_name", "expected"], [
-        ["", ValueError],
-        [None, ValueError],
-    ])
+    @pytest.mark.parametrize(["table_name", "expected"], [["", ValueError], [None, ValueError]])
     def test_null(self, table_name, expected):
         loader = ptr.LtsvTableTextLoader("dummy")
         loader.table_name = table_name

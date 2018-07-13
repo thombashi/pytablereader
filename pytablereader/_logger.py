@@ -72,14 +72,12 @@ def set_log_level(log_level):
 
 @six.add_metaclass(abc.ABCMeta)
 class LoggerInterface(object):
-
     @abc.abstractmethod
     def logging_load(self):  # pragma: no cover
         pass
 
 
 class BaseLogger(LoggerInterface):
-
     def __init__(self, loader):
         self._loader = loader
 
@@ -95,7 +93,6 @@ class BaseLogger(LoggerInterface):
 
 
 class NullLogger(BaseLogger):
-
     def logging_load(self):
         pass
 
@@ -107,10 +104,10 @@ class NullLogger(BaseLogger):
 
 
 class FileSourceLogger(BaseLogger):
-
     def _get_load_message(self):
         message = "loading {:s}: format={:s}, path={}".format(
-            self._loader.source_type, self._loader.format_name, self._loader.source)
+            self._loader.source_type, self._loader.format_name, self._loader.source
+        )
 
         try:
             message += ", encoding={}".format(self._loader.encoding)
@@ -121,10 +118,10 @@ class FileSourceLogger(BaseLogger):
 
 
 class TextSourceLogger(BaseLogger):
-
     def _get_load_message(self):
         message = "loading {:s}: format={:s}".format(
-            self._loader.source_type, self._loader.format_name)
+            self._loader.source_type, self._loader.format_name
+        )
 
         try:
             message += ", len={}".format(len(self._loader.source))

@@ -11,7 +11,6 @@ from ..html.formatter import HtmlTableFormatter
 
 
 class MediaWikiTableFormatter(HtmlTableFormatter):
-
     def __init__(self, source_data):
         try:
             import pypandoc
@@ -19,4 +18,5 @@ class MediaWikiTableFormatter(HtmlTableFormatter):
             raise PypandocImportError(e)
 
         super(MediaWikiTableFormatter, self).__init__(
-            pypandoc.convert_text(source_data, "html", format="mediawiki"))
+            pypandoc.convert_text(source_data, "html", format="mediawiki")
+        )

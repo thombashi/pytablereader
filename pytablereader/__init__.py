@@ -7,15 +7,29 @@
 from __future__ import absolute_import
 
 from tabledata import (
-    DataError, EmptyDataError, InvalidDataError, InvalidHeaderNameError, InvalidTableNameError)
+    DataError,
+    EmptyDataError,
+    InvalidDataError,
+    InvalidHeaderNameError,
+    InvalidTableNameError,
+)
 
 from .__version__ import __author__, __copyright__, __email__, __license__, __version__
 from ._constant import PatternMatch
 from ._logger import logger, set_log_level, set_logger
 from .csv.core import CsvTableFileLoader, CsvTableTextLoader
 from .error import (
-    APIError, HTTPError, InvalidFilePathError, LoaderNotFoundError, OpenError, PathError,
-    ProxyError, PypandocImportError, UrlError, ValidationError)
+    APIError,
+    HTTPError,
+    InvalidFilePathError,
+    LoaderNotFoundError,
+    OpenError,
+    PathError,
+    ProxyError,
+    PypandocImportError,
+    UrlError,
+    ValidationError,
+)
 from .html.core import HtmlTableFileLoader, HtmlTableTextLoader
 from .json.core import JsonTableDictLoader, JsonTableFileLoader, JsonTableTextLoader
 from .jsonlines.core import JsonLinesTableFileLoader, JsonLinesTableTextLoader

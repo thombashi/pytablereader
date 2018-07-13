@@ -14,13 +14,9 @@ import pytest
 
 
 class Test_HtmlTableTextLoader_load(object):
-
-    @pytest.mark.parametrize(["filename"], [
-        ["python - Wiktionary.html"],
-    ])
+    @pytest.mark.parametrize(["filename"], [["python - Wiktionary.html"]])
     def test_smoke(self, tmpdir, filename):
-        test_data_file_path = os.path.join(
-            os.path.dirname(__file__), "data", filename)
+        test_data_file_path = os.path.join(os.path.dirname(__file__), "data", filename)
         loader = ptr.TableFileLoader(test_data_file_path)
 
         success_count = 0

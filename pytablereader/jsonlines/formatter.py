@@ -21,10 +21,7 @@ class FlatJsonTableConverter(SingleJsonTableConverterBase):
 
     @property
     def _schema(self):
-        return {
-            "type": "object",
-            "additionalProperties": self._VALUE_TYPE_SCHEMA,
-        }
+        return {"type": "object", "additionalProperties": self._VALUE_TYPE_SCHEMA}
 
     def _validate_source_data(self):
         for json_record in self._buffer:
@@ -53,11 +50,11 @@ class FlatJsonTableConverter(SingleJsonTableConverterBase):
             table_name=self._make_table_name(),
             header_list=header_list,
             row_list=self._buffer,
-            dp_extractor=self._loader.dp_extractor)
+            dp_extractor=self._loader.dp_extractor,
+        )
 
 
 class JsonLinesTableFormatter(TableFormatter):
-
     def to_table_data(self):
         converter = FlatJsonTableConverter(self._source_data)
         converter.accept(self._loader)

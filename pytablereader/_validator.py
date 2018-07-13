@@ -48,7 +48,6 @@ class BaseValidator(ValidatorInterface):
 
 
 class NullValidator(BaseValidator):
-
     @property
     def source_type(self):
         return "null"
@@ -107,6 +106,4 @@ class UrlValidator(BaseValidator):
 
         scheme = urlparse(self.source).scheme
         if scheme not in ["http", "https"]:
-            raise UrlError(
-                "invalid scheme: expected=http/https, actual={}".format(
-                    scheme))
+            raise UrlError("invalid scheme: expected=http/https, actual={}".format(scheme))

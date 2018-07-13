@@ -15,7 +15,6 @@ from ..formatter import TableFormatter
 
 
 class SqliteTableFormatter(TableFormatter):
-
     def __init__(self, source_data):
         super(SqliteTableFormatter, self).__init__(source_data)
 
@@ -37,11 +36,10 @@ class SqliteTableFormatter(TableFormatter):
             data_matrix = con.select(select=AttrList(attr_name_list), table_name=table).fetchall()
 
             yield TableData(
-                table, attr_name_list, data_matrix,
-                dp_extractor=self._loader.dp_extractor)
+                table, attr_name_list, data_matrix, dp_extractor=self._loader.dp_extractor
+            )
 
     def _make_table_name(self):
         return self._loader._expand_table_name_format(
-            self._loader._get_basic_tablename_keyvalue_mapping() + [
-                (tnt.KEY, self.__table_name),
-            ])
+            self._loader._get_basic_tablename_keyvalue_mapping() + [(tnt.KEY, self.__table_name)]
+        )

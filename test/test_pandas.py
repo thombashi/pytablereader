@@ -15,6 +15,7 @@ from tabledata import TableData
 
 try:
     import pandas
+
     PANDAS_IMPORT = True
 except ImportError:
     PANDAS_IMPORT = False
@@ -22,13 +23,14 @@ except ImportError:
 
 @pytest.mark.skipif("PANDAS_IMPORT is False")
 class Test_TableData_as_dataframe(object):
-
     @pytest.mark.parametrize(
-        ["table_name", "header_list", "row_list"], [
+        ["table_name", "header_list", "row_list"],
+        [
             ["normal", ["a", "b"], [[10, 11], [20, 21]]],
             ["normal", None, [[10, 11], [20, 21]]],
             ["normal", None, None],
-        ])
+        ],
+    )
     def test_normal(self, table_name, header_list, row_list):
         tabledata = TableData(table_name, header_list, row_list)
         dataframe = pandas.DataFrame(row_list)
@@ -43,22 +45,18 @@ class Test_TableData_as_dataframe(object):
 
 @pytest.mark.skipif("PANDAS_IMPORT is False")
 class Test_TableData_from_dataframe(object):
-
     def test_normal(self):
         dataframe = pandas.DataFrame(
-            [
-                [0, 0.1, "a"],
-                [1, 1.1, "bb"],
-                [2, 2.2, "ccc"],
-            ],
-            columns=['id', 'value', 'name'])
+            [[0, 0.1, "a"], [1, 1.1, "bb"], [2, 2.2, "ccc"]], columns=["id", "value", "name"]
+        )
         expected = TableData(
             table_name="tablename",
-            header_list=['id', 'value', 'name'],
+            header_list=["id", "value", "name"],
             row_list=[
-                [0, Decimal('0.1'), 'a'],
-                [1, Decimal('1.1'), 'bb'],
-                [2, Decimal('2.2'), 'ccc'],
-            ])
+                [0, Decimal("0.1"), "a"],
+                [1, Decimal("1.1"), "bb"],
+                [2, Decimal("2.2"), "ccc"],
+            ],
+        )
 
         assert TableData.from_dataframe(dataframe, "tablename").equals(expected)

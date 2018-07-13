@@ -13,7 +13,6 @@ from ..html.formatter import HtmlTableFormatter
 
 
 class MarkdownTableFormatter(HtmlTableFormatter):
-
     def __init__(self, source_data, logger=None):
         import markdown2
 
@@ -21,4 +20,5 @@ class MarkdownTableFormatter(HtmlTableFormatter):
             raise DataError
 
         super(MarkdownTableFormatter, self).__init__(
-            markdown2.markdown(source_data, extras=["tables"]), logger=logger)
+            markdown2.markdown(source_data, extras=["tables"]), logger=logger
+        )
