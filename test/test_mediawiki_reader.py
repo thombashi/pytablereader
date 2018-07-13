@@ -17,7 +17,6 @@ from pytablereader.mediawiki.formatter import MediaWikiTableFormatter
 from tabledata import TableData
 
 
-SKIP_TEST = True
 Data = collections.namedtuple("Data", "value expected")
 
 test_data_empty = Data(
@@ -150,8 +149,7 @@ test_empty_data_01 = dedent("""\
     """)
 
 
-@pytest.mark.skipif("SKIP_TEST is True")
-@pytest.mark.xfail
+@pytest.mark.xfail(run=False)
 class MediaWikiTableFormatter_constructor(object):
 
     @pytest.mark.parametrize(["value", "source", "expected"], [
@@ -163,8 +161,7 @@ class MediaWikiTableFormatter_constructor(object):
             MediaWikiTableFormatter(source)
 
 
-@pytest.mark.skipif("SKIP_TEST is True")
-@pytest.mark.xfail
+@pytest.mark.xfail(run=False)
 class Test_MediaWikiTableFormatter_make_table_name(object):
 
     def setup_method(self, method):
@@ -307,8 +304,7 @@ class Test_MediaWikiTableFormatter_make_table_name(object):
             print(formatter._make_table_name())
 
 
-@pytest.mark.skipif("SKIP_TEST is True")
-@pytest.mark.xfail
+@pytest.mark.xfail(run=False)
 class Test_MediaWikiTableFileLoader_load(object):
 
     def setup_method(self, method):
@@ -386,8 +382,7 @@ class Test_MediaWikiTableFileLoader_load(object):
                 pass
 
 
-@pytest.mark.skipif("SKIP_TEST is True")
-@pytest.mark.xfail
+@pytest.mark.xfail(run=False)
 class Test_MediaWikiTableTextLoader_load(object):
 
     def setup_method(self, method):
