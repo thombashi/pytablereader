@@ -149,10 +149,10 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         return self._expand_table_name_format(kv_mapping)
 
     def __strip_empty_col(self):
-        from simplesqlite import connect_sqlite_memdb
+        from simplesqlite import connect_memdb
         from simplesqlite.query import Attr, AttrList
 
-        con = connect_sqlite_memdb()
+        con = connect_memdb()
 
         tmp_table_name = "tmp"
         header_list = ["a{:d}".format(i) for i in range(len(self.__all_values[0]))]
