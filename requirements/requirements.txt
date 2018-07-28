@@ -5,7 +5,7 @@ jsonschema>=2.6.0
 logbook
 markdown2>=2.3.5
 mbstrdecoder>=0.4.0
-pathvalidate>=0.20.0
+pathvalidate>=0.21.1
 path.py>=10.6
 requests>=2.18.4
 simplejson>=3.16.0
