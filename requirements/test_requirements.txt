@@ -3,6 +3,6 @@ pytablewriter>=0.31.0
 pytest-cov
 pytest
 responses
-SimpleSQLite>=0.30.0
+SimpleSQLite>=0.32.0
 tox
 urllib3==1.21.1
