@@ -146,7 +146,7 @@ Get loaded table data as pandas.DataFrame instance
 For more information
 ----------------------
 More examples are available at 
-http://pytablereader.rtfd.io/en/latest/pages/examples/index.html
+https://pytablereader.rtfd.io/en/latest/pages/examples/index.html
 
 Installation
 ============
@@ -200,7 +200,7 @@ Test dependencies
 
 Documentation
 ===============
-http://pytablereader.rtfd.io/
+https://pytablereader.rtfd.io/
 
 Related Project
 =================
