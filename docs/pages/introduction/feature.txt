@@ -18,5 +18,5 @@ Features
     - Accessible URLs
     - ``str`` instances
 - Loaded table data can be used as:
-    - `pandas.DataFrame <http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html>`__ instance
+    - `pandas.DataFrame <https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html>`__ instance
     - ``dict`` instance

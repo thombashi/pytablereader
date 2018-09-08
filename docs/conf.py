@@ -25,7 +25,7 @@ extensions = [
     'sphinx.ext.intersphinx',
 ]
 
-intersphinx_mapping = {'python': ('http://docs.python.org/', None)}
+intersphinx_mapping = {'python': ('https://docs.python.org/', None)}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -371,24 +371,24 @@ rp_builtin = u"""
 
 rp_method = u"""
 .. |LoaderNotFoundError_desc| replace::
-    If an appropriate loader not found for 
+    If an appropriate loader not found for
 
-.. |load_source_desc_file| replace:: 
+.. |load_source_desc_file| replace::
     :py:attr:`.source` attribute should contain a path to the file to load.
 
-.. |load_source_desc_text| replace:: 
+.. |load_source_desc_text| replace::
     :py:attr:`.source` attribute should contain a text object to load.
 
-.. |load_table_name_desc| replace:: 
+.. |load_table_name_desc| replace::
     Table name determined by the value of
     :py:attr:`~pytablereader.interface.TableLoader.table_name`.
     Following format specifiers in the
     :py:attr:`~pytablereader.interface.TableLoader.table_name`
     are replaced with specific strings:
 
-.. |spreadsheet_load_desc| replace:: 
+.. |spreadsheet_load_desc| replace::
     This method automatically search the header row of the table start from
-    :py:attr:`.start_row`. 
+    :py:attr:`.start_row`.
     The header row requires all of the columns has value (except empty columns).
 
 """
