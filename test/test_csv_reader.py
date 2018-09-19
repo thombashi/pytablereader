@@ -294,7 +294,6 @@ class Test_CsvTableFileLoader_load(object):
         [["", [], ptr.InvalidFilePathError], [None, [], ptr.InvalidFilePathError]],
     )
     def test_null(self, tmpdir, filename, header_list, expected):
-
         loader = ptr.CsvTableFileLoader(filename)
         loader.header_list = header_list
 
