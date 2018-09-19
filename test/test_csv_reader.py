@@ -252,7 +252,9 @@ class Test_CsvTableFileLoader_load(object):
             ]
         ],
     )
-    def test_normal_2(self, tmpdir, test_id, table_text, filename, encoding, header_list, expected):
+    def test_normal_multibyte(
+        self, tmpdir, test_id, table_text, filename, encoding, header_list, expected
+    ):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
