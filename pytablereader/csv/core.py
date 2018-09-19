@@ -22,6 +22,11 @@ from ..interface import TableLoader
 from .formatter import CsvTableFormatter
 
 
+def _utf_8_encoder(unicode_csv_data):
+    for line in unicode_csv_data:
+        yield line.encode("utf-8")
+
+
 class CsvTableLoader(TableLoader):
     """
     The abstract class of CSV table loaders.
@@ -163,12 +168,8 @@ class CsvTableFileLoader(CsvTableLoader):
                 skipinitialspace=True,
             )
         else:
-            def utf_8_encoder(unicode_csv_data):
-                for line in unicode_csv_data:
-                    yield line.encode("utf-8")
-
             self._csv_reader = csv.reader(
-                utf_8_encoder(io.open(self.source, "r", encoding=self.encoding)),
+                _utf_8_encoder(io.open(self.source, "r", encoding=self.encoding)),
                 delimiter=self.delimiter,
                 quotechar=self.quotechar,
                 strict=True,
