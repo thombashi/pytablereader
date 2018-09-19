@@ -28,8 +28,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
     :Dependency Packages:
         - `gspread <https://github.com/burnash/gspread>`_
         - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`_
-        - `oauth2client <https://pypi.python.org/pypi/oauth2client>`_
-        - `pyOpenSSL <https://pypi.python.org/pypi/pyOpenSSL>`_
+        - `oauth2client <https://pypi.org/project/oauth2client>`_
+        - `pyOpenSSL <https://pypi.org/project/pyOpenSSL>`_
 
     :Examples:
         :ref:`example-gs-table-loader`
