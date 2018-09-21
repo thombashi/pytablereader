@@ -7,6 +7,9 @@
 from __future__ import print_function, unicode_literals
 
 import collections
+import os
+import platform  # noqa: W0611
+from concurrent.futures import ProcessPoolExecutor
 from textwrap import dedent
 
 import pytablereader as ptr
@@ -16,6 +19,8 @@ from path import Path
 from pytablereader import InvalidTableNameError
 from pytablereader.interface import TableLoader
 from tabledata import TableData
+
+from ._common import fifo_writer
 
 
 Data = collections.namedtuple("Data", "value expected")
@@ -207,6 +212,26 @@ class Test_JsonLinesTableFileLoader_load(object):
             load = True
 
         assert load
+
+    @pytest.mark.skipif("platform.system() == 'Windows'")
+    @pytest.mark.parametrize(
+        ["table_text", "fifo_name", "expected"],
+        [[test_data_single_01.value, "json_lines1", test_data_single_01.expected]],
+    )
+    def test_normal_fifo(self, tmpdir, table_text, fifo_name, expected):
+        namedpipe = str(tmpdir.join(fifo_name))
+
+        os.mkfifo(namedpipe)
+
+        loader = self.LOADER_CLASS(namedpipe)
+
+        with ProcessPoolExecutor() as executor:
+            executor.submit(fifo_writer, namedpipe, table_text)
+
+            for tabledata in loader.load():
+                print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
+
+                assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
         ["table_text", "filename", "expected"],

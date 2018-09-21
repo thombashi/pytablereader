@@ -7,7 +7,8 @@
 from __future__ import absolute_import, unicode_literals
 
 import abc
-import os.path
+import os
+import stat
 
 import pathvalidate as pv
 import six
@@ -17,6 +18,10 @@ from six.moves.urllib.parse import urlparse
 
 from ._constant import SourceType
 from .error import InvalidFilePathError, UrlError
+
+
+def is_fifo(file_path):
+    return stat.S_ISFIFO(os.stat(file_path).st_mode)
 
 
 @six.add_metaclass(abc.ABCMeta)
@@ -73,8 +78,10 @@ class FileValidator(BaseValidator):
         except (ValueError, pv.InvalidCharError, pv.InvalidLengthError) as e:
             raise InvalidFilePathError(e)
 
-        if not os.path.isfile(self.source):
-            raise IOError("file not found")
+        if os.path.isfile(self.source) or is_fifo(self.source):
+            return
+
+        raise IOError("file not found")
 
 
 class TextValidator(BaseValidator):
