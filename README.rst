@@ -11,7 +11,7 @@ A Python library to load structured table data from files/strings/URL with vario
     :target: https://badge.fury.io/py/pytablereader
 
 .. image:: https://img.shields.io/pypi/pyversions/pytablereader.svg
-   :target: https://pypi.python.org/pypi/pytablereader
+   :target: https://pypi.org/project/pytablereader
 
 .. image:: https://img.shields.io/travis/thombashi/pytablereader/master.svg?label=Linux/macOS
     :target: https://travis-ci.org/thombashi/pytablereader
@@ -171,7 +171,7 @@ Mandatory Python packages
 - `pathvalidate <https://github.com/thombashi/pathvalidate>`__
 - `path.py <https://github.com/jaraco/path.py>`__
 - `requests <http://python-requests.org/>`__
-- `six <https://pypi.python.org/pypi/six/>`__
+- `six <https://pypi.org/project/six/>`__
 - `tabledata <https://github.com/thombashi/tabledata>`__
 - `typepy <https://github.com/thombashi/typepy>`__
 - `xlrd <https://github.com/python-excel/xlrd>`__
@@ -193,7 +193,7 @@ Test dependencies
 -----------------
 - `pytablewriter <https://github.com/thombashi/pytablewriter>`__
 - `pytest <https://docs.pytest.org/en/latest/>`__
-- `pytest-runner <https://pypi.python.org/pypi/pytest-runner>`__
+- `pytest-runner <https://github.com/pytest-dev/pytest-runner>`__
 - `responses <https://github.com/getsentry/responses>`__
 - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
 - `tox <https://testrun.org/tox/latest/>`__
