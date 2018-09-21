@@ -86,7 +86,7 @@ class JsonLinesTableFileLoader(JsonLinesTableLoader):
 
         buffer = []
         with io.open(self.source, "r", encoding=self.encoding) as fp:
-            for line in fp.readlines():
+            for line in fp:
                 try:
                     buffer.append(json.loads(line, object_pairs_hook=OrderedDict))
                 except JSONDecodeError as e:
