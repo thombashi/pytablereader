@@ -85,7 +85,7 @@ setuptools.setup(
     extras_require={
         "build": "wheel",
         "docs": docs_requires,
-        "gs": ["gspread", "oauth2client", "pyOpenSSL", "SimpleSQLite>=0.32.0"],
+        "gs": ["gspread", "oauth2client", "pyOpenSSL", "SimpleSQLite>=0.33.0"],
         "release": "releasecmd>=0.0.12",
         "test": tests_requires,
     },
