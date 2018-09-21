@@ -86,7 +86,7 @@ class JsonLinesTableFileLoader(JsonLinesTableLoader):
 
         buffer = []
         with io.open(self.source, "r", encoding=self.encoding) as fp:
-            for line in fp:
+            for line_idx, line in enumerate(fp):
                 line = line.strip()
                 if not line:
                     continue
@@ -94,7 +94,11 @@ class JsonLinesTableFileLoader(JsonLinesTableLoader):
                 try:
                     buffer.append(json.loads(line, object_pairs_hook=OrderedDict))
                 except JSONDecodeError as e:
-                    raise ValidationError(e)
+                    raise ValidationError(
+                        "line {line_idx}: {msg}: {value}".format(
+                            line_idx=line_idx + 1, msg=e, value=line
+                        )
+                    )
 
         return buffer
 
@@ -149,7 +153,7 @@ class JsonLinesTableTextLoader(JsonLinesTableLoader):
         self._logger.logging_load()
 
         buffer = []
-        for line in self.source.splitlines():
+        for line_idx, line in enumerate(self.source.splitlines()):
             line = line.strip()
             if not line:
                 continue
@@ -157,7 +161,11 @@ class JsonLinesTableTextLoader(JsonLinesTableLoader):
             try:
                 buffer.append(json.loads(line, object_pairs_hook=OrderedDict))
             except JSONDecodeError as e:
-                raise ValidationError(e)
+                raise ValidationError(
+                    "line {line_idx}: {msg}: {value}".format(
+                        line_idx=line_idx + 1, msg=e, value=line
+                    )
+                )
 
         return buffer
 
