@@ -11,7 +11,6 @@ import io
 from collections import OrderedDict
 
 import six
-from simplejson import JSONDecodeError
 
 from .._common import get_file_encoding
 from .._constant import SourceType
@@ -25,6 +24,7 @@ from .formatter import JsonLinesTableFormatter
 
 try:
     import simplejson as json
+    from simplejson import JSONDecodeError
 except ImportError:
     import json
 
