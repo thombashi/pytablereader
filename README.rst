@@ -182,6 +182,7 @@ Optional Python packages
     - required when loading MediaWiki file
 - `pandas <https://pandas.pydata.org/>`__
     - required to get table data as a pandas data frame
+- `simplejson <https://github.com/simplejson/simplejson>`__
 - `lxml <https://lxml.de/installation.html>`__
 
 Optional packages (other than Python packages)
