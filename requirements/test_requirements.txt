@@ -1,6 +1,6 @@
 futures;python_version<"3.2"
 pypandoc
-pytablewriter>=0.32.0
+pytablewriter>=0.33.0
 pytest-cov
 pytest
 responses
