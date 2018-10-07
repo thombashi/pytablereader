@@ -7,7 +7,6 @@ markdown2>=2.3.6
 mbstrdecoder>=0.5.0
 pathvalidate>=0.21.3
 path.py>=10.6
-simplejson>=3.16.0
 requests>=2.19.1
 six
 tabledata>=0.0.23

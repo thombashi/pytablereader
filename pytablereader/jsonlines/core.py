@@ -10,7 +10,6 @@ import abc
 import io
 from collections import OrderedDict
 
-import simplejson as json
 import six
 from simplejson import JSONDecodeError
 
@@ -22,6 +21,12 @@ from .._validator import FileValidator, TextValidator
 from ..error import ValidationError
 from ..interface import TableLoader
 from .formatter import JsonLinesTableFormatter
+
+
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 
 @six.add_metaclass(abc.ABCMeta)
