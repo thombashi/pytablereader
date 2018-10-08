@@ -5,6 +5,5 @@ pytest-cov
 pytest
 responses
 simplejson
-SimpleSQLite>=0.33.0
 tox
 urllib3==1.21.1
