@@ -88,6 +88,7 @@ setuptools.setup(
         "gs": ["gspread", "oauth2client", "pyOpenSSL", "SimpleSQLite>=0.33.0"],
         "mediawiki": "pypandoc",
         "release": "releasecmd>=0.0.12",
+        "sqlite": "SimpleSQLite>=0.33.0",
         "test": tests_requires,
     },
 
