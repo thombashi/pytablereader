@@ -6,7 +6,6 @@
 
 from __future__ import absolute_import, unicode_literals
 
-import xlrd
 from pytablereader import DataError
 from six.moves import range
 from tabledata import TableData
@@ -81,6 +80,8 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             If failed to open the source file.
         """
 
+        import xlrd
+
         self._validate()
         self._logger.logging_load()
 
@@ -133,14 +134,19 @@ class ExcelTableFileLoader(SpreadSheetLoader):
         return row_idx
 
     def __is_header_row(self, row_idx):
+        from xlrd import XL_CELL_EMPTY
+
         cell_type_list = self._worksheet.row_types(
             row_idx, self._start_col_idx, self._end_col_idx + 1
         )
-        return xlrd.XL_CELL_EMPTY not in cell_type_list
+
+        return XL_CELL_EMPTY not in cell_type_list
 
     @staticmethod
     def __is_empty_cell_type_list(cell_type_list):
-        return all([cell_type == xlrd.XL_CELL_EMPTY for cell_type in cell_type_list])
+        from xlrd import XL_CELL_EMPTY
+
+        return all([cell_type == XL_CELL_EMPTY for cell_type in cell_type_list])
 
     def __extract_not_empty_col_idx(self):
         col_idx_list = [

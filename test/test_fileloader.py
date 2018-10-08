@@ -239,6 +239,7 @@ class Test_TableFileLoader_load(object):
         for table_data, expected in zip(loader.load(), expeced_list):
             assert table_data.equals(expected)
 
+    @pytest.mark.xfail(run=False)
     def test_normal_excel(self, tmpdir):
         file_path = "/tmp/valid/test/data/validdata.xlsx"
         p_file_path = Path(str(tmpdir.join(file_path)))

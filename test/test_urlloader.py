@@ -261,6 +261,7 @@ class Test_TableUrlLoader_load(object):
 
             assert table_data.in_tabledata_list(expeced_list)
 
+    @pytest.mark.xfail(run=False)
     @responses.activate
     def test_normal_excel(self):
         url = "https://github.com/thombashi/valid/test/data/validdata.xlsx"
