@@ -9,5 +9,5 @@ pathvalidate>=0.21.3
 path.py>=10.6
 requests>=2.19.1
 six
-tabledata>=0.0.23
+tabledata>=0.0.24
 typepy>=0.2.4
