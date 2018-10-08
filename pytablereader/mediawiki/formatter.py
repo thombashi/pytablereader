@@ -15,6 +15,8 @@ class MediaWikiTableFormatter(HtmlTableFormatter):
         try:
             import pypandoc
         except ImportError as e:
+            # pypandoc package may do not installed in the system since the package is
+            # an optional dependency
             raise PypandocImportError(e)
 
         super(MediaWikiTableFormatter, self).__init__(
