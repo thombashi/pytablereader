@@ -11,11 +11,11 @@ import io
 from decimal import Decimal
 
 import pytablereader as ptr
-import pytablewriter as ptw
 import pytest
 from path import Path
 from pytablereader import InvalidTableNameError
 from pytablereader.interface import TableLoader
+from pytablewriter import dump_tabledata
 from tabledata import TableData
 
 
@@ -141,7 +141,7 @@ class Test_TsvTableFileLoader_load(object):
 
         for tabledata in loader.load():
             print("test-id={}".format(test_id))
-            print(ptw.dump_tabledata(tabledata))
+            print(dump_tabledata(tabledata))
 
             assert tabledata.in_tabledata_list(expected)
 
@@ -224,9 +224,9 @@ class Test_TsvTableTextLoader_load(object):
         loader.header_list = header_list
 
         for tabledata in loader.load():
-            print(ptw.dump_tabledata(tabledata))
+            print(dump_tabledata(tabledata))
             for e in expected:
-                print(ptw.dump_tabledata(e))
+                print(dump_tabledata(e))
 
             assert tabledata.in_tabledata_list(expected)
 

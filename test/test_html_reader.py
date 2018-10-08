@@ -10,11 +10,11 @@ import collections
 import io
 
 import pytablereader as ptr
-import pytablewriter as ptw
 import pytest
 from path import Path
 from pytablereader.html.formatter import HtmlTableFormatter
 from pytablereader.interface import TableLoader
+from pytablewriter import dump_tabledata
 from tabledata import TableData
 
 
@@ -486,7 +486,7 @@ class Test_HtmlTableFileLoader_load(object):
 
         for table_data in loader.load():
             print("--- test {} ---".format(test_id))
-            print("[actual]\n{}\n".format(ptw.dump_tabledata(table_data)))
+            print("[actual]\n{}\n".format(dump_tabledata(table_data)))
 
             assert table_data.in_tabledata_list(expected_tabledata_list)
 
@@ -533,7 +533,7 @@ class Test_HtmlTableTextLoader_load(object):
         loader.table_name = table_name
 
         for table_data in loader.load():
-            print("[actual]\n{}".format(ptw.dump_tabledata(table_data)))
+            print("[actual]\n{}".format(dump_tabledata(table_data)))
 
             assert table_data.in_tabledata_list(expected_tabletuple_list)
 

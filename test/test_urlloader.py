@@ -10,10 +10,10 @@ import os.path
 from textwrap import dedent
 
 import pytablereader as ptr
-import pytablewriter as ptw
 import pytest
 import responses
 from pytablereader.interface import TableLoader
+from pytablewriter import dump_tabledata
 from tabledata import TableData
 
 
@@ -253,11 +253,11 @@ class Test_TableUrlLoader_load(object):
         loader.table_name = "url_loader"
 
         for table_data in loader.load():
-            print("{} {}".format(table_data, ptw.dump_tabledata(table_data)))
+            print("{} {}".format(table_data, dump_tabledata(table_data)))
             print(table_data.row_list)
             print("[expected]")
             for expeced in expeced_list:
-                print(ptw.dump_tabledata(expeced))
+                print(dump_tabledata(expeced))
 
             assert table_data.in_tabledata_list(expeced_list)
 

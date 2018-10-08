@@ -9,8 +9,8 @@ from __future__ import unicode_literals
 import os
 
 import pytablereader as ptr
-import pytablewriter as ptw
 import pytest
+from pytablewriter import dump_tabledata
 
 
 class Test_HtmlTableTextLoader_load(object):
@@ -25,7 +25,7 @@ class Test_HtmlTableTextLoader_load(object):
             if tabledata.is_empty():
                 continue
 
-            assert len(ptw.dump_tabledata(tabledata)) > 10
+            assert len(dump_tabledata(tabledata)) > 10
 
             success_count += 1
 

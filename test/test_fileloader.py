@@ -10,12 +10,12 @@ from textwrap import dedent
 
 import pathvalidate as pv
 import pytablereader as ptr
-import pytablewriter as ptw
 import pytest
 import six
 from mbstrdecoder import MultiByteStrDecoder
 from path import Path
 from pytablereader.interface import TableLoader
+from pytablewriter import ExcelXlsxTableWriter, dump_tabledata
 from tabledata import TableData
 
 
@@ -145,8 +145,8 @@ class Test_TableFileLoader_load(object):
         assert loader.format_name == "csv"
 
         for tabledata, expected in zip(loader.load(), expeced_list):
-            print(ptw.dump_tabledata(expected))
-            print(ptw.dump_tabledata(tabledata))
+            print(dump_tabledata(expected))
+            print(dump_tabledata(tabledata))
 
             assert tabledata.equals(expected)
 
@@ -198,8 +198,8 @@ class Test_TableFileLoader_load(object):
         assert loader.format_name == "csv"
 
         for tabledata, expected in zip(loader.load(), expeced_list):
-            print(ptw.dump_tabledata(expected))
-            print(ptw.dump_tabledata(tabledata))
+            print(dump_tabledata(expected))
+            print(dump_tabledata(tabledata))
 
             assert tabledata.equals(expected)
 
@@ -263,7 +263,7 @@ class Test_TableFileLoader_load(object):
             ),
         ]
 
-        writer = ptw.ExcelXlsxTableWriter()
+        writer = ExcelXlsxTableWriter()
         writer.open(p_file_path)
         for tabledata in tabledata_list:
             writer.from_tabledata(tabledata)
@@ -275,6 +275,6 @@ class Test_TableFileLoader_load(object):
         assert loader.format_name == "excel"
 
         for tabledata in loader.load():
-            print(ptw.dump_tabledata(tabledata))
+            print(dump_tabledata(tabledata))
 
             assert tabledata in tabledata_list

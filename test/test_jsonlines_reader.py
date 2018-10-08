@@ -13,11 +13,11 @@ from concurrent.futures import ProcessPoolExecutor
 from textwrap import dedent
 
 import pytablereader as ptr
-import pytablewriter as ptw
 import pytest
 from path import Path
 from pytablereader import InvalidTableNameError
 from pytablereader.interface import TableLoader
+from pytablewriter import dump_tabledata
 from tabledata import TableData
 
 from ._common import fifo_writer
@@ -206,7 +206,7 @@ class Test_JsonLinesTableFileLoader_load(object):
         loader = self.LOADER_CLASS(file_path)
         load = False
         for tabledata in loader.load():
-            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
+            print("[actual]\n{}".format(dump_tabledata(tabledata)))
 
             assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True
@@ -229,7 +229,7 @@ class Test_JsonLinesTableFileLoader_load(object):
             executor.submit(fifo_writer, namedpipe, table_text)
 
             for tabledata in loader.load():
-                print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
+                print("[actual]\n{}".format(dump_tabledata(tabledata)))
 
                 assert tabledata.in_tabledata_list(expected)
 
@@ -324,10 +324,10 @@ class Test_JsonLinesTableTextLoader_load(object):
 
         load = False
         for tabledata in loader.load():
-            print("[actual]\n{}".format(ptw.dump_tabledata(tabledata)))
+            print("[actual]\n{}".format(dump_tabledata(tabledata)))
             print("[expected]")
             for expected in expected_tabletuple_list:
-                print("{}".format(ptw.dump_tabledata(tabledata)))
+                print("{}".format(dump_tabledata(tabledata)))
 
             assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True
