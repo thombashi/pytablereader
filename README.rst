@@ -30,18 +30,16 @@ A Python library to load structured table data from files/strings/URL with vario
 Features
 --------
 - Extract structured tabular data from various data format:
-    - CSV
+    - CSV / Tab separated values (TSV) / Space separated values (SSV)
     - Microsoft Excel :superscript:`TM` file
     - `Google Sheets <https://www.google.com/intl/en_us/sheets/about/>`_
     - HTML
     - JSON
     - `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
-    - `Line-delimited JSON(LDJSON) <https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON>`__/NDJSON/JSON Lines
+    - `Line-delimited JSON(LDJSON) <https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON>`__ / NDJSON / JSON Lines
     - Markdown
     - MediaWiki
-    - Space separated values (SSV)
     - SQLite database file
-    - Tab separated values (TSV)
 - Supported data sources are:
     - Files on a local file system
     - Accessible URLs
@@ -150,10 +148,20 @@ https://pytablereader.rtfd.io/en/latest/pages/examples/index.html
 
 Installation
 ============
-
 ::
 
     pip install pytablereader
+
+Some of the formats require additional packages, you can download the packages as follows:
+
+- Excel
+    - ``pip install pytablereader[excel]``
+- Google Sheets
+    - ``pip install pytablereader[gs]``
+- Mediawiki
+    - ``pip install pytablereader[mediawiki]``
+- SQLite
+    - ``pip install pytablereader[sqlite]``
 
 
 Dependencies
@@ -174,12 +182,15 @@ Mandatory Python packages
 - `six <https://pypi.org/project/six/>`__
 - `tabledata <https://github.com/thombashi/tabledata>`__
 - `typepy <https://github.com/thombashi/typepy>`__
-- `xlrd <https://github.com/python-excel/xlrd>`__
 
 Optional Python packages
 ------------------------------------------------
-- `pypandoc <https://github.com/bebraw/pypandoc>`__
-    - required when loading MediaWiki file
+- Excel
+    - `xlrd <https://github.com/python-excel/xlrd>`__
+- MediaWiki
+    - `pypandoc <https://github.com/bebraw/pypandoc>`__
+- SQLite
+    - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
 - `pandas <https://pandas.pydata.org/>`__
     - required to get table data as a pandas data frame
 - `simplejson <https://github.com/simplejson/simplejson>`__
