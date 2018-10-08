@@ -85,11 +85,11 @@ setuptools.setup(
     extras_require={
         "build": ["wheel"],
         "docs": docs_requires,
-        "excel": "xlrd>=1.1.0",
+        "excel": ["xlrd>=1.1.0"],
         "gs": ["gspread", "oauth2client", "pyOpenSSL", "SimpleSQLite>=0.33.0"],
-        "mediawiki": "pypandoc",
+        "mediawiki": ["pypandoc"],
         "release": ["releasecmd>=0.0.12"],
-        "sqlite": "SimpleSQLite>=0.33.0",
+        "sqlite": ["SimpleSQLite>=0.33.0"],
         "test": tests_requires,
     },
 
