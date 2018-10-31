@@ -171,7 +171,7 @@ Python 2.7+ or 3.4+
 Mandatory Python packages
 ----------------------------------
 - `beautifulsoup4 <https://www.crummy.com/software/BeautifulSoup/>`__
-- `DataPropery <https://github.com/thombashi/DataProperty>`__ (Used to extract data types)
+- `DataProperty <https://github.com/thombashi/DataProperty>`__ (Used to extract data types)
 - `jsonschema <https://github.com/Julian/jsonschema>`__
 - `logbook <https://logbook.readthedocs.io/en/stable/>`__
 - `markdown2 <https://github.com/trentm/python-markdown2>`__
