@@ -1,5 +1,5 @@
 beautifulsoup4>=4.6.3
-DataProperty>=0.34.0
+DataProperty>=0.35.2
 enum34;python_version<"3.4"
 jsonschema>=2.6.0
 logbook
@@ -10,4 +10,4 @@ path.py>=10.6
 requests>=2.19.1
 six
 tabledata>=0.0.24
-typepy>=0.2.4
+typepy>=0.3.0
