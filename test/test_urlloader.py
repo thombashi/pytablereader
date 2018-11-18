@@ -7,11 +7,13 @@
 from __future__ import print_function, unicode_literals
 
 import os.path
+import platform
 from textwrap import dedent
 
 import pytablereader as ptr
 import pytest
 import responses
+import six
 from pytablereader.interface import TableLoader
 from pytablewriter import dump_tabledata
 from tabledata import TableData
@@ -129,6 +131,9 @@ class Test_TableUrlLoader_constructor(object):
         ],
     )
     def test_normal(self, value, format_name, expected):
+        if six.PY2 and platform.system() == "Windows":
+            pytest.skip()
+
         responses.add(
             responses.GET,
             value,
