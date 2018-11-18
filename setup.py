@@ -55,6 +55,8 @@ with open(os.path.join(REQUIREMENT_DIR, "docs_requirements.txt")) as f:
 
 setuptools_require = ["setuptools>=38.3.0"]
 pytest_runner_require = ["pytest-runner"] if need_pytest() else []
+excel_requires = ["xlrd>=1.1.0"]
+mediawiki_requires = ["pypandoc"]
 sqlite_requires = ["SimpleSQLite>=0.33.1"]
 
 setuptools.setup(
@@ -86,12 +88,12 @@ setuptools.setup(
     extras_require={
         "build": ["wheel"],
         "docs": docs_requires,
-        "excel": ["xlrd>=1.1.0"],
+        "excel": excel_requires,
         "gs": ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires,
-        "mediawiki": ["pypandoc"],
+        "mediawiki": mediawiki_requires,
         "release": ["releasecmd>=0.0.12"],
-        "test": tests_requires,
         "sqlite": sqlite_requires,
+        "test": tests_requires + excel_requires + mediawiki_requires + sqlite_requires,
     },
 
     classifiers=[
