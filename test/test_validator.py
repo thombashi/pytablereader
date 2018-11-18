@@ -17,7 +17,7 @@ class Test_FileValidator_validate(object):
     def test_normal(self, tmpdir, value):
         p_file_path = tmpdir.join(value)
 
-        with open(str(p_file_path), "w") as _f:
+        with open(str(p_file_path), "w"):
             pass
 
         validator = FileValidator(str(p_file_path))
