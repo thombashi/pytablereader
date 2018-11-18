@@ -131,9 +131,6 @@ class Test_TableUrlLoader_constructor(object):
         ],
     )
     def test_normal(self, value, format_name, expected):
-        if six.PY2 and platform.system() == "Windows":
-            pytest.skip()
-
         responses.add(
             responses.GET,
             value,
@@ -175,6 +172,9 @@ class Test_TableUrlLoader_constructor(object):
         ],
     )
     def test_exception(self, value, format_name, expected):
+        if six.PY2 and platform.system() == "Windows":
+            pytest.skip()
+
         responses.add(responses.GET, value, body="""404: Not Found""", status=404)
 
         with pytest.raises(expected):
