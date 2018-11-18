@@ -55,6 +55,7 @@ with open(os.path.join(REQUIREMENT_DIR, "docs_requirements.txt")) as f:
 
 setuptools_require = ["setuptools>=38.3.0"]
 pytest_runner_require = ["pytest-runner"] if need_pytest() else []
+sqlite_requires = ["SimpleSQLite>=0.33.1"]
 
 setuptools.setup(
     name=MODULE_NAME,
@@ -86,11 +87,11 @@ setuptools.setup(
         "build": ["wheel"],
         "docs": docs_requires,
         "excel": ["xlrd>=1.1.0"],
-        "gs": ["gspread", "oauth2client", "pyOpenSSL", "SimpleSQLite>=0.33.1"],
+        "gs": ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires,
         "mediawiki": ["pypandoc"],
         "release": ["releasecmd>=0.0.12"],
-        "sqlite": ["SimpleSQLite>=0.33.1"],
         "test": tests_requires,
+        "sqlite": sqlite_requires,
     },
 
     classifiers=[
