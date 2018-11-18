@@ -4,7 +4,7 @@ Installation
 
     pip install pytablereader
 
-Some of the formats require additional packages, you can download the packages as follows:
+Some of the formats require additional dependency packages, you can install the dependency packages as follows:
 
 - Excel
     - ``pip install pytablereader[excel]``
@@ -14,6 +14,8 @@ Some of the formats require additional packages, you can download the packages a
     - ``pip install pytablereader[mediawiki]``
 - SQLite
     - ``pip install pytablereader[sqlite]``
+- All of the extra dependencies
+    - ``pip install pytablereader[all]``
 
 
 Dependencies
