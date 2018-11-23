@@ -46,7 +46,7 @@ def valid_excel_file_path(tmpdir):
         ],
     )
 
-    worksheet = workbook.add_worksheet("testsheet2")
+    worksheet = workbook.add_worksheet("testsheet2")  # noqa: W0612
 
     write_worksheet(
         workbook.add_worksheet("testsheet3"),
@@ -81,7 +81,7 @@ def invalid_excel_file_path(tmpdir):
         table=[["", "", "", ""], ["", "a", "", "c"], ["", "aa", "ab", ""], ["", "", 1.1, "a"]],
     )
 
-    worksheet = workbook.add_worksheet("testsheet2")
+    worksheet = workbook.add_worksheet("testsheet2")  # noqa: W0612
 
     workbook.close()
 
