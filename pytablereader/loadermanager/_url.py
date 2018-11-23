@@ -26,7 +26,7 @@ class TableUrlLoader(TableLoaderManager):
     :param dict proxies: http/https proxy information.
 
         .. seealso::
-            - `requests proxies <http://requests-docs-ja.readthedocs.io/en/latest/user/advanced/#proxies>`__
+            `requests proxies <http://docs.python-requests.org/en/master/user/advanced/#proxies>`__
 
     :raises pytablereader.LoaderNotFoundError:
         |LoaderNotFoundError_desc| loading the URL.
@@ -69,8 +69,24 @@ class TableUrlLoader(TableLoaderManager):
         :Example:
             .. code:: python
 
-                >>> pytablereader.TableUrlLoaderFactory.get_format_name_list()
-                ['csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'ssv', 'tsv']
+                >>> from pytablereader import TableUrlLoader
+                >>> for format_name in TableUrlLoader.get_format_name_list():
+                ...     print(format_name)
+                ...
+                csv
+                excel
+                html
+                json
+                json_lines
+                jsonl
+                ldjson
+                ltsv
+                markdown
+                mediawiki
+                ndjson
+                sqlite
+                ssv
+                tsv
         """
 
         return TableUrlLoaderFactory("http://dummy.com/").get_format_name_list()

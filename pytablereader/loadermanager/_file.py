@@ -62,8 +62,24 @@ class TableFileLoader(TableLoaderManager):
         :Example:
             .. code:: python
 
-                >>> pytablereader.TableFileLoader.get_format_name_list()
-                ['csv', 'excel', 'html', 'json', 'ltsv', 'markdown', 'mediawiki', 'sqlite', 'ssv', 'tsv']
+                >>> from pytablereader import TableFileLoader
+                >>> for format_name in TableFileLoader.get_format_name_list():
+                ...     print(format_name)
+                ...
+                csv
+                excel
+                html
+                json
+                json_lines
+                jsonl
+                ldjson
+                ltsv
+                markdown
+                mediawiki
+                ndjson
+                sqlite
+                ssv
+                tsv
         """
 
         return TableFileLoaderFactory("dummy").get_format_name_list()
