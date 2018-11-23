@@ -60,6 +60,7 @@ excel_requires = ["xlrd>=1.1.0"]
 mediawiki_requires = ["pypandoc"]
 sqlite_requires = ["SimpleSQLite>=0.33.1"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
+tests_requires = frozenset(tests_requires + excel_requires + mediawiki_requires + sqlite_requires)
 
 setuptools.setup(
     name=MODULE_NAME,
@@ -96,7 +97,7 @@ setuptools.setup(
         "mediawiki": mediawiki_requires,
         "release": ["releasecmd>=0.0.12"],
         "sqlite": sqlite_requires,
-        "test": tests_requires + excel_requires + mediawiki_requires + sqlite_requires,
+        "test": tests_requires,
     },
 
     classifiers=[
