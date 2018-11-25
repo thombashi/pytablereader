@@ -321,8 +321,6 @@ class Test_JsonTableFileLoader_load(object):
             f.write(table_text)
 
         loader = ptr.JsonTableFileLoader(file_path)
-        # loader.table_name = table_name
-
         load = False
         for tabledata in loader.load():
             print("[actual]\n{}".format(dump_tabledata(tabledata)))
