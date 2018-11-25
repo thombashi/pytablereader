@@ -172,7 +172,7 @@ class Test_TableUrlLoader_constructor(object):
         ],
     )
     def test_exception(self, value, format_name, expected):
-        if six.PY2 and platform.system() == "Windows":
+        if six.PY2:
             pytest.skip()
 
         responses.add(responses.GET, value, body="""404: Not Found""", status=404)
