@@ -9,6 +9,7 @@ from __future__ import absolute_import, unicode_literals
 import abc
 import os
 import stat
+from errno import EBADF, ENAMETOOLONG, ENOENT, ENOTDIR
 
 import pathvalidate as pv
 import six
@@ -21,7 +22,15 @@ from .error import InvalidFilePathError, UrlError
 
 
 def is_fifo(file_path):
-    return stat.S_ISFIFO(os.stat(file_path).st_mode)
+    try:
+        return stat.S_ISFIFO(os.stat(file_path).st_mode)
+    except OSError as e:
+        if e.errno not in (EBADF, ENAMETOOLONG, ENOENT, ENOTDIR):
+            raise
+
+        return False
+    except ValueError:
+        return False
 
 
 @six.add_metaclass(abc.ABCMeta)

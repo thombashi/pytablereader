@@ -9,7 +9,7 @@ from __future__ import unicode_literals
 import pytablereader as ptr
 import pytest
 from pytablereader._constant import SourceType
-from pytablereader._validator import FileValidator, TextValidator, UrlValidator
+from pytablereader._validator import FileValidator, TextValidator, UrlValidator, is_fifo
 
 
 class Test_FileValidator_validate(object):
@@ -72,3 +72,8 @@ class Test_UrlValidator_validate(object):
 
         with pytest.raises(expected):
             validator.validate()
+
+
+class Test_is_fifo(object):
+    def test_filename_too_long(self):
+        assert not is_fifo("a" * 1000)
