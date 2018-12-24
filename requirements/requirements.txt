@@ -3,11 +3,11 @@ DataProperty>=0.36.0
 enum34;python_version<"3.4"
 jsonschema>=2.6.0
 logbook
-markdown2>=2.3.6
-mbstrdecoder>=0.5.0
-pathvalidate>=0.21.4
-path.py>=10.6
-requests>=2.19.1
+markdown2>=2.3.7
+mbstrdecoder>=0.5.1
+pathvalidate>=0.22.0
+path.py>=11.5.0
+requests>=2.21.0
 six
 tabledata>=0.0.25
 typepy>=0.3.0
