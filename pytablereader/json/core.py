@@ -90,7 +90,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: Valid JSON example for the JSON schema (1)
+                :caption: Acceptable JSON example for the JSON schema (1)
 
                 [
                     {"attr_b": 4, "attr_c": "a", "attr_a": 1},
@@ -133,7 +133,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: Valid JSON example for the JSON schema (2)
+                :caption: Acceptable JSON example for the JSON schema (2)
 
                 {
                     "attr_a": [1, 2, 3],
@@ -174,7 +174,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: Valid JSON example for the JSON schema (3)
+                :caption: Acceptable JSON example for the JSON schema (3)
 
                 {
                     "num_ratings": 27,
@@ -232,7 +232,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: Valid JSON example for the JSON schema (4)
+                :caption: Acceptable JSON example for the JSON schema (4)
 
                 {
                     "table_a" : [
@@ -297,7 +297,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: Valid JSON example for the JSON schema (5)
+                :caption: Acceptable JSON example for the JSON schema (5)
 
                 {
                     "table_a" : {
@@ -356,7 +356,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 }
 
             .. code-block:: json
-                :caption: Valid JSON example for the JSON schema (6)
+                :caption: Acceptable JSON example for the JSON schema (6)
 
                 {
                     "table_a": {
