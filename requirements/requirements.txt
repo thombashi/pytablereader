@@ -1,13 +1,13 @@
 beautifulsoup4>=4.6.3
-DataProperty>=0.36.0
+DataProperty>=0.36.1
 enum34;python_version<"3.4"
 jsonschema>=2.6.0
 logbook
 markdown2>=2.3.7
-mbstrdecoder>=0.5.1
+mbstrdecoder[all]>=0.6.1
 pathvalidate>=0.22.0
 path.py>=11.5.0
 requests>=2.21.0
 six
-tabledata>=0.0.25
-typepy>=0.3.0
+tabledata>=0.0.26
+typepy>=0.3.1

@@ -56,9 +56,9 @@ with open(os.path.join(REQUIREMENT_DIR, "docs_requirements.txt")) as f:
 setuptools_require = ["setuptools>=38.3.0"]
 pytest_runner_require = ["pytest-runner"] if need_pytest() else []
 
-excel_requires = ["xlrd>=1.1.0"]
+excel_requires = ["xlrd>=1.2.0"]
 mediawiki_requires = ["pypandoc"]
-sqlite_requires = ["SimpleSQLite>=0.33.3"]
+sqlite_requires = ["SimpleSQLite>=0.33.4"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
 tests_requires = frozenset(tests_requires + excel_requires + mediawiki_requires + sqlite_requires)
 
