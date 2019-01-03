@@ -58,7 +58,7 @@ pytest_runner_require = ["pytest-runner"] if need_pytest() else []
 
 excel_requires = ["xlrd>=1.2.0"]
 mediawiki_requires = ["pypandoc"]
-sqlite_requires = ["SimpleSQLite>=0.33.4"]
+sqlite_requires = ["SimpleSQLite>=0.33.5,<1.0.0"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
 tests_requires = frozenset(tests_requires + excel_requires + mediawiki_requires + sqlite_requires)
 
@@ -95,7 +95,7 @@ setuptools.setup(
         "excel": excel_requires,
         "gs": gs_requires,
         "mediawiki": mediawiki_requires,
-        "release": ["releasecmd>=0.0.12"],
+        "release": ["releasecmd>=0.0.12,<0.1.0"],
         "sqlite": sqlite_requires,
         "test": tests_requires,
     },
