@@ -58,7 +58,7 @@ pytest_runner_require = ["pytest-runner"] if need_pytest() else []
 
 excel_requires = ["xlrd>=1.2.0"]
 mediawiki_requires = ["pypandoc"]
-sqlite_requires = ["SimpleSQLite>=0.33.5,<1.0.0"]
+sqlite_requires = ["SimpleSQLite>=0.33.6,<1.0.0"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
 tests_requires = frozenset(tests_requires + excel_requires + mediawiki_requires + sqlite_requires)
 
