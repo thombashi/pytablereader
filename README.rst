@@ -9,23 +9,27 @@ A Python library to load structured table data from files/strings/URL with vario
 
 .. image:: https://badge.fury.io/py/pytablereader.svg
     :target: https://badge.fury.io/py/pytablereader
+    :alt: PyPI package version
 
 .. image:: https://img.shields.io/pypi/pyversions/pytablereader.svg
-   :target: https://pypi.org/project/pytablereader
+    :target: https://pypi.org/project/pytablereader
+    :alt: Supported Python versions
 
-.. image:: https://img.shields.io/travis/thombashi/pytablereader/master.svg?label=Linux/macOS
+.. image:: https://img.shields.io/travis/thombashi/pytablereader/master.svg?label=Linux/macOS%20CI
     :target: https://travis-ci.org/thombashi/pytablereader
-    :alt: Linux CI test status
+    :alt: Linux/macOS CI status
 
-.. image:: https://img.shields.io/appveyor/ci/thombashi/pytablereader/master.svg?label=Windows
+.. image:: https://img.shields.io/appveyor/ci/thombashi/pytablereader/master.svg?label=Windows%20CI
     :target: https://ci.appveyor.com/project/thombashi/pytablereader/branch/master
-    :alt: Windows CI test status
+    :alt: Windows CI status
 
 .. image:: https://coveralls.io/repos/github/thombashi/pytablereader/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/pytablereader?branch=master
+    :alt: Test coverage
 
 .. image:: https://img.shields.io/github/stars/thombashi/pytablereader.svg?style=social&label=Star
-   :target: https://github.com/thombashi/pytablereader
+    :target: https://github.com/thombashi/pytablereader
+    :alt: GitHub stars
 
 Features
 --------
