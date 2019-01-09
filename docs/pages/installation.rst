@@ -61,5 +61,4 @@ Test dependencies
 - `pytest <https://docs.pytest.org/en/latest/>`__
 - `pytest-runner <https://github.com/pytest-dev/pytest-runner>`__
 - `responses <https://github.com/getsentry/responses>`__
-- `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
 - `tox <https://testrun.org/tox/latest/>`__
