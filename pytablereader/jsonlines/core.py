@@ -24,9 +24,16 @@ from .formatter import JsonLinesTableFormatter
 
 try:
     import simplejson as json
-    from simplejson import JSONDecodeError
 except ImportError:
     import json
+
+try:
+    from simplejson import JSONDecodeError
+except ImportError:
+    try:
+        from json import JSONDecodeError
+    except:
+        JSONDecodeError = ValueError
 
 
 @six.add_metaclass(abc.ABCMeta)
