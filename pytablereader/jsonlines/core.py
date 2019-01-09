@@ -32,7 +32,7 @@ try:
 except ImportError:
     try:
         from json import JSONDecodeError
-    except:
+    except ImportError:
         JSONDecodeError = ValueError
 
 
