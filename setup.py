@@ -60,7 +60,14 @@ excel_requires = ["xlrd>=1.2.0"]
 mediawiki_requires = ["pypandoc"]
 sqlite_requires = ["SimpleSQLite>=0.33.6,<1.0.0"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
-tests_requires = frozenset(tests_requires + excel_requires + mediawiki_requires + sqlite_requires)
+optional_requires = ["simplejson>=3.16,<4.0"]
+tests_requires = frozenset(
+    tests_requires
+    + excel_requires
+    + mediawiki_requires
+    + sqlite_requires
+    + optional_requires
+)
 
 setuptools.setup(
     name=MODULE_NAME,
@@ -89,7 +96,13 @@ setuptools.setup(
     setup_requires=setuptools_require + pytest_runner_require,
     tests_require=tests_requires,
     extras_require={
-        "all": set(excel_requires + gs_requires + mediawiki_requires + sqlite_requires),
+        "all": set(
+            excel_requires
+            + gs_requires
+            + mediawiki_requires
+            + sqlite_requires
+            + optional_requires
+        ),
         "build": ["wheel"],
         "docs": docs_requires,
         "excel": excel_requires,

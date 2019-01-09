@@ -4,6 +4,5 @@ pytablewriter[excel]
 pytest-cov
 pytest
 responses
-simplejson
 subprocrunner
 tox
