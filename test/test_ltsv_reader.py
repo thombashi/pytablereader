@@ -194,7 +194,6 @@ class Test_LtsvTableTextLoader_load(object):
         with pytest.raises(expected):
             for _tabledata in loader.load():
                 print(_tabledata)
-                pass
 
     @pytest.mark.parametrize(["table_name", "expected"], [["", ValueError], [None, ValueError]])
     def test_null(self, table_name, expected):
