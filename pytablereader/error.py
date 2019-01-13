@@ -6,8 +6,6 @@
 
 from __future__ import absolute_import
 
-import requests
-
 
 class ValidationError(Exception):
     """
@@ -53,27 +51,42 @@ class LoaderNotFoundError(Exception):
     """
 
 
-class HTTPError(requests.RequestException):
-    """
-    An HTTP error occurred.
-
-    .. seealso::
-
-        http://docs.python-requests.org/en/master/api/#exceptions
-    """
-
-
-class ProxyError(requests.exceptions.ProxyError):
-    """
-    A proxy error occurred.
-
-    .. seealso::
-
-        http://docs.python-requests.org/en/master/_modules/requests/exceptions/
-    """
-
-
 class PypandocImportError(ImportError):
     """
     Exception raised when import error occurred with pypandoc package.
     """
+
+
+try:
+    import requests
+
+    class HTTPError(requests.RequestException):
+        """
+        An HTTP error occurred.
+
+        .. seealso::
+
+            http://docs.python-requests.org/en/master/api/#exceptions
+        """
+
+    class ProxyError(requests.exceptions.ProxyError):
+        """
+        A proxy error occurred.
+
+        .. seealso::
+
+            http://docs.python-requests.org/en/master/_modules/requests/exceptions/
+        """
+
+
+except ImportError:
+
+    class HTTPError(Exception):
+        """
+        An HTTP error occurred.
+        """
+
+    class ProxyError(Exception):
+        """
+        A proxy error occurred.
+        """

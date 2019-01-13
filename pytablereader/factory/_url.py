@@ -9,7 +9,6 @@ from __future__ import absolute_import, unicode_literals
 import os
 import tempfile
 
-import requests
 import typepy
 from six.moves.urllib.parse import urlparse
 
@@ -77,6 +76,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             |LoaderNotFoundError_desc| loading the URL.
         """
 
+        import requests
+
         url_path = urlparse(self.__url).path
         try:
             url_extension = get_extension(url_path.rstrip("/"))
@@ -125,6 +126,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         :raises TypeError: If ``format_name`` is not a string.
         """
 
+        import requests
+
         logger.debug("TableUrlLoaderFactory.create_from_format_name: name={}".format(format_name))
 
         loader_class = self._get_loader_class(self._get_format_name_loader_mapping(), format_name)
@@ -137,6 +140,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         return self._create_from_format_name(format_name)
 
     def _fetch_source(self, loader_class):
+        import requests
+
         loader_source_type = loader_class("").source_type
 
         if loader_source_type not in [SourceType.TEXT, SourceType.FILE]:

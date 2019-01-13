@@ -61,6 +61,7 @@ mediawiki_requires = ["pypandoc"]
 sqlite_requires = ["SimpleSQLite>=0.33.6,<1.0.0"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
 logging_requires = ["Logbook>=1.1.0,<2.0.0"]
+url_requires = ["requests>=2.21.0,<3.0.0"]
 optional_requires = ["simplejson>=3.16,<4.0"]
 tests_requires = frozenset(
     tests_requires
@@ -103,6 +104,7 @@ setuptools.setup(
             + logging_requires
             + mediawiki_requires
             + sqlite_requires
+            + url_requires
             + optional_requires
         ),
         "build": ["wheel"],
@@ -112,6 +114,7 @@ setuptools.setup(
         "logging": logging_requires,
         "mediawiki": mediawiki_requires,
         "release": ["releasecmd>=0.0.12,<0.1.0"],
+        "url": url_requires,
         "sqlite": sqlite_requires,
         "test": tests_requires,
     },
