@@ -135,5 +135,6 @@ setuptools.setup(
         "Topic :: Database",
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Text Processing",
     ],
     cmdclass=get_release_command_class())
