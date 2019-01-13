@@ -10,7 +10,7 @@ from tabledata import DataError, InvalidHeaderNameError, InvalidTableNameError
 
 from .__version__ import __author__, __copyright__, __email__, __license__, __version__
 from ._constant import PatternMatch
-from ._logger import logger, set_log_level, set_logger
+from ._logger import set_log_level, set_logger
 from .csv.core import CsvTableFileLoader, CsvTableTextLoader
 from .error import (
     APIError,
