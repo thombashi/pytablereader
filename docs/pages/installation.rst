@@ -14,6 +14,8 @@ Some of the formats require additional dependency packages, you can install the 
     - ``pip install pytablereader[mediawiki]``
 - SQLite
     - ``pip install pytablereader[sqlite]``
+- Load from URLs
+    - ``pip install pytablereader[url]``
 - All of the extra dependencies
     - ``pip install pytablereader[all]``
 
@@ -27,24 +29,26 @@ Mandatory Python packages
 - `beautifulsoup4 <https://www.crummy.com/software/BeautifulSoup/>`__
 - `DataProperty <https://github.com/thombashi/DataProperty>`__ (Used to extract data types)
 - `jsonschema <https://github.com/Julian/jsonschema>`__
-- `logbook <https://logbook.readthedocs.io/en/stable/>`__
 - `markdown2 <https://github.com/trentm/python-markdown2>`__
 - `mbstrdecoder <https://github.com/thombashi/mbstrdecoder>`__
 - `pathvalidate <https://github.com/thombashi/pathvalidate>`__
 - `path.py <https://github.com/jaraco/path.py>`__
-- `requests <http://python-requests.org/>`__
 - `six <https://pypi.org/project/six/>`__
 - `tabledata <https://github.com/thombashi/tabledata>`__
 - `typepy <https://github.com/thombashi/typepy>`__
 
 Optional Python packages
 ------------------------------------------------
+- `logbook <https://logbook.readthedocs.io/en/stable/>`__
+    - Logging using logbook if the package installed
 - Excel
     - `xlrd <https://github.com/python-excel/xlrd>`__
 - MediaWiki
     - `pypandoc <https://github.com/bebraw/pypandoc>`__
 - SQLite
     - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
+- URL
+    - `requests <http://python-requests.org/>`__
 - `pandas <https://pandas.pydata.org/>`__
     - required to get table data as a pandas data frame
 - `simplejson <https://github.com/simplejson/simplejson>`__
