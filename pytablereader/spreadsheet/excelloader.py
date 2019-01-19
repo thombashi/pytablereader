@@ -103,7 +103,6 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             except DataError:
                 continue
 
-            header_list = self.__get_row_values(start_row_idx)
             row_list = [
                 self.__get_row_values(row_idx)
                 for row_idx in range(start_row_idx + 1, self._row_count)
@@ -112,7 +111,10 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             self.inc_table_count()
 
             yield TableData(
-                self._make_table_name(), header_list, row_list, dp_extractor=self.dp_extractor
+                self._make_table_name(),
+                self.__get_row_values(start_row_idx),
+                row_list,
+                dp_extractor=self.dp_extractor,
             )
 
     def _is_empty_sheet(self):
