@@ -83,24 +83,24 @@ class HtmlTableFormatter(TableFormatter):
                     self.__table_id = caption
 
     def __parse_html(self, table):
-        header_list = []
+        headers = []
         data_matrix = []
 
         self.__parse_tag_id(table)
 
-        row_list = table.find_all("tr")
+        rows = table.find_all("tr")
         re_table_val = re.compile("td|th")
-        for row in row_list:
+        for row in rows:
             td_list = row.find_all("td")
             if typepy.is_empty_sequence(td_list):
-                if typepy.is_not_empty_sequence(header_list):
+                if typepy.is_not_empty_sequence(headers):
                     continue
 
                 th_list = row.find_all("th")
                 if typepy.is_empty_sequence(th_list):
                     continue
 
-                header_list = [row.text.strip() for row in th_list]
+                headers = [row.text.strip() for row in th_list]
                 continue
 
             data_matrix.append([value.get_text().strip() for value in row.find_all(re_table_val)])

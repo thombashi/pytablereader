@@ -104,15 +104,15 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
 
                 value_matrix = self.__all_values[self._get_start_row_idx() :]
                 try:
-                    header_list = value_matrix[0]
-                    row_list = value_matrix[1:]
+                    headers = value_matrix[0]
+                    rows = value_matrix[1:]
                 except IndexError:
                     continue
 
                 self.inc_table_count()
 
                 yield TableData(
-                    self.make_table_name(), header_list, row_list, dp_extractor=self.dp_extractor
+                    self.make_table_name(), headers, rows, dp_extractor=self.dp_extractor
                 )
         except gspread.exceptions.SpreadsheetNotFound:
             raise OpenError("spreadsheet '{}' not found".format(self.title))
@@ -155,16 +155,16 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         con = connect_memdb()
 
         tmp_table_name = "tmp"
-        header_list = ["a{:d}".format(i) for i in range(len(self.__all_values[0]))]
+        headers = ["a{:d}".format(i) for i in range(len(self.__all_values[0]))]
         con.create_table_from_data_matrix(
-            table_name=tmp_table_name, attr_name_list=header_list, data_matrix=self.__all_values
+            table_name=tmp_table_name, attr_name_list=headers, data_matrix=self.__all_values
         )
-        for col_idx, header in enumerate(header_list):
+        for col_idx, header in enumerate(headers):
             result = con.select(select=Attr(header), table_name=tmp_table_name)
             if any([typepy.is_not_null_string(record[0]) for record in result.fetchall()]):
                 break
 
-        strip_header_list = header_list[col_idx:]
+        strip_header_list = headers[col_idx:]
         if typepy.is_empty_sequence(strip_header_list):
             raise ValueError()
 

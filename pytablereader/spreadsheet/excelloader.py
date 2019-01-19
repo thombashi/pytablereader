@@ -103,7 +103,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             except DataError:
                 continue
 
-            row_list = [
+            rows = [
                 self.__get_row_values(row_idx)
                 for row_idx in range(start_row_idx + 1, self._row_count)
             ]
@@ -113,7 +113,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             yield TableData(
                 self._make_table_name(),
                 self.__get_row_values(start_row_idx),
-                row_list,
+                rows,
                 dp_extractor=self.dp_extractor,
             )
 

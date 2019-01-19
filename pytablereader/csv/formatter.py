@@ -16,18 +16,18 @@ from ..formatter import TableFormatter
 class CsvTableFormatter(TableFormatter):
     def to_table_data(self):
         if typepy.is_empty_sequence(self._loader.header_list):
-            header_list = self._source_data[0]
+            headers = self._source_data[0]
 
-            if any([typepy.is_null_string(header) for header in header_list]):
+            if any([typepy.is_null_string(header) for header in headers]):
                 raise DataError(
                     "the first line includes empty string item."
                     "all of the items should contain header name."
-                    "actual={}".format(header_list)
+                    "actual={}".format(headers)
                 )
 
             data_matrix = self._source_data[1:]
         else:
-            header_list = self._loader.header_list
+            headers = self._loader.header_list
             data_matrix = self._source_data
 
         if not data_matrix:
@@ -37,7 +37,7 @@ class CsvTableFormatter(TableFormatter):
 
         yield TableData(
             self._loader.make_table_name(),
-            header_list,
+            headers,
             data_matrix,
             dp_extractor=self._loader.dp_extractor,
         )
