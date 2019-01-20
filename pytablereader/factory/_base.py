@@ -50,13 +50,17 @@ class BaseTableLoaderFactory(object):
     def _get_format_name_loader_mapping(self):  # pragma: no cover
         pass
 
-    def get_format_name_list(self):
+    def get_format_names(self):
         """
         :return: Available format names.
         :rtype: list
         """
 
         return sorted(self._get_format_name_loader_mapping())
+
+    def get_format_name_list(self):
+        # deprecated: alias to get_format_names
+        return self.get_format_names()
 
     def get_extension_list(self):
         """
@@ -118,7 +122,7 @@ class BaseTableLoaderFactory(object):
                     [
                         "{:s} (unknown format name).".format(e.args[0]),
                         "acceptable format names are: {}.".format(
-                            ", ".join(self.get_format_name_list())
+                            ", ".join(self.get_format_names())
                         ),
                     ]
                 )

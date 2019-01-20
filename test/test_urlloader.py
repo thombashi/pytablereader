@@ -18,11 +18,9 @@ from pytablewriter import dump_tabledata
 from tabledata import TableData
 
 
-class Test_TableUrlLoader_get_format_name_list(object):
+class Test_TableUrlLoader_get_format_names(object):
     def test_normal(self):
-        format_name_list = ptr.TableUrlLoader.get_format_name_list()
-
-        assert format_name_list == [
+        assert ptr.TableUrlLoader.get_format_names() == [
             "csv",
             "excel",
             "html",

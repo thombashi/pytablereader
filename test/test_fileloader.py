@@ -19,11 +19,9 @@ from pytablewriter import ExcelXlsxTableWriter, dump_tabledata
 from tabledata import TableData
 
 
-class Test_TableFileLoader_get_format_name_list(object):
+class Test_TableFileLoader_get_format_names(object):
     def test_normal(self):
-        format_name_list = ptr.TableFileLoader.get_format_name_list()
-
-        assert format_name_list == [
+        assert ptr.TableFileLoader.get_format_names() == [
             "csv",
             "excel",
             "html",

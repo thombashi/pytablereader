@@ -59,7 +59,7 @@ class TableUrlLoader(TableLoaderManager):
         super(TableUrlLoader, self).__init__(loader)
 
     @classmethod
-    def get_format_name_list(cls):
+    def get_format_names(cls):
         """
         :return:
             Available format names. These names can use by
@@ -70,7 +70,7 @@ class TableUrlLoader(TableLoaderManager):
             .. code:: python
 
                 >>> from pytablereader import TableUrlLoader
-                >>> for format_name in TableUrlLoader.get_format_name_list():
+                >>> for format_name in TableUrlLoader.get_format_names():
                 ...     print(format_name)
                 ...
                 csv
@@ -89,4 +89,8 @@ class TableUrlLoader(TableLoaderManager):
                 tsv
         """
 
-        return TableUrlLoaderFactory("http://dummy.com/").get_format_name_list()
+        return TableUrlLoaderFactory("http://dummy.com/").get_format_names()
+
+    @classmethod
+    def get_format_name_list(cls):
+        return cls.get_format_names()

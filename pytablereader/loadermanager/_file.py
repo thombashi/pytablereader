@@ -52,7 +52,7 @@ class TableFileLoader(TableLoaderManager):
         super(TableFileLoader, self).__init__(loader)
 
     @classmethod
-    def get_format_name_list(cls):
+    def get_format_names(cls):
         """
         :return:
             Available format names. These names can use by
@@ -63,7 +63,7 @@ class TableFileLoader(TableLoaderManager):
             .. code:: python
 
                 >>> from pytablereader import TableFileLoader
-                >>> for format_name in TableFileLoader.get_format_name_list():
+                >>> for format_name in TableFileLoader.get_format_names():
                 ...     print(format_name)
                 ...
                 csv
@@ -82,4 +82,8 @@ class TableFileLoader(TableLoaderManager):
                 tsv
         """
 
-        return TableFileLoaderFactory("dummy").get_format_name_list()
+        return TableFileLoaderFactory("dummy").get_format_names()
+
+    @classmethod
+    def get_format_name_list(cls):
+        return cls.get_format_names()
