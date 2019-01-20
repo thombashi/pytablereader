@@ -256,7 +256,7 @@ class Test_TableUrlLoader_load(object):
 
         for table_data in loader.load():
             print("{} {}".format(table_data, dump_tabledata(table_data)))
-            print(table_data.row_list)
+            print(table_data.rows)
             print("[expected]")
             for expeced in expeced_list:
                 print(dump_tabledata(expeced))
