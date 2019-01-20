@@ -162,9 +162,9 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
             if any([typepy.is_not_null_string(record[0]) for record in result.fetchall()]):
                 break
 
-        strip_header_list = headers[col_idx:]
-        if typepy.is_empty_sequence(strip_header_list):
+        strip_headers = headers[col_idx:]
+        if typepy.is_empty_sequence(strip_headers):
             raise ValueError()
 
-        result = con.select(select=AttrList(strip_header_list), table_name=tmp_table_name)
+        result = con.select(select=AttrList(strip_headers), table_name=tmp_table_name)
         self.__all_values = result.fetchall()
