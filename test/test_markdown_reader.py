@@ -34,9 +34,7 @@ test_data_01 = Data(
     ),
     [
         TableData(
-            table_name="markdown1",
-            header_list=["a", "b", "c"],
-            row_list=[[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]],
+            "markdown1", ["a", "b", "c"], [[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]]
         )
     ],
 )
@@ -53,9 +51,7 @@ test_data_02 = Data(
     ),
     [
         TableData(
-            table_name="markdown1",
-            header_list=["a", "b", "c"],
-            row_list=[[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]],
+            "markdown1", ["a", "b", "c"], [[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]]
         )
     ],
 )
@@ -79,15 +75,11 @@ test_data_04 = Data(
     ),
     [
         TableData(
-            table_name="tmp_markdown1",
-            header_list=["a", "b", "c"],
-            row_list=[[1, "123.1", "a"], [2, "2.2", "bb"], ["3", "3.3", "ccc"]],
+            "tmp_markdown1",
+            ["a", "b", "c"],
+            [[1, "123.1", "a"], [2, "2.2", "bb"], ["3", "3.3", "ccc"]],
         ),
-        TableData(
-            table_name="tmp_markdown2",
-            header_list=["a", "b"],
-            row_list=[[1, "123.1"], [2, "2.2"], ["3", "3.3"]],
-        ),
+        TableData("tmp_markdown2", ["a", "b"], [[1, "123.1"], [2, "2.2"], ["3", "3.3"]]),
     ],
 )
 

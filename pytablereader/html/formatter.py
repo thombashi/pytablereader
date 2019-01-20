@@ -111,8 +111,5 @@ class HtmlTableFormatter(TableFormatter):
         self._loader.inc_table_count()
 
         return TableData(
-            self._make_table_name(),
-            header_list,
-            data_matrix,
-            dp_extractor=self._loader.dp_extractor,
+            self._make_table_name(), headers, data_matrix, dp_extractor=self._loader.dp_extractor
         )

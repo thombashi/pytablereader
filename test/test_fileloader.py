@@ -247,19 +247,14 @@ class Test_TableFileLoader_load(object):
 
         tabledata_list = [
             TableData(
-                table_name="testsheet1",
-                header_list=["a1", "b1", "c1"],
-                row_list=[
-                    ["aa1", "ab1", "ac1"],
-                    [1.0, 1.1, "a"],
-                    [2.0, 2.2, "bb"],
-                    [3.0, 3.3, 'cc"dd"'],
-                ],
+                "testsheet1",
+                ["a1", "b1", "c1"],
+                [["aa1", "ab1", "ac1"], [1.0, 1.1, "a"], [2.0, 2.2, "bb"], [3.0, 3.3, 'cc"dd"']],
             ),
             TableData(
-                table_name="testsheet3",
-                header_list=["a3", "b3", "c3"],
-                row_list=[["aa3", "ab3", "ac3"], [4.0, 1.1, "a"], [5.0, "", "bb"], [6.0, 3.3, ""]],
+                "testsheet3",
+                ["a3", "b3", "c3"],
+                [["aa3", "ab3", "ac3"], [4.0, 1.1, "a"], [5.0, "", "bb"], [6.0, 3.3, ""]],
             ),
         ]
 

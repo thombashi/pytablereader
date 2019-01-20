@@ -45,9 +45,9 @@ test_data_01 = Data(
     ),
     [
         TableData(
-            table_name="mediawiki1",
-            header_list=["a", "b", "c"],
-            row_list=[["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
+            "mediawiki1",
+            ["a", "b", "c"],
+            [["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
         )
     ],
 )
@@ -76,9 +76,9 @@ test_data_02 = Data(
     ),
     [
         TableData(
-            table_name="tablename",
-            header_list=["a", "b", "c"],
-            row_list=[["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
+            "tablename",
+            ["a", "b", "c"],
+            [["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
         )
     ],
 )
@@ -122,15 +122,11 @@ test_data_04 = Data(
     ),
     [
         TableData(
-            table_name="tmp_tablename",
-            header_list=["a", "b", "c"],
-            row_list=[["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
+            "tmp_tablename",
+            ["a", "b", "c"],
+            [["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
         ),
-        TableData(
-            table_name="tmp_mediawiki2",
-            header_list=["a", "b"],
-            row_list=[["1", "123.1"], ["2", "2.2"], ["3", "3.3"]],
-        ),
+        TableData("tmp_mediawiki2", ["a", "b"], [["1", "123.1"], ["2", "2.2"], ["3", "3.3"]]),
     ],
 )
 test_empty_data_00 = "= empty table ="

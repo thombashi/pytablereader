@@ -47,9 +47,9 @@ class FlatJsonTableConverter(SingleJsonTableConverterBase):
         self._loader.inc_table_count()
 
         yield TableData(
-            table_name=self._make_table_name(),
-            header_list=header_list,
-            row_list=self._buffer,
+            self._make_table_name(),
+            header_list,
+            self._buffer,
             dp_extractor=self._loader.dp_extractor,
         )
 

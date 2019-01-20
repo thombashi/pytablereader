@@ -144,18 +144,18 @@ class Test_ExcelTableFileLoader_load(object):
                 0,
                 [
                     TableData(
-                        table_name="boolsheet",
-                        header_list=["true", "false", "tf", "lost"],
-                        row_list=[
+                        "boolsheet",
+                        ["true", "false", "tf", "lost"],
+                        [
                             [True, False, True, True],
                             [True, False, False, ""],
                             [True, False, False, False],
                         ],
                     ),
                     TableData(
-                        table_name="testsheet1",
-                        header_list=["a1", "b1", "c1"],
-                        row_list=[
+                        "testsheet1",
+                        ["a1", "b1", "c1"],
+                        [
                             ["aa1", "ab1", "ac1"],
                             [1.0, 1.1, "a"],
                             [2.0, 2.2, "bb"],
@@ -163,14 +163,9 @@ class Test_ExcelTableFileLoader_load(object):
                         ],
                     ),
                     TableData(
-                        table_name="testsheet3",
-                        header_list=["a3", "b3", "c3"],
-                        row_list=[
-                            ["aa3", "ab3", "ac3"],
-                            [4.0, 1.1, "a"],
-                            [5.0, "", "bb"],
-                            [6.0, 3.3, ""],
-                        ],
+                        "testsheet3",
+                        ["a3", "b3", "c3"],
+                        [["aa3", "ab3", "ac3"], [4.0, 1.1, "a"], [5.0, "", "bb"], [6.0, 3.3, ""]],
                     ),
                 ],
             ],
@@ -178,25 +173,16 @@ class Test_ExcelTableFileLoader_load(object):
                 "%(filename)s_%(sheet)s",
                 2,
                 [
+                    TableData("tmp_boolsheet", ["TRUE", "FALSE", "False", "False"], []),
                     TableData(
-                        table_name="tmp_boolsheet",
-                        header_list=["TRUE", "FALSE", "False", "False"],
-                        row_list=[],
+                        "tmp_testsheet1",
+                        ["aa1", "ab1", "ac1"],
+                        [[1.0, 1.1, "a"], [2.0, 2.2, "bb"], [3.0, 3.3, "cc"]],
                     ),
                     TableData(
-                        table_name="tmp_testsheet1",
-                        header_list=["aa1", "ab1", "ac1"],
-                        row_list=[[1.0, 1.1, "a"], [2.0, 2.2, "bb"], [3.0, 3.3, "cc"]],
-                    ),
-                    TableData(
-                        table_name="tmp_testsheet3",
-                        header_list=["a3", "b3", "c3"],
-                        row_list=[
-                            ["aa3", "ab3", "ac3"],
-                            [4.0, 1.1, "a"],
-                            [5.0, "", "bb"],
-                            [6.0, 3.3, ""],
-                        ],
+                        "tmp_testsheet3",
+                        ["a3", "b3", "c3"],
+                        [["aa3", "ab3", "ac3"], [4.0, 1.1, "a"], [5.0, "", "bb"], [6.0, 3.3, ""]],
                     ),
                 ],
             ],

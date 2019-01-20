@@ -50,13 +50,9 @@ class Test_TableData_from_dataframe(object):
             [[0, 0.1, "a"], [1, 1.1, "bb"], [2, 2.2, "ccc"]], columns=["id", "value", "name"]
         )
         expected = TableData(
-            table_name="tablename",
-            header_list=["id", "value", "name"],
-            row_list=[
-                [0, Decimal("0.1"), "a"],
-                [1, Decimal("1.1"), "bb"],
-                [2, Decimal("2.2"), "ccc"],
-            ],
+            "tablename",
+            ["id", "value", "name"],
+            [[0, Decimal("0.1"), "a"], [1, Decimal("1.1"), "bb"], [2, Decimal("2.2"), "ccc"]],
         )
 
         assert TableData.from_dataframe(dataframe, "tablename").equals(expected)

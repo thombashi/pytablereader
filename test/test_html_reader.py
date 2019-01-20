@@ -54,9 +54,7 @@ test_data_01 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name="title_html1",
-            header_list=["a", "b", "c"],
-            row_list=[[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]],
+            "title_html1", ["a", "b", "c"], [[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]]
         )
     ],
 )
@@ -90,9 +88,7 @@ test_data_02 = Data(
     table_name="%(key)s",
     expected=[
         TableData(
-            table_name="tablename",
-            header_list=["a", "b", "c"],
-            row_list=[[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]],
+            "tablename", ["a", "b", "c"], [[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]]
         )
     ],
 )
@@ -177,16 +173,12 @@ test_data_04 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name="test_data_04_tablename",
-            header_list=["a", "b", "c"],
-            row_list=[[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]],
+            "test_data_04_tablename",
+            ["a", "b", "c"],
+            [[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]],
         ),
-        TableData(table_name="test_data_04_html2", header_list=[], row_list=[["link text"]]),
-        TableData(
-            table_name="test_data_04_html3",
-            header_list=["a", "b"],
-            row_list=[[1, "123.1"], [2, "2.2"], [3, "3.3"]],
-        ),
+        TableData("test_data_04_html2", [], [["link text"]]),
+        TableData("test_data_04_html3", ["a", "b"], [[1, "123.1"], [2, "2.2"], [3, "3.3"]]),
     ],
 )
 test_data_05 = Data(
@@ -222,9 +214,7 @@ test_data_05 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name="captiontest",
-            header_list=["a", "b", "c"],
-            row_list=[[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]],
+            "captiontest", ["a", "b", "c"], [[1, "123.1", "a"], [2, "2.2", "bb"], [3, "3.3", "ccc"]]
         )
     ],
 )
@@ -257,9 +247,9 @@ test_data_06 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name="test_data_06_html1",
-            header_list=["Case", "Singular", "Plural"],
-            row_list=[
+            "test_data_06_html1",
+            ["Case", "Singular", "Plural"],
+            [
                 ["nominative", "val01", "val02"],
                 ["genitive", "val11", "val12"],
                 ["dative", "val21", "val22"],
@@ -299,9 +289,9 @@ test_data_07 = Data(
     table_name="%(default)s",
     expected=[
         TableData(
-            table_name="html1",
-            header_list=[],
-            row_list=[
+            "html1",
+            [],
+            [
                 ["Deutsch", "English", "Español", "Français"],
                 ["Italiano", "日本語", "한국어", "Português"],
                 ["Pусский", "简体中文", "繁體中文", ""],

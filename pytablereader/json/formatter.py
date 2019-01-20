@@ -86,9 +86,9 @@ class SingleJsonTableConverterA(SingleJsonTableConverterBase):
         self._loader.inc_table_count()
 
         yield TableData(
-            table_name=self._make_table_name(),
-            header_list=sorted(attr_name_set),
-            row_list=self._buffer,
+            self._make_table_name(),
+            sorted(attr_name_set),
+            self._buffer,
             dp_extractor=self._loader.dp_extractor,
         )
 
@@ -114,12 +114,12 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
         self._validate_source_data()
         self._loader.inc_table_count()
 
-        header_list = sorted(six.viewkeys(self._buffer))
+        headers = sorted(six.viewkeys(self._buffer))
 
         yield TableData(
-            table_name=self._make_table_name(),
-            header_list=header_list,
-            row_list=zip(*[self._buffer.get(header) for header in header_list]),
+            self._make_table_name(),
+            headers,
+            zip(*[self._buffer.get(header) for header in headers]),
             dp_extractor=self._loader.dp_extractor,
         )
 
@@ -143,9 +143,9 @@ class SingleJsonTableConverterC(SingleJsonTableConverterBase):
         self._loader.inc_table_count()
 
         yield TableData(
-            table_name=self._make_table_name(),
-            header_list=["key", "value"],
-            row_list=[record for record in self._buffer.items()],
+            self._make_table_name(),
+            ["key", "value"],
+            [record for record in self._buffer.items()],
             dp_extractor=self._loader.dp_extractor,
         )
 
@@ -196,9 +196,9 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
             self._table_key = table_key
 
             yield TableData(
-                table_name=self._make_table_name(),
-                header_list=sorted(attr_name_set),
-                row_list=json_record_list,
+                self._make_table_name(),
+                sorted(attr_name_set),
+                json_record_list,
                 dp_extractor=self._loader.dp_extractor,
             )
 
@@ -227,15 +227,15 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
         self._validate_source_data()
 
         for table_key, json_record_list in six.iteritems(self._buffer):
-            header_list = sorted(six.viewkeys(json_record_list))
+            headers = sorted(six.viewkeys(json_record_list))
 
             self._loader.inc_table_count()
             self._table_key = table_key
 
             yield TableData(
-                table_name=self._make_table_name(),
-                header_list=header_list,
-                row_list=zip(*[json_record_list.get(header) for header in header_list]),
+                self._make_table_name(),
+                headers,
+                zip(*[json_record_list.get(header) for header in headers]),
                 dp_extractor=self._loader.dp_extractor,
             )
 
@@ -268,9 +268,9 @@ class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
             self._table_key = table_key
 
             yield TableData(
-                table_name=self._make_table_name(),
-                header_list=["key", "value"],
-                row_list=[record for record in json_record_list.items()],
+                self._make_table_name(),
+                ["key", "value"],
+                [record for record in json_record_list.items()],
                 dp_extractor=self._loader.dp_extractor,
             )
 
