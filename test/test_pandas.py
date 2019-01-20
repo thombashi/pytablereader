@@ -24,18 +24,18 @@ except ImportError:
 @pytest.mark.skipif("PANDAS_IMPORT is False")
 class Test_TableData_as_dataframe(object):
     @pytest.mark.parametrize(
-        ["table_name", "header_list", "row_list"],
+        ["table_name", "headers", "rows"],
         [
             ["normal", ["a", "b"], [[10, 11], [20, 21]]],
             ["normal", None, [[10, 11], [20, 21]]],
             ["normal", None, None],
         ],
     )
-    def test_normal(self, table_name, header_list, row_list):
-        tabledata = TableData(table_name, header_list, row_list)
-        dataframe = pandas.DataFrame(row_list)
-        if typepy.is_not_empty_sequence(header_list):
-            dataframe.columns = header_list
+    def test_normal(self, table_name, headers, rows):
+        tabledata = TableData(table_name, headers, rows)
+        dataframe = pandas.DataFrame(rows)
+        if typepy.is_not_empty_sequence(headers):
+            dataframe.columns = headers
 
         print("lhs: {}".format(tabledata.as_dataframe()))
         print("rhs: {}".format(dataframe))

@@ -103,7 +103,7 @@ class Test_SqliteFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        ["test_id", "tabledata", "filename", "header_list", "expected"],
+        ["test_id", "tabledata", "filename", "headers", "expected"],
         [
             [0, test_data_00.value, "tmp.sqlite", [], test_data_00.expected],
             [
@@ -125,7 +125,7 @@ class Test_SqliteFileLoader_load(object):
             [5, test_data_05.value, "tmp.sqlite", [], test_data_05.expected],
         ],
     )
-    def test_normal(self, tmpdir, test_id, tabledata, filename, header_list, expected):
+    def test_normal(self, tmpdir, test_id, tabledata, filename, headers, expected):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
@@ -134,7 +134,7 @@ class Test_SqliteFileLoader_load(object):
         con.create_table_from_tabledata(tabledata)
 
         loader = ptr.SqliteFileLoader(file_path)
-        loader.header_list = header_list
+        loader.headers = headers
 
         for tabledata in loader.load():
             print("test-id={}".format(test_id))
@@ -143,12 +143,12 @@ class Test_SqliteFileLoader_load(object):
             assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
-        ["filename", "header_list", "expected"],
+        ["filename", "headers", "expected"],
         [["", [], ptr.InvalidFilePathError], [None, [], ptr.InvalidFilePathError]],
     )
-    def test_null(self, tmpdir, filename, header_list, expected):
+    def test_null(self, tmpdir, filename, headers, expected):
         loader = ptr.SqliteFileLoader(filename)
-        loader.header_list = header_list
+        loader.headers = headers
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():

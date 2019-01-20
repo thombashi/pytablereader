@@ -122,12 +122,12 @@ class Test_LtsvTableFileLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(
-        ["filename", "header_list", "expected"],
+        ["filename", "headers", "expected"],
         [["", [], ptr.InvalidFilePathError], [None, [], ptr.InvalidFilePathError]],
     )
-    def test_null(self, tmpdir, filename, header_list, expected):
+    def test_null(self, tmpdir, filename, headers, expected):
         loader = ptr.LtsvTableFileLoader(filename)
-        loader.header_list = header_list
+        loader.headers = headers
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():

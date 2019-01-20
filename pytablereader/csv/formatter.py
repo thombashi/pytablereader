@@ -15,7 +15,7 @@ from ..formatter import TableFormatter
 
 class CsvTableFormatter(TableFormatter):
     def to_table_data(self):
-        if typepy.is_empty_sequence(self._loader.header_list):
+        if typepy.is_empty_sequence(self._loader.headers):
             headers = self._source_data[0]
 
             if any([typepy.is_null_string(header) for header in headers]):
@@ -27,7 +27,7 @@ class CsvTableFormatter(TableFormatter):
 
             data_matrix = self._source_data[1:]
         else:
-            headers = self._loader.header_list
+            headers = self._loader.headers
             data_matrix = self._source_data
 
         if not data_matrix:

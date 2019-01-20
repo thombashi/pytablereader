@@ -205,7 +205,7 @@ class Test_CsvTableFileLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        ["test_id", "table_text", "filename", "header_list", "expected"],
+        ["test_id", "table_text", "filename", "headers", "expected"],
         [
             [0, test_data_00.value, "tmp.csv", [], test_data_00.expected],
             [
@@ -228,7 +228,7 @@ class Test_CsvTableFileLoader_load(object):
             [6, test_data_06.value, "tmp.csv", [], test_data_06.expected],
         ],
     )
-    def test_normal(self, tmpdir, test_id, table_text, filename, header_list, expected):
+    def test_normal(self, tmpdir, test_id, table_text, filename, headers, expected):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
@@ -236,7 +236,7 @@ class Test_CsvTableFileLoader_load(object):
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(file_path)
-        loader.header_list = header_list
+        loader.headers = headers
 
         for tabledata in loader.load():
             print("test-id={}".format(test_id))
@@ -245,7 +245,7 @@ class Test_CsvTableFileLoader_load(object):
             assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
-        ["test_id", "table_text", "filename", "encoding", "header_list", "expected"],
+        ["test_id", "table_text", "filename", "encoding", "headers", "expected"],
         [
             [
                 7,
@@ -258,7 +258,7 @@ class Test_CsvTableFileLoader_load(object):
         ],
     )
     def test_normal_multibyte(
-        self, tmpdir, test_id, table_text, filename, encoding, header_list, expected
+        self, tmpdir, test_id, table_text, filename, encoding, headers, expected
     ):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
@@ -267,7 +267,7 @@ class Test_CsvTableFileLoader_load(object):
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(file_path)
-        loader.header_list = header_list
+        loader.headers = headers
 
         for tabledata in loader.load():
             print("test-id={}".format(test_id))
@@ -296,33 +296,33 @@ class Test_CsvTableFileLoader_load(object):
                 assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
-        ["table_text", "filename", "header_list", "expected"],
+        ["table_text", "filename", "headers", "expected"],
         [
             ["", "hoge.csv", [], ptr.DataError],
             ["\n".join(['"attr_a","attr_b","attr_c"']), "hoge.csv", [], ptr.DataError],
             ["\n".join([]), "hoge.csv", ["attr_a", "attr_b", "attr_c"], ptr.DataError],
         ],
     )
-    def test_exception(self, tmpdir, table_text, filename, header_list, expected):
+    def test_exception(self, tmpdir, table_text, filename, headers, expected):
         p_csv = tmpdir.join(filename)
 
         with io.open(str(p_csv), "w", encoding="utf8") as f:
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(str(p_csv))
-        loader.header_list = header_list
+        loader.headers = headers
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
                 pass
 
     @pytest.mark.parametrize(
-        ["filename", "header_list", "expected"],
+        ["filename", "headers", "expected"],
         [["", [], ptr.InvalidFilePathError], [None, [], ptr.InvalidFilePathError]],
     )
-    def test_null(self, tmpdir, filename, header_list, expected):
+    def test_null(self, tmpdir, filename, headers, expected):
         loader = ptr.CsvTableFileLoader(filename)
-        loader.header_list = header_list
+        loader.headers = headers
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
@@ -360,7 +360,7 @@ class Test_CsvTableTextLoader_load(object):
         TableLoader.clear_table_count()
 
     @pytest.mark.parametrize(
-        ["table_text", "table_name", "header_list", "expected"],
+        ["table_text", "table_name", "headers", "expected"],
         [
             [test_data_00.value, "tmp", [], test_data_00.expected],
             [test_data_01.value, "foo_bar", ["attr_a", "attr_b", "attr_c"], test_data_01.expected],
@@ -368,10 +368,10 @@ class Test_CsvTableTextLoader_load(object):
             [test_data_03.value, "tmp", [], test_data_03.expected],
         ],
     )
-    def test_normal(self, table_text, table_name, header_list, expected):
+    def test_normal(self, table_text, table_name, headers, expected):
         loader = ptr.CsvTableTextLoader(table_text)
         loader.table_name = table_name
-        loader.header_list = header_list
+        loader.headers = headers
 
         for tabledata in loader.load():
             print(dump_tabledata(tabledata))
@@ -381,17 +381,17 @@ class Test_CsvTableTextLoader_load(object):
             assert tabledata.in_tabledata_list(expected)
 
     @pytest.mark.parametrize(
-        ["table_text", "table_name", "header_list", "expected"],
+        ["table_text", "table_name", "headers", "expected"],
         [
             ["", "hoge", [], ValueError],
             ["\n".join(['"attr_a","attr_b","attr_c"']), "hoge", [], ptr.DataError],
             ["\n".join([]), "hoge", ["attr_a", "attr_b", "attr_c"], ValueError],
         ],
     )
-    def test_exception_insufficient_data(self, table_text, table_name, header_list, expected):
+    def test_exception_insufficient_data(self, table_text, table_name, headers, expected):
         loader = ptr.CsvTableTextLoader(table_text)
         loader.table_name = table_name
-        loader.header_list = header_list
+        loader.headers = headers
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():
@@ -418,12 +418,12 @@ class Test_CsvTableTextLoader_load(object):
                 pass
 
     @pytest.mark.parametrize(
-        ["table_name", "header_list", "expected"], [["", [], ValueError], [None, [], ValueError]]
+        ["table_name", "headers", "expected"], [["", [], ValueError], [None, [], ValueError]]
     )
-    def test_null(self, table_name, header_list, expected):
+    def test_null(self, table_name, headers, expected):
         loader = ptr.CsvTableTextLoader("dummy")
         loader.table_name = table_name
-        loader.header_list = header_list
+        loader.headers = headers
 
         with pytest.raises(expected):
             for _tabletuple in loader.load():

@@ -31,10 +31,10 @@ class CsvTableLoader(TableLoader):
     """
     The abstract class of CSV table loaders.
 
-    .. py:attribute:: header_list
+    .. py:attribute:: headers
 
         Attribute names of the table. Use the first line of
-        the CSV file as attribute list if header_list is empty.
+        the CSV file as attribute list if ``headers`` is empty.
 
     .. py:attribute:: delimiter
 
@@ -71,6 +71,16 @@ class CsvTableLoader(TableLoader):
         # "quotechar" must be a string, not an unicode
         return str(MultiByteStrDecoder(self.__quotechar).unicode_str)
 
+    @property
+    def header_list(self):
+        # deprecated: alias to headers
+        return self.headers
+
+    @header_list.setter
+    def header_list(self, value):
+        # deprecated: alias to headers
+        self.headers = value
+
     @quotechar.setter
     def quotechar(self, value):
         self.__quotechar = value
@@ -80,7 +90,7 @@ class CsvTableLoader(TableLoader):
 
         self._csv_reader = None
 
-        self.header_list = ()
+        self.headers = ()
         self.delimiter = ","
         self.quotechar = '"'
         self.encoding = None
