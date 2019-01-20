@@ -156,9 +156,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
 
         tmp_table_name = "tmp"
         headers = ["a{:d}".format(i) for i in range(len(self.__all_values[0]))]
-        con.create_table_from_data_matrix(
-            table_name=tmp_table_name, attr_name_list=headers, data_matrix=self.__all_values
-        )
+        con.create_table_from_data_matrix(tmp_table_name, headers, self.__all_values)
         for col_idx, header in enumerate(headers):
             result = con.select(select=Attr(header), table_name=tmp_table_name)
             if any([typepy.is_not_null_string(record[0]) for record in result.fetchall()]):
