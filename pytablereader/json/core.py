@@ -531,8 +531,8 @@ class JsonTableDictLoader(JsonTableLoader):
     def source_type(self):
         return SourceType.OBJECT
 
-    def __init__(self, data, quoting_flags=None):
-        super(JsonTableDictLoader, self).__init__(data, quoting_flags)
+    def __init__(self, data, quoting_flags=None, type_hints=None):
+        super(JsonTableDictLoader, self).__init__(data, quoting_flags, type_hints)
 
         self._validator = NullValidator(data)
         self._logger = TextSourceLogger(self)
