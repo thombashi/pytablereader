@@ -81,6 +81,7 @@ class TableLoader(TableLoaderInterface):
 
         self.__dp_extractor = DataPropertyExtractor()
         self.__dp_extractor.quoting_flags = self.quoting_flags
+        self.__dp_extractor.strict_level_map[typepy.Typecode.BOOL] = 1
 
     def get_format_key(self):
         return "{:s}{:d}".format(self.format_name, self.__get_format_table_count())
