@@ -47,8 +47,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
     def _col_count(self):
         return self._worksheet.col_count
 
-    def __init__(self, file_path=None, quoting_flags=None):
-        super(GoogleSheetsTableLoader, self).__init__(file_path, quoting_flags)
+    def __init__(self, file_path=None, quoting_flags=None, type_hints=None):
+        super(GoogleSheetsTableLoader, self).__init__(file_path, quoting_flags, type_hints)
 
         self.title = None
         self.start_row = 0
@@ -112,7 +112,11 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
                 self.inc_table_count()
 
                 yield TableData(
-                    self.make_table_name(), headers, rows, dp_extractor=self.dp_extractor
+                    self.make_table_name(),
+                    headers,
+                    rows,
+                    dp_extractor=self.dp_extractor,
+                    type_hints=self._loader.type_hints,
                 )
         except gspread.exceptions.SpreadsheetNotFound:
             raise OpenError("spreadsheet '{}' not found".format(self.title))

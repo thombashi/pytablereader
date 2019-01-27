@@ -85,6 +85,10 @@ def set_log_level(log_level):
         pass
 
 
+def typehints_to_str(type_hints):
+    return ", ".join([type_hint.__name__ if type_hint else "none" for type_hint in type_hints])
+
+
 @six.add_metaclass(abc.ABCMeta)
 class LoggerInterface(object):
     @abc.abstractmethod
@@ -129,6 +133,9 @@ class FileSourceLogger(BaseLogger):
         except AttributeError:
             pass
 
+        if self._loader.type_hints:
+            message += ", type-hints=({})".format(typehints_to_str(self._loader.type_hints))
+
         return message
 
 
@@ -147,5 +154,8 @@ class TextSourceLogger(BaseLogger):
             message += ", encoding={}".format(self._loader.encoding)
         except AttributeError:
             pass
+
+        if self._loader.type_hints:
+            message += ", type-hints=({})".format(typehints_to_str(self._loader.type_hints))
 
         return message

@@ -35,8 +35,8 @@ class LtsvTableLoader(TableLoader):
     def format_name(self):
         return "ltsv"
 
-    def __init__(self, source, quoting_flags=None):
-        super(LtsvTableLoader, self).__init__(source, quoting_flags)
+    def __init__(self, source, quoting_flags, type_hints):
+        super(LtsvTableLoader, self).__init__(source, quoting_flags, type_hints)
 
         self._ltsv_input_stream = None
 
@@ -91,8 +91,8 @@ class LtsvTableFileLoader(LtsvTableLoader):
         Table name string. Defaults to ``%(filename)s``.
     """
 
-    def __init__(self, file_path, quoting_flags=None):
-        super(LtsvTableFileLoader, self).__init__(file_path, quoting_flags)
+    def __init__(self, file_path, quoting_flags=None, type_hints=None):
+        super(LtsvTableFileLoader, self).__init__(file_path, quoting_flags, type_hints)
 
         self.encoding = None
 
@@ -153,8 +153,8 @@ class LtsvTableTextLoader(LtsvTableLoader):
         Table name string. Defaults to ``%(format_name)s%(format_id)s``.
     """
 
-    def __init__(self, text):
-        super(LtsvTableTextLoader, self).__init__(text)
+    def __init__(self, text, quoting_flags=None, type_hints=None):
+        super(LtsvTableTextLoader, self).__init__(text, quoting_flags, type_hints)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

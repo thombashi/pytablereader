@@ -90,6 +90,7 @@ class SingleJsonTableConverterA(SingleJsonTableConverterBase):
             sorted(attr_name_set),
             self._buffer,
             dp_extractor=self._loader.dp_extractor,
+            type_hints=self._loader.type_hints,
         )
 
 
@@ -121,6 +122,7 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
             headers,
             zip(*[self._buffer.get(header) for header in headers]),
             dp_extractor=self._loader.dp_extractor,
+            type_hints=self._loader.type_hints,
         )
 
 
@@ -147,6 +149,7 @@ class SingleJsonTableConverterC(SingleJsonTableConverterBase):
             ["key", "value"],
             [record for record in self._buffer.items()],
             dp_extractor=self._loader.dp_extractor,
+            type_hints=self._loader.type_hints,
         )
 
 
@@ -200,6 +203,7 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
                 sorted(attr_name_set),
                 json_record_list,
                 dp_extractor=self._loader.dp_extractor,
+                type_hints=self._loader.type_hints,
             )
 
 
@@ -237,6 +241,7 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
                 headers,
                 zip(*[json_record_list.get(header) for header in headers]),
                 dp_extractor=self._loader.dp_extractor,
+                type_hints=self._loader.type_hints,
             )
 
 
@@ -272,6 +277,7 @@ class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
                 ["key", "value"],
                 [record for record in json_record_list.items()],
                 dp_extractor=self._loader.dp_extractor,
+                type_hints=self._loader.type_hints,
             )
 
 

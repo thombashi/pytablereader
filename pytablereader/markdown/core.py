@@ -38,8 +38,8 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
         Table name string. Defaults to ``%(filename)s_%(key)s``.
     """
 
-    def __init__(self, file_path=None, quoting_flags=None):
-        super(MarkdownTableFileLoader, self).__init__(file_path, quoting_flags)
+    def __init__(self, file_path=None, quoting_flags=None, type_hints=None):
+        super(MarkdownTableFileLoader, self).__init__(file_path, quoting_flags, type_hints)
 
         self.encoding = None
 
@@ -98,8 +98,8 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
     def source_type(self):
         return SourceType.TEXT
 
-    def __init__(self, text, quoting_flags=None):
-        super(MarkdownTableTextLoader, self).__init__(text, quoting_flags)
+    def __init__(self, text, quoting_flags=None, type_hints=None):
+        super(MarkdownTableTextLoader, self).__init__(text, quoting_flags, type_hints)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

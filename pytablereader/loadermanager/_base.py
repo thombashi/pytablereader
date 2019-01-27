@@ -44,6 +44,14 @@ class TableLoaderManager(TableLoaderInterface):
     def encoding(self, codec_name):
         self.__loader.encoding = codec_name
 
+    @property
+    def type_hints(self):
+        return self.__loader.type_hints
+
+    @type_hints.setter
+    def type_hints(self, value):
+        self.__loader.type_hints = value
+
     def load(self):
         return self.__loader.load()
 

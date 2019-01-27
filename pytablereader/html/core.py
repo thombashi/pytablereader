@@ -44,8 +44,8 @@ class HtmlTableFileLoader(HtmlTableLoader):
         HTML file encoding. Defaults to ``"utf-8"``.
     """
 
-    def __init__(self, file_path=None, quoting_flags=None):
-        super(HtmlTableFileLoader, self).__init__(file_path, quoting_flags)
+    def __init__(self, file_path=None, quoting_flags=None, type_hints=None):
+        super(HtmlTableFileLoader, self).__init__(file_path, quoting_flags, type_hints)
 
         self.encoding = None
 
@@ -107,8 +107,8 @@ class HtmlTableTextLoader(HtmlTableLoader):
         Table name string. Defaults to ``%(title)s_%(key)s``.
     """
 
-    def __init__(self, text, quoting_flags=None):
-        super(HtmlTableTextLoader, self).__init__(text, quoting_flags)
+    def __init__(self, text, quoting_flags=None, type_hints=None):
+        super(HtmlTableTextLoader, self).__init__(text, quoting_flags, type_hints)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

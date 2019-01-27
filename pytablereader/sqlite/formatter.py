@@ -36,7 +36,11 @@ class SqliteTableFormatter(TableFormatter):
             data_matrix = con.select(select=AttrList(attr_name_list), table_name=table).fetchall()
 
             yield TableData(
-                table, attr_name_list, data_matrix, dp_extractor=self._loader.dp_extractor
+                table,
+                attr_name_list,
+                data_matrix,
+                dp_extractor=self._loader.dp_extractor,
+                type_hints=self._loader.type_hints,
             )
 
     def _make_table_name(self):

@@ -40,4 +40,5 @@ class CsvTableFormatter(TableFormatter):
             headers,
             data_matrix,
             dp_extractor=self._loader.dp_extractor,
+            type_hints=self._loader.type_hints,
         )

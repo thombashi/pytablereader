@@ -51,6 +51,7 @@ class FlatJsonTableConverter(SingleJsonTableConverterBase):
             header_list,
             self._buffer,
             dp_extractor=self._loader.dp_extractor,
+            type_hints=self._loader.type_hints,
         )
 
 
