@@ -108,7 +108,7 @@ setuptools.setup(
             + url_requires
             + optional_requires
         ),
-        "build": ["wheel"],
+        "build": ["twine", "wheel"],
         "docs": docs_requires,
         "excel": excel_requires,
         "gs": gs_requires,
