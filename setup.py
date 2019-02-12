@@ -114,7 +114,7 @@ setuptools.setup(
         "gs": gs_requires,
         "logging": logging_requires,
         "mediawiki": mediawiki_requires,
-        "release": ["releasecmd>=0.0.14,<0.1.0"],
+        "release": ["releasecmd>=0.0.18,<0.1.0"],
         "url": url_requires,
         "sqlite": sqlite_requires,
         "test": tests_requires,
