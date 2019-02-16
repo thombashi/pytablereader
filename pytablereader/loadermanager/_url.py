@@ -93,4 +93,5 @@ class TableUrlLoader(TableLoaderManager):
 
     @classmethod
     def get_format_name_list(cls):
+        # deprecated: alias to get_format_names
         return cls.get_format_names()
