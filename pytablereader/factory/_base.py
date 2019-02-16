@@ -62,13 +62,17 @@ class BaseTableLoaderFactory(object):
         # deprecated: alias to get_format_names
         return self.get_format_names()
 
-    def get_extension_list(self):
+    def get_extensions(self):
         """
         :return: Available format file extensions.
         :rtype: list
         """
 
         return sorted(self._get_extension_loader_mapping())
+
+    def get_extension_list(self):
+        # deprecated: alias to get_extensions
+        return self.get_extensions()
 
     def _get_loader_class(self, loader_mapping, format_name):
         try:
