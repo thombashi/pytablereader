@@ -144,10 +144,10 @@ class ExcelTableFileLoader(SpreadSheetLoader):
         )
 
     @staticmethod
-    def __is_empty_cell_types(cell_type_list):
+    def __is_empty_cell_types(cell_types):
         from xlrd import XL_CELL_EMPTY
 
-        return all([cell_type == XL_CELL_EMPTY for cell_type in cell_type_list])
+        return all([cell_type == XL_CELL_EMPTY for cell_type in cell_types])
 
     def __extract_not_empty_col_idx(self):
         col_idx_list = [
