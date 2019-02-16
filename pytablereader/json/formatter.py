@@ -190,9 +190,9 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
 
         self._validate_source_data()
 
-        for table_key, json_record_list in six.iteritems(self._buffer):
+        for table_key, json_records in six.iteritems(self._buffer):
             attr_name_set = set()
-            for json_record in json_record_list:
+            for json_record in json_records:
                 attr_name_set = attr_name_set.union(six.viewkeys(json_record))
 
             self._loader.inc_table_count()
@@ -201,7 +201,7 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
             yield TableData(
                 self._make_table_name(),
                 sorted(attr_name_set),
-                json_record_list,
+                json_records,
                 dp_extractor=self._loader.dp_extractor,
                 type_hints=self._loader.type_hints,
             )
@@ -230,8 +230,8 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
 
         self._validate_source_data()
 
-        for table_key, json_record_list in six.iteritems(self._buffer):
-            headers = sorted(six.viewkeys(json_record_list))
+        for table_key, json_records in six.iteritems(self._buffer):
+            headers = sorted(six.viewkeys(json_records))
 
             self._loader.inc_table_count()
             self._table_key = table_key
@@ -239,7 +239,7 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
             yield TableData(
                 self._make_table_name(),
                 headers,
-                zip(*[json_record_list.get(header) for header in headers]),
+                zip(*[json_records.get(header) for header in headers]),
                 dp_extractor=self._loader.dp_extractor,
                 type_hints=self._loader.type_hints,
             )
@@ -268,14 +268,14 @@ class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
 
         self._validate_source_data()
 
-        for table_key, json_record_list in six.iteritems(self._buffer):
+        for table_key, json_records in six.iteritems(self._buffer):
             self._loader.inc_table_count()
             self._table_key = table_key
 
             yield TableData(
                 self._make_table_name(),
                 ["key", "value"],
-                [record for record in json_record_list.items()],
+                [record for record in json_records.items()],
                 dp_extractor=self._loader.dp_extractor,
                 type_hints=self._loader.type_hints,
             )
