@@ -139,11 +139,9 @@ class ExcelTableFileLoader(SpreadSheetLoader):
     def __is_header_row(self, row_idx):
         from xlrd import XL_CELL_EMPTY
 
-        cell_type_list = self._worksheet.row_types(
+        return XL_CELL_EMPTY not in self._worksheet.row_types(
             row_idx, self._start_col_idx, self._end_col_idx + 1
         )
-
-        return XL_CELL_EMPTY not in cell_type_list
 
     @staticmethod
     def __is_empty_cell_type_list(cell_type_list):
