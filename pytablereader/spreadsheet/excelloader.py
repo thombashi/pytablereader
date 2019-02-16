@@ -144,7 +144,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
         )
 
     @staticmethod
-    def __is_empty_cell_type_list(cell_type_list):
+    def __is_empty_cell_types(cell_type_list):
         from xlrd import XL_CELL_EMPTY
 
         return all([cell_type == XL_CELL_EMPTY for cell_type in cell_type_list])
@@ -153,7 +153,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
         col_idx_list = [
             col_idx
             for col_idx in range(self._col_count)
-            if not self.__is_empty_cell_type_list(self._worksheet.col_types(col_idx))
+            if not self.__is_empty_cell_types(self._worksheet.col_types(col_idx))
         ]
 
         self._start_col_idx = min(col_idx_list)
