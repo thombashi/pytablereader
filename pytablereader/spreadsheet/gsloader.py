@@ -128,8 +128,8 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
 
     def _get_start_row_idx(self):
         row_idx = 0
-        for row_value_list in self.__all_values:
-            if all([typepy.is_not_null_string(value) for value in row_value_list]):
+        for row_values in self.__all_values:
+            if all([typepy.is_not_null_string(value) for value in row_values]):
                 break
 
             row_idx += 1
