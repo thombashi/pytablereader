@@ -55,7 +55,7 @@ class LtsvTableLoader(TableLoader):
                     label, value = ltsv_item.split(":")
                 except ValueError:
                     raise DataError(
-                        "invalid lstv item found: line={}, col={}, item='{}'".format(
+                        "invalid ltsv item found: line={}, col={}, item='{}'".format(
                             row_idx, col_idx, ltsv_item
                         )
                     )
