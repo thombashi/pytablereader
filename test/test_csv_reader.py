@@ -22,7 +22,7 @@ from pytablereader.interface import TableLoader
 from pytablewriter import dump_tabledata
 from tabledata import TableData
 
-from ._common import fifo_writer
+from ._common import TYPE_HINT_RULES, fifo_writer
 
 
 Data = collections.namedtuple("Data", "value expected")
@@ -379,6 +379,28 @@ class Test_CsvTableTextLoader_load(object):
                 print(dump_tabledata(e))
 
             assert tabledata.in_tabledata_list(expected)
+
+    def test_normal_type_hint_rules(self):
+        table_text = dedent(
+            """\
+            "a text","b integer","c real"
+            1,"1","1.1"
+            2,"2","1.2"
+            3,"3","1.3"
+            """
+        )
+
+        loader = ptr.CsvTableTextLoader(table_text)
+        loader.table_name = "type hint rules"
+        loader.type_hint_rules = TYPE_HINT_RULES
+
+        for tbldata in loader.load():
+            assert tbldata.headers == ["a text", "b integer", "c real"]
+            assert tbldata.value_matrix == [
+                ["1", 1, Decimal("1.1")],
+                ["2", 2, Decimal("1.2")],
+                ["3", 3, Decimal("1.3")],
+            ]
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "headers", "expected"],

@@ -41,13 +41,15 @@ class TableFileLoader(TableLoaderManager):
             * :py:meth:`pytablereader.factory.TableFileLoaderFactory.create_from_path`
     """
 
-    def __init__(self, file_path, format_name=None, encoding=None):
+    def __init__(self, file_path, format_name=None, encoding=None, type_hint_rules=None):
         loader_factory = TableFileLoaderFactory(file_path, encoding=encoding)
 
         if typepy.is_not_null_string(format_name):
             loader = loader_factory.create_from_format_name(format_name)
         else:
             loader = loader_factory.create_from_path()
+
+        loader.type_hint_rules = type_hint_rules
 
         super(TableFileLoader, self).__init__(loader)
 

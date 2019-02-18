@@ -22,8 +22,8 @@ class SpreadSheetLoader(TableLoader):
         The first row to search header row.
     """
 
-    def __init__(self, source, quoting_flags, type_hints):
-        super(SpreadSheetLoader, self).__init__(source, quoting_flags, type_hints)
+    def __init__(self, source, quoting_flags, type_hints, type_hint_rules):
+        super(SpreadSheetLoader, self).__init__(source, quoting_flags, type_hints, type_hint_rules)
 
         self.start_row = 0
         self._worksheet = None
@@ -66,3 +66,18 @@ class SpreadSheetLoader(TableLoader):
 
     def _get_default_table_name_template(self):
         return "{:s}".format(tnt.SHEET)
+
+    def _extract_type_hints(self, headers=None):
+        if self.type_hints:
+            return self.type_hints
+
+        if not self.type_hint_rules or not headers:
+            return []
+
+        type_hints = []
+        for header in headers:
+            for regexp, type_hint in self.type_hint_rules.items():
+                if regexp.search(header):
+                    type_hints.append(type_hint)
+
+        return type_hints

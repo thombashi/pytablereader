@@ -38,3 +38,18 @@ class TableFormatter(LoaderAcceptor, TableFormatterInterface):
         self._source_data = source_data
 
         self._validate_source_data()
+
+    def _extract_type_hints(self, headers=None):
+        if self._loader.type_hints:
+            return self._loader.type_hints
+
+        if not self._loader.type_hint_rules or not headers:
+            return []
+
+        type_hints = []
+        for header in headers:
+            for regexp, type_hint in self._loader.type_hint_rules.items():
+                if regexp.search(header):
+                    type_hints.append(type_hint)
+
+        return type_hints

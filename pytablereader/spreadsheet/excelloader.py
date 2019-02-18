@@ -48,8 +48,10 @@ class ExcelTableFileLoader(SpreadSheetLoader):
     def _col_count(self):
         return self._worksheet.ncols
 
-    def __init__(self, file_path=None, quoting_flags=None, type_hints=None):
-        super(ExcelTableFileLoader, self).__init__(file_path, quoting_flags, type_hints)
+    def __init__(self, file_path=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
+        super(ExcelTableFileLoader, self).__init__(
+            file_path, quoting_flags, type_hints, type_hint_rules
+        )
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)
@@ -109,13 +111,14 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             ]
 
             self.inc_table_count()
+            headers = self.__get_row_values(start_row_idx)
 
             yield TableData(
                 self._make_table_name(),
-                self.__get_row_values(start_row_idx),
+                headers,
                 rows,
                 dp_extractor=self.dp_extractor,
-                type_hints=self.type_hints,
+                type_hints=self._extract_type_hints(headers),
             )
 
     def _is_empty_sheet(self):

@@ -40,7 +40,7 @@ class SqliteTableFormatter(TableFormatter):
                 attr_names,
                 data_matrix,
                 dp_extractor=self._loader.dp_extractor,
-                type_hints=self._loader.type_hints,
+                type_hints=self._extract_type_hints(attr_names),
             )
 
     def _make_table_name(self):

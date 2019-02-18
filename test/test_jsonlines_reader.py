@@ -10,6 +10,7 @@ import collections
 import os
 import platform  # noqa: W0611
 from concurrent.futures import ProcessPoolExecutor
+from decimal import Decimal
 from textwrap import dedent
 
 import pytablereader as ptr
@@ -20,7 +21,7 @@ from pytablereader.interface import TableLoader
 from pytablewriter import dump_tabledata
 from tabledata import TableData
 
-from ._common import fifo_writer
+from ._common import TYPE_HINT_RULES, fifo_writer
 
 
 Data = collections.namedtuple("Data", "value expected")
@@ -333,6 +334,27 @@ class Test_JsonLinesTableTextLoader_load(object):
             load = True
 
         assert load
+
+    def test_normal_type_hint_rules(self):
+        table_text = dedent(
+            """\
+            {"a_text": 1, "b_integer": "1", "c_real": "1.1"}
+            {"a_text": 2, "b_integer": "2", "c_real": "1.2"}
+            {"a_text": 3, "b_integer": "3", "c_real": "1.3"}
+            """
+        )
+
+        loader = self.LOADER_CLASS(table_text)
+        loader.table_name = "type hint rules"
+        loader.type_hint_rules = TYPE_HINT_RULES
+
+        for tbldata in loader.load():
+            assert tbldata.headers == ["a_text", "b_integer", "c_real"]
+            assert tbldata.value_matrix == [
+                ["1", 1, Decimal("1.1")],
+                ["2", 2, Decimal("1.2")],
+                ["3", 3, Decimal("1.3")],
+            ]
 
     @pytest.mark.parametrize(
         ["table_text", "expected"],

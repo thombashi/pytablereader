@@ -85,8 +85,8 @@ class CsvTableLoader(TableLoader):
     def quotechar(self, value):
         self.__quotechar = value
 
-    def __init__(self, source, quoting_flags, type_hints):
-        super(CsvTableLoader, self).__init__(source, quoting_flags, type_hints)
+    def __init__(self, source, quoting_flags, type_hints, type_hint_rules):
+        super(CsvTableLoader, self).__init__(source, quoting_flags, type_hints, type_hint_rules)
 
         self._csv_reader = None
 
@@ -134,8 +134,10 @@ class CsvTableFileLoader(CsvTableLoader):
         :ref:`example-csv-table-loader`
     """
 
-    def __init__(self, file_path, quoting_flags=None, type_hints=None):
-        super(CsvTableFileLoader, self).__init__(file_path, quoting_flags, type_hints)
+    def __init__(self, file_path, quoting_flags=None, type_hints=None, type_hint_rules=None):
+        super(CsvTableFileLoader, self).__init__(
+            file_path, quoting_flags, type_hints, type_hint_rules
+        )
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)
@@ -209,8 +211,8 @@ class CsvTableTextLoader(CsvTableLoader):
         :ref:`example-csv-table-loader`
     """
 
-    def __init__(self, text, quoting_flags=None, type_hints=None):
-        super(CsvTableTextLoader, self).__init__(text, quoting_flags, type_hints)
+    def __init__(self, text, quoting_flags=None, type_hints=None, type_hint_rules=None):
+        super(CsvTableTextLoader, self).__init__(text, quoting_flags, type_hints, type_hint_rules)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

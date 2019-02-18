@@ -71,11 +71,12 @@ class TableLoader(TableLoaderInterface):
     def dp_extractor(self):
         return self.__dp_extractor
 
-    def __init__(self, source, quoting_flags, type_hints):
+    def __init__(self, source, quoting_flags, type_hints, type_hint_rules=None):
         self.table_name = tnt.DEFAULT
         self.source = source
         self.__quoting_flags = quoting_flags
         self.type_hints = type_hints
+        self.type_hint_rules = type_hint_rules
         self._validator = None
         self._logger = None
 

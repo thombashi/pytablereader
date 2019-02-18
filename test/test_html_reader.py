@@ -8,6 +8,8 @@ from __future__ import unicode_literals
 
 import collections
 import io
+from decimal import Decimal
+from textwrap import dedent
 
 import pytablereader as ptr
 import pytest
@@ -16,6 +18,8 @@ from pytablereader.html.formatter import HtmlTableFormatter
 from pytablereader.interface import TableLoader
 from pytablewriter import dump_tabledata
 from tabledata import TableData
+
+from ._common import TYPE_HINT_RULES
 
 
 Data = collections.namedtuple("Data", "value table_name expected")
@@ -507,6 +511,8 @@ class Test_HtmlTableFileLoader_load(object):
 
 
 class Test_HtmlTableTextLoader_load(object):
+    LOADER_CLASS = ptr.HtmlTableTextLoader
+
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -519,13 +525,54 @@ class Test_HtmlTableTextLoader_load(object):
         ],
     )
     def test_normal(self, table_text, table_name, expected_tabletuple_list):
-        loader = ptr.HtmlTableTextLoader(table_text)
+        loader = self.LOADER_CLASS(table_text)
         loader.table_name = table_name
 
         for table_data in loader.load():
             print("[actual]\n{}".format(dump_tabledata(table_data)))
 
             assert table_data.in_tabledata_list(expected_tabletuple_list)
+
+    def test_normal_type_hint_rules(self):
+        table_text = dedent(
+            """\
+            <table id="tablename">
+                <caption>caption</caption>
+                <tr>
+                    <th>a text</th>
+                    <th>b integer</th>
+                    <th>c real</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1.1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1.2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>1.3</td>
+                </tr>
+            </table>
+            """
+        )
+
+        loader = self.LOADER_CLASS(table_text)
+        loader.table_name = "type hint rules"
+        loader.type_hint_rules = TYPE_HINT_RULES
+
+        for tbldata in loader.load():
+            assert tbldata.headers == ["a text", "b integer", "c real"]
+            assert tbldata.value_matrix == [
+                ["1", 1, Decimal("1.1")],
+                ["2", 2, Decimal("1.2")],
+                ["3", 3, Decimal("1.3")],
+            ]
 
     @pytest.mark.parametrize(
         ["table_text", "expected"], [["", ptr.DataError], [None, ptr.DataError]]

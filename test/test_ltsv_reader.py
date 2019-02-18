@@ -9,6 +9,7 @@ from __future__ import print_function, unicode_literals
 import collections
 import io
 from decimal import Decimal
+from textwrap import dedent
 
 import pytablereader as ptr
 import pytest
@@ -17,6 +18,8 @@ from pytablereader import DataError, InvalidHeaderNameError, InvalidTableNameErr
 from pytablereader.interface import TableLoader
 from pytablewriter import dump_tabledata
 from tabledata import TableData
+
+from ._common import TYPE_HINT_RULES
 
 
 Data = collections.namedtuple("Data", "value expected")
@@ -177,6 +180,23 @@ class Test_LtsvTableTextLoader_load(object):
             print("[actual]: {}".format(dump_tabledata(tabledata)))
 
             assert tabledata.equals(expected)
+
+    def test_normal_type_hint_rules(self):
+        table_text = dedent(
+            """\
+            a_text:1\tb_integer:1\tc_integer:1.1
+            a_text:2\tb_integer:2\tc_integer:1.2
+            a_text:3\tb_integer:3\tc_integer:1.3
+            """
+        )
+
+        loader = ptr.LtsvTableTextLoader(table_text)
+        loader.table_name = "type hint rules"
+        loader.type_hint_rules = TYPE_HINT_RULES
+
+        for tbldata in loader.load():
+            assert tbldata.headers == ["a_text", "b_integer", "c_integer"]
+            assert tbldata.value_matrix == [["1", 1, 1], ["2", 2, 1], ["3", 3, 1]]
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "expected"],

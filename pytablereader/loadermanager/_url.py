@@ -48,13 +48,15 @@ class TableUrlLoader(TableLoaderManager):
             * :py:meth:`pytablereader.factory.TableUrlLoaderFactory.create_from_path`
     """
 
-    def __init__(self, url, format_name=None, encoding=None, proxies=None):
+    def __init__(self, url, format_name=None, encoding=None, type_hint_rules=None, proxies=None):
         loader_factory = TableUrlLoaderFactory(url, encoding, proxies)
 
         if typepy.is_not_null_string(format_name):
             loader = loader_factory.create_from_format_name(format_name)
         else:
             loader = loader_factory.create_from_path()
+
+        loader.type_hint_rules = type_hint_rules
 
         super(TableUrlLoader, self).__init__(loader)
 
