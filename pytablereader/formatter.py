@@ -60,6 +60,9 @@ class TableFormatter(LoaderAcceptor, TableFormatterInterface):
             for regexp, type_hint in self._loader.type_hint_rules.items():
                 if regexp.search(header):
                     type_hints.append(type_hint)
+                    continue
+
+                type_hints.append(None)
 
         logger.debug(
             dedent(
