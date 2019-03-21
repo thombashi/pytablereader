@@ -104,7 +104,7 @@ class BaseLogger(LoggerInterface):
         logger.debug(self._get_load_message())
 
     def logging_table(self, table_data):
-        logger.debug(" loaded tabledata: {}".format(table_data))
+        logger.debug("loaded tabledata: {}".format(table_data))
 
     @abc.abstractmethod
     def _get_load_message(self):
