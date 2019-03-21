@@ -79,8 +79,8 @@ class SpreadSheetLoader(TableLoader):
             for regexp, type_hint in self.type_hint_rules.items():
                 if regexp.search(header):
                     type_hints.append(type_hint)
-                    continue
-
+                    break
+            else:
                 type_hints.append(None)
 
         return type_hints
