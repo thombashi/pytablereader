@@ -7,11 +7,20 @@
 from __future__ import absolute_import
 
 import abc
+from collections import OrderedDict
+from textwrap import dedent
 
 import six
 from pytablereader import DataError
 
 from ._acceptor import LoaderAcceptor
+from ._logger import logger
+
+
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 
 @six.add_metaclass(abc.ABCMeta)
@@ -51,5 +60,24 @@ class TableFormatter(LoaderAcceptor, TableFormatterInterface):
             for regexp, type_hint in self._loader.type_hint_rules.items():
                 if regexp.search(header):
                     type_hints.append(type_hint)
+
+        logger.debug(
+            dedent(
+                """\
+                extracted type hints:
+                {}
+                """
+            ).format(
+                json.dumps(
+                    OrderedDict(
+                        {
+                            header: six.text_type(type_hint)
+                            for header, type_hint in zip(headers, type_hints)
+                        }
+                    ),
+                    indent=4,
+                )
+            )
+        )
 
         return type_hints

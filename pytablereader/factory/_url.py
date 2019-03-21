@@ -84,7 +84,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         except InvalidFilePathError:
             raise UrlError("url must include path")
 
-        logger.debug("TableUrlLoaderFactory.create_from_path: extension={}".format(url_extension))
+        logger.debug("TableUrlLoaderFactory: extension={}".format(url_extension))
 
         loader_class = self._get_loader_class(self._get_extension_loader_mapping(), url_extension)
 
@@ -93,7 +93,11 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         except requests.exceptions.ProxyError as e:
             raise ProxyError(e)
 
-        return self._create_from_extension(url_extension)
+        loader = self._create_from_extension(url_extension)
+
+        logger.debug("TableUrlLoaderFactory: loader={}".format(loader.format_name))
+
+        return loader
 
     def create_from_format_name(self, format_name):
         """
@@ -128,7 +132,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         import requests
 
-        logger.debug("TableUrlLoaderFactory.create_from_format_name: name={}".format(format_name))
+        logger.debug("TableUrlLoaderFactory: name={}".format(format_name))
 
         loader_class = self._get_loader_class(self._get_format_name_loader_mapping(), format_name)
 
@@ -137,7 +141,11 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         except requests.exceptions.ProxyError as e:
             raise ProxyError(e)
 
-        return self._create_from_format_name(format_name)
+        loader = self._create_from_format_name(format_name)
+
+        logger.debug("TableUrlLoaderFactory: loader={}".format(loader.format_name))
+
+        return loader
 
     def _fetch_source(self, loader_class):
         import requests
