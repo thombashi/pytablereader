@@ -30,6 +30,27 @@ from ..tsv.core import TsvTableTextLoader
 from ._base import BaseTableLoaderFactory
 
 
+def make_requests_session(retries=5, status_forcelist=(500, 502, 504)):
+    from requests.adapters import HTTPAdapter
+    from requests.packages.urllib3.util.retry import Retry
+    from requests import Session
+
+    session = Session()
+    adapter = HTTPAdapter(
+        max_retries=Retry(
+            total=retries,
+            read=retries,
+            connect=retries,
+            backoff_factor=0.5,
+            status_forcelist=status_forcelist,
+        )
+    )
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+
+    return session
+
+
 class TableUrlLoaderFactory(BaseTableLoaderFactory):
     @property
     def __url(self):
@@ -155,7 +176,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         if loader_source_type not in [SourceType.TEXT, SourceType.FILE]:
             raise ValueError("unknown loader source: type={}".format(loader_source_type))
 
-        r = requests.get(self.__url, proxies=self.__proxies)
+        r = make_requests_session().get(self.__url, proxies=self.__proxies)
 
         try:
             r.raise_for_status()
