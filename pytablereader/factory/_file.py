@@ -110,9 +110,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             |LoaderNotFoundError_desc| the format.
         """
 
-        logger.debug(
-            "TableFileLoaderFactory.create_from_format_name: name={}".format(self.file_extension)
-        )
+        logger.debug("TableFileLoaderFactory.create_from_format_name: name={}".format(format_name))
 
         return self._create_from_format_name(format_name)
 
