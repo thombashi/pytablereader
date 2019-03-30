@@ -68,6 +68,7 @@ tests_requires = frozenset(
     + excel_requires
     + mediawiki_requires
     + sqlite_requires
+    + url_requires
     + optional_requires
 )
 
