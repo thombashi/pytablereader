@@ -49,6 +49,7 @@ Optional Python packages
     - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
 - URL
     - `requests <http://python-requests.org/>`__
+    - `retryrequests <https://github.com/thombashi/retryrequests>`__
 - `pandas <https://pandas.pydata.org/>`__
     - required to get table data as a pandas data frame
 - `simplejson <https://github.com/simplejson/simplejson>`__
