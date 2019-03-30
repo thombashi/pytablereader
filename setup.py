@@ -58,7 +58,7 @@ pytest_runner_require = ["pytest-runner"] if need_pytest() else []
 
 excel_requires = ["xlrd>=1.2.0"]
 mediawiki_requires = ["pypandoc"]
-sqlite_requires = ["SimpleSQLite>=0.42.0,<1.0.0"]
+sqlite_requires = ["SimpleSQLite>=0.43.0,<1.0.0"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
 logging_requires = ["Logbook>=1.1.0,<2.0.0"]
 url_requires = ["requests>=2.21.0,<3.0.0", "retryrequests>=0.0.1,<0.1.0"]
