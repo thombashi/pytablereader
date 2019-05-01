@@ -13,7 +13,7 @@ import pytablereader as ptr
 import pytest
 from path import Path
 from pytablereader.interface import TableLoader
-from pytablewriter import dump_tabledata
+from pytablewriter import dumps_tabledata
 from simplesqlite import SimpleSQLite
 from tabledata import TableData
 
@@ -138,7 +138,7 @@ class Test_SqliteFileLoader_load(object):
 
         for tabledata in loader.load():
             print("test-id={}".format(test_id))
-            print(dump_tabledata(tabledata))
+            print(dumps_tabledata(tabledata))
 
             assert tabledata.in_tabledata_list(expected)
 

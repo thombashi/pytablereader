@@ -15,7 +15,7 @@ import six
 from mbstrdecoder import MultiByteStrDecoder
 from path import Path
 from pytablereader.interface import TableLoader
-from pytablewriter import ExcelXlsxTableWriter, dump_tabledata
+from pytablewriter import ExcelXlsxTableWriter, dumps_tabledata
 from tabledata import TableData
 
 
@@ -143,8 +143,8 @@ class Test_TableFileLoader_load(object):
         assert loader.format_name == "csv"
 
         for tabledata, expected in zip(loader.load(), expeced_list):
-            print(dump_tabledata(expected))
-            print(dump_tabledata(tabledata))
+            print(dumps_tabledata(expected))
+            print(dumps_tabledata(tabledata))
 
             assert tabledata.equals(expected)
 
@@ -196,8 +196,8 @@ class Test_TableFileLoader_load(object):
         assert loader.format_name == "csv"
 
         for tabledata, expected in zip(loader.load(), expeced_list):
-            print(dump_tabledata(expected))
-            print(dump_tabledata(tabledata))
+            print(dumps_tabledata(expected))
+            print(dumps_tabledata(tabledata))
 
             assert tabledata.equals(expected)
 
@@ -268,6 +268,6 @@ class Test_TableFileLoader_load(object):
         assert loader.format_name == "excel"
 
         for tabledata in loader.load():
-            print(dump_tabledata(tabledata))
+            print(dumps_tabledata(tabledata))
 
             assert tabledata in tabledata_list

@@ -15,7 +15,7 @@ import pytest
 from path import Path
 from pytablereader import InvalidTableNameError
 from pytablereader.interface import TableLoader
-from pytablewriter import dump_tabledata
+from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 
@@ -141,7 +141,7 @@ class Test_TsvTableFileLoader_load(object):
 
         for tabledata in loader.load():
             print("test-id={}".format(test_id))
-            print(dump_tabledata(tabledata))
+            print(dumps_tabledata(tabledata))
 
             assert tabledata.in_tabledata_list(expected)
 
@@ -224,9 +224,9 @@ class Test_TsvTableTextLoader_load(object):
         loader.headers = headers
 
         for tabledata in loader.load():
-            print(dump_tabledata(tabledata))
+            print(dumps_tabledata(tabledata))
             for e in expected:
-                print(dump_tabledata(e))
+                print(dumps_tabledata(e))
 
             assert tabledata.in_tabledata_list(expected)
 

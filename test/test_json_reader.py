@@ -15,7 +15,7 @@ import pytest
 from path import Path
 from pytablereader import InvalidTableNameError
 from pytablereader.interface import TableLoader
-from pytablewriter import dump_tabledata
+from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 
@@ -323,7 +323,7 @@ class Test_JsonTableFileLoader_load(object):
         loader = ptr.JsonTableFileLoader(file_path)
         load = False
         for tabledata in loader.load():
-            print("[actual]\n{}".format(dump_tabledata(tabledata)))
+            print("[actual]\n{}".format(dumps_tabledata(tabledata)))
 
             assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True
@@ -421,7 +421,7 @@ class Test_JsonTableTextLoader_load(object):
 
         load = False
         for tabledata in loader.load():
-            print("[actual]\n{}".format(dump_tabledata(tabledata)))
+            print("[actual]\n{}".format(dumps_tabledata(tabledata)))
 
             assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True

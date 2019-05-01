@@ -14,7 +14,7 @@ import pytest
 import responses
 import six
 from pytablereader.interface import TableLoader
-from pytablewriter import dump_tabledata
+from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 
@@ -255,11 +255,11 @@ class Test_TableUrlLoader_load(object):
         loader.table_name = "url_loader"
 
         for table_data in loader.load():
-            print("{} {}".format(table_data, dump_tabledata(table_data)))
+            print("{} {}".format(table_data, dumps_tabledata(table_data)))
             print(table_data.rows)
             print("[expected]")
             for expeced in expeced_list:
-                print(dump_tabledata(expeced))
+                print(dumps_tabledata(expeced))
 
             assert table_data.in_tabledata_list(expeced_list)
 

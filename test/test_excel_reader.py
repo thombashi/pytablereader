@@ -10,7 +10,7 @@ import pytablereader as ptr
 import pytest
 import xlsxwriter
 from pytablereader.interface import TableLoader
-from pytablewriter import dump_tabledata
+from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 
@@ -195,7 +195,7 @@ class Test_ExcelTableFileLoader_load(object):
         loader.start_row = start_row
 
         for table_data in loader.load():
-            print("[actual]\n{}".format(dump_tabledata(table_data)))
+            print("[actual]\n{}".format(dumps_tabledata(table_data)))
             assert table_data.in_tabledata_list(expected_list)
 
     @pytest.mark.parametrize(

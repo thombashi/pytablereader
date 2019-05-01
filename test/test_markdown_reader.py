@@ -14,7 +14,7 @@ import pytest
 from path import Path
 from pytablereader.interface import TableLoader
 from pytablereader.markdown.formatter import MarkdownTableFormatter
-from pytablewriter import dump_tabledata
+from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 
@@ -264,7 +264,7 @@ class Test_MarkdownTableFileLoader_load(object):
         load = False
         for table_data in loader.load():
             print("--- test {} ---".format(test_id))
-            print("\n[actual]\n{}".format(dump_tabledata(table_data)))
+            print("\n[actual]\n{}".format(dumps_tabledata(table_data)))
             assert table_data.in_tabledata_list(expected_tabledata_list)
             load = True
 

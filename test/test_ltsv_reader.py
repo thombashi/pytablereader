@@ -16,7 +16,7 @@ import pytest
 from path import Path
 from pytablereader import DataError, InvalidHeaderNameError, InvalidTableNameError
 from pytablereader.interface import TableLoader
-from pytablewriter import dump_tabledata
+from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 from ._common import TYPE_HINT_RULES
@@ -100,8 +100,8 @@ class Test_LtsvTableFileLoader_load(object):
 
         for tabledata in loader.load():
             print("test-id={}".format(test_id))
-            print("[expected]\n{}".format(dump_tabledata(expected)))
-            print("[actual]\n{}".format(dump_tabledata(tabledata)))
+            print("[expected]\n{}".format(dumps_tabledata(expected)))
+            print("[actual]\n{}".format(dumps_tabledata(tabledata)))
 
             assert tabledata.equals(expected)
 
@@ -176,8 +176,8 @@ class Test_LtsvTableTextLoader_load(object):
         loader.table_name = table_name
 
         for tabledata in loader.load():
-            print("[expected]: {}".format(dump_tabledata(expected)))
-            print("[actual]: {}".format(dump_tabledata(tabledata)))
+            print("[expected]: {}".format(dumps_tabledata(expected)))
+            print("[actual]: {}".format(dumps_tabledata(tabledata)))
 
             assert tabledata.equals(expected)
 
