@@ -18,6 +18,9 @@ from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 
+dateutil = pytest.importorskip("markdown2", minversion="2.3.7")
+
+
 Data = collections.namedtuple("Data", "value expected")
 
 test_data_empty = Data("""[]""", [TableData("tmp", [], [])])
