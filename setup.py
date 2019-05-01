@@ -60,7 +60,7 @@ excel_requires = ["xlrd>=1.2.0"]
 mediawiki_requires = ["pypandoc"]
 sqlite_requires = ["SimpleSQLite>=0.44.1,<1.0.0"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
-logging_requires = ["Logbook>=1.1.0,<2.0.0"]
+logging_requires = ["Logbook>=0.12.3,<2.0.0"]
 url_requires = ["requests>=2.21.0,<3.0.0", "retryrequests>=0.0.1,<0.1.0"]
 optional_requires = ["simplejson>=3.16,<4.0"]
 tests_requires = frozenset(
