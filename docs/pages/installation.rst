@@ -1,5 +1,8 @@
 Installation
 ============
+
+Install from PyPI
+------------------------------
 ::
 
     pip install pytablereader
@@ -20,6 +23,14 @@ Some of the formats require additional dependency packages, you can install the 
     - ``pip install pytablereader[url]``
 - All of the extra dependencies
     - ``pip install pytablereader[all]``
+
+Install from PPA (for Ubuntu)
+------------------------------
+::
+
+    sudo add-apt-repository ppa:thombashi/ppa
+    sudo apt update
+    sudo apt install python3-pytablereader
 
 
 Dependencies
