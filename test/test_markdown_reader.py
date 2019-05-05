@@ -18,7 +18,7 @@ from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 
-dateutil = pytest.importorskip("markdown2", minversion="2.3.7")
+Markdown = pytest.importorskip("Markdown", minversion="2.6.6")
 
 
 Data = collections.namedtuple("Data", "value expected")

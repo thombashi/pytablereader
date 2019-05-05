@@ -14,11 +14,11 @@ from ..html.formatter import HtmlTableFormatter
 
 class MarkdownTableFormatter(HtmlTableFormatter):
     def __init__(self, source_data, logger=None):
-        import markdown2
+        import markdown
 
         if typepy.is_null_string(source_data):
             raise DataError
 
         super(MarkdownTableFormatter, self).__init__(
-            markdown2.markdown(source_data, extras=["tables"]), logger=logger
+            markdown.markdown(source_data, extensions=["tables"]), logger=logger
         )
