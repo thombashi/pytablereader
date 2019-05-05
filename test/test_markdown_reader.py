@@ -4,7 +4,7 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import unicode_literals
+from __future__ import print_function, unicode_literals
 
 import collections
 from textwrap import dedent
