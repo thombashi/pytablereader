@@ -10,6 +10,8 @@ Some of the formats require additional dependency packages, you can install the 
     - ``pip install pytablereader[excel]``
 - Google Sheets
     - ``pip install pytablereader[gs]``
+- Markdown
+    - ``pip install pytablereader[md]``
 - Mediawiki
     - ``pip install pytablereader[mediawiki]``
 - SQLite
@@ -22,14 +24,13 @@ Some of the formats require additional dependency packages, you can install the 
 
 Dependencies
 ============
-Python 2.7+ or 3.4+
+Python 2.7+ or 3.5+
 
 Mandatory Python packages
 ----------------------------------
 - `beautifulsoup4 <https://www.crummy.com/software/BeautifulSoup/>`__
 - `DataProperty <https://github.com/thombashi/DataProperty>`__ (Used to extract data types)
 - `jsonschema <https://github.com/Julian/jsonschema>`__
-- `markdown2 <https://github.com/trentm/python-markdown2>`__
 - `mbstrdecoder <https://github.com/thombashi/mbstrdecoder>`__
 - `pathvalidate <https://github.com/thombashi/pathvalidate>`__
 - `path.py <https://github.com/jaraco/path.py>`__
@@ -43,6 +44,8 @@ Optional Python packages
     - Logging using logbook if the package installed
 - Excel
     - `xlrd <https://github.com/python-excel/xlrd>`__
+- Markdown
+    - `markdown2 <https://github.com/trentm/python-markdown2>`__
 - MediaWiki
     - `pypandoc <https://github.com/bebraw/pypandoc>`__
 - SQLite

@@ -24,7 +24,7 @@
             print("\n".join([
                 "load from file",
                 "==============",
-                "{:s}".format(ptw.dump_tabledata(table_data)),
+                "{:s}".format(ptw.dumps_tabledata(table_data)),
             ]))
         
         # load from a csv text ---
@@ -33,7 +33,7 @@
             print("\n".join([
                 "load from text",
                 "==============",
-                "{:s}".format(ptw.dump_tabledata(table_data)),
+                "{:s}".format(ptw.dumps_tabledata(table_data)),
             ]))
 
 
