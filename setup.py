@@ -56,17 +56,18 @@ with open(os.path.join(REQUIREMENT_DIR, "docs_requirements.txt")) as f:
 setuptools_require = ["setuptools>=38.3.0"]
 pytest_runner_require = ["pytest-runner"] if need_pytest() else []
 
-excel_requires = ["xlrd>=1.2.0"]
+excel_requires = ["xlrd>=0.9.4"]
 markdown_requires = ["Markdown>=2.6.6,<3.0.0"]
 mediawiki_requires = ["pypandoc"]
-sqlite_requires = ["SimpleSQLite>=0.44.1,<1.0.0"]
+sqlite_requires = ["SimpleSQLite>=0.45.0,<1.0.0"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
 logging_requires = ["Logbook>=0.12.3,<2.0.0"]
-url_requires = ["requests>=2.21.0,<3.0.0", "retryrequests>=0.0.1,<0.1.0"]
+url_requires = ["requests>=2.18.4,<3.0.0", "retryrequests>=0.0.2,<0.1.0"]
 optional_requires = ["simplejson>=3.16,<4.0"]
 tests_requires = frozenset(
     tests_requires
     + excel_requires
+    + markdown_requires
     + mediawiki_requires
     + sqlite_requires
     + url_requires

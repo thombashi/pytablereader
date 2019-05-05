@@ -10,7 +10,7 @@ import pytest
 from pytablereader import set_log_level, set_logger
 
 
-logbook = pytest.importorskip("logbook", minversion="1.0.1")
+logbook = pytest.importorskip("logbook", minversion="0.12.3")
 
 import logbook  # isort:skip
 
