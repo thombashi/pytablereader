@@ -1,6 +1,6 @@
 futures;python_version<"3.2"
 pypandoc
-pytablewriter[excel]>=0.45.1
+pytablewriter[excel]>=0.46
 pytest
 responses
 subprocrunner
