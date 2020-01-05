@@ -56,7 +56,11 @@ with open(os.path.join(REQUIREMENT_DIR, "docs_requirements.txt")) as f:
 setuptools_require = ["setuptools>=38.3.0"]
 pytest_runner_require = ["pytest-runner"] if need_pytest() else []
 
-excel_requires = ["xlrd>=0.9.4"]
+if sys.version_info[0] >= 3:
+    excel_requires = ["excelrd>=2.0.2"]
+else:
+    excel_requires = ["xlrd>=0.9.4"]
+
 markdown_requires = ["Markdown>=2.6.6,<3.0.0"]
 mediawiki_requires = ["pypandoc"]
 sqlite_requires = ["SimpleSQLite>=0.45.2,<1.0.0"]
