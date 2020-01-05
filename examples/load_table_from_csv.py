@@ -3,8 +3,9 @@
 
 from __future__ import print_function
 
-import pytablereader as ptr
 import pytablewriter as ptw
+
+import pytablereader as ptr
 
 
 # prepare data ---

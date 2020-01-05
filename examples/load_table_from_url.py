@@ -5,8 +5,9 @@ from __future__ import print_function, unicode_literals
 
 import io
 
-import pytablereader as ptr
 import pytablewriter as ptw
+
+import pytablereader as ptr
 
 
 loader = ptr.TableUrlLoader(
