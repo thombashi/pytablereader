@@ -83,7 +83,10 @@ class ExcelTableFileLoader(SpreadSheetLoader):
             If failed to open the source file.
         """
 
-        import xlrd
+        try:
+            import excelrd as xlrd
+        except ImportError:
+            import xlrd
 
         self._validate()
         self._logger.logging_load()
