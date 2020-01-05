@@ -44,7 +44,7 @@ Mandatory Python packages
 - `jsonschema <https://github.com/Julian/jsonschema>`__
 - `mbstrdecoder <https://github.com/thombashi/mbstrdecoder>`__
 - `pathvalidate <https://github.com/thombashi/pathvalidate>`__
-- `path.py <https://github.com/jaraco/path.py>`__
+- `path <https://github.com/jaraco/path>`__
 - `six <https://pypi.org/project/six/>`__
 - `tabledata <https://github.com/thombashi/tabledata>`__
 - `typepy <https://github.com/thombashi/typepy>`__
@@ -54,7 +54,7 @@ Optional Python packages
 - `logbook <https://logbook.readthedocs.io/en/stable/>`__
     - Logging using logbook if the package installed
 - Excel
-    - `xlrd <https://github.com/python-excel/xlrd>`__
+    - `excelrd <https://github.com/thombashi/excelrd>`__
 - Markdown
     - `markdown2 <https://github.com/trentm/python-markdown2>`__
 - MediaWiki
