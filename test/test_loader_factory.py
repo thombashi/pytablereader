@@ -6,8 +6,9 @@
 
 from __future__ import absolute_import, unicode_literals
 
-import pytablereader as ptr
 import pytest
+
+import pytablereader as ptr
 
 
 class Test_TableFileLoaderFactory(object):

@@ -9,14 +9,15 @@ from __future__ import print_function, unicode_literals
 from textwrap import dedent
 
 import pathvalidate as pv
-import pytablereader as ptr
 import pytest
 import six
 from mbstrdecoder import MultiByteStrDecoder
 from path import Path
-from pytablereader.interface import TableLoader
 from pytablewriter import ExcelXlsxTableWriter, dumps_tabledata
 from tabledata import TableData
+
+import pytablereader as ptr
+from pytablereader.interface import TableLoader
 
 
 class Test_TableFileLoader_get_format_names(object):

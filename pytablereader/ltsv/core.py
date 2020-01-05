@@ -10,6 +10,7 @@ import io
 
 import pathvalidate as pv
 import typepy
+
 from pytablereader import DataError, InvalidHeaderNameError
 
 from .._common import get_file_encoding

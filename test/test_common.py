@@ -7,6 +7,7 @@
 from __future__ import unicode_literals
 
 import pytest
+
 from pytablereader import InvalidFilePathError
 from pytablereader._common import get_extension, make_temp_file_path_from_url
 

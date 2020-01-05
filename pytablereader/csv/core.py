@@ -12,6 +12,7 @@ import io
 import six
 import typepy
 from mbstrdecoder import MultiByteStrDecoder
+
 from pytablereader import DataError
 
 from .._common import get_file_encoding

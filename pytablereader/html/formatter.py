@@ -10,8 +10,9 @@ import re
 
 import bs4
 import typepy
-from pytablereader import DataError
 from tabledata import TableData
+
+from pytablereader import DataError
 
 from .._constant import TableNameTemplate as tnt
 from .._logger import NullLogger

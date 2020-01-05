@@ -6,12 +6,13 @@
 
 from __future__ import unicode_literals
 
-import pytablereader as ptr
 import pytest
 import xlsxwriter
-from pytablereader.interface import TableLoader
 from pytablewriter import dumps_tabledata
 from tabledata import TableData
+
+import pytablereader as ptr
+from pytablereader.interface import TableLoader
 
 
 def write_worksheet(worksheet, table):

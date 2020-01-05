@@ -8,9 +8,10 @@ from __future__ import unicode_literals
 
 import os
 
-import pytablereader as ptr
 import pytest
 from pytablewriter import dumps_tabledata
+
+import pytablereader as ptr
 
 
 class Test_HtmlTableTextLoader_load(object):

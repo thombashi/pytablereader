@@ -10,13 +10,14 @@ import collections
 from decimal import Decimal
 from textwrap import dedent
 
-import pytablereader as ptr
 import pytest
 from path import Path
-from pytablereader import InvalidTableNameError
-from pytablereader.interface import TableLoader
 from pytablewriter import dumps_tabledata
 from tabledata import TableData
+
+import pytablereader as ptr
+from pytablereader import InvalidTableNameError
+from pytablereader.interface import TableLoader
 
 
 Data = collections.namedtuple("Data", "value expected")

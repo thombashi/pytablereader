@@ -9,13 +9,14 @@ from __future__ import print_function, unicode_literals
 import os.path
 from textwrap import dedent
 
-import pytablereader as ptr
 import pytest
 import responses
 import six
-from pytablereader.interface import TableLoader
 from pytablewriter import dumps_tabledata
 from tabledata import TableData
+
+import pytablereader as ptr
+from pytablereader.interface import TableLoader
 
 
 class Test_TableUrlLoader_get_format_names(object):

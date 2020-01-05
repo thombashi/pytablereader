@@ -13,6 +13,7 @@ import path
 import six
 import typepy
 from dataproperty import DataPropertyExtractor
+
 from pytablereader import InvalidTableNameError
 
 from ._constant import SourceType

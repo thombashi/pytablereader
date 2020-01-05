@@ -11,6 +11,7 @@ from collections import OrderedDict
 from textwrap import dedent
 
 import six
+
 from pytablereader import DataError
 
 from ._acceptor import LoaderAcceptor

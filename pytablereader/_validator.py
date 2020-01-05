@@ -14,8 +14,9 @@ from errno import EBADF, ENAMETOOLONG, ENOENT, ENOTDIR
 import pathvalidate as pv
 import six
 import typepy
-from pytablereader import DataError
 from six.moves.urllib.parse import urlparse
+
+from pytablereader import DataError
 
 from ._constant import SourceType
 from .error import InvalidFilePathError, UrlError

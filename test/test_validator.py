@@ -6,8 +6,9 @@
 
 from __future__ import unicode_literals
 
-import pytablereader as ptr
 import pytest
+
+import pytablereader as ptr
 from pytablereader._constant import SourceType
 from pytablereader._validator import FileValidator, TextValidator, UrlValidator, is_fifo
 

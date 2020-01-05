@@ -11,13 +11,14 @@ import io
 from decimal import Decimal
 from textwrap import dedent
 
-import pytablereader as ptr
 import pytest
 from path import Path
-from pytablereader import DataError, InvalidHeaderNameError, InvalidTableNameError
-from pytablereader.interface import TableLoader
 from pytablewriter import dumps_tabledata
 from tabledata import TableData
+
+import pytablereader as ptr
+from pytablereader import DataError, InvalidHeaderNameError, InvalidTableNameError
+from pytablereader.interface import TableLoader
 
 from ._common import TYPE_HINT_RULES
 

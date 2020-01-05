@@ -9,12 +9,13 @@ from __future__ import unicode_literals
 import collections
 from textwrap import dedent
 
-import pytablereader as ptr
 import pytest
 from path import Path
+from tabledata import TableData
+
+import pytablereader as ptr
 from pytablereader.interface import TableLoader
 from pytablereader.mediawiki.formatter import MediaWikiTableFormatter
-from tabledata import TableData
 
 
 Data = collections.namedtuple("Data", "value expected")

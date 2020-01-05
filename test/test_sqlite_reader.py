@@ -9,13 +9,14 @@ from __future__ import print_function, unicode_literals
 import collections
 from decimal import Decimal
 
-import pytablereader as ptr
 import pytest
 from path import Path
-from pytablereader.interface import TableLoader
 from pytablewriter import dumps_tabledata
 from simplesqlite import SimpleSQLite
 from tabledata import TableData
+
+import pytablereader as ptr
+from pytablereader.interface import TableLoader
 
 
 Data = collections.namedtuple("Data", "value expected")

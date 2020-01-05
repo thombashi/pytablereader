@@ -6,9 +6,10 @@
 
 from __future__ import absolute_import, unicode_literals
 
-from pytablereader import DataError
 from six.moves import range
 from tabledata import TableData
+
+from pytablereader import DataError
 
 from .._logger import FileSourceLogger
 from .._validator import FileValidator
