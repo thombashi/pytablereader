@@ -11,6 +11,13 @@ build:
 	@python setup.py clean --all
 	ls -lh dist/*
 
+.PHONY: check
+check:
+	python setup.py check
+	codespell $(PACKAGE) docs examples test -q 2 --check-filenames --ignore-words-list te --exclude-file "test/data/python - Wiktionary.html"
+	travis lint
+	pylama
+
 .PHONY: clean
 clean:
 	@rm -rf $(PACKAGE)-*.*.*/ \
@@ -32,9 +39,9 @@ docs:
 
 .PHONY: fmt
 fmt:
-	@black $(CURDIR)
-	@autoflake --in-place --recursive --remove-all-unused-imports --exclude "__init__.py" .
-	@isort --apply --recursive
+	black $(CURDIR)
+	autoflake --in-place --recursive --remove-all-unused-imports --exclude "__init__.py" .
+	isort --apply --recursive
 
 .PHONY: readme
 readme:
