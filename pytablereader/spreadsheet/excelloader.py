@@ -144,7 +144,10 @@ class ExcelTableFileLoader(SpreadSheetLoader):
         return row_idx
 
     def __is_header_row(self, row_idx):
-        from xlrd import XL_CELL_EMPTY
+        try:
+            from excelrd import XL_CELL_EMPTY
+        except ImportError:
+            from xlrd import XL_CELL_EMPTY
 
         return XL_CELL_EMPTY not in self._worksheet.row_types(
             row_idx, self._start_col_idx, self._end_col_idx + 1
@@ -152,7 +155,10 @@ class ExcelTableFileLoader(SpreadSheetLoader):
 
     @staticmethod
     def __is_empty_cell_types(cell_types):
-        from xlrd import XL_CELL_EMPTY
+        try:
+            from excelrd import XL_CELL_EMPTY
+        except ImportError:
+            from xlrd import XL_CELL_EMPTY
 
         return all([cell_type == XL_CELL_EMPTY for cell_type in cell_types])
 
