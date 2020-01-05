@@ -11,7 +11,7 @@ exclude = '''
     | buck-out
     | build
     | dist
-    | examples/
+    | examples
 )/
 | docs/conf.py
 '''
