@@ -141,8 +141,8 @@ class TableLoader(TableLoaderInterface):
         self._validate_table_name()
 
         table_name = self.table_name
-        for teamplate, value in six.iteritems(table_name_kv_mapping):
-            table_name = table_name.replace(teamplate, value)
+        for template, value in six.iteritems(table_name_kv_mapping):
+            table_name = table_name.replace(template, value)
 
         return self._sanitize_table_name(table_name)
 
