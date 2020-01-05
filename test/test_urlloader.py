@@ -206,7 +206,7 @@ class Test_TableUrlLoader_load(object):
             content_type="text/plain; charset=utf-8",
             status=200,
         )
-        expeced_list = [
+        expected_list = [
             TableData(
                 "csv1",
                 ["attr_a", "attr_b", "attr_c"],
@@ -218,7 +218,7 @@ class Test_TableUrlLoader_load(object):
         assert loader.format_name == "csv"
 
         for table_data in loader.load():
-            assert table_data.in_tabledata_list(expeced_list)
+            assert table_data.in_tabledata_list(expected_list)
 
     @responses.activate
     @pytest.mark.parametrize(
@@ -242,7 +242,7 @@ class Test_TableUrlLoader_load(object):
             content_type="text/plain; charset=utf-8",
             status=200,
         )
-        expeced_list = [
+        expected_list = [
             TableData(
                 "url_loader",
                 ["attr_a", "attr_b", "attr_c"],
@@ -259,10 +259,10 @@ class Test_TableUrlLoader_load(object):
             print("{} {}".format(table_data, dumps_tabledata(table_data)))
             print(table_data.rows)
             print("[expected]")
-            for expeced in expeced_list:
-                print(dumps_tabledata(expeced))
+            for expected in expected_list:
+                print(dumps_tabledata(expected))
 
-            assert table_data.in_tabledata_list(expeced_list)
+            assert table_data.in_tabledata_list(expected_list)
 
     @pytest.mark.xfail(run=False)
     @responses.activate
@@ -279,7 +279,7 @@ class Test_TableUrlLoader_load(object):
                 status=200,
             )
 
-        expeced_list = [
+        expected_list = [
             TableData(
                 "testsheet1",
                 ["a1", "b1", "c1"],
@@ -296,4 +296,4 @@ class Test_TableUrlLoader_load(object):
         assert loader.format_name == "excel"
 
         for table_data in loader.load():
-            assert table_data.in_tabledata_list(expeced_list)
+            assert table_data.in_tabledata_list(expected_list)

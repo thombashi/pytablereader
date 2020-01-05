@@ -132,7 +132,7 @@ class Test_TableFileLoader_load(object):
                 )
             )
 
-        expeced_list = [
+        expected_list = [
             TableData(
                 filename,
                 ["attr_a", "attr_b", "attr_c"],
@@ -143,7 +143,7 @@ class Test_TableFileLoader_load(object):
 
         assert loader.format_name == "csv"
 
-        for tabledata, expected in zip(loader.load(), expeced_list):
+        for tabledata, expected in zip(loader.load(), expected_list):
             print(dumps_tabledata(expected))
             print(dumps_tabledata(tabledata))
 
@@ -167,7 +167,7 @@ class Test_TableFileLoader_load(object):
                 )
             )
 
-        expeced_list = [
+        expected_list = [
             TableData(
                 "testdata",
                 [
@@ -196,7 +196,7 @@ class Test_TableFileLoader_load(object):
 
         assert loader.format_name == "csv"
 
-        for tabledata, expected in zip(loader.load(), expeced_list):
+        for tabledata, expected in zip(loader.load(), expected_list):
             print(dumps_tabledata(expected))
             print(dumps_tabledata(tabledata))
 
@@ -224,7 +224,7 @@ class Test_TableFileLoader_load(object):
                 )
             )
 
-        expeced_list = [
+        expected_list = [
             TableData(
                 "validdata",
                 ["attr_a", "attr_b", "attr_c"],
@@ -235,7 +235,7 @@ class Test_TableFileLoader_load(object):
 
         assert loader.format_name == "json"
 
-        for table_data, expected in zip(loader.load(), expeced_list):
+        for table_data, expected in zip(loader.load(), expected_list):
             assert table_data.equals(expected)
 
     @pytest.mark.xfail(run=False)
