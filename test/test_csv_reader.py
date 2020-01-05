@@ -10,6 +10,7 @@ import collections
 import io
 import os
 import platform  # noqa: W0611
+import sys  # noqa
 from concurrent.futures import ProcessPoolExecutor
 from decimal import Decimal
 from textwrap import dedent
@@ -205,6 +206,7 @@ class Test_CsvTableFileLoader_load(object):
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
+    @pytest.mark.skipif("sys.version_info[0] == 2")
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "headers", "expected"],
         [
@@ -245,6 +247,7 @@ class Test_CsvTableFileLoader_load(object):
 
             assert tabledata.in_tabledata_list(expected)
 
+    @pytest.mark.skipif("sys.version_info[0] == 2")
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "encoding", "headers", "expected"],
         [
