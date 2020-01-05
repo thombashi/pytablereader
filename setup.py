@@ -123,14 +123,12 @@ setuptools.setup(
             + url_requires
             + optional_requires
         ),
-        "build": ["twine", "wheel"],
-        "docs": docs_requires,
+        "dev": ["releasecmd>=0.2.0,<1", "twine", "wheel"] + docs_requires + list(tests_requires),
         "excel": excel_requires,
         "gs": gs_requires,
         "logging": logging_requires,
         "md": markdown_requires,
         "mediawiki": mediawiki_requires,
-        "release": ["releasecmd>=0.0.18,<0.1.0"],
         "url": url_requires,
         "sqlite": sqlite_requires,
         "test": tests_requires,
