@@ -82,7 +82,7 @@ class FileValidator(BaseValidator):
 
     def validate(self):
         try:
-            pv.validate_filepath(self.source)
+            pv.validate_filepath(self.source, platform="auto")
         except pv.NullNameError:
             raise InvalidFilePathError("file path is empty")
         except (ValueError, pv.InvalidCharError, pv.InvalidLengthError) as e:
