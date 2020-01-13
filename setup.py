@@ -65,10 +65,10 @@ excel_requires = [
 
 markdown_requires = ["Markdown>=2.6.6,<3.0.0"]
 mediawiki_requires = ["pypandoc"]
-sqlite_requires = ["SimpleSQLite>=0.45.3,<1.0.0"]
+sqlite_requires = ["SimpleSQLite>=0.45.3,<2"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
 logging_requires = ["Logbook>=0.12.3,<2.0.0"]
-url_requires = ["requests>=2.18.4,<3.0.0", "retryrequests>=0.0.2,<0.1.0"]
+url_requires = ["requests>=2.18.4,<3.0.0", "retryrequests>=0.0.2,<1"]
 optional_requires = ["simplejson>=3.8.1,<4.0"]
 tests_requires = frozenset(
     tests_requires
