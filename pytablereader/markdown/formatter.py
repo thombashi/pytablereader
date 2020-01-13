@@ -21,5 +21,5 @@ class MarkdownTableFormatter(HtmlTableFormatter):
             raise DataError
 
         super(MarkdownTableFormatter, self).__init__(
-            markdown.markdown(source_data, extensions=["tables"]), logger=logger
+            markdown.markdown(source_data, extensions=["markdown.extensions.tables"]), logger=logger
         )
