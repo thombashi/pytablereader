@@ -65,7 +65,7 @@ class LtsvTableLoader(TableLoader):
 
                 try:
                     pv.validate_ltsv_label(label)
-                except (pv.NullNameError, pv.InvalidCharError):
+                except pv.ValidationError:
                     raise InvalidHeaderNameError(
                         "invalid label found (acceptable chars are [0-9A-Za-z_.-]): "
                         "line={}, col={}, label='{}'".format(row_idx, col_idx, label)
