@@ -45,9 +45,6 @@ with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
 with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_requires = [line.strip() for line in f if line.strip()]
 
-with open(os.path.join(REQUIREMENT_DIR, "docs_requirements.txt")) as f:
-    docs_requires = [line.strip() for line in f if line.strip()]
-
 setuptools_require = ["setuptools>=38.3.0"]
 
 excel_requires = [
@@ -117,7 +114,6 @@ setuptools.setup(
             + url_requires
             + optional_requires
         ),
-        "dev": docs_requires + list(tests_requires),
         "excel": excel_requires,
         "gs": gs_requires,
         "logging": logging_requires,
