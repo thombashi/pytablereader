@@ -8,5 +8,5 @@ pathvalidate<3; python_version >="3.5"
 path.py<12; python_version <= "3.4"
 path.py<13; python_version > "3.4"
 six>=1.10.0,<2
-tabledata>=0.10.0,<2
+tabledata>=0.10.1,<2
 typepy>=0.6.4,<2
