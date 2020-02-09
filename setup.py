@@ -117,7 +117,7 @@ setuptools.setup(
             + url_requires
             + optional_requires
         ),
-        "dev": ["releasecmd>=0.2.0,<1"] + docs_requires + list(tests_requires),
+        "dev": docs_requires + list(tests_requires),
         "excel": excel_requires,
         "gs": gs_requires,
         "logging": logging_requires,
