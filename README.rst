@@ -206,8 +206,8 @@ Mandatory Python packages
 
 Optional Python packages
 ------------------------------------------------
-- `logbook <https://logbook.readthedocs.io/en/stable/>`__
-    - Logging using logbook if the package installed
+- `loguru <https://github.com/Delgan/loguru>`__
+    - Used for logging if the package installed
 - Excel
     - `excelrd <https://github.com/thombashi/excelrd>`__
 - Markdown
@@ -233,7 +233,6 @@ Test dependencies
 -----------------
 - `pytablewriter <https://github.com/thombashi/pytablewriter>`__
 - `pytest <https://docs.pytest.org/en/latest/>`__
-- `pytest-runner <https://github.com/pytest-dev/pytest-runner>`__
 - `responses <https://github.com/getsentry/responses>`__
 - `tox <https://testrun.org/tox/latest/>`__
 
