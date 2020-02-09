@@ -56,7 +56,7 @@ markdown_requires = ["Markdown>=2.6.6,<3"]
 mediawiki_requires = ["pypandoc"]
 sqlite_requires = ["SimpleSQLite>=0.47.1,<2"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
-logging_requires = ["Logbook>=0.12.3,<2.0.0"]
+logging_requires = ["loguru>=0.4.1,<1"]
 url_requires = ["requests>=2.18.4,<3", "retryrequests>=0.0.2,<1"]
 optional_requires = ["simplejson>=3.8.1,<4"]
 tests_requires = frozenset(

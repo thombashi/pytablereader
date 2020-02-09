@@ -11,42 +11,32 @@ import abc
 import dataproperty
 import six
 
-from ._null_logger import NullLogookLogger
+from ._null_logger import NullLogger
 
 
-def _disable_logger(l):
-    try:
-        l.disable()
-    except AttributeError:
-        l.disabled = True  # to support Logbook<1.0.0
-
+MODULE_NAME = "pytablereader"
+_is_enable = False
 
 try:
-    import logbook
+    from loguru import logger
 
-    logger = logbook.Logger("pytablereader")
-    _disable_logger(logger)
-    LOGBOOK_INSTALLED = True
+    logger.disable(MODULE_NAME)
 except ImportError:
-    logger = NullLogookLogger()
-    LOGBOOK_INSTALLED = False
+    logger = NullLogger()
 
 
 def set_logger(is_enable):
-    if not LOGBOOK_INSTALLED:
+    global _is_enable
+
+    if is_enable == _is_enable:
         return
 
-    if is_enable != logger.disabled:
-        # logger setting have not changed
-        return
+    _is_enable = is_enable
 
     if is_enable:
-        try:
-            logger.enable()
-        except AttributeError:
-            logger.disabled = False  # to support Logbook<1.0.0
+        logger.enable(MODULE_NAME)
     else:
-        _disable_logger(logger)
+        logger.disable(MODULE_NAME)
 
     dataproperty.set_logger(is_enable)
 
@@ -59,40 +49,8 @@ def set_logger(is_enable):
 
 
 def set_log_level(log_level):
-    """
-    Set logging level of this module. Using
-    `logbook <https://logbook.readthedocs.io/en/stable/>`__ module for logging.
-
-    :param int log_level:
-        One of the log level of
-        `logbook <https://logbook.readthedocs.io/en/stable/api/base.html>`__.
-        Disabled logging if ``log_level`` is ``logbook.NOTSET``.
-    :raises LookupError: If ``log_level`` is an invalid value.
-    """
-
-    if not LOGBOOK_INSTALLED:
-        return
-
-    # validate log level
-    logbook.get_level_name(log_level)
-
-    if log_level == logger.level:
-        return
-
-    if log_level == logbook.NOTSET:
-        set_logger(is_enable=False)
-    else:
-        set_logger(is_enable=True)
-
-    logger.level = log_level
-    dataproperty.set_log_level(log_level)
-
-    try:
-        import simplesqlite
-
-        simplesqlite.set_log_level(log_level)
-    except ImportError:
-        pass
+    # deprecated
+    return
 
 
 def typehints_to_str(type_hints):
