@@ -15,36 +15,31 @@ from ._null_logger import NullLogger
 
 
 MODULE_NAME = "pytablereader"
-_is_enable = False
 
 try:
     from loguru import logger
 
     logger.disable(MODULE_NAME)
 except ImportError:
-    logger = NullLogger()
+    logger = NullLogger()  # type: ignore
 
 
-def set_logger(is_enable):
-    global _is_enable
-
-    if is_enable == _is_enable:
-        return
-
-    _is_enable = is_enable
-
+def set_logger(is_enable, propagation_depth=1):
     if is_enable:
         logger.enable(MODULE_NAME)
     else:
         logger.disable(MODULE_NAME)
 
-    dataproperty.set_logger(is_enable)
+    if propagation_depth <= 0:
+        return
+
+    dataproperty.set_logger(is_enable, propagation_depth - 1)
 
     try:
         import simplesqlite
 
-        simplesqlite.set_logger(is_enable)
-    except ImportError:
+        simplesqlite.set_logger(is_enable, propagation_depth - 1)
+    except (ImportError, TypeError):
         pass
 
 
