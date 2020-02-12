@@ -8,7 +8,7 @@ from __future__ import print_function, unicode_literals
 
 import collections
 import os
-import platform  # noqa: W0611
+import platform
 from concurrent.futures import ProcessPoolExecutor
 from decimal import Decimal
 from textwrap import dedent
@@ -215,7 +215,7 @@ class Test_JsonLinesTableFileLoader_load(object):
 
         assert load
 
-    @pytest.mark.skipif("platform.system() == 'Windows'")
+    @pytest.mark.skipif(platform.system() == "Windows", reason="platform dependent tests")
     @pytest.mark.parametrize(
         ["table_text", "fifo_name", "expected"],
         [[test_data_single_01.value, "json_lines1", test_data_single_01.expected]],

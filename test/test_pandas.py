@@ -21,7 +21,7 @@ except ImportError:
     PANDAS_IMPORT = False
 
 
-@pytest.mark.skipif("PANDAS_IMPORT is False")
+@pytest.mark.skipif(not PANDAS_IMPORT, reason="required package not found")
 class Test_TableData_as_dataframe(object):
     @pytest.mark.parametrize(
         ["table_name", "headers", "rows"],
@@ -43,7 +43,7 @@ class Test_TableData_as_dataframe(object):
         assert tabledata.as_dataframe().equals(dataframe)
 
 
-@pytest.mark.skipif("PANDAS_IMPORT is False")
+@pytest.mark.skipif(not PANDAS_IMPORT, reason="required package not found")
 class Test_TableData_from_dataframe(object):
     def test_normal(self):
         dataframe = pandas.DataFrame(

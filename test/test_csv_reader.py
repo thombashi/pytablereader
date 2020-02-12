@@ -9,7 +9,7 @@ from __future__ import print_function, unicode_literals
 import collections
 import io
 import os
-import platform  # noqa: W0611
+import platform
 import sys  # noqa
 from concurrent.futures import ProcessPoolExecutor
 from decimal import Decimal
@@ -279,7 +279,7 @@ class Test_CsvTableFileLoader_load(object):
 
             assert tabledata.in_tabledata_list(expected)
 
-    @pytest.mark.skipif("platform.system() == 'Windows'")
+    @pytest.mark.skipif(platform.system() == "Windows", reason="platform dependent tests")
     @pytest.mark.parametrize(
         ["table_text", "fifo_name", "expected"],
         [[test_data_06.value, "tmp", test_data_06.expected]],
