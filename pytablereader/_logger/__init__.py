@@ -4,7 +4,7 @@ from __future__ import absolute_import
 
 from ._logger import (
     FileSourceLogger,
-    NullLogger,
+    NullSourceLogger,
     TextSourceLogger,
     logger,
     set_log_level,

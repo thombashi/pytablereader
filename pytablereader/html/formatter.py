@@ -15,7 +15,7 @@ from tabledata import TableData
 from pytablereader import DataError
 
 from .._constant import TableNameTemplate as tnt
-from .._logger import NullLogger
+from .._logger import NullSourceLogger
 from ..formatter import TableFormatter
 
 
@@ -30,7 +30,7 @@ class HtmlTableFormatter(TableFormatter):
         if logger:
             self.__logger = logger
         else:
-            self.__logger = NullLogger(None)
+            self.__logger = NullSourceLogger(None)
 
         self.__table_id = None
 

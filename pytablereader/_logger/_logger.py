@@ -74,7 +74,7 @@ class BaseLogger(LoggerInterface):
         pass
 
 
-class NullLogger(BaseLogger):
+class NullSourceLogger(BaseLogger):
     def logging_load(self):
         pass
 
