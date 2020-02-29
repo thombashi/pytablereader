@@ -40,7 +40,7 @@ Features
     - CSV / Tab separated values (TSV) / Space separated values (SSV)
     - Microsoft Excel :superscript:`TM` file
     - `Google Sheets <https://www.google.com/intl/en_us/sheets/about/>`_
-    - HTML
+    - HTML (table tags)
     - JSON
     - `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
     - `Line-delimited JSON(LDJSON) <https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON>`__ / NDJSON / JSON Lines
@@ -190,7 +190,7 @@ Install from PPA (for Ubuntu)
 
 Dependencies
 ============
-Python 2.7+ or 3.5+
+Python 3.5+
 
 Mandatory Python packages
 ----------------------------------
@@ -200,7 +200,6 @@ Mandatory Python packages
 - `mbstrdecoder <https://github.com/thombashi/mbstrdecoder>`__
 - `pathvalidate <https://github.com/thombashi/pathvalidate>`__
 - `path <https://github.com/jaraco/path>`__
-- `six <https://pypi.org/project/six/>`__
 - `tabledata <https://github.com/thombashi/tabledata>`__
 - `typepy <https://github.com/thombashi/typepy>`__
 
@@ -211,7 +210,7 @@ Optional Python packages
 - Excel
     - `excelrd <https://github.com/thombashi/excelrd>`__
 - Markdown
-    - `markdown2 <https://github.com/trentm/python-markdown2>`__
+    - `Markdown <https://github.com/Python-Markdown/markdown>`__
 - MediaWiki
     - `pypandoc <https://github.com/bebraw/pypandoc>`__
 - SQLite
