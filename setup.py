@@ -42,11 +42,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_requires = [line.strip() for line in f if line.strip()]
 
 setuptools_require = ["setuptools>=38.3.0"]
-
-excel_requires = [
-    'xlrd>=0.9.4; python_version < "3.5"',
-    'excelrd>=2.0.2; python_version >= "3.5"',
-]
+excel_requires = ["excelrd>=2.0.2"]
 
 markdown_requires = ["Markdown>=2.6.6,<3"]
 mediawiki_requires = ["pypandoc"]

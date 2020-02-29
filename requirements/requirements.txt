@@ -1,11 +1,8 @@
 beautifulsoup4>=4.4.1,<5
 DataProperty>=0.46.3,<2
-enum34;python_version<"3.4"
 jsonschema>=2.5.1,<4
 mbstrdecoder>=0.8.3,<2
-pathvalidate<1; python_version < "3.5"
-pathvalidate<3; python_version >="3.5"
-path.py<12; python_version <= "3.4"
-path.py<13; python_version > "3.4"
+pathvalidate<3
+path.py<13
 tabledata>=0.10.3,<2
-typepy>=0.6.4,<2
+typepy>=0.6.6,<2
