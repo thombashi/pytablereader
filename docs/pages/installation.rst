@@ -55,7 +55,7 @@ Optional Python packages
 - Excel
     - `excelrd <https://github.com/thombashi/excelrd>`__
 - Markdown
-    - `markdown2 <https://github.com/trentm/python-markdown2>`__
+    - `Markdown <https://github.com/Python-Markdown/markdown>`__
 - MediaWiki
     - `pypandoc <https://github.com/bebraw/pypandoc>`__
 - SQLite
