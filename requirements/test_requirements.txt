@@ -1,7 +1,7 @@
 futures;python_version<"3.2"
 mock<4; python_version<"3"
 pypandoc
-pytablewriter[excel]>=0.46
+pytablewriter[excel]>=0.50
 pytest<5; python_version<"3"
 pytest>=5; python_version>="3"
 responses
