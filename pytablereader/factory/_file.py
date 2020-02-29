@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 from mbstrdecoder import detect_file_encoding
 
@@ -44,7 +40,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
             encoding = detect_file_encoding(source)
             logger.debug("detect encoding: file={}, encoding={}".format(source, encoding))
 
-        super(TableFileLoaderFactory, self).__init__(source, encoding)
+        super().__init__(source, encoding)
 
     def create_from_path(self):
         """

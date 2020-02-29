@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 from ..error import PypandocImportError
 from ..html.formatter import HtmlTableFormatter
@@ -19,6 +15,4 @@ class MediaWikiTableFormatter(HtmlTableFormatter):
             # an optional dependency
             raise PypandocImportError(e)
 
-        super(MediaWikiTableFormatter, self).__init__(
-            pypandoc.convert_text(source_data, "html", format="mediawiki")
-        )
+        super().__init__(pypandoc.convert_text(source_data, "html", format="mediawiki"))

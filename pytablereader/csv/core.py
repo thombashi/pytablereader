@@ -1,13 +1,8 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import csv
-import io
 
 import six
 import typepy
@@ -21,11 +16,6 @@ from .._logger import FileSourceLogger, TextSourceLogger
 from .._validator import FileValidator, TextValidator
 from ..interface import TableLoader
 from .formatter import CsvTableFormatter
-
-
-def _utf_8_encoder(unicode_csv_data):
-    for line in unicode_csv_data:
-        yield line.encode("utf-8")
 
 
 class CsvTableLoader(TableLoader):
@@ -87,7 +77,7 @@ class CsvTableLoader(TableLoader):
         self.__quotechar = value
 
     def __init__(self, source, quoting_flags, type_hints, type_hint_rules):
-        super(CsvTableLoader, self).__init__(source, quoting_flags, type_hints, type_hint_rules)
+        super().__init__(source, quoting_flags, type_hints, type_hint_rules)
 
         self._csv_reader = None
 
@@ -136,9 +126,7 @@ class CsvTableFileLoader(CsvTableLoader):
     """
 
     def __init__(self, file_path, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(CsvTableFileLoader, self).__init__(
-            file_path, quoting_flags, type_hints, type_hint_rules
-        )
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)
@@ -172,22 +160,13 @@ class CsvTableFileLoader(CsvTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        if six.PY3:
-            self._csv_reader = csv.reader(
-                io.open(self.source, "r", encoding=self.encoding),
-                delimiter=self.delimiter,
-                quotechar=self.quotechar,
-                strict=True,
-                skipinitialspace=True,
-            )
-        else:
-            self._csv_reader = csv.reader(
-                _utf_8_encoder(io.open(self.source, "r", encoding=self.encoding)),
-                delimiter=self.delimiter,
-                quotechar=self.quotechar,
-                strict=True,
-                skipinitialspace=True,
-            )
+        self._csv_reader = csv.reader(
+            open(self.source, "r", encoding=self.encoding),
+            delimiter=self.delimiter,
+            quotechar=self.quotechar,
+            strict=True,
+            skipinitialspace=True,
+        )
 
         formatter = CsvTableFormatter(self._to_data_matrix())
         formatter.accept(self)
@@ -213,7 +192,7 @@ class CsvTableTextLoader(CsvTableLoader):
     """
 
     def __init__(self, text, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(CsvTableTextLoader, self).__init__(text, quoting_flags, type_hints, type_hint_rules)
+        super().__init__(text, quoting_flags, type_hints, type_hint_rules)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

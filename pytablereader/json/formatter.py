@@ -1,16 +1,10 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import abc
 
 import jsonschema
-import six
-from six.moves import zip
 from tabledata import TableData
 
 from .._constant import SourceType
@@ -81,7 +75,7 @@ class SingleJsonTableConverterA(SingleJsonTableConverterBase):
 
         attr_name_set = set()
         for json_record in self._buffer:
-            attr_name_set = attr_name_set.union(six.viewkeys(json_record))
+            attr_name_set = attr_name_set.union(json_record.keys())
         headers = sorted(attr_name_set)
 
         self._loader.inc_table_count()
@@ -116,7 +110,7 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
         self._validate_source_data()
         self._loader.inc_table_count()
 
-        headers = sorted(six.viewkeys(self._buffer))
+        headers = sorted(self._buffer.keys())
 
         yield TableData(
             self._make_table_name(),
@@ -156,7 +150,7 @@ class SingleJsonTableConverterC(SingleJsonTableConverterBase):
 
 class MultipleJsonTableConverterBase(JsonConverter):
     def __init__(self, json_buffer):
-        super(MultipleJsonTableConverterBase, self).__init__(json_buffer)
+        super().__init__(json_buffer)
 
         self._table_key = None
 
@@ -191,10 +185,10 @@ class MultipleJsonTableConverterA(MultipleJsonTableConverterBase):
 
         self._validate_source_data()
 
-        for table_key, json_records in six.iteritems(self._buffer):
+        for table_key, json_records in self._buffer.items():
             attr_name_set = set()
             for json_record in json_records:
-                attr_name_set = attr_name_set.union(six.viewkeys(json_record))
+                attr_name_set = attr_name_set.union(json_record.keys())
             headers = sorted(attr_name_set)
 
             self._loader.inc_table_count()
@@ -232,8 +226,8 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
 
         self._validate_source_data()
 
-        for table_key, json_records in six.iteritems(self._buffer):
-            headers = sorted(six.viewkeys(json_records))
+        for table_key, json_records in self._buffer.items():
+            headers = sorted(json_records.keys())
 
             self._loader.inc_table_count()
             self._table_key = table_key
@@ -270,7 +264,7 @@ class MultipleJsonTableConverterC(MultipleJsonTableConverterBase):
 
         self._validate_source_data()
 
-        for table_key, json_records in six.iteritems(self._buffer):
+        for table_key, json_records in self._buffer.items():
             self._loader.inc_table_count()
             self._table_key = table_key
 
@@ -298,8 +292,7 @@ class JsonTableFormatter(TableFormatter):
             converter = converter_class(self._source_data)
             converter.accept(self._loader)
             try:
-                for table_data in converter.to_table_data():
-                    yield table_data
+                yield from converter.to_table_data()
                 return
             except ValidationError:
                 pass

@@ -1,22 +1,16 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import abc
 
-import six
 from mbstrdecoder import MultiByteStrDecoder
 
 from .._constant import Default
 from ..error import LoaderNotFoundError
 
 
-@six.add_metaclass(abc.ABCMeta)
-class BaseTableLoaderFactory(object):
+class BaseTableLoaderFactory(metaclass=abc.ABCMeta):
     @property
     def source(self):
         """

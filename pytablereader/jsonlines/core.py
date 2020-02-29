@@ -1,16 +1,9 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import abc
-import io
 from collections import OrderedDict
-
-import six
 
 from .._common import get_file_encoding
 from .._constant import SourceType
@@ -25,7 +18,7 @@ from .formatter import JsonLinesTableFormatter
 try:
     import simplejson as json
 except ImportError:
-    import json
+    import json  # type: ignore
 
 try:
     from simplejson import JSONDecodeError
@@ -36,8 +29,7 @@ except ImportError:
         JSONDecodeError = ValueError
 
 
-@six.add_metaclass(abc.ABCMeta)
-class JsonLinesTableLoader(TableLoader):
+class JsonLinesTableLoader(TableLoader, metaclass=abc.ABCMeta):
     """
     An abstract class of JSON table loaders.
     """
@@ -63,9 +55,7 @@ class JsonLinesTableFileLoader(JsonLinesTableLoader):
     """
 
     def __init__(self, file_path=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(JsonLinesTableFileLoader, self).__init__(
-            file_path, quoting_flags, type_hints, type_hint_rules
-        )
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self.encoding = None
 
@@ -99,7 +89,7 @@ class JsonLinesTableFileLoader(JsonLinesTableLoader):
         self.encoding = get_file_encoding(self.source, self.encoding)
 
         buffer = []
-        with io.open(self.source, "r", encoding=self.encoding) as fp:
+        with open(self.source, "r", encoding=self.encoding) as fp:
             for line_idx, line in enumerate(fp):
                 line = line.strip()
                 if not line:
@@ -136,7 +126,7 @@ class JsonLinesTableTextLoader(JsonLinesTableLoader):
         return SourceType.TEXT
 
     def __init__(self, text, quoting_flags=None, type_hints=None):
-        super(JsonLinesTableTextLoader, self).__init__(text, quoting_flags, type_hints)
+        super().__init__(text, quoting_flags, type_hints)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

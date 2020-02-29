@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import
 
 import typepy
 
@@ -58,7 +54,7 @@ class TableUrlLoader(TableLoaderManager):
 
         loader.type_hint_rules = type_hint_rules
 
-        super(TableUrlLoader, self).__init__(loader)
+        super().__init__(loader)
 
     @classmethod
     def get_format_names(cls):

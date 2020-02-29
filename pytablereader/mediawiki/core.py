@@ -1,12 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
-
-import io
 
 from .._common import get_file_encoding
 from .._constant import SourceType
@@ -39,9 +33,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
     """
 
     def __init__(self, file_path=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(MediaWikiTableFileLoader, self).__init__(
-            file_path, quoting_flags, type_hints, type_hint_rules
-        )
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self.encoding = None
 
@@ -79,7 +71,7 @@ class MediaWikiTableFileLoader(MediaWikiTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        with io.open(self.source, "r", encoding=self.encoding) as fp:
+        with open(self.source, "r", encoding=self.encoding) as fp:
             formatter = MediaWikiTableFormatter(fp.read())
         formatter.accept(self)
 
@@ -105,7 +97,7 @@ class MediaWikiTableTextLoader(MediaWikiTableLoader):
         return SourceType.TEXT
 
     def __init__(self, text, quoting_flags=None, type_hints=None):
-        super(MediaWikiTableTextLoader, self).__init__(text, quoting_flags, type_hints)
+        super().__init__(text, quoting_flags, type_hints)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

@@ -1,16 +1,10 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import
-
 import abc
 from collections import OrderedDict
 from textwrap import dedent
-
-import six
 
 from pytablereader import DataError
 
@@ -21,11 +15,10 @@ from ._logger import logger
 try:
     import simplejson as json
 except ImportError:
-    import json
+    import json  # type: ignore
 
 
-@six.add_metaclass(abc.ABCMeta)
-class TableFormatterInterface(object):
+class TableFormatterInterface(metaclass=abc.ABCMeta):
     """
     The abstract class of table data validator.
     """
@@ -74,10 +67,7 @@ class TableFormatter(LoaderAcceptor, TableFormatterInterface):
             ).format(
                 json.dumps(
                     OrderedDict(
-                        {
-                            header: six.text_type(type_hint)
-                            for header, type_hint in zip(headers, type_hints)
-                        }
+                        {header: str(type_hint) for header, type_hint in zip(headers, type_hints)}
                     ),
                     indent=4,
                 )

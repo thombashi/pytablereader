@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import unicode_literals
 
 import pytest
 import xlsxwriter
@@ -91,7 +87,7 @@ def invalid_excel_file_path(tmpdir):
 
 
 @pytest.mark.xfail(run=False)
-class Test_ExcelTableFileLoader_make_table_name(object):
+class Test_ExcelTableFileLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -134,7 +130,7 @@ class Test_ExcelTableFileLoader_make_table_name(object):
 
 
 @pytest.mark.xfail(run=False)
-class Test_ExcelTableFileLoader_load(object):
+class Test_ExcelTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

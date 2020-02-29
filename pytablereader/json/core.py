@@ -1,16 +1,9 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import abc
-import io
 from collections import OrderedDict
-
-import six
 
 from .._common import get_file_encoding
 from .._constant import SourceType
@@ -25,11 +18,10 @@ from .formatter import JsonTableFormatter
 try:
     import simplejson as json
 except ImportError:
-    import json
+    import json  # type: ignore
 
 
-@six.add_metaclass(abc.ABCMeta)
-class JsonTableLoader(TableLoader):
+class JsonTableLoader(TableLoader, metaclass=abc.ABCMeta):
     """
     An abstract class of JSON table loaders.
     """
@@ -55,9 +47,7 @@ class JsonTableFileLoader(JsonTableLoader):
     """
 
     def __init__(self, file_path=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(JsonTableFileLoader, self).__init__(
-            file_path, quoting_flags, type_hints, type_hint_rules
-        )
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self.encoding = None
 
@@ -443,7 +433,7 @@ class JsonTableFileLoader(JsonTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        with io.open(self.source, "r", encoding=self.encoding) as fp:
+        with open(self.source, "r", encoding=self.encoding) as fp:
             try:
                 return json.load(fp, object_pairs_hook=OrderedDict)
             except ValueError as e:
@@ -469,7 +459,7 @@ class JsonTableTextLoader(JsonTableLoader):
         return SourceType.TEXT
 
     def __init__(self, text, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(JsonTableTextLoader, self).__init__(text, quoting_flags, type_hints, type_hint_rules)
+        super().__init__(text, quoting_flags, type_hints, type_hint_rules)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)
@@ -534,7 +524,7 @@ class JsonTableDictLoader(JsonTableLoader):
         return SourceType.OBJECT
 
     def __init__(self, data, quoting_flags=None, type_hints=None):
-        super(JsonTableDictLoader, self).__init__(data, quoting_flags, type_hints)
+        super().__init__(data, quoting_flags, type_hints)
 
         self._validator = NullValidator(data)
         self._logger = TextSourceLogger(self)

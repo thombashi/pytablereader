@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 import sys
 
@@ -257,8 +255,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'pytablereader.tex', u'pytablereader Documentation',
-     u'Tsuyoshi Hombashi', 'manual'),
+    (master_doc, 'pytablereader.tex', 'pytablereader Documentation',
+     'Tsuyoshi Hombashi', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -299,7 +297,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'pytablereader', u'pytablereader Documentation',
+    (master_doc, 'pytablereader', 'pytablereader Documentation',
      [author], 1)
 ]
 
@@ -314,7 +312,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'pytablereader', u'pytablereader Documentation',
+    (master_doc, 'pytablereader', 'pytablereader Documentation',
      author, 'pytablereader', 'One line description of project.',
      'Miscellaneous'),
 ]
@@ -338,12 +336,12 @@ texinfo_documents = [
 # ------------------------------------------------
 
 
-rp_common = u"""
+rp_common = """
 .. |TM| replace::
     :superscript:`TM`
 """
 
-rp_docstring = u"""
+rp_docstring = """
 .. |filename_desc| replace::
     Filename (without extension)
 
@@ -354,7 +352,7 @@ rp_docstring = u"""
     A unique number between all of the format.
 """
 
-rp_builtin = u"""
+rp_builtin = """
 .. |False| replace:: :py:obj:`False`
 .. |True| replace:: :py:obj:`True`
 .. |None| replace:: :py:obj:`None`
@@ -371,7 +369,7 @@ rp_builtin = u"""
 .. |timedelta| replace:: :py:class:`datetime.timedelta`
 """
 
-rp_method = u"""
+rp_method = """
 .. |LoaderNotFoundError_desc| replace::
     If an appropriate loader not found for
 
@@ -395,7 +393,7 @@ rp_method = u"""
 
 """
 
-rp_class = u"""
+rp_class = """
 .. |InvalidFilePathError| replace::
     :py:class:`~pytablereader.InvalidFilePathError`
 

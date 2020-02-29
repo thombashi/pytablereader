@@ -1,13 +1,8 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import unicode_literals
-
 import collections
-import io
 from decimal import Decimal
 from textwrap import dedent
 
@@ -306,7 +301,7 @@ test_data_07 = Data(
 )
 
 
-class HtmlTableFormatter_constructor(object):
+class HtmlTableFormatter_constructor:
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
         [["tablename", None, ptr.DataError], ["tablename", "", ptr.DataError]],
@@ -316,7 +311,7 @@ class HtmlTableFormatter_constructor(object):
             HtmlTableFormatter(source)
 
 
-class Test_HtmlTableFormatter_make_table_name(object):
+class Test_HtmlTableFormatter_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -451,7 +446,7 @@ class Test_HtmlTableFormatter_make_table_name(object):
             print(formatter._make_table_name())
 
 
-class Test_HtmlTableFileLoader_load(object):
+class Test_HtmlTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -473,7 +468,7 @@ class Test_HtmlTableFileLoader_load(object):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
-        with io.open(file_path, "w", encoding="utf-8") as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             f.write(table_text)
 
         loader = ptr.HtmlTableFileLoader(file_path)
@@ -511,7 +506,7 @@ class Test_HtmlTableFileLoader_load(object):
                 pass
 
 
-class Test_HtmlTableTextLoader_load(object):
+class Test_HtmlTableTextLoader_load:
     LOADER_CLASS = ptr.HtmlTableTextLoader
 
     def setup_method(self, method):

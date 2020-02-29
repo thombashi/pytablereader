@@ -1,15 +1,10 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import abc
 
 import dataproperty
-import six
 
 from ._null_logger import NullLogger
 
@@ -52,8 +47,7 @@ def typehints_to_str(type_hints):
     return ", ".join([type_hint.__name__ if type_hint else "none" for type_hint in type_hints])
 
 
-@six.add_metaclass(abc.ABCMeta)
-class LoggerInterface(object):
+class LoggerInterface(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def logging_load(self):  # pragma: no cover
         pass

@@ -1,12 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
-
-import io
 
 from .._common import get_file_encoding
 from .._constant import TableNameTemplate as tnt
@@ -45,9 +39,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
     """
 
     def __init__(self, file_path=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(HtmlTableFileLoader, self).__init__(
-            file_path, quoting_flags, type_hints, type_hint_rules
-        )
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self.encoding = None
 
@@ -91,7 +83,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        with io.open(self.source, "r", encoding=self.encoding) as fp:
+        with open(self.source, "r", encoding=self.encoding) as fp:
             formatter = HtmlTableFormatter(fp.read(), self._logger)
         formatter.accept(self)
 
@@ -110,7 +102,7 @@ class HtmlTableTextLoader(HtmlTableLoader):
     """
 
     def __init__(self, text, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(HtmlTableTextLoader, self).__init__(text, quoting_flags, type_hints, type_hint_rules)
+        super().__init__(text, quoting_flags, type_hints, type_hint_rules)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

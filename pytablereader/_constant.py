@@ -1,26 +1,22 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import enum
 
 
-class Default(object):
+class Default:
     ENCODING = "utf-8"
 
 
-class SourceType(object):
+class SourceType:
     TEXT = "text"
     FILE = "file"
     URL = "url"
     OBJECT = "object"
 
 
-class TableNameTemplate(object):
+class TableNameTemplate:
     __FORMAT = "%({:s})s"
     DEFAULT = __FORMAT.format("default")
     FILENAME = __FORMAT.format("filename")

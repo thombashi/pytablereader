@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 import typepy
 from tabledata import TableData
@@ -17,7 +13,7 @@ from ..formatter import TableFormatter
 
 class SqliteTableFormatter(TableFormatter):
     def __init__(self, source_data):
-        super(SqliteTableFormatter, self).__init__(source_data)
+        super().__init__(source_data)
 
         self.__table_name = None
 

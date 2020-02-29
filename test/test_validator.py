@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import unicode_literals
 
 import pytest
 
@@ -13,7 +9,7 @@ from pytablereader._constant import SourceType
 from pytablereader._validator import FileValidator, TextValidator, UrlValidator, is_fifo
 
 
-class Test_FileValidator_validate(object):
+class Test_FileValidator_validate:
     @pytest.mark.parametrize(["value"], [["test"]])
     def test_normal(self, tmpdir, value):
         p_file_path = tmpdir.join(value)
@@ -42,7 +38,7 @@ class Test_FileValidator_validate(object):
             validator.validate()
 
 
-class Test_TextValidator_validate(object):
+class Test_TextValidator_validate:
     @pytest.mark.parametrize(["value"], [["test"]])
     def test_normal(self, value):
         validator = TextValidator(value)
@@ -57,7 +53,7 @@ class Test_TextValidator_validate(object):
             validator.validate()
 
 
-class Test_UrlValidator_validate(object):
+class Test_UrlValidator_validate:
     @pytest.mark.parametrize(["value"], [["http://www.google.com"], ["https://github.com/"]])
     def test_normal(self, value):
         validator = UrlValidator(value)
@@ -75,6 +71,6 @@ class Test_UrlValidator_validate(object):
             validator.validate()
 
 
-class Test_is_fifo(object):
+class Test_is_fifo:
     def test_filename_too_long(self):
         assert not is_fifo("a" * 1000)

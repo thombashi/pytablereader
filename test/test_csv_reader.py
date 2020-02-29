@@ -1,13 +1,8 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import print_function, unicode_literals
-
 import collections
-import io
 import os
 import platform
 import sys  # noqa
@@ -162,7 +157,7 @@ test_data_multibyte = Data(
 )
 
 
-class Test_CsvTableFileLoader_make_table_name(object):
+class Test_CsvTableFileLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -202,7 +197,7 @@ class Test_CsvTableFileLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_CsvTableFileLoader_load(object):
+class Test_CsvTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -235,7 +230,7 @@ class Test_CsvTableFileLoader_load(object):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
-        with io.open(file_path, "w", encoding="utf-8") as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(file_path)
@@ -267,7 +262,7 @@ class Test_CsvTableFileLoader_load(object):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
-        with io.open(file_path, "w", encoding=encoding) as f:
+        with open(file_path, "w", encoding=encoding) as f:
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(file_path)
@@ -310,7 +305,7 @@ class Test_CsvTableFileLoader_load(object):
     def test_exception(self, tmpdir, table_text, filename, headers, expected):
         p_csv = tmpdir.join(filename)
 
-        with io.open(str(p_csv), "w", encoding="utf8") as f:
+        with open(str(p_csv), "w", encoding="utf8") as f:
             f.write(table_text)
 
         loader = ptr.CsvTableFileLoader(str(p_csv))
@@ -333,7 +328,7 @@ class Test_CsvTableFileLoader_load(object):
                 pass
 
 
-class Test_CsvTableTextLoader_make_table_name(object):
+class Test_CsvTableTextLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -359,7 +354,7 @@ class Test_CsvTableTextLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_CsvTableTextLoader_load(object):
+class Test_CsvTableTextLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

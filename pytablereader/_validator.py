@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 import abc
 import os
@@ -12,7 +8,6 @@ import stat
 from errno import EBADF, ENAMETOOLONG, ENOENT, ENOTDIR
 
 import pathvalidate as pv
-import six
 import typepy
 from six.moves.urllib.parse import urlparse
 
@@ -34,8 +29,7 @@ def is_fifo(file_path):
         return False
 
 
-@six.add_metaclass(abc.ABCMeta)
-class ValidatorInterface(object):
+class ValidatorInterface(metaclass=abc.ABCMeta):
     """
     An interface class for data source validator.
     """
@@ -89,7 +83,7 @@ class FileValidator(BaseValidator):
         if os.path.isfile(self.source) or is_fifo(self.source):
             return
 
-        raise IOError("file not found")
+        raise OSError("file not found")
 
 
 class TextValidator(BaseValidator):

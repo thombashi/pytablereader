@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 from .._validator import FileValidator, TextValidator
 from ..csv.core import CsvTableFileLoader, CsvTableTextLoader
@@ -26,7 +22,7 @@ class TsvTableFileLoader(CsvTableFileLoader):
         return "tsv"
 
     def __init__(self, file_path):
-        super(TsvTableFileLoader, self).__init__(file_path)
+        super().__init__(file_path)
 
         self.delimiter = "\t"
 
@@ -49,7 +45,7 @@ class TsvTableTextLoader(CsvTableTextLoader):
         return "tsv"
 
     def __init__(self, text):
-        super(TsvTableTextLoader, self).__init__(text)
+        super().__init__(text)
 
         self.delimiter = "\t"
 

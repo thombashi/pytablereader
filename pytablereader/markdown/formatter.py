@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 import typepy
 
@@ -20,6 +16,6 @@ class MarkdownTableFormatter(HtmlTableFormatter):
         if typepy.is_null_string(source_data):
             raise DataError
 
-        super(MarkdownTableFormatter, self).__init__(
+        super().__init__(
             markdown.markdown(source_data, extensions=["markdown.extensions.tables"]), logger=logger
         )

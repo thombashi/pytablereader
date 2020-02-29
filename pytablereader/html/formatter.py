@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 import re
 
@@ -25,7 +21,7 @@ class HtmlTableFormatter(TableFormatter):
         return self.__table_id
 
     def __init__(self, source_data, logger=None):
-        super(HtmlTableFormatter, self).__init__(source_data)
+        super().__init__(source_data)
 
         if logger:
             self.__logger = logger

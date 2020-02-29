@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import print_function, unicode_literals
 
 import collections
 from decimal import Decimal
@@ -99,7 +95,7 @@ test_data_05 = Data(
 )
 
 
-class Test_SqliteFileLoader_load(object):
+class Test_SqliteFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

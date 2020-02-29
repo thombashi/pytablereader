@@ -1,13 +1,8 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import print_function, unicode_literals
-
 import collections
-import io
 from decimal import Decimal
 
 import pytest
@@ -65,7 +60,7 @@ test_data_03 = Data(
 )
 
 
-class Test_TsvTableFileLoader_make_table_name(object):
+class Test_TsvTableFileLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -105,7 +100,7 @@ class Test_TsvTableFileLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_TsvTableFileLoader_load(object):
+class Test_TsvTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -134,7 +129,7 @@ class Test_TsvTableFileLoader_load(object):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
-        with io.open(file_path, "w", encoding="utf-8") as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             f.write(table_text)
 
         loader = ptr.TsvTableFileLoader(file_path)
@@ -157,7 +152,7 @@ class Test_TsvTableFileLoader_load(object):
     def test_exception(self, tmpdir, table_text, filename, headers, expected):
         p_tsv = tmpdir.join(filename)
 
-        with io.open(str(p_tsv), "w", encoding="utf8") as f:
+        with open(str(p_tsv), "w", encoding="utf8") as f:
             f.write(table_text)
 
         loader = ptr.TsvTableFileLoader(str(p_tsv))
@@ -180,7 +175,7 @@ class Test_TsvTableFileLoader_load(object):
                 pass
 
 
-class Test_TsvTableTextLoader_make_table_name(object):
+class Test_TsvTableTextLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -206,7 +201,7 @@ class Test_TsvTableTextLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_TsvTableTextLoader_load(object):
+class Test_TsvTableTextLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

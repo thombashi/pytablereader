@@ -1,16 +1,11 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 import abc
 import threading
 
 import path
-import six
 import typepy
 from dataproperty import DataPropertyExtractor
 
@@ -20,8 +15,7 @@ from ._constant import SourceType
 from ._constant import TableNameTemplate as tnt
 
 
-@six.add_metaclass(abc.ABCMeta)
-class TableLoaderInterface(object):
+class TableLoaderInterface(metaclass=abc.ABCMeta):
     """
     Interface class of table loader class.
     """
@@ -141,7 +135,7 @@ class TableLoader(TableLoaderInterface):
         self._validate_table_name()
 
         table_name = self.table_name
-        for template, value in six.iteritems(table_name_kv_mapping):
+        for template, value in table_name_kv_mapping.items():
             table_name = table_name.replace(template, value)
 
         return self._sanitize_table_name(table_name)

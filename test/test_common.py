@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import unicode_literals
 
 import pytest
 
@@ -12,7 +8,7 @@ from pytablereader import InvalidFilePathError
 from pytablereader._common import get_extension, make_temp_file_path_from_url
 
 
-class Test_get_extension(object):
+class Test_get_extension:
     @pytest.mark.parametrize(
         ["value", "expected"], [["test.txt", "txt"], [".csv", ""], ["html", ""]]
     )
@@ -27,7 +23,7 @@ class Test_get_extension(object):
             get_extension(value)
 
 
-class Test_make_temp_file_path_from_url(object):
+class Test_make_temp_file_path_from_url:
     @pytest.mark.parametrize(
         ["temp_dir_path", "value", "expected"],
         [

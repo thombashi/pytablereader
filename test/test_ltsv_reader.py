@@ -1,13 +1,8 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import print_function, unicode_literals
-
 import collections
-import io
 from decimal import Decimal
 from textwrap import dedent
 
@@ -42,7 +37,7 @@ a.0:3\tb-1:3.3\tc_2:ccc\t"dd":3.0\te.f-g_4:"cccc"
 )
 
 
-class Test_LtsvTableFileLoader_make_table_name(object):
+class Test_LtsvTableFileLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -82,7 +77,7 @@ class Test_LtsvTableFileLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_LtsvTableFileLoader_load(object):
+class Test_LtsvTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -94,7 +89,7 @@ class Test_LtsvTableFileLoader_load(object):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
-        with io.open(file_path, "w", encoding="utf-8") as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             f.write(table_text)
 
         loader = ptr.LtsvTableFileLoader(file_path)
@@ -116,7 +111,7 @@ class Test_LtsvTableFileLoader_load(object):
     def test_exception(self, tmpdir, table_text, filename, expected):
         p_ltsv = tmpdir.join(filename)
 
-        with io.open(str(p_ltsv), "w", encoding="utf8") as f:
+        with open(str(p_ltsv), "w", encoding="utf8") as f:
             f.write(table_text)
 
         loader = ptr.LtsvTableFileLoader(str(p_ltsv))
@@ -138,7 +133,7 @@ class Test_LtsvTableFileLoader_load(object):
                 pass
 
 
-class Test_LtsvTableTextLoader_make_table_name(object):
+class Test_LtsvTableTextLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -164,7 +159,7 @@ class Test_LtsvTableTextLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_LtsvTableTextLoader_load(object):
+class Test_LtsvTableTextLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

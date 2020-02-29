@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import
 
 import typepy
 from tabledata import TableData
@@ -48,9 +44,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         return self._worksheet.col_count
 
     def __init__(self, file_path=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(GoogleSheetsTableLoader, self).__init__(
-            file_path, quoting_flags, type_hints, type_hint_rules
-        )
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self.title = None
         self.start_row = 0

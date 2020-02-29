@@ -1,12 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
-
-import io
 
 import pathvalidate as pv
 import typepy
@@ -37,7 +31,7 @@ class LtsvTableLoader(TableLoader):
         return "ltsv"
 
     def __init__(self, source, quoting_flags, type_hints, type_hint_rules=None):
-        super(LtsvTableLoader, self).__init__(source, quoting_flags, type_hints, type_hint_rules)
+        super().__init__(source, quoting_flags, type_hints, type_hint_rules)
 
         self._ltsv_input_stream = None
 
@@ -93,9 +87,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
     """
 
     def __init__(self, file_path, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(LtsvTableFileLoader, self).__init__(
-            file_path, quoting_flags, type_hints, type_hint_rules
-        )
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self.encoding = None
 
@@ -132,7 +124,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        self._ltsv_input_stream = io.open(self.source, "r", encoding=self.encoding)
+        self._ltsv_input_stream = open(self.source, "r", encoding=self.encoding)
 
         for data_matrix in self._to_data_matrix():
             formatter = SingleJsonTableConverterA(data_matrix)
@@ -157,7 +149,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
     """
 
     def __init__(self, text, quoting_flags=None, type_hints=None):
-        super(LtsvTableTextLoader, self).__init__(text, quoting_flags, type_hints)
+        super().__init__(text, quoting_flags, type_hints)
 
         self._validator = TextValidator(text)
         self._logger = TextSourceLogger(self)

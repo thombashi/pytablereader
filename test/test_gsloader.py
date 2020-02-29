@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
@@ -9,7 +7,7 @@ import pytest
 from pytablereader import GoogleSheetsTableLoader
 
 
-class Test_GoogleSheetsTableLoader_make_table_name(object):
+class Test_GoogleSheetsTableLoader_make_table_name:
     @property
     def monkey_property(self):
         return "testsheet"

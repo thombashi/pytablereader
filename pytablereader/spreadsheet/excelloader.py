@@ -1,12 +1,7 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
-from six.moves import range
 from tabledata import TableData
 
 from pytablereader import DataError
@@ -50,9 +45,7 @@ class ExcelTableFileLoader(SpreadSheetLoader):
         return self._worksheet.ncols
 
     def __init__(self, file_path=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
-        super(ExcelTableFileLoader, self).__init__(
-            file_path, quoting_flags, type_hints, type_hint_rules
-        )
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self._validator = FileValidator(file_path)
         self._logger = FileSourceLogger(self)

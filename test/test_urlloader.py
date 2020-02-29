@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import print_function, unicode_literals
 
 import os.path
 from textwrap import dedent
@@ -19,7 +15,7 @@ import pytablereader as ptr
 from pytablereader.interface import TableLoader
 
 
-class Test_TableUrlLoader_get_format_names(object):
+class Test_TableUrlLoader_get_format_names:
     def test_normal(self):
         assert ptr.TableUrlLoader.get_format_names() == [
             "csv",
@@ -39,7 +35,7 @@ class Test_TableUrlLoader_get_format_names(object):
         ]
 
 
-class Test_TableUrlLoader_constructor(object):
+class Test_TableUrlLoader_constructor:
     @responses.activate
     @pytest.mark.parametrize(
         ["value", "format_name", "expected"],
@@ -179,7 +175,7 @@ class Test_TableUrlLoader_constructor(object):
             ptr.TableUrlLoader(value, format_name)
 
 
-class Test_TableUrlLoader_load(object):
+class Test_TableUrlLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

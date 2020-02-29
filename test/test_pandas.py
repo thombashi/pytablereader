@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import unicode_literals
 
 from decimal import Decimal
 
@@ -22,7 +18,7 @@ except ImportError:
 
 
 @pytest.mark.skipif(not PANDAS_IMPORT, reason="required package not found")
-class Test_TableData_as_dataframe(object):
+class Test_TableData_as_dataframe:
     @pytest.mark.parametrize(
         ["table_name", "headers", "rows"],
         [
@@ -44,7 +40,7 @@ class Test_TableData_as_dataframe(object):
 
 
 @pytest.mark.skipif(not PANDAS_IMPORT, reason="required package not found")
-class Test_TableData_from_dataframe(object):
+class Test_TableData_from_dataframe:
     def test_normal(self):
         dataframe = pandas.DataFrame(
             [[0, 0.1, "a"], [1, 1.1, "bb"], [2, 2.2, "ccc"]], columns=["id", "value", "name"]

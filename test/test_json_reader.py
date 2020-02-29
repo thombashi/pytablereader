@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import print_function, unicode_literals
 
 import collections
 from decimal import Decimal
@@ -256,7 +252,7 @@ test_data_multi_20 = Data(
 )
 
 
-class Test_JsonTableFileLoader_make_table_name(object):
+class Test_JsonTableFileLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -297,7 +293,7 @@ class Test_JsonTableFileLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_JsonTableFileLoader_load(object):
+class Test_JsonTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -367,7 +363,7 @@ class Test_JsonTableFileLoader_load(object):
                 pass
 
 
-class Test_JsonTableTextLoader_make_table_name(object):
+class Test_JsonTableTextLoader_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -397,7 +393,7 @@ class Test_JsonTableTextLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_JsonTableTextLoader_load(object):
+class Test_JsonTableTextLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

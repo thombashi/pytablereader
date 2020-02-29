@@ -1,18 +1,11 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import
-
 import abc
 
-import six
 
-
-@six.add_metaclass(abc.ABCMeta)
-class LoaderAcceptorInterface(object):
+class LoaderAcceptorInterface(metaclass=abc.ABCMeta):
     """
     An interface class of table loader acceptor.
     """

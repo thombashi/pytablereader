@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-from __future__ import print_function, unicode_literals
-
-import io
+#!/usr/bin/env python3
 
 import pytablewriter as ptw
 
@@ -15,7 +10,7 @@ loader = ptr.TableUrlLoader(
     "html")
 
 writer = ptw.TableWriterFactory.create_from_format_name("rst")
-writer.stream = io.open("load_url_result.rst", "w", encoding=loader.encoding)
+writer.stream = open("load_url_result.rst", "w", encoding=loader.encoding)
 for table_data in loader.load():
     writer.from_tabledata(table_data)
     writer.write_table()

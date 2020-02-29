@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import unicode_literals
 
 import collections
 from textwrap import dedent
@@ -146,7 +142,7 @@ test_empty_data_01 = dedent(
 
 
 @pytest.mark.xfail(run=False)
-class MediaWikiTableFormatter_constructor(object):
+class MediaWikiTableFormatter_constructor:
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
         [["tablename", None, ptr.DataError], ["tablename", "", ptr.DataError]],
@@ -157,7 +153,7 @@ class MediaWikiTableFormatter_constructor(object):
 
 
 @pytest.mark.xfail(run=False)
-class Test_MediaWikiTableFormatter_make_table_name(object):
+class Test_MediaWikiTableFormatter_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -290,7 +286,7 @@ class Test_MediaWikiTableFormatter_make_table_name(object):
 
 
 @pytest.mark.xfail(run=False)
-class Test_MediaWikiTableFileLoader_load(object):
+class Test_MediaWikiTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -356,7 +352,7 @@ class Test_MediaWikiTableFileLoader_load(object):
 
 
 @pytest.mark.xfail(run=False)
-class Test_MediaWikiTableTextLoader_load(object):
+class Test_MediaWikiTableTextLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

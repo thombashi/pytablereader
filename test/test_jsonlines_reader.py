@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import print_function, unicode_literals
 
 import collections
 import os
@@ -124,7 +120,7 @@ test_data_single_20 = Data(
 )
 
 
-class Test_JsonLinesTableFileLoader_make_table_name(object):
+class Test_JsonLinesTableFileLoader_make_table_name:
     LOADER_CLASS = ptr.JsonLinesTableFileLoader
 
     def setup_method(self, method):
@@ -169,7 +165,7 @@ class Test_JsonLinesTableFileLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_JsonLinesTableFileLoader_load(object):
+class Test_JsonLinesTableFileLoader_load:
     LOADER_CLASS = ptr.JsonLinesTableFileLoader
 
     def setup_method(self, method):
@@ -271,7 +267,7 @@ class Test_JsonLinesTableFileLoader_load(object):
                 pass
 
 
-class Test_JsonLinesTableTextLoader_make_table_name(object):
+class Test_JsonLinesTableTextLoader_make_table_name:
     LOADER_CLASS = ptr.JsonLinesTableTextLoader
 
     def setup_method(self, method):
@@ -303,7 +299,7 @@ class Test_JsonLinesTableTextLoader_make_table_name(object):
             loader.make_table_name()
 
 
-class Test_JsonLinesTableTextLoader_load(object):
+class Test_JsonLinesTableTextLoader_load:
     LOADER_CLASS = ptr.JsonLinesTableTextLoader
 
     def setup_method(self, method):

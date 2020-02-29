@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import unicode_literals
 
 import os
 
@@ -14,7 +10,7 @@ from pytablewriter import dumps_tabledata
 import pytablereader as ptr
 
 
-class Test_HtmlTableTextLoader_load(object):
+class Test_HtmlTableTextLoader_load:
     @pytest.mark.parametrize(["filename"], [["python - Wiktionary.html"]])
     def test_smoke(self, tmpdir, filename):
         test_data_file_path = os.path.join(os.path.dirname(__file__), "data", filename)

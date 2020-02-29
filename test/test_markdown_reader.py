@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import print_function, unicode_literals
 
 import collections
 from textwrap import dedent
@@ -102,7 +98,7 @@ test_empty_data_01 = dedent(
 )
 
 
-class MarkdownTableFormatter_constructor(object):
+class MarkdownTableFormatter_constructor:
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
         [["tablename", None, ptr.DataError], ["tablename", "", ptr.DataError]],
@@ -112,7 +108,7 @@ class MarkdownTableFormatter_constructor(object):
             MarkdownTableFormatter(source)
 
 
-class Test_MarkdownTableFormatter_make_table_name(object):
+class Test_MarkdownTableFormatter_make_table_name:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -241,7 +237,7 @@ class Test_MarkdownTableFormatter_make_table_name(object):
             print(formatter._make_table_name())
 
 
-class Test_MarkdownTableFileLoader_load(object):
+class Test_MarkdownTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -299,7 +295,7 @@ class Test_MarkdownTableFileLoader_load(object):
                 pass
 
 
-class Test_MarkdownTableTextLoader_load(object):
+class Test_MarkdownTableTextLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 

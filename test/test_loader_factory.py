@@ -1,24 +1,20 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 import pytest
 
 import pytablereader as ptr
 
 
-class Test_TableFileLoaderFactory(object):
+class Test_TableFileLoaderFactory:
     @pytest.mark.parametrize(["value", "expected"], [[None, ValueError]])
     def test_exception(self, value, expected):
         with pytest.raises(expected):
             ptr.factory.TableFileLoaderFactory(value)
 
 
-class Test_TableFileLoaderFactory_create_from_path(object):
+class Test_TableFileLoaderFactory_create_from_path:
     @pytest.mark.parametrize(
         ["value", "extension", "expected"],
         [
@@ -66,7 +62,7 @@ class Test_TableFileLoaderFactory_create_from_path(object):
             loader_factory.create_from_path()
 
 
-class Test_TableFileLoaderFactory_create_from_format_name(object):
+class Test_TableFileLoaderFactory_create_from_format_name:
     @pytest.mark.parametrize(
         ["file_path", "format_name", "expected"],
         [

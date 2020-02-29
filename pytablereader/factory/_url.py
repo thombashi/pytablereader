@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 import os
 import tempfile
@@ -36,7 +32,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         return self._source
 
     def __init__(self, url, encoding=None, proxies=None):
-        super(TableUrlLoaderFactory, self).__init__(url, encoding)
+        super().__init__(url, encoding)
 
         self.__proxies = proxies
         self.__temp_dir_path = None

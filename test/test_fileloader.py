@@ -1,16 +1,11 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import print_function, unicode_literals
 
 from textwrap import dedent
 
 import pathvalidate as pv
 import pytest
-import six
 from mbstrdecoder import MultiByteStrDecoder
 from path import Path
 from pytablewriter import ExcelXlsxTableWriter, dumps_tabledata
@@ -20,7 +15,7 @@ import pytablereader as ptr
 from pytablereader.interface import TableLoader
 
 
-class Test_TableFileLoader_get_format_names(object):
+class Test_TableFileLoader_get_format_names:
     def test_normal(self):
         assert ptr.TableFileLoader.get_format_names() == [
             "csv",
@@ -40,16 +35,12 @@ class Test_TableFileLoader_get_format_names(object):
         ]
 
 
-class Test_TableFileLoader_constructor(object):
+class Test_TableFileLoader_constructor:
     @pytest.mark.parametrize(
         ["file_path", "format_name", "expected"],
         [
             ["/tmp/valid/test/data/validext.csv", None, ptr.CsvTableFileLoader],
-            [
-                "/tmp/valid/test/新しいフォルダー/新しいテキスト ドキュメント.csv".encode("utf_8"),
-                None,
-                ptr.CsvTableFileLoader,
-            ],
+            ["/tmp/valid/test/新しいフォルダー/新しいテキスト ドキュメント.csv".encode(), None, ptr.CsvTableFileLoader,],
             ["/tmp/validext.xlsx", None, ptr.ExcelTableFileLoader],
             ["/tmp/validext.html", None, ptr.HtmlTableFileLoader],
             ["/tmp/validext.json", None, ptr.JsonTableFileLoader],
@@ -60,7 +51,7 @@ class Test_TableFileLoader_constructor(object):
             ["/tmp/validext.ndjson", None, ptr.JsonLinesTableFileLoader],
             ["/tmp/validext.tsv", None, ptr.TsvTableFileLoader],
             ["/tmp/validext.txt", "csv", ptr.CsvTableFileLoader],
-            ["/tmp/テスト.txt".encode("utf_8"), "csv", ptr.CsvTableFileLoader],
+            ["/tmp/テスト.txt".encode(), "csv", ptr.CsvTableFileLoader],
             ["/tmp/validext.txt", "ssv", ptr.CsvTableFileLoader],
             ["/tmp/validext.txt", "html", ptr.HtmlTableFileLoader],
             ["/tmp/validext.txt", "json", ptr.JsonTableFileLoader],
@@ -73,9 +64,7 @@ class Test_TableFileLoader_constructor(object):
         ],
     )
     def test_normal(self, tmpdir, file_path, format_name, expected):
-        test_file_path = Path(
-            six.text_type(tmpdir.join(Path(MultiByteStrDecoder(file_path).unicode_str)))
-        )
+        test_file_path = Path(str(tmpdir.join(Path(MultiByteStrDecoder(file_path).unicode_str))))
         test_file_path.parent.makedirs_p()
 
         with open(test_file_path, "w") as f:
@@ -104,7 +93,7 @@ class Test_TableFileLoader_constructor(object):
             ptr.TableFileLoader(value, format_name=format_name)
 
 
-class Test_TableFileLoader_load(object):
+class Test_TableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
@@ -117,7 +106,7 @@ class Test_TableFileLoader_load(object):
     )
     def test_normal_csv(self, tmpdir, file_path, format_name):
         filename = pv.replace_symbol(file_path, "")
-        p_file_path = Path(six.text_type(tmpdir.join(filename + Path(file_path).ext)))
+        p_file_path = Path(str(tmpdir.join(filename + Path(file_path).ext)))
         p_file_path.parent.makedirs_p()
 
         with open(p_file_path, "w") as f:
@@ -150,7 +139,7 @@ class Test_TableFileLoader_load(object):
             assert tabledata.equals(expected)
 
     def test_normal_ssv(self, tmpdir):
-        p_file_path = Path(six.text_type(tmpdir.join("testdata.txt")))
+        p_file_path = Path(str(tmpdir.join("testdata.txt")))
         p_file_path.parent.makedirs_p()
 
         with open(p_file_path, "w") as f:
