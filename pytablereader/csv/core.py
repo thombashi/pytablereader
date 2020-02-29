@@ -3,8 +3,8 @@
 """
 
 import csv
+import io
 
-import six
 import typepy
 from mbstrdecoder import MultiByteStrDecoder
 
@@ -226,7 +226,7 @@ class CsvTableTextLoader(CsvTableLoader):
         self._logger.logging_load()
 
         self._csv_reader = csv.reader(
-            six.StringIO(self.source.strip()),
+            io.StringIO(self.source.strip()),
             delimiter=self.delimiter,
             quotechar=self.quotechar,
             strict=True,

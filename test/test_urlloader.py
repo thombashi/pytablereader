@@ -7,7 +7,6 @@ from textwrap import dedent
 
 import pytest
 import responses
-import six
 from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
@@ -166,9 +165,6 @@ class Test_TableUrlLoader_constructor:
         ],
     )
     def test_exception(self, value, format_name, expected):
-        if six.PY2:
-            pytest.skip()
-
         responses.add(responses.GET, value, body="""404: Not Found""", status=404)
 
         with pytest.raises(expected):

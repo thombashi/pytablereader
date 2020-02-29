@@ -6,10 +6,10 @@ import abc
 import os
 import stat
 from errno import EBADF, ENAMETOOLONG, ENOENT, ENOTDIR
+from urllib.parse import urlparse
 
 import pathvalidate as pv
 import typepy
-from six.moves.urllib.parse import urlparse
 
 from pytablereader import DataError
 

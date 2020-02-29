@@ -4,10 +4,10 @@
 
 import os.path
 import posixpath
+from urllib.parse import urlparse
 
 import pathvalidate
 import typepy
-from six.moves.urllib.parse import urlparse
 
 from ._constant import Default
 from .error import InvalidFilePathError

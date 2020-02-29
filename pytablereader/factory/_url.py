@@ -4,9 +4,9 @@
 
 import os
 import tempfile
+from urllib.parse import urlparse
 
 import typepy
-from six.moves.urllib.parse import urlparse
 
 from .._common import get_extension, make_temp_file_path_from_url
 from .._constant import SourceType
