@@ -201,7 +201,6 @@ class Test_CsvTableFileLoader_load:
     def setup_method(self, method):
         TableLoader.clear_table_count()
 
-    @pytest.mark.skipif("sys.version_info[0] == 2")
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "headers", "expected"],
         [
@@ -242,7 +241,6 @@ class Test_CsvTableFileLoader_load:
 
             assert tabledata.in_tabledata_list(expected)
 
-    @pytest.mark.skipif("sys.version_info[0] == 2")
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "encoding", "headers", "expected"],
         [
