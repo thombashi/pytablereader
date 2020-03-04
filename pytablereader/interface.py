@@ -37,7 +37,7 @@ class TableLoaderInterface(metaclass=abc.ABCMeta):
         pass
 
 
-class TableLoader(TableLoaderInterface):
+class TableLoader(TableLoaderInterface, metaclass=abc.ABCMeta):
     """
     The abstract class of table data file loader.
 
