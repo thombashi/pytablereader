@@ -40,7 +40,7 @@ class Test_TableFileLoader_constructor:
         ["file_path", "format_name", "expected"],
         [
             ["/tmp/valid/test/data/validext.csv", None, ptr.CsvTableFileLoader],
-            ["/tmp/valid/test/新しいフォルダー/新しいテキスト ドキュメント.csv".encode(), None, ptr.CsvTableFileLoader,],
+            ["/tmp/valid/test/新しいフォルダー/新しいテキスト ドキュメント.csv".encode(), None, ptr.CsvTableFileLoader],
             ["/tmp/validext.xlsx", None, ptr.ExcelTableFileLoader],
             ["/tmp/validext.html", None, ptr.HtmlTableFileLoader],
             ["/tmp/validext.json", None, ptr.JsonTableFileLoader],
