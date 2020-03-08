@@ -62,6 +62,10 @@ class CsvTableLoader(TableLoader):
         # "quotechar" must be a string, not an unicode
         return str(MultiByteStrDecoder(self.__quotechar).unicode_str)
 
+    @quotechar.setter
+    def quotechar(self, value):
+        self.__quotechar = value
+
     @property
     def header_list(self):
         # deprecated: alias to headers
@@ -71,10 +75,6 @@ class CsvTableLoader(TableLoader):
     def header_list(self, value):
         # deprecated: alias to headers
         self.headers = value
-
-    @quotechar.setter
-    def quotechar(self, value):
-        self.__quotechar = value
 
     def __init__(self, source, quoting_flags, type_hints, type_hint_rules):
         super().__init__(source, quoting_flags, type_hints, type_hint_rules)
