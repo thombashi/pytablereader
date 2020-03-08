@@ -381,9 +381,9 @@ rp_method = """
 
 .. |load_table_name_desc| replace::
     Table name determined by the value of
-    :py:attr:`~pytablereader.interface.TableLoader.table_name`.
+    :py:attr:`~pytablereader.interface.AbstractTableReader.table_name`.
     Following format specifiers in the
-    :py:attr:`~pytablereader.interface.TableLoader.table_name`
+    :py:attr:`~pytablereader.interface.AbstractTableReader.table_name`
     are replaced with specific strings:
 
 .. |spreadsheet_load_desc| replace::

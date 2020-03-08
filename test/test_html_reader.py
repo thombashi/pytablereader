@@ -13,7 +13,7 @@ from tabledata import TableData
 
 import pytablereader as ptr
 from pytablereader.html.formatter import HtmlTableFormatter
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 from ._common import TYPE_HINT_RULES
 
@@ -313,7 +313,7 @@ class HtmlTableFormatter_constructor:
 
 class Test_HtmlTableFormatter_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @property
     def valid_tag_property(self):
@@ -448,7 +448,7 @@ class Test_HtmlTableFormatter_make_table_name:
 
 class Test_HtmlTableFileLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "table_name", "expected_tabledata_list"],
@@ -510,7 +510,7 @@ class Test_HtmlTableTextLoader_load:
     LOADER_CLASS = ptr.HtmlTableTextLoader
 
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "expected_tabletuple_list"],

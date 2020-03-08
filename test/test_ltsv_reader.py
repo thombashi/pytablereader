@@ -13,7 +13,7 @@ from tabledata import TableData
 
 import pytablereader as ptr
 from pytablereader import DataError, InvalidHeaderNameError, InvalidTableNameError
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 from ._common import TYPE_HINT_RULES
 
@@ -39,7 +39,7 @@ a.0:3\tb-1:3.3\tc_2:ccc\t"dd":3.0\te.f-g_4:"cccc"
 
 class Test_LtsvTableFileLoader_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
@@ -79,7 +79,7 @@ class Test_LtsvTableFileLoader_make_table_name:
 
 class Test_LtsvTableFileLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "expected"],
@@ -135,7 +135,7 @@ class Test_LtsvTableFileLoader_load:
 
 class Test_LtsvTableTextLoader_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["value", "expected"],
@@ -161,7 +161,7 @@ class Test_LtsvTableTextLoader_make_table_name:
 
 class Test_LtsvTableTextLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "expected"],

@@ -11,7 +11,7 @@ from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
 from .._validator import FileValidator, TextValidator
 from ..error import ValidationError
-from ..interface import TableLoader
+from ..interface import AbstractTableReader
 from .formatter import JsonLinesTableFormatter
 
 
@@ -29,7 +29,7 @@ except ImportError:
         JSONDecodeError = ValueError
 
 
-class JsonLinesTableLoader(TableLoader, metaclass=abc.ABCMeta):
+class JsonLinesTableLoader(AbstractTableReader, metaclass=abc.ABCMeta):
     """
     An abstract class of JSON table loaders.
     """

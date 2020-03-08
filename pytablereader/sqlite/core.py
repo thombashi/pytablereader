@@ -4,11 +4,11 @@
 
 from .._constant import TableNameTemplate as tnt
 from .._validator import FileValidator
-from ..interface import TableLoader
+from ..interface import AbstractTableReader
 from .formatter import SqliteTableFormatter
 
 
-class SqliteFileLoader(TableLoader):
+class SqliteFileLoader(AbstractTableReader):
     """
     A file loader class to extract tabular data from SQLite database files.
 

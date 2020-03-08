@@ -11,11 +11,11 @@ from .._common import get_file_encoding
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
 from .._validator import FileValidator, TextValidator
-from ..interface import TableLoader
+from ..interface import AbstractTableReader
 from ..json.formatter import SingleJsonTableConverterA
 
 
-class LtsvTableLoader(TableLoader):
+class LtsvTableLoader(AbstractTableReader):
     """
     Abstract class of
     `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__

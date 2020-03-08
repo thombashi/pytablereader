@@ -11,7 +11,7 @@ from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 
 class Test_TableUrlLoader_get_format_names:
@@ -173,7 +173,7 @@ class Test_TableUrlLoader_constructor:
 
 class Test_TableUrlLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @responses.activate
     @pytest.mark.parametrize(

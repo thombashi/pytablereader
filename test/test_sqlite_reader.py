@@ -12,7 +12,7 @@ from simplesqlite import SimpleSQLite
 from tabledata import TableData
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 
 Data = collections.namedtuple("Data", "value expected")
@@ -97,7 +97,7 @@ test_data_05 = Data(
 
 class Test_SqliteFileLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["test_id", "tabledata", "filename", "headers", "expected"],

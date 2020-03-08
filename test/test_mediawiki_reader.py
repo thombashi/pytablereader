@@ -10,7 +10,7 @@ from path import Path
 from tabledata import TableData
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 from pytablereader.mediawiki.formatter import MediaWikiTableFormatter
 
 
@@ -155,7 +155,7 @@ class MediaWikiTableFormatter_constructor:
 @pytest.mark.xfail(run=False)
 class Test_MediaWikiTableFormatter_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @property
     def valid_tag_property(self):
@@ -288,7 +288,7 @@ class Test_MediaWikiTableFormatter_make_table_name:
 @pytest.mark.xfail(run=False)
 class Test_MediaWikiTableFileLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "table_name", "expected_tabledata_list"],
@@ -354,7 +354,7 @@ class Test_MediaWikiTableFileLoader_load:
 @pytest.mark.xfail(run=False)
 class Test_MediaWikiTableTextLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["test_id", "table_text", "table_name", "expected_tabletuple_list"],

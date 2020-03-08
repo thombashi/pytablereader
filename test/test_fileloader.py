@@ -12,7 +12,7 @@ from pytablewriter import ExcelXlsxTableWriter, dumps_tabledata
 from tabledata import TableData
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 
 class Test_TableFileLoader_get_format_names:
@@ -95,7 +95,7 @@ class Test_TableFileLoader_constructor:
 
 class Test_TableFileLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["file_path", "format_name"],

@@ -8,7 +8,7 @@ from pytablewriter import dumps_tabledata
 from tabledata import TableData
 
 import pytablereader as ptr
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 
 def write_worksheet(worksheet, table):
@@ -89,7 +89,7 @@ def invalid_excel_file_path(tmpdir):
 @pytest.mark.xfail(run=False)
 class Test_ExcelTableFileLoader_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @property
     def monkey_property(self):
@@ -132,7 +132,7 @@ class Test_ExcelTableFileLoader_make_table_name:
 @pytest.mark.xfail(run=False)
 class Test_ExcelTableFileLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["table_name", "start_row", "expected_list"],

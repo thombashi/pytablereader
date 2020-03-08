@@ -1,9 +1,9 @@
 Format Specific Table Loader Classes
 --------------------------------------------
 
-TableLoader class
+AbstractTableReader class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. autoclass:: pytablereader.interface.TableLoader
+.. autoclass:: pytablereader.interface.AbstractTableReader
     :inherited-members:
     :show-inheritance:
 

@@ -14,11 +14,11 @@ from .._common import get_file_encoding
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
 from .._validator import FileValidator, TextValidator
-from ..interface import TableLoader
+from ..interface import AbstractTableReader
 from .formatter import CsvTableFormatter
 
 
-class CsvTableLoader(TableLoader):
+class CsvTableLoader(AbstractTableReader):
     """
     The abstract class of CSV table loaders.
 

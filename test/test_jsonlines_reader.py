@@ -16,7 +16,7 @@ from tabledata import TableData
 
 import pytablereader as ptr
 from pytablereader import InvalidTableNameError
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 from ._common import TYPE_HINT_RULES, fifo_writer
 
@@ -124,7 +124,7 @@ class Test_JsonLinesTableFileLoader_make_table_name:
     LOADER_CLASS = ptr.JsonLinesTableFileLoader
 
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
@@ -169,7 +169,7 @@ class Test_JsonLinesTableFileLoader_load:
     LOADER_CLASS = ptr.JsonLinesTableFileLoader
 
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["table_text", "filename", "table_name", "expected_tabletuple_list"],
@@ -271,7 +271,7 @@ class Test_JsonLinesTableTextLoader_make_table_name:
     LOADER_CLASS = ptr.JsonLinesTableTextLoader
 
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["value", "expected"],
@@ -303,7 +303,7 @@ class Test_JsonLinesTableTextLoader_load:
     LOADER_CLASS = ptr.JsonLinesTableTextLoader
 
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "expected_tabletuple_list"],

@@ -7,11 +7,11 @@ from .._constant import SourceType
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
 from .._validator import FileValidator, TextValidator
-from ..interface import TableLoader
+from ..interface import AbstractTableReader
 from .formatter import MarkdownTableFormatter
 
 
-class MarkdownTableLoader(TableLoader):
+class MarkdownTableLoader(AbstractTableReader):
     """
     The abstract class of Markdown table loaders.
     """

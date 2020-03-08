@@ -12,7 +12,7 @@ from tabledata import TableData
 
 import pytablereader as ptr
 from pytablereader import InvalidTableNameError
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 
 Data = collections.namedtuple("Data", "value expected")
@@ -62,7 +62,7 @@ test_data_03 = Data(
 
 class Test_TsvTableFileLoader_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
@@ -102,7 +102,7 @@ class Test_TsvTableFileLoader_make_table_name:
 
 class Test_TsvTableFileLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["test_id", "table_text", "filename", "headers", "expected"],
@@ -177,7 +177,7 @@ class Test_TsvTableFileLoader_load:
 
 class Test_TsvTableTextLoader_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["value", "expected"],
@@ -203,7 +203,7 @@ class Test_TsvTableTextLoader_make_table_name:
 
 class Test_TsvTableTextLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "headers", "expected"],

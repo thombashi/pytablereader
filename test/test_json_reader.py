@@ -13,7 +13,7 @@ from tabledata import TableData
 
 import pytablereader as ptr
 from pytablereader import InvalidTableNameError
-from pytablereader.interface import TableLoader
+from pytablereader.interface import AbstractTableReader
 
 
 Data = collections.namedtuple("Data", "value expected")
@@ -254,7 +254,7 @@ test_data_multi_20 = Data(
 
 class Test_JsonTableFileLoader_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
@@ -295,7 +295,7 @@ class Test_JsonTableFileLoader_make_table_name:
 
 class Test_JsonTableFileLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["table_text", "filename", "table_name", "expected_tabletuple_list"],
@@ -365,7 +365,7 @@ class Test_JsonTableFileLoader_load:
 
 class Test_JsonTableTextLoader_make_table_name:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["value", "expected"],
@@ -395,7 +395,7 @@ class Test_JsonTableTextLoader_make_table_name:
 
 class Test_JsonTableTextLoader_load:
     def setup_method(self, method):
-        TableLoader.clear_table_count()
+        AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
         ["table_text", "table_name", "expected_tabletuple_list"],

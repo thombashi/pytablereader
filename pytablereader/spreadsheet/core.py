@@ -5,10 +5,10 @@
 import abc
 
 from .._constant import TableNameTemplate as tnt
-from ..interface import TableLoader
+from ..interface import AbstractTableReader
 
 
-class SpreadSheetLoader(TableLoader):
+class SpreadSheetLoader(AbstractTableReader):
     """
     An abstract class of table data.
     Especially spreadsheets that consists multiple rows.
