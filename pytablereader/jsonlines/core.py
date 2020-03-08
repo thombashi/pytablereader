@@ -20,14 +20,6 @@ try:
 except ImportError:
     import json  # type: ignore
 
-try:
-    from simplejson import JSONDecodeError
-except ImportError:
-    try:
-        from json import JSONDecodeError
-    except ImportError:
-        JSONDecodeError = ValueError
-
 
 class JsonLinesTableLoader(AbstractTableReader, metaclass=abc.ABCMeta):
     """
@@ -97,7 +89,7 @@ class JsonLinesTableFileLoader(JsonLinesTableLoader):
 
                 try:
                     buffer.append(json.loads(line, object_pairs_hook=OrderedDict))
-                except JSONDecodeError as e:
+                except json.JSONDecodeError as e:
                     raise ValidationError(
                         "line {line_idx}: {msg}: {value}".format(
                             line_idx=line_idx + 1, msg=e, value=line
@@ -164,7 +156,7 @@ class JsonLinesTableTextLoader(JsonLinesTableLoader):
 
             try:
                 buffer.append(json.loads(line, object_pairs_hook=OrderedDict))
-            except JSONDecodeError as e:
+            except json.JSONDecodeError as e:
                 raise ValidationError(
                     "line {line_idx}: {msg}: {value}".format(
                         line_idx=line_idx + 1, msg=e, value=line
