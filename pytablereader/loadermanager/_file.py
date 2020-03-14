@@ -2,6 +2,8 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
+import warnings
+
 import typepy
 
 from ..factory import TableFileLoaderFactory
@@ -84,5 +86,5 @@ class TableFileLoader(TableLoaderManager):
 
     @classmethod
     def get_format_name_list(cls):
-        # deprecated: alias to get_format_names
+        warnings.warn("'get_format_name_list' has moved to 'get_format_names'", DeprecationWarning)
         return cls.get_format_names()

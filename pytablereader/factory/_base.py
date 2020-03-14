@@ -3,6 +3,7 @@
 """
 
 import abc
+import warnings
 
 from mbstrdecoder import MultiByteStrDecoder
 
@@ -53,7 +54,7 @@ class BaseTableLoaderFactory(metaclass=abc.ABCMeta):
         return sorted(self._get_format_name_loader_mapping())
 
     def get_format_name_list(self):
-        # deprecated: alias to get_format_names
+        warnings.warn("'get_format_name_list' has moved to 'get_format_names'", DeprecationWarning)
         return self.get_format_names()
 
     def get_extensions(self):
@@ -65,7 +66,7 @@ class BaseTableLoaderFactory(metaclass=abc.ABCMeta):
         return sorted(self._get_extension_loader_mapping())
 
     def get_extension_list(self):
-        # deprecated: alias to get_extensions
+        warnings.warn("'get_extension_list' has moved to 'get_extensions'", DeprecationWarning)
         return self.get_extensions()
 
     def _get_loader_class(self, loader_mapping, format_name):

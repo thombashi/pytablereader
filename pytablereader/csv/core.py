@@ -4,6 +4,7 @@
 
 import csv
 import io
+import warnings
 
 import typepy
 from mbstrdecoder import MultiByteStrDecoder
@@ -68,12 +69,12 @@ class CsvTableLoader(AbstractTableReader):
 
     @property
     def header_list(self):
-        # deprecated: alias to headers
+        warnings.warn("'header_list' has moved to 'headers'", DeprecationWarning)
         return self.headers
 
     @header_list.setter
     def header_list(self, value):
-        # deprecated: alias to headers
+        warnings.warn("'header_list' has moved to 'headers'", DeprecationWarning)
         self.headers = value
 
     def __init__(self, source, quoting_flags, type_hints, type_hint_rules):
