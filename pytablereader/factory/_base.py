@@ -99,9 +99,7 @@ class BaseTableLoaderFactory(metaclass=abc.ABCMeta):
                     [
                         "{:s} (unknown extension).".format(e.args[0]),
                         "",
-                        "acceptable extensions are: {}.".format(
-                            ", ".join(self.get_extension_list())
-                        ),
+                        "acceptable extensions are: {}.".format(", ".join(self.get_extensions())),
                         "actual: '{}'".format(extension),
                     ]
                 )
