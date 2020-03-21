@@ -12,7 +12,7 @@ from .._common import get_extension, make_temp_file_path_from_url
 from .._constant import SourceType
 from .._logger import logger
 from .._validator import UrlValidator
-from ..csv.core import CsvTableFileLoader, CsvTableTextLoader
+from ..csv.core import CsvTableTextLoader
 from ..error import HTTPError, InvalidFilePathError, ProxyError, UrlError
 from ..html.core import HtmlTableTextLoader
 from ..json.core import JsonTableTextLoader
@@ -115,7 +115,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             ``"mediawiki"``             :py:class:`~.MediaWikiTableTextLoader`
             ``"ndjson"``                :py:class:`~.JsonLinesTableTextLoader`
             ``"sqlite"``                :py:class:`~.SqliteFileLoader`
-            ``"ssv"``                   :py:class:`~.CsvTableFileLoader`
+            ``"ssv"``                   :py:class:`~.CsvTableTextLoader`
             ``"tsv"``                   :py:class:`~.TsvTableTextLoader`
             ==========================  ======================================
 
@@ -231,7 +231,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
                 "json_lines": JsonLinesTableTextLoader,
                 "markdown": MarkdownTableTextLoader,
                 "mediawiki": MediaWikiTableTextLoader,
-                "ssv": CsvTableFileLoader,
+                "ssv": CsvTableTextLoader,
             }
         )
 
