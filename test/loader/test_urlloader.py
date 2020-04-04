@@ -3,6 +3,7 @@
 """
 
 import os.path
+from os.path import dirname
 from textwrap import dedent
 
 import pytest
@@ -260,7 +261,7 @@ class Test_TableUrlLoader_load:
     @responses.activate
     def test_normal_excel(self):
         url = "https://github.com/thombashi/valid/test/data/validdata.xlsx"
-        data_path = os.path.join(os.path.dirname(__file__), "data/validdata.xlsx")
+        data_path = os.path.join(dirname(dirname(__file__)), "data/validdata.xlsx")
 
         with open(data_path, "rb") as f:
             responses.add(
