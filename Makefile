@@ -15,6 +15,7 @@ check:
 	codespell $(PACKAGE) docs examples test -q 2 --check-filenames --ignore-words-list te --exclude-file "test/data/python - Wiktionary.html"
 	travis lint
 	pylama
+	pip check
 
 .PHONY: clean
 clean:
@@ -40,3 +41,4 @@ release:
 .PHONY: setup
 setup:
 	@pip install --upgrade -e .[test] tox
+	pip check
