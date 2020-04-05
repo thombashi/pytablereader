@@ -290,3 +290,29 @@ class Test_TableUrlLoader_load:
 
         for table_data in loader.load():
             assert table_data.in_tabledata_list(expected_list)
+
+    @pytest.mark.xfail(run=False)
+    @responses.activate
+    def test_normal_sqlite(self):
+        url = "https://github.com/thombashi/valid/test/data/valid.sqlite3"
+        data_path = os.path.join(dirname(dirname(__file__)), "data/valid.sqlite3")
+
+        with open(data_path, "rb") as f:
+            responses.add(
+                responses.GET,
+                url,
+                body=f.read(),
+                content_type="application/octet-stream",
+                status=200,
+            )
+
+        loader = ptr.TableUrlLoader(url)
+
+        assert loader.format_name == "sqlite"
+
+        for table_data in loader.load():
+            assert table_data == TableData(
+                "tblfaker",
+                ["file_extension", "random_number"],
+                [["webm", 679215], ["jpg", 5088743], ["avi", 8268]],
+            )

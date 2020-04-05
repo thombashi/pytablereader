@@ -147,7 +147,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         import requests
         import retryrequests
 
-        loader_source_type = loader_class("").source_type
+        dummy_loader = loader_class("")
+        loader_source_type = dummy_loader.source_type
 
         if loader_source_type not in [SourceType.TEXT, SourceType.FILE]:
             raise ValueError("unknown loader source: type={}".format(loader_source_type))
@@ -178,8 +179,13 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             self._source = r.text
         elif loader_source_type == SourceType.FILE:
             self.__temp_dir_path = tempfile.mkdtemp()
-            self._source = "{:s}.xlsx".format(
-                make_temp_file_path_from_url(self.__temp_dir_path, self.__url)
+            if dummy_loader.format_name == "excel":
+                ext = "xlsx"
+            elif dummy_loader.format_name == "sqlite":
+                ext = "sqlite"
+
+            self._source = "{:s}.{}".format(
+                make_temp_file_path_from_url(self.__temp_dir_path, self.__url), ext
             )
             with open(self._source, "wb") as f:
                 f.write(r.content)
