@@ -7,6 +7,12 @@ File Loader Factory
     :inherited-members:
     :undoc-members:
 
+Text Loader Factory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. autoclass:: pytablereader.factory.TableTextLoaderFactory
+    :inherited-members:
+    :undoc-members:
+
 Url Loader Factory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: pytablereader.factory.TableUrlLoaderFactory
