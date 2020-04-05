@@ -1,7 +1,19 @@
+AUTHOR := thombashi
 PACKAGE := pytablereader
+BUILD_WORK_DIR := _work
 DOCS_DIR := docs
-DOCS_BUILD_DIR := $(DOCS_DIR)/_build
+PKG_BUILD_DIR := $(BUILD_WORK_DIR)/$(PACKAGE)
 
+
+.PHONY: build-remote
+build-remote:
+	@rm -rf $(BUILD_WORK_DIR)
+	@mkdir -p $(BUILD_WORK_DIR)
+	@cd $(BUILD_WORK_DIR) && \
+		git clone https://github.com/$(AUTHOR)/$(PACKAGE).git && \
+		cd $(PACKAGE) && \
+		tox -e build
+	ls -lh $(PKG_BUILD_DIR)/dist/*
 
 .PHONY: build
 build:
@@ -33,7 +45,7 @@ readme:
 
 .PHONY: release
 release:
-	@tox -e release
+	@cd $(PKG_BUILD_DIR) && tox -e release
 	@make clean
 
 .PHONY: setup
