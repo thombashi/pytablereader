@@ -40,7 +40,7 @@ Features
     - CSV / Tab separated values (TSV) / Space separated values (SSV)
     - Microsoft Excel :superscript:`TM` file
     - `Google Sheets <https://www.google.com/intl/en_us/sheets/about/>`_
-    - HTML (table tags)
+    - HTML (``table`` tags)
     - JSON
     - `Labeled Tab-separated Values (LTSV) <http://ltsv.org/>`__
     - `Line-delimited JSON(LDJSON) <https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON>`__ / NDJSON / JSON Lines
