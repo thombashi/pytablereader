@@ -74,9 +74,7 @@ class TableTextLoaderFactory(BaseTableLoaderFactory):
         """
 
         loader_table = self._get_common_loader_mapping()
-        loader_table.update(
-            {"htm": HtmlTableTextLoader, "md": MarkdownTableTextLoader}
-        )
+        loader_table.update({"htm": HtmlTableTextLoader, "md": MarkdownTableTextLoader})
 
         return loader_table
 
