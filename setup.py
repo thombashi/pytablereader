@@ -44,7 +44,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 setuptools_require = ["setuptools>=38.3.0"]
 excel_requires = ["excelrd>=2.0.2"]
 
-markdown_requires = ["Markdown>=2.6.6,<3"]
+markdown_requires = ["Markdown>=2.6.6,<4"]
 mediawiki_requires = ["pypandoc"]
 sqlite_requires = ["SimpleSQLite>=1.1.1,<2"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
