@@ -148,7 +148,7 @@ class LtsvTableTextLoader(LtsvTableLoader):
         Table name string. Defaults to ``%(format_name)s%(format_id)s``.
     """
 
-    def __init__(self, text, quoting_flags=None, type_hints=None):
+    def __init__(self, text=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
         super().__init__(text, quoting_flags, type_hints)
 
         self._validator = TextValidator(text)

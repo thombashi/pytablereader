@@ -92,7 +92,7 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
     def source_type(self):
         return SourceType.TEXT
 
-    def __init__(self, text, quoting_flags=None, type_hints=None):
+    def __init__(self, text=None, quoting_flags=None, type_hints=None, type_hint_rules=None):
         super().__init__(text, quoting_flags, type_hints)
 
         self._validator = TextValidator(text)
