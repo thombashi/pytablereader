@@ -19,7 +19,13 @@ class JsonConverter(TableFormatter):
     """
 
     _VALUE_TYPE_SCHEMA = {
-        "anyOf": [{"type": "string"}, {"type": "number"}, {"type": "boolean"}, {"type": "null"}]
+        "anyOf": [
+            {"type": "string"},
+            {"type": "number"},
+            {"type": "boolean"},
+            {"type": "null"},
+            {"type": "object"},
+        ]
     }
 
     def __init__(self, json_buffer):
@@ -298,5 +304,22 @@ class JsonTableFormatter(TableFormatter):
                 pass
             else:
                 break
+
+            """
+            if not isinstance(self._source_data, (list, type)):
+                continue
+
+            for source in self._source_data:
+                #print("!!", type(source), type(converter))
+                converter = converter_class(source)
+                converter.accept(self._loader)
+                try:
+                    yield from converter.to_table_data()
+                    return
+                except ValidationError:
+                    pass
+                else:
+                    break
+            """
 
         raise ValidationError("inconvertible JSON schema: json={}".format(self._source_data))

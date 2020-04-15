@@ -1,8 +1,8 @@
 beautifulsoup4>=4.4.1,<5
-DataProperty>=0.47.0,<2
+DataProperty>=0.48.1,<2
 jsonschema>=2.5.1,<4
 mbstrdecoder>=1.0.0,<2
 pathvalidate>=2.2.2,<3
 path.py<13
 tabledata>=1.1.1,<2
-typepy>=1.0.0,<2
+typepy>=1.1.0,<2

@@ -328,17 +328,29 @@ class Test_JsonTableFileLoader_load:
         assert load
 
     @pytest.mark.parametrize(
-        ["table_text", "filename", "expected"],
+        ["table_text", "filename"],
         [
-            ["[]", "tmp.json", ptr.DataError],
             [
                 """[
                     {"attr_b": 4, "attr_c": "a", "attr_a": {"aaa": 1}}
                 ]""",
                 "tmp.json",
-                ptr.ValidationError,
             ],
         ],
+    )
+    def test_smoke(self, tmpdir, table_text, filename):
+        p_file_path = tmpdir.join(filename)
+
+        with open(str(p_file_path), "w") as f:
+            f.write(table_text)
+
+        loader = ptr.JsonTableFileLoader(str(p_file_path))
+
+        for _tabletuple in loader.load():
+            pass
+
+    @pytest.mark.parametrize(
+        ["table_text", "filename", "expected"], [["[]", "tmp.json", ptr.DataError],],
     )
     def test_exception(self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
@@ -426,16 +438,24 @@ class Test_JsonTableTextLoader_load:
         assert load
 
     @pytest.mark.parametrize(
-        ["table_text", "expected"],
+        ["table_text"],
         [
-            ["[]", ptr.DataError],
             [
                 """[
-                {"attr_b": 4, "attr_c": "a", "attr_a": {"aaa": 1}}
-            ]""",
-                ptr.ValidationError,
+                    {"attr_b": 4, "attr_c": "a", "attr_a": {"aaa": 1}}
+                ]""",
             ],
         ],
+    )
+    def test_smoke(self, table_text):
+        loader = ptr.JsonTableTextLoader(table_text)
+        loader.table_name = "dummy"
+
+        for _tabletuple in loader.load():
+            pass
+
+    @pytest.mark.parametrize(
+        ["table_text", "expected"], [["[]", ptr.DataError],],
     )
     def test_exception(self, table_text, expected):
         loader = ptr.JsonTableTextLoader(table_text)
