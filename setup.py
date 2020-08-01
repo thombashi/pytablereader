@@ -58,7 +58,6 @@ tests_requires = frozenset(
     + mediawiki_requires
     + sqlite_requires
     + url_requires
-    + optional_requires
 )
 
 setuptools.setup(
@@ -104,7 +103,6 @@ setuptools.setup(
             + mediawiki_requires
             + sqlite_requires
             + url_requires
-            + optional_requires
         ),
         "excel": excel_requires,
         "gs": gs_requires,
