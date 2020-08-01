@@ -14,10 +14,8 @@ Welcome to pytablereader's documentation!
    :numbered:
    
    pages/introduction/index
-   pages/installation
    pages/examples/index
    pages/reference/index
-   pages/genindex
    pages/links
 
 
