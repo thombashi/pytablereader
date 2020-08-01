@@ -5,7 +5,7 @@
 import abc
 from collections import OrderedDict
 
-from .._common import get_file_encoding
+from .._common import get_file_encoding, json
 from .._constant import SourceType
 from .._constant import TableNameTemplate as tnt
 from .._logger import FileSourceLogger, TextSourceLogger
@@ -13,12 +13,6 @@ from .._validator import FileValidator, NullValidator, TextValidator
 from ..error import ValidationError
 from ..interface import AbstractTableReader
 from .formatter import JsonTableFormatter
-
-
-try:
-    import simplejson as json
-except ImportError:
-    import json  # type: ignore
 
 
 class JsonTableLoader(AbstractTableReader, metaclass=abc.ABCMeta):

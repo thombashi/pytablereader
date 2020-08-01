@@ -9,13 +9,8 @@ from textwrap import dedent
 from pytablereader import DataError
 
 from ._acceptor import LoaderAcceptor
+from ._common import json
 from ._logger import logger
-
-
-try:
-    import simplejson as json
-except ImportError:
-    import json  # type: ignore
 
 
 class TableFormatterInterface(metaclass=abc.ABCMeta):

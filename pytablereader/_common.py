@@ -13,6 +13,12 @@ from ._constant import Default
 from .error import InvalidFilePathError
 
 
+try:
+    import simplejson as json
+except ImportError:
+    import json  # type: ignore
+
+
 def get_file_encoding(file_path, encoding):
     from mbstrdecoder import detect_file_encoding
 
