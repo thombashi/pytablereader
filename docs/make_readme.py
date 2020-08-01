@@ -66,6 +66,8 @@ def main():
         ]
     )
 
+    maker.write_file(maker.doc_page_root_dir_path.joinpath("sponsors.rst"))
+
     return 0
 
 
