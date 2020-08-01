@@ -41,17 +41,17 @@ Dependencies
 
 Optional Python packages
 ------------------------------------------------
-- `logging` extras
+- ``logging`` extras
     - `loguru <https://github.com/Delgan/loguru>`__: Used for logging if the package installed
-- `excel` extras
+- ``excel`` extras
     - `excelrd <https://github.com/thombashi/excelrd>`__
-- `md` extras
+- ``md`` extras
     - `Markdown <https://github.com/Python-Markdown/markdown>`__
-- `mediawiki` extras
+- ``mediawiki`` extras
     - `pypandoc <https://github.com/bebraw/pypandoc>`__
-- `sqlite` extras
+- ``sqlite`` extras
     - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
-- `url` extras
+- ``url`` extras
     - `requests <http://python-requests.org/>`__
     - `retryrequests <https://github.com/thombashi/retryrequests>`__
 - `pandas <https://pandas.pydata.org/>`__
