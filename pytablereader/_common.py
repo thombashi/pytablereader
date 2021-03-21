@@ -16,7 +16,7 @@ from .error import InvalidFilePathError
 try:
     import simplejson as json
 except ImportError:
-    import json  # type: ignore
+    import json  # type: ignore # noqa
 
 
 def get_file_encoding(file_path, encoding):
