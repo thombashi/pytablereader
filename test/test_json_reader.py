@@ -350,7 +350,10 @@ class Test_JsonTableFileLoader_load:
             pass
 
     @pytest.mark.parametrize(
-        ["table_text", "filename", "expected"], [["[]", "tmp.json", ptr.DataError],],
+        ["table_text", "filename", "expected"],
+        [
+            ["[]", "tmp.json", ptr.DataError],
+        ],
     )
     def test_exception(self, tmpdir, table_text, filename, expected):
         p_file_path = tmpdir.join(filename)
@@ -455,7 +458,10 @@ class Test_JsonTableTextLoader_load:
             pass
 
     @pytest.mark.parametrize(
-        ["table_text", "expected"], [["[]", ptr.DataError],],
+        ["table_text", "expected"],
+        [
+            ["[]", ptr.DataError],
+        ],
     )
     def test_exception(self, table_text, expected):
         loader = ptr.JsonTableTextLoader(table_text)
