@@ -2,6 +2,7 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
+import atexit
 import os
 import tempfile
 from urllib.parse import urlparse
@@ -26,6 +27,16 @@ from ..tsv.core import TsvTableTextLoader
 from ._base import BaseTableLoaderFactory
 
 
+def remove_temp_file(dir_path: str, file_path: str) -> None:
+    os.remove(file_path)
+
+    try:
+        os.removedirs(dir_path)
+    except OSError:
+        # reach here when the dir not empty or not exist
+        pass
+
+
 class TableUrlLoaderFactory(BaseTableLoaderFactory):
     @property
     def __url(self):
@@ -43,7 +54,12 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         if typepy.is_null_string(self.__temp_dir_path):
             return
 
-        os.removedirs(self.__temp_dir_path)
+        try:
+            os.removedirs(self.__temp_dir_path)
+        except OSError:
+            # reach here when the dir not empty or not exist
+            pass
+
         self.__temp_dir_path = None
 
     def create_from_path(self):
@@ -189,6 +205,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             )
             with open(self._source, "wb") as f:
                 f.write(r.content)
+
+            atexit.register(remove_temp_file, dir_path=self.__temp_dir_path, file_path=self._source)
 
     def _get_common_loader_mapping(self):
         return {
