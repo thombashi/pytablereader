@@ -205,6 +205,8 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             )
             with open(self._source, "wb") as f:
                 f.write(r.content)
+                f.flush()
+                os.fdatasync(f.fileno())
 
             atexit.register(remove_temp_file, dir_path=self.__temp_dir_path, file_path=self._source)
 
