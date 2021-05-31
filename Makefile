@@ -9,7 +9,7 @@ PKG_BUILD_DIR := $(BUILD_WORK_DIR)/$(PACKAGE)
 build-remote: clean
 	@mkdir -p $(BUILD_WORK_DIR)
 	@cd $(BUILD_WORK_DIR) && \
-		git clone https://github.com/$(AUTHOR)/$(PACKAGE).git && \
+		git clone https://github.com/$(AUTHOR)/$(PACKAGE).git --depth 1 && \
 		cd $(PACKAGE) && \
 		tox -e build
 	ls -lh $(PKG_BUILD_DIR)/dist/*
