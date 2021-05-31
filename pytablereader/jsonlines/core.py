@@ -75,7 +75,7 @@ class JsonLinesTableFileLoader(JsonLinesTableLoader):
         self.encoding = get_file_encoding(self.source, self.encoding)
 
         buffer = []
-        with open(self.source, "r", encoding=self.encoding) as fp:
+        with open(self.source, encoding=self.encoding) as fp:
             for line_idx, line in enumerate(fp):
                 line = line.strip()
                 if not line:

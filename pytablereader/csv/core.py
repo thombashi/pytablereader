@@ -162,7 +162,7 @@ class CsvTableFileLoader(CsvTableLoader):
         self.encoding = get_file_encoding(self.source, self.encoding)
 
         self._csv_reader = csv.reader(
-            open(self.source, "r", encoding=self.encoding),
+            open(self.source, encoding=self.encoding),
             delimiter=self.delimiter,
             quotechar=self.quotechar,
             strict=True,

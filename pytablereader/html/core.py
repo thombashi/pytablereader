@@ -83,7 +83,7 @@ class HtmlTableFileLoader(HtmlTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        with open(self.source, "r", encoding=self.encoding) as fp:
+        with open(self.source, encoding=self.encoding) as fp:
             formatter = HtmlTableFormatter(fp.read(), self._logger)
         formatter.accept(self)
 

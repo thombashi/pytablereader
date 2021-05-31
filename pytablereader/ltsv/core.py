@@ -124,7 +124,7 @@ class LtsvTableFileLoader(LtsvTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        self._ltsv_input_stream = open(self.source, "r", encoding=self.encoding)
+        self._ltsv_input_stream = open(self.source, encoding=self.encoding)
 
         for data_matrix in self._to_data_matrix():
             formatter = SingleJsonTableConverterA(data_matrix)

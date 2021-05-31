@@ -6,8 +6,7 @@ PKG_BUILD_DIR := $(BUILD_WORK_DIR)/$(PACKAGE)
 
 
 .PHONY: build-remote
-build-remote:
-	@rm -rf $(BUILD_WORK_DIR)
+build-remote: clean
 	@mkdir -p $(BUILD_WORK_DIR)
 	@cd $(BUILD_WORK_DIR) && \
 		git clone https://github.com/$(AUTHOR)/$(PACKAGE).git && \
@@ -16,8 +15,7 @@ build-remote:
 	ls -lh $(PKG_BUILD_DIR)/dist/*
 
 .PHONY: build
-build:
-	@make clean
+build: clean
 	@tox -e build
 	ls -lh dist/*
 

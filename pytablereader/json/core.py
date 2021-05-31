@@ -427,7 +427,7 @@ class JsonTableFileLoader(JsonTableLoader):
         self._logger.logging_load()
         self.encoding = get_file_encoding(self.source, self.encoding)
 
-        with open(self.source, "r", encoding=self.encoding) as fp:
+        with open(self.source, encoding=self.encoding) as fp:
             try:
                 return json.load(fp, object_pairs_hook=OrderedDict)
             except ValueError as e:
