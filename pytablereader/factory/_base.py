@@ -71,7 +71,7 @@ class BaseTableLoaderFactory(metaclass=abc.ABCMeta):
 
     def _get_loader_class(self, loader_mapping, format_name):
         try:
-            format_name = format_name.lower()
+            format_name = format_name.casefold()
         except AttributeError:
             raise TypeError("format name must be a string")
 
