@@ -9,6 +9,7 @@ import pytest
 from path import Path
 from pytablewriter import dumps_tabledata
 from tabledata import TableData
+from typepy import Integer, RealNumber, String
 
 import pytablereader as ptr
 from pytablereader import InvalidTableNameError
@@ -123,14 +124,15 @@ class Test_TsvTableFileLoader_load:
         AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
-        ["test_id", "table_text", "filename", "headers", "expected"],
+        ["test_id", "table_text", "filename", "headers", "type_hints", "expected"],
         [
-            [0, test_data_00.value, "tmp.tsv", [], test_data_00.expected],
+            [0, test_data_00.value, "tmp.tsv", [], [], test_data_00.expected],
             [
                 1,
                 test_data_01.value,
                 "hoge/foo_bar.tsv",
                 ["attr_a", "attr_b", "attr_c"],
+                [Integer, RealNumber, String],
                 test_data_01.expected,
             ],
             [
@@ -138,19 +140,20 @@ class Test_TsvTableFileLoader_load:
                 test_data_02.value,
                 "hoge/foo_bar.tsv",
                 ["attr_a", "attr_b", "attr_c"],
+                [Integer, RealNumber, String],
                 test_data_02.expected,
             ],
-            [3, test_data_03.value, "tmp.tsv", [], test_data_03.expected],
+            [3, test_data_03.value, "tmp.tsv", [], [], test_data_03.expected],
         ],
     )
-    def test_normal(self, tmpdir, test_id, table_text, filename, headers, expected):
+    def test_normal(self, tmpdir, test_id, table_text, filename, headers, type_hints, expected):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(table_text)
 
-        loader = ptr.TsvTableFileLoader(file_path)
+        loader = ptr.TsvTableFileLoader(file_path, type_hints=type_hints)
         loader.headers = headers
 
         for tabledata in loader.load():
@@ -224,16 +227,28 @@ class Test_TsvTableTextLoader_load:
         AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
-        ["table_text", "table_name", "headers", "expected"],
+        ["table_text", "table_name", "headers", "type_hints", "expected"],
         [
-            [test_data_00.value, "tmp", [], test_data_00.expected],
-            [test_data_01.value, "foo_bar", ["attr_a", "attr_b", "attr_c"], test_data_01.expected],
-            [test_data_02.value, "foo_bar", ["attr_a", "attr_b", "attr_c"], test_data_02.expected],
-            [test_data_03.value, "tmp", [], test_data_03.expected],
+            [test_data_00.value, "tmp", [], [], test_data_00.expected],
+            [
+                test_data_01.value,
+                "foo_bar",
+                ["attr_a", "attr_b", "attr_c"],
+                [Integer, RealNumber, String],
+                test_data_01.expected,
+            ],
+            [
+                test_data_02.value,
+                "foo_bar",
+                ["attr_a", "attr_b", "attr_c"],
+                [Integer, RealNumber, String],
+                test_data_02.expected,
+            ],
+            [test_data_03.value, "tmp", [], [], test_data_03.expected],
         ],
     )
-    def test_normal(self, table_text, table_name, headers, expected):
-        loader = ptr.TsvTableTextLoader(table_text)
+    def test_normal(self, table_text, table_name, headers, type_hints, expected):
+        loader = ptr.TsvTableTextLoader(table_text, type_hints=type_hints)
         loader.table_name = table_name
         loader.headers = headers
 

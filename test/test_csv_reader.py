@@ -14,6 +14,7 @@ import pytest
 from path import Path
 from pytablewriter import dumps_tabledata
 from tabledata import TableData
+from typepy import Integer, RealNumber, String
 
 import pytablereader as ptr
 from pytablereader import InvalidTableNameError
@@ -140,8 +141,8 @@ test_data_06 = Data(
             "tmp",
             ["smokey", "Linux 3.0-ARCH", "x86"],
             [
-                [12345678901, "12345 1234567890123", 123],
-                [12345678901, 1234567890123456789, 12345],
+                ["12345678901", "12345 1234567890123", "123"],
+                ["12345678901", "1234567890123456789", "12345"],
                 ["11 bytes", "19 bytes", "5 byt"],
                 ["test line:", 'Some "comma, quote"', "foo"],
                 ["skylight", "Linux 3.0-ARCH", "x86"],
@@ -220,14 +221,15 @@ class Test_CsvTableFileLoader_load:
         AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
-        ["test_id", "table_text", "filename", "headers", "expected"],
+        ["test_id", "table_text", "filename", "headers", "type_hints", "expected"],
         [
-            [0, test_data_00.value, "tmp.csv", [], test_data_00.expected],
+            [0, test_data_00.value, "tmp.csv", [], [], test_data_00.expected],
             [
                 1,
                 test_data_01.value,
                 "hoge/foo_bar.csv",
                 ["attr_a", "attr_b", "attr_c"],
+                [Integer, RealNumber, String],
                 test_data_01.expected,
             ],
             [
@@ -235,22 +237,23 @@ class Test_CsvTableFileLoader_load:
                 test_data_02.value,
                 "hoge/foo_bar.csv",
                 ["attr_a", "attr_b", "attr_c"],
+                [Integer, RealNumber, String],
                 test_data_02.expected,
             ],
-            [3, test_data_03.value, "tmp.csv", [], test_data_03.expected],
-            [4, test_data_04.value, "tmp.csv", [], test_data_04.expected],
-            [5, test_data_05.value, "tmp.csv", [], test_data_05.expected],
-            [6, test_data_06.value, "tmp.csv", [], test_data_06.expected],
+            [3, test_data_03.value, "tmp.csv", [], [], test_data_03.expected],
+            [4, test_data_04.value, "tmp.csv", [], [], test_data_04.expected],
+            [5, test_data_05.value, "tmp.csv", [], [], test_data_05.expected],
+            [6, test_data_06.value, "tmp.csv", [], [], test_data_06.expected],
         ],
     )
-    def test_normal(self, tmpdir, test_id, table_text, filename, headers, expected):
+    def test_normal(self, tmpdir, test_id, table_text, filename, headers, type_hints, expected):
         file_path = Path(str(tmpdir.join(filename)))
         file_path.parent.makedirs_p()
 
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(table_text)
 
-        loader = ptr.CsvTableFileLoader(file_path)
+        loader = ptr.CsvTableFileLoader(file_path, type_hints=type_hints)
         loader.headers = headers
 
         for tabledata in loader.load():
@@ -375,16 +378,28 @@ class Test_CsvTableTextLoader_load:
         AbstractTableReader.clear_table_count()
 
     @pytest.mark.parametrize(
-        ["table_text", "table_name", "headers", "expected"],
+        ["table_text", "table_name", "headers", "type_hints", "expected"],
         [
-            [test_data_00.value, "tmp", [], test_data_00.expected],
-            [test_data_01.value, "foo_bar", ["attr_a", "attr_b", "attr_c"], test_data_01.expected],
-            [test_data_02.value, "foo_bar", ["attr_a", "attr_b", "attr_c"], test_data_02.expected],
-            [test_data_03.value, "tmp", [], test_data_03.expected],
+            [test_data_00.value, "tmp", [], [], test_data_00.expected],
+            [
+                test_data_01.value,
+                "foo_bar",
+                ["attr_a", "attr_b", "attr_c"],
+                [Integer, RealNumber, String],
+                test_data_01.expected,
+            ],
+            [
+                test_data_02.value,
+                "foo_bar",
+                ["attr_a", "attr_b", "attr_c"],
+                [Integer, RealNumber, String],
+                test_data_02.expected,
+            ],
+            [test_data_03.value, "tmp", [], [], test_data_03.expected],
         ],
     )
-    def test_normal(self, table_text, table_name, headers, expected):
-        loader = ptr.CsvTableTextLoader(table_text)
+    def test_normal(self, table_text, table_name, headers, type_hints, expected):
+        loader = ptr.CsvTableTextLoader(table_text, type_hints=type_hints)
         loader.table_name = table_name
         loader.headers = headers
 
@@ -399,9 +414,9 @@ class Test_CsvTableTextLoader_load:
         table_text = dedent(
             """\
             "a text","b integer","c real"
-            1,"1","1.1"
-            2,"2","1.2"
-            3,"3","1.3"
+            01,"01","1.1"
+            20,"20","1.2"
+            030,"030","1.3"
             """
         )
 
@@ -412,9 +427,9 @@ class Test_CsvTableTextLoader_load:
         for tbldata in loader.load():
             assert tbldata.headers == ["a text", "b integer", "c real"]
             assert tbldata.value_matrix == [
-                ["1", 1, Decimal("1.1")],
-                ["2", 2, Decimal("1.2")],
-                ["3", 3, Decimal("1.3")],
+                ["01", 1, Decimal("1.1")],
+                ["20", 20, Decimal("1.2")],
+                ["030", 30, Decimal("1.3")],
             ]
 
     @pytest.mark.parametrize(

@@ -90,24 +90,19 @@ class CsvTableLoader(AbstractTableReader):
     def _to_data_matrix(self):
         try:
             return [
-                [self.__modify_item(data) for data in row]
+                [self.__modify_item(data, col) for col, data in enumerate(row)]
                 for row in self._csv_reader
                 if typepy.is_not_empty_sequence(row)
             ]
         except (csv.Error, UnicodeDecodeError) as e:
             raise DataError(e)
 
-    @staticmethod
-    def __modify_item(data):
-        try:
-            return typepy.Integer(data).convert()
-        except typepy.TypeConversionError:
-            pass
-
-        try:
-            return typepy.RealNumber(data).convert()
-        except typepy.TypeConversionError:
-            pass
+    def __modify_item(self, data, col: int):
+        if self.type_hints and (col in self.type_hints):
+            try:
+                return self.type_hints[col](data).convert()
+            except typepy.TypeConversionError:
+                pass
 
         return MultiByteStrDecoder(data).unicode_str
 
