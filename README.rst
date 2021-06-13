@@ -18,13 +18,9 @@ Summary
     :target: https://pypi.org/project/pytablereader
     :alt: Supported Python implementations
 
-.. image:: https://img.shields.io/travis/thombashi/pytablereader/master.svg?label=Linux/macOS%20CI
-    :target: https://travis-ci.org/thombashi/pytablereader
-    :alt: Linux/macOS CI status
-
-.. image:: https://img.shields.io/appveyor/ci/thombashi/pytablereader/master.svg?label=Windows%20CI
-    :target: https://ci.appveyor.com/project/thombashi/pytablereader/branch/master
-    :alt: Windows CI status
+.. image:: https://github.com/thombashi/pytablereader/actions/workflows/lint_and_test.yml/badge.svg
+    :target: https://github.com/thombashi/pytablereader/actions/workflows/lint_and_test.yml
+    :alt: CI status of Linux/macOS/Windows
 
 .. image:: https://coveralls.io/repos/github/thombashi/pytablereader/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/pytablereader?branch=master
@@ -190,7 +186,7 @@ Install from PPA (for Ubuntu)
 
 Dependencies
 ============
-- Python 3.5+
+- Python 3.6+
 - `Python package dependencies (automatically installed) <https://github.com/thombashi/pytablereader/network/dependencies>`__
 
 
@@ -207,7 +203,6 @@ Optional Python packages
 - ``sqlite`` extras
     - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
 - ``url`` extras
-    - `requests <http://python-requests.org/>`__
     - `retryrequests <https://github.com/thombashi/retryrequests>`__
 - `pandas <https://pandas.pydata.org/>`__
     - required to get table data as a pandas data frame
