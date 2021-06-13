@@ -18,17 +18,35 @@ from pytablereader.interface import AbstractTableReader
 Data = collections.namedtuple("Data", "value expected")
 
 test_data_00 = Data(
-    "\n".join(['"attr_a"\t"attr_b"\t"attr_c"', '1\t4\t"a"', '2\t2.1\t"bb"', '3\t120.9\t"ccc"']),
+    "\n".join(
+        [
+            '"attr_a"\t"attr_b"\t"attr_c"',
+            '1\t4\t"a"',
+            '2\t2.1\t"bb"',
+            '3\t120.9\t"ccc"',
+        ],
+    ),
     [
         TableData(
             "tmp",
             ["attr_a", "attr_b", "attr_c"],
-            [[1, 4, "a"], [2, Decimal("2.1"), "bb"], [3, Decimal("120.9"), "ccc"]],
+            [
+                [1, 4, "a"],
+                [2, Decimal("2.1"), "bb"],
+                [3, Decimal("120.9"), "ccc"],
+            ],
         )
     ],
 )
 test_data_01 = Data(
-    "\n".join(['"attr_a"\t"attr_b"\t"attr_c"', '1\t4\t"a"', '2\t2.1\t"bb"', '3\t120.9\t"ccc"']),
+    "\n".join(
+        [
+            '"attr_a"\t"attr_b"\t"attr_c"',
+            '1\t4\t"a"',
+            '2\t2.1\t"bb"',
+            '3\t120.9\t"ccc"',
+        ],
+    ),
     [
         TableData(
             "foo_bar",
