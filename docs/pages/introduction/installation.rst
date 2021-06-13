@@ -35,7 +35,7 @@ Install from PPA (for Ubuntu)
 
 Dependencies
 ============
-- Python 3.5+
+- Python 3.6+
 - `Python package dependencies (automatically installed) <https://github.com/thombashi/pytablereader/network/dependencies>`__
 
 
@@ -52,7 +52,6 @@ Optional Python packages
 - ``sqlite`` extras
     - `SimpleSQLite <https://github.com/thombashi/SimpleSQLite>`__
 - ``url`` extras
-    - `requests <http://python-requests.org/>`__
     - `retryrequests <https://github.com/thombashi/retryrequests>`__
 - `pandas <https://pandas.pydata.org/>`__
     - required to get table data as a pandas data frame
