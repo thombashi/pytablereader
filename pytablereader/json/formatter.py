@@ -121,7 +121,7 @@ class SingleJsonTableConverterB(SingleJsonTableConverterBase):
         yield TableData(
             self._make_table_name(),
             headers,
-            zip(*[self._buffer.get(header) for header in headers]),
+            zip(*(self._buffer.get(header) for header in headers)),
             dp_extractor=self._loader.dp_extractor,
             type_hints=self._extract_type_hints(),
         )
@@ -241,7 +241,7 @@ class MultipleJsonTableConverterB(MultipleJsonTableConverterBase):
             yield TableData(
                 self._make_table_name(),
                 headers,
-                zip(*[json_records.get(header) for header in headers]),
+                zip(*(json_records.get(header) for header in headers)),
                 dp_extractor=self._loader.dp_extractor,
                 type_hints=self._extract_type_hints(headers),
             )
@@ -322,4 +322,4 @@ class JsonTableFormatter(TableFormatter):
                     break
             """
 
-        raise ValidationError("inconvertible JSON schema: json={}".format(self._source_data))
+        raise ValidationError(f"inconvertible JSON schema: json={self._source_data}")

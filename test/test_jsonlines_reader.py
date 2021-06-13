@@ -204,7 +204,7 @@ class Test_JsonLinesTableFileLoader_load:
         loader = self.LOADER_CLASS(file_path)
         load = False
         for tabledata in loader.load():
-            print("[actual]\n{}".format(dumps_tabledata(tabledata)))
+            print(f"[actual]\n{dumps_tabledata(tabledata)}")
 
             assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True
@@ -227,7 +227,7 @@ class Test_JsonLinesTableFileLoader_load:
             executor.submit(fifo_writer, namedpipe, table_text)
 
             for tabledata in loader.load():
-                print("[actual]\n{}".format(dumps_tabledata(tabledata)))
+                print(f"[actual]\n{dumps_tabledata(tabledata)}")
 
                 assert tabledata.in_tabledata_list(expected)
 
@@ -322,10 +322,10 @@ class Test_JsonLinesTableTextLoader_load:
 
         load = False
         for tabledata in loader.load():
-            print("[actual]\n{}".format(dumps_tabledata(tabledata)))
+            print(f"[actual]\n{dumps_tabledata(tabledata)}")
             print("[expected]")
             for expected in expected_tabletuple_list:
-                print("{}".format(dumps_tabledata(tabledata)))
+                print(f"{dumps_tabledata(tabledata)}")
 
             assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True

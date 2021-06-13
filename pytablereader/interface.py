@@ -80,7 +80,7 @@ class AbstractTableReader(TableLoaderInterface, metaclass=abc.ABCMeta):
         self.__dp_extractor.update_strict_level_map({typepy.Typecode.BOOL: 1})
 
     def get_format_key(self):
-        return "{:s}{:d}".format(self.format_name, self.__get_format_table_count())
+        return f"{self.format_name:s}{self.__get_format_table_count():d}"
 
     def make_table_name(self):
         return self._make_table_name()

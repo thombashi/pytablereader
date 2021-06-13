@@ -475,8 +475,8 @@ class Test_HtmlTableFileLoader_load:
         loader.table_name = table_name
 
         for table_data in loader.load():
-            print("--- test {} ---".format(test_id))
-            print("[actual]\n{}\n".format(dumps_tabledata(table_data)))
+            print(f"--- test {test_id} ---")
+            print(f"[actual]\n{dumps_tabledata(table_data)}\n")
 
             assert table_data.in_tabledata_list(expected_tabledata_list)
 
@@ -525,7 +525,7 @@ class Test_HtmlTableTextLoader_load:
         loader.table_name = table_name
 
         for table_data in loader.load():
-            print("[actual]\n{}".format(dumps_tabledata(table_data)))
+            print(f"[actual]\n{dumps_tabledata(table_data)}")
 
             assert table_data.in_tabledata_list(expected_tabletuple_list)
 

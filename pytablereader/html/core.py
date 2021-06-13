@@ -20,7 +20,7 @@ class HtmlTableLoader(AbstractTableReader):
         return "html"
 
     def _get_default_table_name_template(self):
-        return "{:s}_{:s}".format(tnt.TITLE, tnt.KEY)
+        return f"{tnt.TITLE:s}_{tnt.KEY:s}"
 
 
 class HtmlTableFileLoader(HtmlTableLoader):

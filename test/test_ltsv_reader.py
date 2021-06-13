@@ -95,9 +95,9 @@ class Test_LtsvTableFileLoader_load:
         loader = ptr.LtsvTableFileLoader(file_path)
 
         for tabledata in loader.load():
-            print("test-id={}".format(test_id))
-            print("[expected]\n{}".format(dumps_tabledata(expected)))
-            print("[actual]\n{}".format(dumps_tabledata(tabledata)))
+            print(f"test-id={test_id}")
+            print(f"[expected]\n{dumps_tabledata(expected)}")
+            print(f"[actual]\n{dumps_tabledata(tabledata)}")
 
             assert tabledata.equals(expected)
 
@@ -172,8 +172,8 @@ class Test_LtsvTableTextLoader_load:
         loader.table_name = table_name
 
         for tabledata in loader.load():
-            print("[expected]: {}".format(dumps_tabledata(expected)))
-            print("[actual]: {}".format(dumps_tabledata(tabledata)))
+            print(f"[expected]: {dumps_tabledata(expected)}")
+            print(f"[actual]: {dumps_tabledata(tabledata)}")
 
             assert tabledata.equals(expected)
 

@@ -22,7 +22,7 @@ def is_fifo(file_path: str) -> bool:
     try:
         return stat.S_ISFIFO(os.stat(file_path).st_mode)
     except OSError as e:
-        logger.error("errno: {}".format(e.errno))
+        logger.error(f"errno: {e.errno}")
 
         if e.errno not in (EBADF, ENAMETOOLONG, ENOENT, ENOTDIR):
             raise
@@ -118,4 +118,4 @@ class UrlValidator(BaseValidator):
 
         scheme = urlparse(self.source).scheme
         if scheme not in ["http", "https"]:
-            raise UrlError("invalid scheme: expected=http/https, actual={}".format(scheme))
+            raise UrlError(f"invalid scheme: expected=http/https, actual={scheme}")

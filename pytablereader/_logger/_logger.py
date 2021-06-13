@@ -61,7 +61,7 @@ class BaseLogger(LoggerInterface):
         logger.debug(self._get_load_message())
 
     def logging_table(self, table_data):
-        logger.debug("loaded tabledata: {}".format(table_data))
+        logger.debug(f"loaded tabledata: {table_data}")
 
     @abc.abstractmethod
     def _get_load_message(self):
@@ -86,12 +86,12 @@ class FileSourceLogger(BaseLogger):
         )
 
         try:
-            message += ", encoding={}".format(self._loader.encoding)
+            message += f", encoding={self._loader.encoding}"
         except AttributeError:
             pass
 
         if self._loader.type_hints:
-            message += ", type-hints=({})".format(typehints_to_str(self._loader.type_hints))
+            message += f", type-hints=({typehints_to_str(self._loader.type_hints)})"
 
         return message
 
@@ -103,16 +103,16 @@ class TextSourceLogger(BaseLogger):
         )
 
         try:
-            message += ", len={}".format(len(self._loader.source))
+            message += f", len={len(self._loader.source)}"
         except TypeError:
             pass
 
         try:
-            message += ", encoding={}".format(self._loader.encoding)
+            message += f", encoding={self._loader.encoding}"
         except AttributeError:
             pass
 
         if self._loader.type_hints:
-            message += ", type-hints=({})".format(typehints_to_str(self._loader.type_hints))
+            message += f", type-hints=({typehints_to_str(self._loader.type_hints)})"
 
         return message

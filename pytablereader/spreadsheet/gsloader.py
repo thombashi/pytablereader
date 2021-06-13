@@ -115,7 +115,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
                     type_hints=self._extract_type_hints(headers),
                 )
         except gspread.exceptions.SpreadsheetNotFound:
-            raise OpenError("spreadsheet '{}' not found".format(self.title))
+            raise OpenError(f"spreadsheet '{self.title}' not found")
         except gspread.exceptions.APIError as e:
             raise APIError(e)
 
@@ -155,7 +155,7 @@ class GoogleSheetsTableLoader(SpreadSheetLoader):
         con = connect_memdb()
 
         tmp_table_name = "tmp"
-        headers = ["a{:d}".format(i) for i in range(len(self.__all_values[0]))]
+        headers = [f"a{i:d}" for i in range(len(self.__all_values[0]))]
         con.create_table_from_data_matrix(tmp_table_name, headers, self.__all_values)
         for col_idx, header in enumerate(headers):
             result = con.select(select=Attr(header), table_name=tmp_table_name)

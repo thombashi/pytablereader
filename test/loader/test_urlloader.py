@@ -249,7 +249,7 @@ class Test_TableUrlLoader_load:
         loader.table_name = "url_loader"
 
         for table_data in loader.load():
-            print("{} {}".format(table_data, dumps_tabledata(table_data)))
+            print(f"{table_data} {dumps_tabledata(table_data)}")
             print(table_data.rows)
             print("[expected]")
             for expected in expected_list:

@@ -81,8 +81,8 @@ class BaseTableLoaderFactory(metaclass=abc.ABCMeta):
             raise LoaderNotFoundError(
                 ", ".join(
                     [
-                        "loader not found: format='{}'".format(format_name),
-                        "source='{}'".format(self.source),
+                        f"loader not found: format='{format_name}'",
+                        f"source='{self.source}'",
                     ]
                 )
             )
@@ -98,10 +98,10 @@ class BaseTableLoaderFactory(metaclass=abc.ABCMeta):
             raise LoaderNotFoundError(
                 "\n".join(
                     [
-                        "{:s} (unknown extension).".format(e.args[0]),
+                        f"{e.args[0]:s} (unknown extension).",
                         "",
                         "acceptable extensions are: {}.".format(", ".join(self.get_extensions())),
-                        "actual: '{}'".format(extension),
+                        f"actual: '{extension}'",
                     ]
                 )
             )
@@ -117,7 +117,7 @@ class BaseTableLoaderFactory(metaclass=abc.ABCMeta):
             raise LoaderNotFoundError(
                 "\n".join(
                     [
-                        "{:s} (unknown format name).".format(e.args[0]),
+                        f"{e.args[0]:s} (unknown format name).",
                         "acceptable format names are: {}.".format(
                             ", ".join(self.get_format_names())
                         ),

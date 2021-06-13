@@ -190,4 +190,4 @@ class LtsvTableTextLoader(LtsvTableLoader):
             return formatter.to_table_data()
 
     def _get_default_table_name_template(self):
-        return "{:s}{:s}".format(tnt.FORMAT_NAME, tnt.FORMAT_ID)
+        return f"{tnt.FORMAT_NAME:s}{tnt.FORMAT_ID:s}"

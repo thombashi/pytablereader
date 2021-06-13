@@ -96,7 +96,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         except InvalidFilePathError:
             raise UrlError("url must include path")
 
-        logger.debug("TableUrlLoaderFactory: extension={}".format(url_extension))
+        logger.debug(f"TableUrlLoaderFactory: extension={url_extension}")
 
         loader_class = self._get_loader_class(self._get_extension_loader_mapping(), url_extension)
 
@@ -107,7 +107,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         loader = self._create_from_extension(url_extension)
 
-        logger.debug("TableUrlLoaderFactory: loader={}".format(loader.format_name))
+        logger.debug(f"TableUrlLoaderFactory: loader={loader.format_name}")
 
         return loader
 
@@ -144,7 +144,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         import requests
 
-        logger.debug("TableUrlLoaderFactory: name={}".format(format_name))
+        logger.debug(f"TableUrlLoaderFactory: name={format_name}")
 
         loader_class = self._get_loader_class(self._get_format_name_loader_mapping(), format_name)
 
@@ -155,7 +155,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
 
         loader = self._create_from_format_name(format_name)
 
-        logger.debug("TableUrlLoaderFactory: loader={}".format(loader.format_name))
+        logger.debug(f"TableUrlLoaderFactory: loader={loader.format_name}")
 
         return loader
 
@@ -167,7 +167,7 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
         loader_source_type = dummy_loader.source_type
 
         if loader_source_type not in [SourceType.TEXT, SourceType.FILE]:
-            raise ValueError("unknown loader source: type={}".format(loader_source_type))
+            raise ValueError(f"unknown loader source: type={loader_source_type}")
 
         r = retryrequests.get(self.__url, proxies=self.__proxies)
 
@@ -183,10 +183,10 @@ class TableUrlLoaderFactory(BaseTableLoaderFactory):
             "\n".join(
                 [
                     "_fetch_source: ",
-                    "  source-type={}".format(loader_source_type),
+                    f"  source-type={loader_source_type}",
                     "  content-type={}".format(r.headers["Content-Type"]),
-                    "  encoding={}".format(self._encoding),
-                    "  status-code={}".format(r.status_code),
+                    f"  encoding={self._encoding}",
+                    f"  status-code={r.status_code}",
                 ]
             )
         )

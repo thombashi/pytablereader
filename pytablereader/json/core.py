@@ -434,7 +434,7 @@ class JsonTableFileLoader(JsonTableLoader):
                 raise ValidationError(e)
 
     def _get_default_table_name_template(self):
-        return "{:s}_{:s}".format(tnt.FILENAME, tnt.KEY)
+        return f"{tnt.FILENAME:s}_{tnt.KEY:s}"
 
 
 class JsonTableTextLoader(JsonTableLoader):
@@ -499,7 +499,7 @@ class JsonTableTextLoader(JsonTableLoader):
         return json.loads(self.source, object_pairs_hook=OrderedDict)
 
     def _get_default_table_name_template(self):
-        return "{:s}".format(tnt.KEY)
+        return f"{tnt.KEY:s}"
 
 
 class JsonTableDictLoader(JsonTableLoader):
@@ -547,4 +547,4 @@ class JsonTableDictLoader(JsonTableLoader):
         return self.source
 
     def _get_default_table_name_template(self):
-        return "{:s}".format(tnt.KEY)
+        return f"{tnt.KEY:s}"

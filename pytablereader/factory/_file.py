@@ -38,7 +38,7 @@ class TableFileLoaderFactory(BaseTableLoaderFactory):
     def __init__(self, source, encoding=None):
         if not encoding and source:
             encoding = detect_file_encoding(source)
-            logger.debug("detect encoding: file={}, encoding={}".format(source, encoding))
+            logger.debug(f"detect encoding: file={source}, encoding={encoding}")
 
         super().__init__(source, encoding)
 

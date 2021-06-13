@@ -74,7 +74,7 @@ class MarkdownTableFileLoader(MarkdownTableLoader):
         return formatter.to_table_data()
 
     def _get_default_table_name_template(self):
-        return "{:s}_{:s}".format(tnt.FILENAME, tnt.KEY)
+        return f"{tnt.FILENAME:s}_{tnt.KEY:s}"
 
 
 class MarkdownTableTextLoader(MarkdownTableLoader):
@@ -131,4 +131,4 @@ class MarkdownTableTextLoader(MarkdownTableLoader):
         return formatter.to_table_data()
 
     def _get_default_table_name_template(self):
-        return "{:s}".format(tnt.KEY)
+        return f"{tnt.KEY:s}"

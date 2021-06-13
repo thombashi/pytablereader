@@ -134,7 +134,7 @@ class Test_SqliteFileLoader_load:
         loader.headers = headers
 
         for tabledata in loader.load():
-            print("test-id={}".format(test_id))
+            print(f"test-id={test_id}")
             print(dumps_tabledata(tabledata))
 
             assert tabledata.in_tabledata_list(expected)

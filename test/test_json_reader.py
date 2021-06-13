@@ -320,7 +320,7 @@ class Test_JsonTableFileLoader_load:
         loader = ptr.JsonTableFileLoader(file_path)
         load = False
         for tabledata in loader.load():
-            print("[actual]\n{}".format(dumps_tabledata(tabledata)))
+            print(f"[actual]\n{dumps_tabledata(tabledata)}")
 
             assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True
@@ -433,7 +433,7 @@ class Test_JsonTableTextLoader_load:
 
         load = False
         for tabledata in loader.load():
-            print("[actual]\n{}".format(dumps_tabledata(tabledata)))
+            print(f"[actual]\n{dumps_tabledata(tabledata)}")
 
             assert tabledata.in_tabledata_list(expected_tabletuple_list)
             load = True

@@ -49,9 +49,7 @@ class TableTextLoaderFactory(BaseTableLoaderFactory):
 
         loader = self._create_from_format_name(format_name)
 
-        logger.debug(
-            "TableTextLoaderFactory: name={}, loader={}".format(format_name, loader.format_name)
-        )
+        logger.debug(f"TableTextLoaderFactory: name={format_name}, loader={loader.format_name}")
 
         return loader
 

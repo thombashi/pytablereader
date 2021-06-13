@@ -61,7 +61,7 @@ class SpreadSheetLoader(AbstractTableReader):
         return self._expand_table_name_format(kv_mapping)
 
     def _get_default_table_name_template(self):
-        return "{:s}".format(tnt.SHEET)
+        return f"{tnt.SHEET:s}"
 
     def _extract_type_hints(self, headers=None):
         if self.type_hints:

@@ -263,8 +263,8 @@ class Test_MarkdownTableFileLoader_load:
 
         load = False
         for table_data in loader.load():
-            print("--- test {} ---".format(test_id))
-            print("\n[actual]\n{}".format(dumps_tabledata(table_data)))
+            print(f"--- test {test_id} ---")
+            print(f"\n[actual]\n{dumps_tabledata(table_data)}")
             assert table_data.in_tabledata_list(expected_tabledata_list)
             load = True
 
@@ -312,11 +312,11 @@ class Test_MarkdownTableTextLoader_load:
 
         load = False
         for table_data in loader.load():
-            print("--- id: {} ---".format(test_id))
-            print("[actual]\n{}".format(table_data))
+            print(f"--- id: {test_id} ---")
+            print(f"[actual]\n{table_data}")
             print("[expected]")
             for expected in expected_tabletuple_list:
-                print("    {}".format(expected))
+                print(f"    {expected}")
             print("")
             assert table_data.in_tabledata_list(expected_tabletuple_list)
 

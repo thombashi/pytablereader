@@ -33,8 +33,8 @@ class Test_TableData_as_dataframe:
         if typepy.is_not_empty_sequence(headers):
             dataframe.columns = headers
 
-        print("lhs: {}".format(tabledata.as_dataframe()))
-        print("rhs: {}".format(dataframe))
+        print(f"lhs: {tabledata.as_dataframe()}")
+        print(f"rhs: {dataframe}")
 
         assert tabledata.as_dataframe().equals(dataframe)
 

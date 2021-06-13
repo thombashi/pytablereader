@@ -192,7 +192,7 @@ class Test_ExcelTableFileLoader_load:
         loader.start_row = start_row
 
         for table_data in loader.load():
-            print("[actual]\n{}".format(dumps_tabledata(table_data)))
+            print(f"[actual]\n{dumps_tabledata(table_data)}")
             assert table_data.in_tabledata_list(expected_list)
 
     @pytest.mark.parametrize(

@@ -93,7 +93,7 @@ class JsonLinesTableFileLoader(JsonLinesTableLoader):
         return buffer
 
     def _get_default_table_name_template(self):
-        return "{:s}_{:s}".format(tnt.FILENAME, tnt.KEY)
+        return f"{tnt.FILENAME:s}_{tnt.KEY:s}"
 
 
 class JsonLinesTableTextLoader(JsonLinesTableLoader):
@@ -160,4 +160,4 @@ class JsonLinesTableTextLoader(JsonLinesTableLoader):
         return buffer
 
     def _get_default_table_name_template(self):
-        return "{:s}".format(tnt.KEY)
+        return f"{tnt.KEY:s}"
