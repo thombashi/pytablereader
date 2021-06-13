@@ -40,7 +40,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade tox
+          make setup
 
       - name: Run tox
         run: |
