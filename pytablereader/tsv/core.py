@@ -21,8 +21,8 @@ class TsvTableFileLoader(CsvTableFileLoader):
     def format_name(self):
         return "tsv"
 
-    def __init__(self, file_path):
-        super().__init__(file_path)
+    def __init__(self, file_path, quoting_flags=None, type_hints=None, type_hint_rules=None):
+        super().__init__(file_path, quoting_flags, type_hints, type_hint_rules)
 
         self.delimiter = "\t"
 
@@ -44,8 +44,8 @@ class TsvTableTextLoader(CsvTableTextLoader):
     def format_name(self):
         return "tsv"
 
-    def __init__(self, text):
-        super().__init__(text)
+    def __init__(self, text, quoting_flags=None, type_hints=None, type_hint_rules=None):
+        super().__init__(text, quoting_flags, type_hints, type_hint_rules)
 
         self.delimiter = "\t"
 
