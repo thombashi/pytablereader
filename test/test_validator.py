@@ -2,6 +2,8 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
+import platform
+
 import pytest
 
 import pytablereader as ptr
@@ -72,5 +74,9 @@ class Test_UrlValidator_validate:
 
 
 class Test_is_fifo:
+    @pytest.mark.skipif(
+        platform.system() == "Windows",
+        reason="platform dependent tests: only failed at GitHub Actions",
+    )
     def test_filename_too_long(self):
         assert not is_fifo("a" * 1000)

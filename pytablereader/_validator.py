@@ -19,9 +19,6 @@ from .error import InvalidFilePathError, UrlError
 
 
 def is_fifo(file_path: str) -> bool:
-    if not pv.is_valid_filepath(file_path):
-        return False
-
     try:
         return stat.S_ISFIFO(os.stat(file_path).st_mode)
     except OSError as e:
