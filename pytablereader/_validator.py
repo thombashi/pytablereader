@@ -14,6 +14,7 @@ import typepy
 from pytablereader import DataError
 
 from ._constant import SourceType
+from ._logger import logger
 from .error import InvalidFilePathError, UrlError
 
 
@@ -21,6 +22,8 @@ def is_fifo(file_path):
     try:
         return stat.S_ISFIFO(os.stat(file_path).st_mode)
     except OSError as e:
+        logger.error("errno: {}".format(e.errno))
+
         if e.errno not in (EBADF, ENAMETOOLONG, ENOENT, ENOTDIR):
             raise
 
