@@ -46,11 +46,11 @@ release:
 	@cd $(PKG_BUILD_DIR) && $(PYTHON) setup.py release --sign
 	@make clean
 
-.PHONY: setup
-setup:
-	@$(PYTHON) -m pip install  --disable-pip-version-check --upgrade releasecmd tox
+.PHONY: setup-ci
+setup-ci:
+	@$(PYTHON) -m pip install --disable-pip-version-check --upgrade releasecmd tox
 
-.PHONY: setup-dev
-setup-dev: setup
+.PHONY: setup
+setup: setup-ci
 	@$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade -e .[test]
 	@$(PYTHON) -m pip check
