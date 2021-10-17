@@ -3,6 +3,6 @@ DataProperty>=0.50.1,<2
 jsonschema>=2.5.1,<4
 mbstrdecoder>=1.0.0,<2
 pathvalidate>=2.3.0,<3
-path.py<13
+path>=13,<17
 tabledata>=1.1.1,<2
 typepy>=1.1.4,<2
