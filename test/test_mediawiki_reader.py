@@ -44,7 +44,11 @@ test_data_01 = Data(
         TableData(
             "mediawiki1",
             ["a", "b", "c"],
-            [["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
+            [
+                ["1", "123.1", "a"],
+                ["2", "2.2", "bb"],
+                ["3", "3.3", "ccc"],
+            ],
         )
     ],
 )
@@ -75,7 +79,11 @@ test_data_02 = Data(
         TableData(
             "tablename",
             ["a", "b", "c"],
-            [["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
+            [
+                ["1", "123.1", "a"],
+                ["2", "2.2", "bb"],
+                ["3", "3.3", "ccc"],
+            ],
         )
     ],
 )
@@ -121,9 +129,21 @@ test_data_04 = Data(
         TableData(
             "tmp_tablename",
             ["a", "b", "c"],
-            [["1", "123.1", "a"], ["2", "2.2", "bb"], ["3", "3.3", "ccc"]],
+            [
+                ["1", "123.1", "a"],
+                ["2", "2.2", "bb"],
+                ["3", "3.3", "ccc"],
+            ],
         ),
-        TableData("tmp_mediawiki2", ["a", "b"], [["1", "123.1"], ["2", "2.2"], ["3", "3.3"]]),
+        TableData(
+            "tmp_mediawiki2",
+            ["a", "b"],
+            [
+                ["1", "123.1"],
+                ["2", "2.2"],
+                ["3", "3.3"],
+            ],
+        ),
     ],
 )
 test_empty_data_00 = "= empty table ="
@@ -145,7 +165,10 @@ test_empty_data_01 = dedent(
 class MediaWikiTableFormatter_constructor:
     @pytest.mark.parametrize(
         ["value", "source", "expected"],
-        [["tablename", None, ptr.DataError], ["tablename", "", ptr.DataError]],
+        [
+            ["tablename", None, ptr.DataError],
+            ["tablename", "", ptr.DataError],
+        ],
     )
     def test_exception(self, monkeypatch, value, source, expected):
         with pytest.raises(expected):
@@ -341,7 +364,11 @@ class Test_MediaWikiTableFileLoader_load:
             raise ValueError("should not reach this line")
 
     @pytest.mark.parametrize(
-        ["filename", "expected"], [["", ptr.InvalidFilePathError], [None, ptr.InvalidFilePathError]]
+        ["filename", "expected"],
+        [
+            ["", ptr.InvalidFilePathError],
+            [None, ptr.InvalidFilePathError],
+        ],
     )
     def test_exception_null(self, tmpdir, filename, expected):
         loader = ptr.MediaWikiTableFileLoader(filename)
@@ -391,7 +418,11 @@ class Test_MediaWikiTableTextLoader_load:
             raise ValueError("should not reach this line")
 
     @pytest.mark.parametrize(
-        ["table_text", "expected"], [["", ptr.DataError], [None, ptr.DataError]]
+        ["table_text", "expected"],
+        [
+            ["", ptr.DataError],
+            [None, ptr.DataError],
+        ],
     )
     def test_null(self, table_text, expected):
         loader = ptr.MediaWikiTableTextLoader(table_text)
