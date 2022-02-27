@@ -74,7 +74,6 @@ try:
             http://docs.python-requests.org/en/master/_modules/requests/exceptions/
         """
 
-
 except ImportError:
 
     class HTTPError(Exception):
