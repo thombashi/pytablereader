@@ -5,6 +5,9 @@ on: [push, pull_request]
 env:
   PYTEST_DISCORD_WEBHOOK: ${{ secrets.PYTEST_DISCORD_WEBHOOK }}
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest
