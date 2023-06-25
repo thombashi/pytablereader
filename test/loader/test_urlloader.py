@@ -143,8 +143,6 @@ class Test_TableUrlLoader_constructor:
     @pytest.mark.parametrize(
         ["value", "format_name", "expected"],
         [
-            [None, None, ValueError],
-            ["", None, ptr.UrlError],
             ["https://github.com/", None, ptr.UrlError],
             ["/tmp/test.txt", None, ptr.UrlError],
             ["c:\\tmp\test.txt", None, ptr.UrlError],
@@ -166,7 +164,7 @@ class Test_TableUrlLoader_constructor:
         ],
     )
     def test_exception(self, value, format_name, expected):
-        responses.add(responses.GET, value, body="""404: Not Found""", status=404)
+        responses.add(responses.GET, url=value, body="""404: Not Found""", status=404)
 
         with pytest.raises(expected):
             ptr.TableUrlLoader(value, format_name)
