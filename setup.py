@@ -44,7 +44,7 @@ excel_requires = ["excelrd>=2.0.2"]
 
 markdown_requires = ["Markdown>=2.6.6,<4"]
 mediawiki_requires = ["pypandoc"]
-sqlite_requires = ["SimpleSQLite>=1.2,<2"]
+sqlite_requires = ["SimpleSQLite>=1.3.2,<2"]
 gs_requires = ["gspread", "oauth2client", "pyOpenSSL"] + sqlite_requires
 logging_requires = ["loguru>=0.4.1,<1"]
 url_requires = ["retryrequests>=0.1,<1"]
