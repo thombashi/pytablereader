@@ -35,7 +35,7 @@ Install from PPA (for Ubuntu)
 
 Dependencies
 ============
-- Python 3.6+
+- Python 3.7+
 - `Python package dependencies (automatically installed) <https://github.com/thombashi/pytablereader/network/dependencies>`__
 
 
