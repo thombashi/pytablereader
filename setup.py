@@ -90,7 +90,7 @@ setuptools.setup(
         "Tracker": f"{REPOSITORY_URL:s}/issues",
         "Changlog": f"{REPOSITORY_URL:s}/releases",
     },
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     install_requires=setuptools_require + install_requires,
     setup_requires=setuptools_require,
     extras_require={
@@ -119,7 +119,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
