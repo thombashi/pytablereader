@@ -26,8 +26,8 @@ Summary
     :target: https://coveralls.io/github/thombashi/pytablereader?branch=master
     :alt: Test coverage
 
-.. image:: https://github.com/thombashi/pytablereader/actions/workflows/codeql-analysis.yml/badge.svg
-    :target: https://github.com/thombashi/pytablereader/actions/workflows/codeql-analysis.yml
+.. image:: https://github.com/thombashi/pytablereader/actions/workflows/github-code-scanning/codeql/badge.svg
+    :target: https://github.com/thombashi/pytablereader/actions/workflows/github-code-scanning/codeql
     :alt: CodeQL
 
 Features
@@ -186,7 +186,7 @@ Install from PPA (for Ubuntu)
 
 Dependencies
 ============
-- Python 3.6+
+- Python 3.7+
 - `Python package dependencies (automatically installed) <https://github.com/thombashi/pytablereader/network/dependencies>`__
 
 
