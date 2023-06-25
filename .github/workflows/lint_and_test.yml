@@ -1,6 +1,16 @@
 name: Lint and Test
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+      - '.gitignore'
+      - '.readthedocs.yaml'
+      - 'README.rst'
+  pull_request:
+    paths-ignore:
+      - '.gitignore'
+      - '.readthedocs.yaml'
+      - 'README.rst'
 
 env:
   PYTEST_DISCORD_WEBHOOK: ${{ secrets.PYTEST_DISCORD_WEBHOOK }}
