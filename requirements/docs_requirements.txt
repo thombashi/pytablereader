@@ -1,3 +1,4 @@
 path>=13
+pytablereader
 sphinx_rtd_theme
 Sphinx>=2.4.1
